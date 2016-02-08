@@ -41,6 +41,7 @@ void OrbitBehaviour::update(float step)
         _owner->translate(glm::vec3(0,0.05f,0));
         _owner->rotate(0.01f,glm::vec3(0,0.05f,0));
     }
+    //test
 
 
 

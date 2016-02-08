@@ -47,27 +47,7 @@ void OrbitBehaviour::update(float step)
 
     glm::vec3 distance = _target->getWorldPosition() - _owner->getWorldPosition();
     float length = sqrtf(distance.x * distance.x + distance.y * distance.y + distance.z * distance.z);
-/**
-    glm::vec3 CamPosWorld = _owner->getWorldPosition();
 
-    if(length < _distance || length > _distance){
-        CamPosWorld.x = _target->getWorldPosition().x;
-        CamPosWorld.y = _target->getWorldPosition().y + (sf::Mouse::getPosition().y/100.0f);
-        CamPosWorld.z = _target->getWorldPosition().z - length;
-    }
-    /**
-
-    //_owner->setLocalPosition(glm::vec3((sf::Mouse::getPosition().x - (1920/2)), _owner->getLocalPosition().y, _owner->getLocalPosition.z));
-    //_owner->setLocalPosition(glm::vec3((sf::Mouse::getPosition().x - (1920.0f/2.0f)) / 100.0f,(sf::Mouse::getPosition().y - (1080.0f/2.0f)) / 100.0f, _owner->getLocalPosition().z));
-
-    _owner->setTransform(
-        glm::inverse (
-            glm::lookAt (_owner->getWorldPosition(), _target->getWorldPosition(), glm::vec3(0,1,0))
-        )
-    );
-
-    //glm::lookAt (_owner->getLocalPosition(), _target->getWorldPosition(), glm::vec3(0,1,0));
-    /**/
     if(_owner->getParent() != _target){
         _owner->setParent(_target);
     }

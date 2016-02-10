@@ -1802,7 +1802,7 @@
 	<glm.hpp>
 	"mge/behaviours/AbstractBehaviour.hpp"
 
-1454946371 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\orbitbehaviour.cpp
+1454946945 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\orbitbehaviour.cpp
 	"OrbitBehaviour.hpp"
 	<SFML/Graphics.hpp>
 
@@ -1953,7 +1953,7 @@
 	"mge/core/Texture.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 
-1454945853 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
+1455117860 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
 	<glm.hpp>
 	<iostream>
 	<string>
@@ -1961,6 +1961,7 @@
 	"mge/core/Mesh.hpp"
 	"mge/core/World.hpp"
 	"mge/core/FPS.hpp"
+	"mge/rooms/MainHall.h"
 	"mge/core/Camera.hpp"
 	"mge/core/GameObject.hpp"
 	"mge/materials/AbstractMaterial.hpp"
@@ -2239,4 +2240,8 @@
 	"mge/materials/AbstractMaterial.hpp"
 	"mge/materials/ColorMaterial.hpp"
 	"mge/materials/TextureMaterial.hpp"
+
+1455117860 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.h
+	<string>
+	"mge/core/GameObject.hpp"
 

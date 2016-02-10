@@ -2182,7 +2182,7 @@
 	"mge/core/Texture.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 
-1454946011 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
+1455109989 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
 	<glm.hpp>
 	<iostream>
 	<string>
@@ -2190,6 +2190,7 @@
 	"mge/core/Mesh.hpp"
 	"mge/core/World.hpp"
 	"mge/core/FPS.hpp"
+	"mge/rooms/MainHall.h"
 	"mge/core/Camera.hpp"
 	"mge/core/GameObject.hpp"
 	"mge/materials/AbstractMaterial.hpp"
@@ -2223,7 +2224,19 @@
 	"mge/util/DebugHud.hpp"
 	"mge/config.hpp"
 
-1454946305 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\orbitbehaviour.cpp
+1454947025 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\orbitbehaviour.cpp
 	"OrbitBehaviour.hpp"
 	<SFML/Graphics.hpp>
+
+1455035289 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.h
+	<string>
+	"mge/core/GameObject.hpp"
+
+1455109927 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
+	"MainHall.h"
+	"mge/core/Mesh.hpp"
+	"mge/config.hpp"
+	"mge/materials/AbstractMaterial.hpp"
+	"mge/materials/ColorMaterial.hpp"
+	"mge/materials/TextureMaterial.hpp"
 

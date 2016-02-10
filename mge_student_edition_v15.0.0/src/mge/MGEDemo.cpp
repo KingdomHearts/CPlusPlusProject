@@ -9,6 +9,8 @@ using namespace std;
 #include "mge/core/World.hpp"
 #include "mge/core/FPS.hpp"
 
+#include "mge/rooms/MainHall.h"
+
 #include "mge/core/Camera.hpp"
 
 #include "mge/core/GameObject.hpp"
@@ -46,7 +48,6 @@ void MGEDemo::initialize() {
 //build the game _world
 void MGEDemo::_initializeScene()
 {
-    _renderer->setClearColor(0,0,0);
 
     //MESHES
 
@@ -66,11 +67,11 @@ void MGEDemo::_initializeScene()
 
     //SCENE SETUP
 
-    GameObject* plane = new GameObject ("plane", glm::vec3(0,0,0));
+    /**GameObject* plane = new GameObject ("plane", glm::vec3(0,0,0));
     plane->scale(glm::vec3(5,5,5));
     plane->setMesh(planeMeshDefault);
     plane->setMaterial(textureMaterial);
-    _world->add(plane);
+    _world->add(plane);**/
 
     GameObject* teapot = new GameObject ("teapot", glm::vec3(0,0,0));
     teapot->setMesh (teapotMeshS);
@@ -78,11 +79,15 @@ void MGEDemo::_initializeScene()
     teapot->setBehaviour (new KeysBehaviour());
     _world->add(teapot);
 
-    GameObject* monkey = new GameObject ("monkey", glm::vec3(3,1,0));
+    /**GameObject* monkey = new GameObject ("monkey", glm::vec3(3,1,0));
     monkey->setMesh (suzannaMeshF);
     monkey->setMaterial(colorMaterial);
     monkey->setBehaviour (new RotatingBehaviour());
-    _world->add(monkey);
+    _world->add(monkey);**/
+    MainHall *mainHall = new MainHall("MainHall");
+    //GameObject* hall = mainHall->CreateHall();
+    _world->add(mainHall);
+
 
     Camera* camera = new Camera ("camera", glm::vec3(0,6,7));
     camera->rotate(glm::radians(-40.0f), glm::vec3(1,0,0));

@@ -9,14 +9,14 @@
 class OrbitBehaviour : public AbstractBehaviour
 {
     public:
-        OrbitBehaviour(GameObject* pTarget, float pDistance);
+        OrbitBehaviour(GameObject* pCameraPosition, float pDistance);
         virtual ~OrbitBehaviour();
 
         virtual void update( float step );
     protected:
         AbstractBehaviour* _lookAt;
     private:
-        GameObject* _target;
+        GameObject* _cameraPosition;
         float _distance;
         GameObject* _emptyCameraParent;
 };

@@ -9,9 +9,9 @@ class MainHall : public GameObject
         MainHall(std::string pName = "MainHall"
                  );
         virtual ~MainHall();
-        GameObject* CreateHall();
     protected:
     private:
+        GameObject* _CreateHall();
 };
 
 #endif // MAINHALL_H

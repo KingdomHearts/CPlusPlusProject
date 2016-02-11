@@ -14,10 +14,10 @@
 
 MainHall::MainHall(std::string pName) : GameObject(pName)
 {
-CreateHall();
+    _CreateHall();
 }
 
-GameObject* MainHall::CreateHall()
+GameObject* MainHall::_CreateHall()
 {
     //MESHES
 
@@ -33,31 +33,33 @@ GameObject* MainHall::CreateHall()
     AbstractMaterial* textureMaterial2 = new TextureMaterial (Texture::load (config::MGE_TEXTURE_PATH+"bricks.jpg"));
     //ctor
     GameObject* planeGround = new GameObject ("planeGround", glm::vec3(0,0,0));
-    planeGround->scale(glm::vec3(5,5,5));
+    planeGround->scale(glm::vec3(10,10,10));
     planeGround->setMesh(planeMeshDefault);
     planeGround->setMaterial(textureMaterial);
     this->add(planeGround);
 
-    GameObject* planeFront = new GameObject ("planeFront", glm::vec3(0,0,-5));
-    planeFront->rotate(90,glm::vec3(90,0,0));
-    planeFront->scale(glm::vec3(5,5,5));
+    GameObject* planeFront = new GameObject ("planeFront", glm::vec3(0,10,-10));
+    planeFront->rotate(glm::radians(90.0f),glm::vec3(1,0,0));
+    planeFront->scale(glm::vec3(10,10,10));
     planeFront->setMesh(planeMeshDefault);
     planeFront->setMaterial(textureMaterial);
     this->add(planeFront);
 
-    /**GameObject* planeRight = new GameObject ("planeRight", glm::vec3(0,0,0));
-    planeRight->scale(glm::vec3(5,5,5));
+    GameObject* planeRight = new GameObject ("planeRight", glm::vec3(10,10,0));
+    planeRight->rotate(glm::radians(90.0f),glm::vec3(0,0,1));
+    planeRight->scale(glm::vec3(10,10,10));
     planeRight->setMesh(planeMeshDefault);
     planeRight->setMaterial(textureMaterial);
     this->add(planeRight);
 
-    GameObject* planeLeft = new GameObject ("planeLeft", glm::vec3(0,0,0));
-    planeLeft->scale(glm::vec3(5,5,5));
+    GameObject* planeLeft = new GameObject ("planeLeft", glm::vec3(-10,10,0));
+    planeLeft->rotate(glm::radians(90.0f),glm::vec3(0,0,-1));
+    planeLeft->scale(glm::vec3(10,10,10));
     planeLeft->setMesh(planeMeshDefault);
     planeLeft->setMaterial(textureMaterial);
     this->add(planeLeft);
     //_world->add(plane);
-    //return plane;**/
+    //return plane;
 }
 
 MainHall    ::~MainHall()

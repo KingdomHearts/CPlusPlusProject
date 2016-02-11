@@ -73,11 +73,11 @@ void MGEDemo::_initializeScene()
     plane->setMaterial(textureMaterial);
     _world->add(plane);**/
 
-    GameObject* teapot = new GameObject ("teapot", glm::vec3(0,0,0));
+    /**GameObject* teapot = new GameObject ("teapot", glm::vec3(0,0,0));
     teapot->setMesh (teapotMeshS);
     teapot->setMaterial(textureMaterial2);
     teapot->setBehaviour (new KeysBehaviour());
-    _world->add(teapot);
+    _world->add(teapot);**/
 
     /**GameObject* monkey = new GameObject ("monkey", glm::vec3(3,1,0));
     monkey->setMesh (suzannaMeshF);
@@ -88,10 +88,12 @@ void MGEDemo::_initializeScene()
     //GameObject* hall = mainHall->CreateHall();
     _world->add(mainHall);
 
+    GameObject *CameraPositionTarget = new GameObject("EmptyCamera",glm::vec3(0,1,3));
+    _world->add(CameraPositionTarget);
 
-    Camera* camera = new Camera ("camera", glm::vec3(0,6,7));
-    camera->rotate(glm::radians(-40.0f), glm::vec3(1,0,0));
-    camera->setBehaviour(new OrbitBehaviour (teapot, 10.0f));
+    Camera* camera = new Camera ("camera", glm::vec3(0,1,3));
+    //camera->rotate(glm::radians(-40.0f), glm::vec3(1,0,0));
+    camera->setBehaviour(new OrbitBehaviour (CameraPositionTarget, 10.0f));
     _world->add(camera);
     _world->setMainCamera(camera);
 

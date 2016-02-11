@@ -1,4 +1,4 @@
-#include "AssetLoader.h"
+#include "AssetLoader.hpp"
 
 AssetLoader::AssetLoader()
 {

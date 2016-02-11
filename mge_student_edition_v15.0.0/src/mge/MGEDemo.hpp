@@ -3,6 +3,7 @@
 
 #include <mge/core/AbstractGame.hpp>
 #include <SFML/Graphics.hpp>
+//#include "Mesh.hpp"
 #include <vector>
 
 class Swapper;
@@ -27,6 +28,8 @@ class MGEDemo: public AbstractGame
 
 	private:
 		DebugHud* _hud;                   //hud display
+		//std::vector<Mesh> * AssetList;
+
 
         void _updateHud();
 };

@@ -39,6 +39,8 @@ void MGEDemo::initialize() {
     //setup the core part
     AbstractGame::initialize();
 
+    //AssetList = new std::vector<Mesh>();
+
     //setup the custom part
 	cout << "Initializing HUD" << endl;
 	_hud = new DebugHud(_window);
@@ -54,10 +56,13 @@ void MGEDemo::_initializeScene()
     //load a bunch of meshes we will be using throughout this demo
     //each mesh only has to be loaded once, but can be used multiple times:
     //F is flat shaded, S is smooth shaded (normals aligned or not), check the models folder!
-    Mesh* planeMeshDefault = Mesh::load (config::MGE_MODEL_PATH+"plane.obj");
-    Mesh* cubeMeshF = Mesh::load (config::MGE_MODEL_PATH+"cube_flat.obj");
-    Mesh* suzannaMeshF = Mesh::load (config::MGE_MODEL_PATH+"suzanna_flat.obj");
+
+    //Mesh* planeMeshDefault = Mesh::load (config::MGE_MODEL_PATH+"plane.obj");
+    //Mesh* cubeMeshF = Mesh::load (config::MGE_MODEL_PATH+"cube_flat.obj");
+    //Mesh* suzannaMeshF = Mesh::load (config::MGE_MODEL_PATH+"suzanna_flat.obj");
     Mesh* teapotMeshS = Mesh::load (config::MGE_MODEL_PATH+"teapot_smooth.obj");
+    Mesh* MockUpCube = Mesh::load(config::MGE_MODEL_PATH+"mockup.obj");
+
 
     //MATERIALS
 
@@ -67,23 +72,35 @@ void MGEDemo::_initializeScene()
 
     //SCENE SETUP
 
-    /**GameObject* plane = new GameObject ("plane", glm::vec3(0,0,0));
+    GameObject* Room = new GameObject ("mockupcube", glm::vec3(0,0,0));
+    Room->setMesh (MockUpCube);
+    Room->setMaterial(textureMaterial2);
+    _world->add(Room);
+
+    /**
+    GameObject* plane = new GameObject ("plane", glm::vec3(0,0,0));
     plane->scale(glm::vec3(5,5,5));
     plane->setMesh(planeMeshDefault);
     plane->setMaterial(textureMaterial);
-    _world->add(plane);**/
+    _world->add(plane);
+    /**/
 
     /**GameObject* teapot = new GameObject ("teapot", glm::vec3(0,0,0));
     teapot->setMesh (teapotMeshS);
     teapot->setMaterial(textureMaterial2);
     teapot->setBehaviour (new KeysBehaviour());
     _world->add(teapot);**/
+    /**/
+    /**/
 
-    /**GameObject* monkey = new GameObject ("monkey", glm::vec3(3,1,0));
+    /**
+    GameObject* monkey = new GameObject ("monkey", glm::vec3(3,1,0));
     monkey->setMesh (suzannaMeshF);
     monkey->setMaterial(colorMaterial);
     monkey->setBehaviour (new RotatingBehaviour());
-    _world->add(monkey);**/
+    _world->add(monkey);
+    /**/
+
     MainHall *mainHall = new MainHall("MainHall");
     //GameObject* hall = mainHall->CreateHall();
     _world->add(mainHall);

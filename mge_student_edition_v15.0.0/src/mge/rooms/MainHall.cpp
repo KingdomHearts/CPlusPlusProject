@@ -38,8 +38,8 @@ GameObject* MainHall::CreateHall()
     planeGround->setMaterial(textureMaterial);
     this->add(planeGround);
 
-    GameObject* planeFront = new GameObject ("planeFront", glm::vec3(0,0,0));
-    planeFront->rotate(90,glm::vec3(0,0,0));
+    GameObject* planeFront = new GameObject ("planeFront", glm::vec3(0,0,-5));
+    planeFront->rotate(90,glm::vec3(90,0,0));
     planeFront->scale(glm::vec3(5,5,5));
     planeFront->setMesh(planeMeshDefault);
     planeFront->setMaterial(textureMaterial);

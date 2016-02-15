@@ -16,7 +16,7 @@
 MainHall::MainHall(std::string pName) : GameObject(pName)
 {
     _CreateHall();
-    LuaLoader * luaLoader = new LuaLoader("Lua");
+    LuaLoader * luaLoader = new LuaLoader("Lua","TestLua");
     this->add(luaLoader);
 }
 

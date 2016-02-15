@@ -3,17 +3,16 @@
 #include "luainc.h"
 #include <iostream>
 #include <string>
-LuaLoader::LuaLoader(std::string pName) : GameObject(pName)
+LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pName)
 {
     lua_State *lua = luaL_newstate();
 	luaL_openlibs(lua);
-	int status = luaL_dofile(lua,"mge/lua/TestLua.lua");
+	luaL_loadfile(lua,"mge/lua/TestLua.lua");
+	lua_call(lua,0,0);
 	lua_close(lua);
-	std::cout << status << std::endl;
+	std::cout << ""  << std::endl;
     //config::MGE_LUA_PATH
     //ctor
-
-
 }
 
 LuaLoader::~LuaLoader()

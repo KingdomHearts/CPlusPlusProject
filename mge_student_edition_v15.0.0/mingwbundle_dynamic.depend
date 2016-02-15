@@ -2233,7 +2233,7 @@
 	<string>
 	"mge/core/GameObject.hpp"
 
-1455289036 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
+1455310200 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
 	"MainHall.h"
 	"mge/core/Mesh.hpp"
 	"mge/config.hpp"
@@ -2256,14 +2256,14 @@
 
 1455184588 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\assetloader.hpp
 
-1455288936 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.hpp
+1455310301 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.hpp
 	<string>
 	"mge/core/GameObject.hpp"
 
-1455294622 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
+1455310722 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
 	"LuaLoader.hpp"
 	"mge/config.hpp"
-	<lua.hpp>
+	"luainc.h"
 	<iostream>
 	<string>
 
@@ -2297,4 +2297,9 @@
 	"lua.h"
 	"lualib.h"
 	"lauxlib.h"
+
+1455294877 d:\github\cplusplusproject\mge_student_edition_v15.0.0\include\luainc.h
+	"lua.h"
+	"lauxlib.h"
+	"lualib.h"
 

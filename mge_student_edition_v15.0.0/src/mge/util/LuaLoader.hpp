@@ -6,7 +6,7 @@
 class LuaLoader : public GameObject
 {
     public:
-        LuaLoader(std::string pName = "Lua");
+        LuaLoader(std::string pName = "Lua", std::string pLuaFileName = ".lua");
         virtual ~LuaLoader();
     protected:
     private:

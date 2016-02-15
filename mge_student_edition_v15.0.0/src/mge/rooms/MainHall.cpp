@@ -9,12 +9,15 @@
 #include "mge/materials/AbstractMaterial.hpp"
 #include "mge/materials/ColorMaterial.hpp"
 #include "mge/materials/TextureMaterial.hpp"
+#include "mge/util/LuaLoader.hpp"
 
 
 
 MainHall::MainHall(std::string pName) : GameObject(pName)
 {
     _CreateHall();
+    LuaLoader * luaLoader = new LuaLoader("Lua","TestLua");
+    this->add(luaLoader);
 }
 
 GameObject* MainHall::_CreateHall()

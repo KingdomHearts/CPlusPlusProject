@@ -22,6 +22,8 @@
 					<Add directory="include" />
 					<Add directory="src/mge/behaviours" />
 					<Add directory="obj/Debug/src/mge/behaviours" />
+					<Add directory="src/mge/util" />
+					<Add directory="../../../Google Drive/C++ Project/Technical/Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib" />
 				</Compiler>
 				<Linker>
 					<Add library="glew32" />
@@ -30,6 +32,7 @@
 					<Add library="sfml-audio-d" />
 					<Add library="sfml-system-d" />
 					<Add library="opengl32" />
+					<Add directory="../../../Google Drive/C++ Project/Technical/Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib" />
 				</Linker>
 			</Target>
 		</Build>
@@ -38,12 +41,14 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="assets/mge/fonts/arial.ttf" />
+		<Unit filename="assets/mge/lua/TestLua.lua" />
 		<Unit filename="assets/mge/models/cone_flat.obj" />
 		<Unit filename="assets/mge/models/cone_smooth.obj" />
 		<Unit filename="assets/mge/models/cube_flat.obj" />
 		<Unit filename="assets/mge/models/cube_smooth.obj" />
 		<Unit filename="assets/mge/models/cylinder_flat.obj" />
 		<Unit filename="assets/mge/models/cylinder_smooth.obj" />
+		<Unit filename="assets/mge/models/mockup.obj" />
 		<Unit filename="assets/mge/models/plane20x20_2048tris_aligned_uvs.obj" />
 		<Unit filename="assets/mge/models/plane20x20_2tris_aligned_uvs.obj" />
 		<Unit filename="assets/mge/models/sphere_flat.obj" />
@@ -58,6 +63,12 @@
 		<Unit filename="assets/mge/shaders/texture.vs" />
 		<Unit filename="assets/mge/textures/bricks.jpg" />
 		<Unit filename="assets/mge/textures/land.jpg" />
+		<Unit filename="include/lauxlib.h" />
+		<Unit filename="include/lua.h" />
+		<Unit filename="include/lua.hpp" />
+		<Unit filename="include/luaconf.h" />
+		<Unit filename="include/luainc.h" />
+		<Unit filename="include/lualib.h" />
 		<Unit filename="src/glm.hpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/mge/MGEDemo.cpp" />
@@ -105,8 +116,12 @@
 		<Unit filename="src/mge/rooms/MainHall.h" />
 		<Unit filename="src/mge/rooms/PrehistoricExhibit.cpp" />
 		<Unit filename="src/mge/rooms/PrehistoricExhibit.h" />
+		<Unit filename="src/mge/util/AssetLoader.cpp" />
+		<Unit filename="src/mge/util/AssetLoader.hpp" />
 		<Unit filename="src/mge/util/DebugHud.cpp" />
 		<Unit filename="src/mge/util/DebugHud.hpp" />
+		<Unit filename="src/mge/util/LuaLoader.cpp" />
+		<Unit filename="src/mge/util/LuaLoader.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -19,6 +19,7 @@ class OrbitBehaviour : public AbstractBehaviour
         GameObject* _cameraPosition;
         float _distance;
         GameObject* _emptyCameraParent;
+        GameObject* _emptyChild;
 };
 
 #endif // ORBITBEHAVIOUR_H

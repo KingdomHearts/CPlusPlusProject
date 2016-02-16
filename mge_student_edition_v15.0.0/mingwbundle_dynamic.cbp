@@ -80,8 +80,8 @@
 		<Unit filename="src/mge/behaviours/KeysBehaviour.hpp" />
 		<Unit filename="src/mge/behaviours/LookAt.cpp" />
 		<Unit filename="src/mge/behaviours/LookAt.hpp" />
-		<Unit filename="src/mge/behaviours/OrbitBehaviour.cpp" />
-		<Unit filename="src/mge/behaviours/OrbitBehaviour.hpp" />
+		<Unit filename="src/mge/behaviours/MouseBehaviour.cpp" />
+		<Unit filename="src/mge/behaviours/MouseBehaviour.hpp" />
 		<Unit filename="src/mge/behaviours/RotatingBehaviour.cpp" />
 		<Unit filename="src/mge/behaviours/RotatingBehaviour.hpp" />
 		<Unit filename="src/mge/config.hpp" />
@@ -115,6 +115,8 @@
 		<Unit filename="src/mge/rooms/MainHall.h" />
 		<Unit filename="src/mge/rooms/PrehistoricExhibit.cpp" />
 		<Unit filename="src/mge/rooms/PrehistoricExhibit.h" />
+		<Unit filename="src/mge/util/Audio.cpp" />
+		<Unit filename="src/mge/util/Audio.hpp" />
 		<Unit filename="src/mge/util/DebugHud.cpp" />
 		<Unit filename="src/mge/util/DebugHud.hpp" />
 		<Unit filename="src/mge/util/LuaLoader.cpp" />

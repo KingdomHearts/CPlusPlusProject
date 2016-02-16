@@ -115,6 +115,8 @@
 		<Unit filename="src/mge/rooms/MainHall.h" />
 		<Unit filename="src/mge/rooms/PrehistoricExhibit.cpp" />
 		<Unit filename="src/mge/rooms/PrehistoricExhibit.h" />
+		<Unit filename="src/mge/util/Audio.cpp" />
+		<Unit filename="src/mge/util/Audio.hpp" />
 		<Unit filename="src/mge/util/DebugHud.cpp" />
 		<Unit filename="src/mge/util/DebugHud.hpp" />
 		<Unit filename="src/mge/util/LuaLoader.cpp" />

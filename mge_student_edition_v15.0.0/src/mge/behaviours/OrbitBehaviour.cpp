@@ -1,5 +1,6 @@
 #include "OrbitBehaviour.hpp"
 #include <SFML/Graphics.hpp>
+#include <windows.h>
 
 OrbitBehaviour::OrbitBehaviour(GameObject* pCameraPosition, float pDistance):AbstractBehaviour()
 {
@@ -24,7 +25,7 @@ void OrbitBehaviour::update(float step)
         _emptyChild->setParent(_cameraPosition);
     }
     /**/
-    if(sf::Mouse::getPosition().x <= 930)
+    if(sf::Mouse::getPosition().x <= sf::VideoMode::getDesktopMode().width / 2 - 5)
     {
         //_owner->translate(glm::vec3(-0.05f,0,0));
 
@@ -38,29 +39,29 @@ void OrbitBehaviour::update(float step)
         //_owner->rotate(0,01f,glm::vec3(-0.05f,0,0));
 
         //_owner->rotate(0.01f,glm::vec3(0,0.05f,0));
-        _emptyChild->getParent()->rotate(0.01f,glm::vec3(0,0.05f,0));
+        _emptyChild->getParent()->rotate(0.05f,glm::vec3(0,1.0f,0));
     }
-    else if (sf::Mouse::getPosition().x > 990)
+    else if (sf::Mouse::getPosition().x > sf::VideoMode::getDesktopMode().width / 2 + 5)
     {
         //_owner->translate(glm::vec3(0.05f,0,0));
 
 
         //_owner->rotate(0.01f,glm::vec3(0,-0.05f,0));
 
-        _emptyChild->getParent()->rotate(0.01f,glm::vec3(0,-0.05f,0));
+        _emptyChild->getParent()->rotate(0.05f,glm::vec3(0,-1.0f,0));
     }
-    if(sf::Mouse::getPosition().y <= 510)
+    if(sf::Mouse::getPosition().y <= sf::VideoMode::getDesktopMode().height / 2 - 5)
     {
         //_owner->translate(glm::vec3(0,-0.05f,0));
 
-        _owner->rotate(0.01f,glm::vec3(0.05f,0,0));
+        _owner->rotate(0.05f,glm::vec3(1.0f,0,0));
         //_owner->rotate(0.01f,glm::vec3(0.05f,0,0));
     }
-    else if (sf::Mouse::getPosition().y > 570)
+    else if (sf::Mouse::getPosition().y > sf::VideoMode::getDesktopMode().height / 2 + 5)
     {
         //_owner->translate(glm::vec3(0,0.05f,0));
 
-        _owner->rotate(0.01f,glm::vec3(-0.05f,0,0));
+        _owner->rotate(0.05f,glm::vec3(-1.0f,0,0));
         //_owner->rotate(0.01f,glm::vec3(-0.05f,0,0));
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -82,6 +83,11 @@ void OrbitBehaviour::update(float step)
         _cameraPosition->translate(glm::vec3(0.1f,0,0));
     }
 
+sf::Mouse::setPosition(sf::Vector2i(sf::VideoMode::getDesktopMode().width / 2, sf::VideoMode::getDesktopMode().height /2));
+/**HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+CONSOLE_CURSOR_INFO cursor;
+cursor.bVisible = false;
+SetConsoleCursorInfo(console,&cursor);**/
     //test
 
 

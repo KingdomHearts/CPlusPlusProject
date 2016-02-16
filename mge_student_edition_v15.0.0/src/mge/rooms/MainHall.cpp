@@ -10,11 +10,12 @@
 #include "mge/materials/ColorMaterial.hpp"
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/util/LuaLoader.hpp"
+#include "mge/util/Audio.hpp"
 
-
-
+Audio * audio;
 MainHall::MainHall(std::string pName) : GameObject(pName)
 {
+    audio = new Audio("mge/sounds/Spider_7.wav");
     _CreateHall();
     LuaLoader * luaLoader = new LuaLoader("Lua","TestLua");
     this->add(luaLoader);
@@ -22,8 +23,9 @@ MainHall::MainHall(std::string pName) : GameObject(pName)
 
 GameObject* MainHall::_CreateHall()
 {
+    audio->PlayAudio("mge/sounds/Spider_7.wav");
+    audio->PlayAudio("mge/sounds/Slow_Shoot.mp3");
     //MESHES
-
     //load a bunch of meshes we will be using throughout this demo
     //each mesh only has to be loaded once, but can be used multiple times:
     //F is flat shaded, S is smooth shaded (normals aligned or not), check the models folder!

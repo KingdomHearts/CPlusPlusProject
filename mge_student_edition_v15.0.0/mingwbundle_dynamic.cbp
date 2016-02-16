@@ -41,6 +41,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="assets/mge/fonts/arial.ttf" />
+		<Unit filename="assets/mge/lua/AssetLoader.lua" />
 		<Unit filename="assets/mge/lua/TestLua.lua" />
 		<Unit filename="assets/mge/models/cone_flat.obj" />
 		<Unit filename="assets/mge/models/cone_smooth.obj" />
@@ -94,8 +95,6 @@
 		<Unit filename="src/mge/core/GameObject.hpp" />
 		<Unit filename="src/mge/core/Mesh.cpp" />
 		<Unit filename="src/mge/core/Mesh.hpp" />
-		<Unit filename="src/mge/core/Raycast.cpp" />
-		<Unit filename="src/mge/core/Raycast.hpp" />
 		<Unit filename="src/mge/core/Renderer.cpp" />
 		<Unit filename="src/mge/core/Renderer.hpp" />
 		<Unit filename="src/mge/core/ShaderProgram.cpp" />
@@ -116,8 +115,6 @@
 		<Unit filename="src/mge/rooms/MainHall.h" />
 		<Unit filename="src/mge/rooms/PrehistoricExhibit.cpp" />
 		<Unit filename="src/mge/rooms/PrehistoricExhibit.h" />
-		<Unit filename="src/mge/util/AssetLoader.cpp" />
-		<Unit filename="src/mge/util/AssetLoader.hpp" />
 		<Unit filename="src/mge/util/DebugHud.cpp" />
 		<Unit filename="src/mge/util/DebugHud.hpp" />
 		<Unit filename="src/mge/util/LuaLoader.cpp" />

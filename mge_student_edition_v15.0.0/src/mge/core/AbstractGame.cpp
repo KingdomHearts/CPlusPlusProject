@@ -93,7 +93,6 @@ void AbstractGame::run()
 	while (_running) {
 		Timer::update();
 		FPS::update();
-
 	    //clear frame, do it here so we can draw debug stuff in any other step etc
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 

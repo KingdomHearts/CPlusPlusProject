@@ -3,6 +3,8 @@
 #include "mge/core/AbstractGame.hpp"
 #include "mge/MGEDemo.hpp"
 
+#include <SFML/Audio.hpp>
+
 /**
  * Main entry point for the Micro Engine.
 
@@ -23,6 +25,7 @@ int main()
     std::cout << "Starting Game" << std::endl;
 
     AbstractGame* game = new MGEDemo();
+
     game->initialize();
     game->run();
 

@@ -69,9 +69,6 @@ void MGEDemo::_initializeScene()
     AbstractMaterial* colorMaterial = new ColorMaterial (glm::vec3(0.2f,0,0.2f));
     AbstractMaterial* textureMaterial2 = new TextureMaterial (Texture::load (config::MGE_TEXTURE_PATH+"bricks.jpg"));
 
-    std::cout << "----------------------" << sf::VideoMode::getDesktopMode().width << "----------------------" << std::endl;
-
-
     //SCENE SETUP
 
     /**

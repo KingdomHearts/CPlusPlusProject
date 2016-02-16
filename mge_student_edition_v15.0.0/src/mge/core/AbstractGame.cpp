@@ -121,6 +121,8 @@ void AbstractGame::_processEvents()
 	sf::Event event;
 	bool exit = false;
 
+
+
 	//we must empty the event queue
 	while( _window->pollEvent( event ) ) {
         //give all system event listeners a chance to handle events

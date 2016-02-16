@@ -1759,7 +1759,7 @@
 	<GL/glew.h>
 	<string>
 
-1454945853 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.hpp
+1455188364 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.hpp
 	<mge/core/AbstractGame.hpp>
 	<SFML/Graphics.hpp>
 	<vector>
@@ -1802,11 +1802,11 @@
 	<glm.hpp>
 	"mge/behaviours/AbstractBehaviour.hpp"
 
-1454946945 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\orbitbehaviour.cpp
+1455527507 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\orbitbehaviour.cpp
 	"OrbitBehaviour.hpp"
 	<SFML/Graphics.hpp>
 
-1454945853 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\orbitbehaviour.hpp
+1455527507 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\orbitbehaviour.hpp
 	<glm.hpp>
 	"mge/behaviours/AbstractBehaviour.hpp"
 	"mge/behaviours/LookAt.hpp"
@@ -1819,7 +1819,7 @@
 1454945853 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\rotatingbehaviour.hpp
 	"mge/behaviours/AbstractBehaviour.hpp"
 
-1454945853 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\abstractgame.cpp
+1455618590 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\abstractgame.cpp
 	"AbstractGame.hpp"
 	<iostream>
 	"mge/core/Timer.hpp"
@@ -1938,7 +1938,7 @@
 	"mge/materials/AbstractMaterial.hpp"
 	<glm.hpp>
 
-1454945853 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\config.hpp
+1455527507 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\config.hpp
 	<string>
 
 1454945853 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\materials\texturematerial.cpp
@@ -1953,7 +1953,7 @@
 	"mge/core/Texture.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 
-1455117860 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
+1455552203 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
 	<glm.hpp>
 	<iostream>
 	<string>
@@ -2242,7 +2242,7 @@
 	"mge/materials/TextureMaterial.hpp"
 	"mge/util/LuaLoader.hpp"
 
-1455117860 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.h
+1455196978 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.h
 	<string>
 	"mge/core/GameObject.hpp"
 
@@ -2302,4 +2302,73 @@
 	"lua.h"
 	"lauxlib.h"
 	"lualib.h"
+
+1455119808 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\prehistoricexhibit.cpp
+	"PrehistoricExhibit.h"
+
+1455119488 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\prehistoricexhibit.h
+
+1455547905 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\assetloader.cpp
+	"AssetLoader.hpp"
+	"mge/config.hpp"
+	"mge/core/Mesh.hpp"
+	"mge/materials/AbstractMaterial.hpp"
+	"mge/materials/TextureMaterial.hpp"
+
+1455551891 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\assetloader.hpp
+	"mge/core/World.hpp"
+
+1455527770 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
+	"MainHall.h"
+	"mge/core/Mesh.hpp"
+	"mge/config.hpp"
+	"mge/materials/AbstractMaterial.hpp"
+	"mge/materials/ColorMaterial.hpp"
+	"mge/materials/TextureMaterial.hpp"
+	"mge/util/LuaLoader.hpp"
+
+1455552194 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.hpp
+	<string>
+	"mge/core/GameObject.hpp"
+
+1455618434 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
+	"LuaLoader.hpp"
+	"mge/config.hpp"
+	"luainc.h"
+	<iostream>
+	<string>
+	"mge/core/Mesh.hpp"
+	"mge/materials/AbstractMaterial.hpp"
+	"mge/materials/TextureMaterial.hpp"
+
+1455527507 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\include\luainc.h
+	"lua.h"
+	"lauxlib.h"
+	"lualib.h"
+
+1455527507 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\include\lua.h
+	<stdarg.h>
+	<stddef.h>
+	"luaconf.h"
+
+1455527507 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\include\luaconf.h
+	<limits.h>
+	<stddef.h>
+	<unistd.h>
+	<io.h>
+	<stdio.h>
+	<stdio.h>
+	<readline/readline.h>
+	<readline/history.h>
+	<assert.h>
+	<math.h>
+	<unistd.h>
+
+1455527507 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\include\lauxlib.h
+	<stddef.h>
+	<stdio.h>
+	"lua.h"
+
+1455527507 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\include\lualib.h
+	"lua.h"
 

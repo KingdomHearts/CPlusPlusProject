@@ -10,6 +10,7 @@ class LuaLoader : public GameObject
         virtual ~LuaLoader();
     protected:
     private:
+        //void AddModel();
 };
 
 #endif // LUALOADER_H

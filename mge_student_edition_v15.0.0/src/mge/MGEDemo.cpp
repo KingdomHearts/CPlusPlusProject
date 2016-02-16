@@ -61,21 +61,23 @@ void MGEDemo::_initializeScene()
     //Mesh* cubeMeshF = Mesh::load (config::MGE_MODEL_PATH+"cube_flat.obj");
     //Mesh* suzannaMeshF = Mesh::load (config::MGE_MODEL_PATH+"suzanna_flat.obj");
     Mesh* teapotMeshS = Mesh::load (config::MGE_MODEL_PATH+"teapot_smooth.obj");
-    Mesh* MockUpCube = Mesh::load(config::MGE_MODEL_PATH+"mockup.obj");
+
 
 
     //MATERIALS
 
     AbstractMaterial* colorMaterial = new ColorMaterial (glm::vec3(0.2f,0,0.2f));
-    AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load (config::MGE_TEXTURE_PATH+"land.jpg"));
     AbstractMaterial* textureMaterial2 = new TextureMaterial (Texture::load (config::MGE_TEXTURE_PATH+"bricks.jpg"));
+
+    std::cout << "----------------------" << sf::VideoMode::getDesktopMode().width << "----------------------" << std::endl;
+
 
     //SCENE SETUP
 
-    GameObject* Room = new GameObject ("mockupcube", glm::vec3(0,0,0));
-    Room->setMesh (MockUpCube);
-    Room->setMaterial(textureMaterial2);
-    _world->add(Room);
+    /**
+    AssetLoader* AL = new AssetLoader();
+    AL->LoadAllModels(*_world);
+    /**/
 
     /**
     GameObject* plane = new GameObject ("plane", glm::vec3(0,0,0));

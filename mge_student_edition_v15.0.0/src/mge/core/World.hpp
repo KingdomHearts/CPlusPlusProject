@@ -12,6 +12,7 @@ class World : public GameObject
 	public:
         World();
 
+        static World* GetInstance();
 		void setMainCamera (Camera* pCamera);
 		Camera* getMainCamera();
 
@@ -19,6 +20,8 @@ class World : public GameObject
 
 	private:
 	    Camera* _mainCamera;
+
+	    static World* worldInstance;
 };
 
 

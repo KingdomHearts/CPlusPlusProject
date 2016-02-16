@@ -1,1 +1,6 @@
-AddModel("mockup.obj", "bricks.jpg");
+AddModel("cone_flat.obj", "land.jpg", "0,0,0")
+AddModel("cylinder_flat.obj", "bricks.jpg", "5,0,0")
+AddModel("sphere_smooth.obj", "land.jpg", "10,0,0")
+AddModel("mockup.obj", "bricks.jpg", "15,0,0")
+AddModel("suzanna_flat.obj", "land.jpg", "20,0,0")
+AddModel("teapot_smooth.obj", "bricks.jpg", "25,0,0")

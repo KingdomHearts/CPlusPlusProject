@@ -22,7 +22,7 @@ using namespace std;
 #include "mge/behaviours/RotatingBehaviour.hpp"
 #include "mge/behaviours/KeysBehaviour.hpp"
 #include "mge/behaviours/LookAt.hpp"
-#include "mge/behaviours/OrbitBehaviour.hpp"
+#include "mge/behaviours/MouseBehaviour.hpp"
 
 #include "mge/util/DebugHud.hpp"
 
@@ -112,7 +112,7 @@ void MGEDemo::_initializeScene()
 
     Camera* camera = new Camera ("camera", glm::vec3(0,1,3));
     //camera->rotate(glm::radians(-40.0f), glm::vec3(1,0,0));
-    camera->setBehaviour(new OrbitBehaviour (CameraPositionTarget, 10.0f));
+    camera->setBehaviour(new MouseBehaviour (CameraPositionTarget, 10.0f));
     _world->add(camera);
     _world->setMainCamera(camera);
 

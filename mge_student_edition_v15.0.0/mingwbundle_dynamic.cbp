@@ -94,6 +94,8 @@
 		<Unit filename="src/mge/core/GameObject.hpp" />
 		<Unit filename="src/mge/core/Mesh.cpp" />
 		<Unit filename="src/mge/core/Mesh.hpp" />
+		<Unit filename="src/mge/core/Raycast.cpp" />
+		<Unit filename="src/mge/core/Raycast.hpp" />
 		<Unit filename="src/mge/core/Renderer.cpp" />
 		<Unit filename="src/mge/core/Renderer.hpp" />
 		<Unit filename="src/mge/core/ShaderProgram.cpp" />

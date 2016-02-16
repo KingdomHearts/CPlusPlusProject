@@ -6,6 +6,14 @@
 #include <GL/glew.h>
 #include <glm.hpp>
 
+//Saving Triangles
+struct Triangle
+{
+    glm::vec3 Vertice1;
+    glm::vec3 Vertice2;
+    glm::vec3 Vertice3;
+};
+
 class World;
 
 /**
@@ -31,10 +39,19 @@ class Mesh
         void streamToOpenGL(GLint pVerticesAttrib, GLint pNormalsAttrib, GLint pUVsAttrib);
         void renderDebugInfo(glm::mat4& pModelMatrix, World* pWorld);
 
+        /**
+         * Get The Triangle Count
+         * Get Triangle in list using Index
+         */
+        int GetTriangleCount();
+        Triangle GetTriangle(int pIndex);
+    private:
+        /**
+         *  Fill the Vector with the Triangles of a Mesh
+         */
+        void _fillTriangleVector();
 	protected:
-
 	    std::string _id;
-
         //OpenGL id's for the different buffers created for this mesh
 		GLuint _indexBufferId;
 		GLuint _vertexBufferId;
@@ -45,9 +62,13 @@ class Mesh
 		std::vector<glm::vec3> _vertices;       //vec3 with 3d coords for all vertices
 		std::vector<glm::vec3> _normals;        //vec3 with 3d normal data
 		std::vector<glm::vec2> _uvs;            //vec2 for uv
+		std::vector<Triangle> _triangles;
 
 		//references to the vertices/normals & uvs in previous vectors
 		std::vector<unsigned> _indices;
+
+		//amount of indices
+		float _indiceCount = 0;
 
         //buffer vertices, normals, and uv's
 		void _buffer();

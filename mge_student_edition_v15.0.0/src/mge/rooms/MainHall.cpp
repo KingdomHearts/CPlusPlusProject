@@ -12,19 +12,25 @@
 #include "mge/util/LuaLoader.hpp"
 #include "mge/util/Audio.hpp"
 
-Audio * audio;
+Audio * audio1;
+Audio * audio2;
 MainHall::MainHall(std::string pName) : GameObject(pName)
 {
-    audio = new Audio("mge/sounds/Spider_7.wav");
+    //audio1 = new Audio("mge/sounds/Spider_7.wav");
+    //audio2 = new Audio("mge/sounds/Spider_7.wav");
+    audio1 = new Audio("mge/sounds/test2Mono.wav",0);
+    audio1->SetLoop(true);
+    audio1->SetPosition(sf::Vector3f(10.f, 0.f, -5.f));
+    //audio2 = new Audio(std::vector<std::string> {"mge/sounds/Spider_7.wav","mge/sounds/Sell.wav","mge/sounds/Arrow_1.wav","mge/sounds/Arrow_2.wav","mge/sounds/Arrow_3.wav","mge/sounds/Arrow_Impact.wav","mge/sounds/Cannon_Impact_1.wav","mge/sounds/Cannon_Impact_2.wav","mge/sounds/Cannon_Impact_3.wav"});
+
     _CreateHall();
     LuaLoader * luaLoader = new LuaLoader("Lua","TestLua");
     this->add(luaLoader);
+    //sf::Listener::setPosition(10.f, 0.f, 5.f);
 }
 
 GameObject* MainHall::_CreateHall()
 {
-    audio->PlayAudio("mge/sounds/Spider_7.wav");
-    audio->PlayAudio("mge/sounds/Slow_Shoot.mp3");
     //MESHES
     //load a bunch of meshes we will be using throughout this demo
     //each mesh only has to be loaded once, but can be used multiple times:
@@ -33,14 +39,15 @@ GameObject* MainHall::_CreateHall()
 
     //MATERIALS
 
-    AbstractMaterial* colorMaterial = new ColorMaterial (glm::vec3(0.2f,0,0.2f));
+    AbstractMaterial* colorMaterial = new ColorMaterial (glm::vec3(0.2f,4.f,0.2f));
     AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load (config::MGE_TEXTURE_PATH+"land.jpg"));
     AbstractMaterial* textureMaterial2 = new TextureMaterial (Texture::load (config::MGE_TEXTURE_PATH+"bricks.jpg"));
     //ctor
     GameObject* planeGround = new GameObject ("planeGround", glm::vec3(0,0,0));
     planeGround->scale(glm::vec3(10,10,10));
     planeGround->setMesh(planeMeshDefault);
-    planeGround->setMaterial(textureMaterial);
+    //planeGround->setMaterial(textureMaterial);
+    planeGround->setMaterial(colorMaterial);
     this->add(planeGround);
 
     GameObject* planeFront = new GameObject ("planeFront", glm::vec3(0,10,-10));

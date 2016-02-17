@@ -30,7 +30,7 @@ void MouseBehaviour::Looking()
         _emptyChild->setParent(_cameraPosition);
     }
     /**/
-    if(sf::Mouse::getPosition().x <= sf::VideoMode::getDesktopMode().width / 2 - 5)
+    if(sf::Mouse::getPosition().x <= sf::VideoMode::getDesktopMode().width / 2 - 1)
     {
         //_owner->translate(glm::vec3(-0.05f,0,0));
 
@@ -46,7 +46,7 @@ void MouseBehaviour::Looking()
         //_owner->rotate(0.01f,glm::vec3(0,0.05f,0));
         _emptyChild->getParent()->rotate(0.05f,glm::vec3(0,1.0f,0));
     }
-    else if (sf::Mouse::getPosition().x > sf::VideoMode::getDesktopMode().width / 2 + 5)
+    else if (sf::Mouse::getPosition().x > sf::VideoMode::getDesktopMode().width / 2 + 1)
     {
         //_owner->translate(glm::vec3(0.05f,0,0));
 
@@ -55,14 +55,14 @@ void MouseBehaviour::Looking()
 
         _emptyChild->getParent()->rotate(0.05f,glm::vec3(0,-1.0f,0));
     }
-    if(sf::Mouse::getPosition().y <= sf::VideoMode::getDesktopMode().height / 2 - 5)
+    if(sf::Mouse::getPosition().y <= sf::VideoMode::getDesktopMode().height / 2 - 1)
     {
         //_owner->translate(glm::vec3(0,-0.05f,0));
 
         _owner->rotate(0.05f,glm::vec3(1.0f,0,0));
         //_owner->rotate(0.01f,glm::vec3(0.05f,0,0));
     }
-    else if (sf::Mouse::getPosition().y > sf::VideoMode::getDesktopMode().height / 2 + 5)
+    else if (sf::Mouse::getPosition().y > sf::VideoMode::getDesktopMode().height / 2 + 1)
     {
         //_owner->translate(glm::vec3(0,0.05f,0));
 

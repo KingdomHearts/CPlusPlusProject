@@ -10,6 +10,7 @@ using namespace std;
 #include "mge/core/FPS.hpp"
 
 #include "mge/rooms/MainHall.h"
+#include "LuaLoader.hpp"
 
 #include "mge/core/Camera.hpp"
 
@@ -71,9 +72,9 @@ void MGEDemo::_initializeScene()
 
     //SCENE SETUP
 
-    /**
-    AssetLoader* AL = new AssetLoader();
-    AL->LoadAllModels(*_world);
+    /**/
+    LuaLoader * LL = new LuaLoader("","");
+    LL->LoadAllModels();
     /**/
 
     /**

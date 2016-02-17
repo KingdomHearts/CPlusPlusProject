@@ -16,8 +16,13 @@ MouseBehaviour::~MouseBehaviour()
 
 void MouseBehaviour::update(float step)
 {
+    Looking();
+    OnMouseClick();
+}
 
-    //std::cout << sf::Mouse::getPosition().x << std::endl;
+void MouseBehaviour::Looking()
+{
+   //std::cout << sf::Mouse::getPosition().x << std::endl;
     if(_owner->getParent() != _cameraPosition){
         _owner->setParent(_cameraPosition);
     }
@@ -83,11 +88,11 @@ void MouseBehaviour::update(float step)
         _cameraPosition->translate(glm::vec3(0.1f,0,0));
     }
 
-sf::Mouse::setPosition(sf::Vector2i(sf::VideoMode::getDesktopMode().width / 2, sf::VideoMode::getDesktopMode().height /2));
-/**HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-CONSOLE_CURSOR_INFO cursor;
-cursor.bVisible = false;
-SetConsoleCursorInfo(console,&cursor);**/
+    sf::Mouse::setPosition(sf::Vector2i(sf::VideoMode::getDesktopMode().width / 2, sf::VideoMode::getDesktopMode().height /2));
+    /**HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursor;
+    cursor.bVisible = false;
+    SetConsoleCursorInfo(console,&cursor);**/
     //test
 
 
@@ -95,6 +100,18 @@ SetConsoleCursorInfo(console,&cursor);**/
 
     //glm::vec3 distance = _target->getWorldPosition() - _owner->getWorldPosition();
     //float length = sqrtf(distance.x * distance.x + distance.y * distance.y + distance.z * distance.z);
+}
 
-
+void MouseBehaviour::OnMouseClick()
+{
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        bool hit = false;
+        //for(int x; x < World::GetInstance()->MeshList.size(); x++)
+        //{
+            //glm::vec3 slopeLine = glm::vec3();
+            //hit = Raycast.Ray_Intersect_Mesh(World::GetInstance()->MeshList[x], glm::vec3(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y, 0), slopeLine);
+        //}
+        std::cout << hit << std::endl;
+    }
 }

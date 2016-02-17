@@ -2,6 +2,7 @@
 #define WORLD_H
 
 #include <vector>
+#include "mge/core/Mesh.hpp"
 #include "mge/core/GameObject.hpp"
 
 class Light;
@@ -15,7 +16,7 @@ class World : public GameObject
         static World* GetInstance();
 		void setMainCamera (Camera* pCamera);
 		Camera* getMainCamera();
-
+        std::vector<Mesh> MeshList;
         void renderDebugInfo();
 
 	private:

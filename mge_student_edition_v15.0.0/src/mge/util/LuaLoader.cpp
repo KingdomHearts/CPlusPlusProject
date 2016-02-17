@@ -4,11 +4,11 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 #include "mge/core/Mesh.hpp"
 #include "mge/materials/AbstractMaterial.hpp"
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/core/World.hpp"
-
 
 LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pName)
 {
@@ -21,8 +21,6 @@ LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pN
     //config::MGE_LUA_PATH
     //ctor
 }
-
-
 
 int AddModel(lua_State * lua)
 {
@@ -80,6 +78,7 @@ int AddModel(lua_State * lua)
     GO->setMesh (mesh);
     GO->setMaterial(textureMaterial);
     World::GetInstance()->add(GO);
+    World::GetInstance()->MeshList.push_back(*mesh);
 }
 
 
@@ -94,8 +93,6 @@ void LuaLoader::LoadAllModels(){
 
 	lua_call(lua,0,0);
 	lua_close(lua);
-
-
 }
 
 

@@ -57,7 +57,6 @@ class Mesh
 		GLuint _vertexBufferId;
 		GLuint _normalBufferId;
 		GLuint _uvBufferId;
-
 	    //the actual data
 		std::vector<glm::vec3> _vertices;       //vec3 with 3d coords for all vertices
 		std::vector<glm::vec3> _normals;        //vec3 with 3d normal data

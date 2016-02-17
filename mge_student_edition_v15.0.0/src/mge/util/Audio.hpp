@@ -10,6 +10,7 @@ class Audio
         Audio(std::vector<std::string> pListFilenames);
         void SetLoop(bool pSetLoop);
         void SetPosition(sf::Vector3f pPosition);
+        void SetListener(sf::Vector3f pPosition);
         virtual ~Audio();
     protected:
     private:

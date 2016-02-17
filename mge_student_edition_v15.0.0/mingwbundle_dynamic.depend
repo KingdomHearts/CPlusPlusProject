@@ -2068,8 +2068,9 @@
 
 1454946011 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\renderer.hpp
 
-1455641854 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
+1455705333 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
 	<vector>
+	"mge/core/Mesh.hpp"
 	"mge/core/GameObject.hpp"
 
 1454946011 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\camera.cpp
@@ -2095,14 +2096,15 @@
 	"mge/core/World.hpp"
 	"mge/behaviours/AbstractBehaviour.hpp"
 
-1455619449 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.hpp
+1455705333 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.hpp
+	<iostream>
 	<vector>
 	<cstring>
 	<string>
 	<GL/glew.h>
 	<glm.hpp>
 
-1455619449 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.cpp
+1455705333 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.cpp
 	"mge/core/Mesh.hpp"
 	<iostream>
 	<map>
@@ -2150,7 +2152,7 @@
 1454946011 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\timer.cpp
 	"mge/core/Timer.hpp"
 
-1455641854 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.cpp
+1455705333 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.cpp
 	<cassert>
 	<algorithm>
 	<iostream>
@@ -2238,7 +2240,7 @@
 	<string>
 	"mge/core/GameObject.hpp"
 
-1455639697 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
+1455708628 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
 	"MainHall.h"
 	"mge/core/Mesh.hpp"
 	"mge/config.hpp"
@@ -2268,13 +2270,14 @@
 	"mge/core/Mesh.hpp"
 	"mge/core/GameObject.hpp"
 
-1455641854 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
+1455705333 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
 	"LuaLoader.hpp"
 	"mge/config.hpp"
 	"luainc.h"
 	<iostream>
 	<sstream>
 	<string>
+	<vector>
 	"mge/core/Mesh.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 	"mge/materials/TextureMaterial.hpp"
@@ -2752,24 +2755,33 @@
 	"mge/behaviours/LookAt.hpp"
 	<iostream>
 
-1455634975 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.hpp
+1455705953 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.hpp
 	<SFML/Audio.hpp>
 	<vector>
 
-1455704915 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.cpp
+1455709565 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.cpp
 	"Audio.hpp"
 	<iostream>
 	<SFML/Audio.hpp>
 	<vector>
 
-1455641854 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.cpp
+1455708833 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.cpp
 	"MouseBehaviour.hpp"
 	<SFML/Graphics.hpp>
 	<windows.h>
+	<SFML/Audio.hpp>
 
-1455625575 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.hpp
+1455705333 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.hpp
 	<glm.hpp>
 	"mge/behaviours/AbstractBehaviour.hpp"
 	"mge/behaviours/LookAt.hpp"
 	<iostream>
+	"mge/core/Raycast.hpp"
+
+1455619449 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\raycast.hpp
+	<glm.hpp>
+	"Mesh.hpp"
+
+1455619449 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\raycast.cpp
+	"Raycast.hpp"
 

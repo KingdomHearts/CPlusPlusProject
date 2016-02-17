@@ -1,6 +1,7 @@
 #include "MouseBehaviour.hpp"
 #include <SFML/Graphics.hpp>
 #include <windows.h>
+#include <SFML/Audio.hpp>
 
 MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition, float pDistance):AbstractBehaviour()
 {
@@ -18,6 +19,8 @@ void MouseBehaviour::update(float step)
 {
     Looking();
     OnMouseClick();
+    //sf::Listener::setPosition(_cameraPosition->getLocalPosition().x,_cameraPosition->getLocalPosition().y,_cameraPosition->getLocalPosition().z);
+    //sf::Listener::setDirection(0,0,-1);
 }
 
 void MouseBehaviour::Looking()

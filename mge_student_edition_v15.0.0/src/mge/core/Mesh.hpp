@@ -1,5 +1,6 @@
 #ifndef MESH_H
 #define MESH_H
+#include <iostream>
 #include <vector>
 #include <cstring>
 #include <string>

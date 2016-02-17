@@ -107,10 +107,10 @@ void MouseBehaviour::OnMouseClick()
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         bool hit = false;
-        //for(int x; x < MeshVector.size(); x++)
+        //for(int x; x < World::GetInstance()->MeshList.size(); x++)
         //{
-        //    glm::vec3 slopeLine = glm::vec3();
-        //    hit = Raycast.Ray_Intersect_Mesh(MeshVector[x], glm::vec3(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y, 0), slopeLine);
+            //glm::vec3 slopeLine = glm::vec3();
+            //hit = Raycast.Ray_Intersect_Mesh(World::GetInstance()->MeshList[x], glm::vec3(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y, 0), slopeLine);
         //}
         std::cout << hit << std::endl;
     }

@@ -11,8 +11,6 @@ using namespace std;
 #include "mge/core/Camera.hpp"
 #include "glm.hpp"
 
-
-
 Mesh::Mesh(string pId)
 :	_id(pId), _indexBufferId(0), _vertexBufferId(0), _normalBufferId(0), _uvBufferId(0)
 {

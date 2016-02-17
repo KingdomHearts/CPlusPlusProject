@@ -70,14 +70,15 @@ void Audio::SetLoop(bool pSetLoop)
 
 void Audio::SetPosition(sf::Vector3f pPosition)
 {
-    sf::Listener::setPosition(10.f, 10.f, 10.f);
     sf::Listener::setGlobalVolume(50.f);
     //sf::Listener::setGlobalVolume(50.f);
     _sound.setPosition(pPosition);
-    //_sound.setRelativeToListener(true);
+    _sound.setRelativeToListener(true);
     //_sound.setMinDistance(0.f);
     //_sound.setAttenuation(10.f);
     _sound.setMinDistance(1.0f);
+
+    _sound.setAttenuation(10.f);
     _sound.play();
 }
 

@@ -6,11 +6,12 @@
 #include "mge/behaviours/LookAt.hpp"
 #include <iostream>
 #include "mge/core/Raycast.hpp"
+#include "mge/core/Camera.hpp"
 
 class MouseBehaviour : public AbstractBehaviour
 {
     public:
-        MouseBehaviour(GameObject* pCameraPosition, float pDistance);
+        MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, float pDistance);
         virtual ~MouseBehaviour();
 
         virtual void update( float step );
@@ -21,6 +22,7 @@ class MouseBehaviour : public AbstractBehaviour
         float _distance;
         GameObject* _emptyCameraParent;
         GameObject* _emptyChild;
+        Camera* _camera;
 
         void Looking();
         void OnMouseClick();

@@ -3,10 +3,11 @@
 #include <windows.h>
 #include <SFML/Audio.hpp>
 
-MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition, float pDistance):AbstractBehaviour()
+MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, float pDistance):AbstractBehaviour()
 {
     _cameraPosition = pCameraPosition;
     _emptyChild = new GameObject("EmptyChild");
+    _camera = pCamera;
     //ctor
 }
 
@@ -19,8 +20,8 @@ void MouseBehaviour::update(float step)
 {
     Looking();
     OnMouseClick();
-    //sf::Listener::setPosition(_cameraPosition->getLocalPosition().x,_cameraPosition->getLocalPosition().y,_cameraPosition->getLocalPosition().z);
-    //sf::Listener::setDirection(0,0,-1);
+    sf::Listener::setPosition(_cameraPosition->getLocalPosition().x,_cameraPosition->getLocalPosition().y,_cameraPosition->getLocalPosition().z);
+    sf::Listener::setDirection(-_camera->getWorldPosition().x,0,-_camera->getWorldPosition().z);
 }
 
 void MouseBehaviour::Looking()

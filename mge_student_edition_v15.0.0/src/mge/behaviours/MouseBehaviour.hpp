@@ -6,6 +6,7 @@
 #include "mge/behaviours/LookAt.hpp"
 #include <iostream>
 #include "mge/core/Raycast.hpp"
+#include "mge/core/World.hpp"
 
 class MouseBehaviour : public AbstractBehaviour
 {
@@ -23,7 +24,7 @@ class MouseBehaviour : public AbstractBehaviour
         GameObject* _emptyChild;
 
         void Looking();
-        void OnMouseClick();
+        void RaycastTest();
 };
 
 #endif // ORBITBEHAVIOUR_H

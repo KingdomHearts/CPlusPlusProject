@@ -1,6 +1,7 @@
 #include "MouseBehaviour.hpp"
 #include <SFML/Graphics.hpp>
 #include <windows.h>
+#include "mge/core/World.hpp"
 
 MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition, float pDistance):AbstractBehaviour()
 {
@@ -107,11 +108,13 @@ void MouseBehaviour::OnMouseClick()
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         bool hit = false;
-        //for(int x; x < World::GetInstance()->MeshList.size(); x++)
-        //{
-            //glm::vec3 slopeLine = glm::vec3();
-            //hit = Raycast.Ray_Intersect_Mesh(World::GetInstance()->MeshList[x], glm::vec3(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y, 0), slopeLine);
-        //}
+        std::vector<Mesh> meshList = World::GetInstance()->MeshList;
+        for(int x; x < meshList.size(); x++)
+        {
+            glm::vec3 slopeLine = glm::vec3(0,0,1);
+            Mesh mesh = meshList.at(x);
+            hit = Raycast::Ray_Intersect_Mesh(&mesh, glm::vec3(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y, 0), slopeLine, true, false);
+        }
         std::cout << hit << std::endl;
     }
 }

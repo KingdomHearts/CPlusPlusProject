@@ -128,7 +128,6 @@ bool Raycast::Ray_Intersect_Triangle(glm::vec3 pStartPoint, glm::vec3 pSlopeLine
 bool Raycast::Ray_Intersect_Mesh(Mesh* pMesh, glm::vec3 pStartPoint, glm::vec3 pSlopeLine, bool pExtend_To_Infinity=true, bool pCull_Backfaces=false)
 {
     int TriangleCount = pMesh->GetTriangleCount();
-
     if(TriangleCount > 0)
     {
         for(int x = 0; x < TriangleCount; x++)

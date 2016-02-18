@@ -18,12 +18,15 @@ MainHall::MainHall(std::string pName) : GameObject(pName)
 {
     //audio1 = new Audio("mge/sounds/Spider_7.wav");
     //audio2 = new Audio("mge/sounds/Spider_7.wav");
-    audio1 = new Audio("mge/sounds/test2Mono.wav",0);
+    //audio1 = new Audio("mge/sounds/test2Mono.wav",0);
+    audio1 = new Audio("mge/sounds/Mono_Sample.wav",0);
     audio1->SetLoop(true);
-    audio1->SetPosition(sf::Vector3f(0.f, 0.f, 0.f));
-    //audio2 = new Audio("mge/sounds/test3Mono.wav",0);
-    //audio2->SetLoop(true);
-    //audio2->SetPosition(sf::Vector3f(6.f,0.f,0.f));
+    audio1->SetPosition(sf::Vector3f(-3.f, 0.f, 0.f));
+    audio2 = new Audio("mge/sounds/test2Mono.wav",0);
+    audio2->SetLoop(true);
+    audio2->SetMinDistance(1.f);
+
+    audio2->SetPosition(sf::Vector3f(3.f,0.f,0.f));
     //audio2 = new Audio(std::vector<std::string> {"mge/sounds/Spider_7.wav","mge/sounds/Sell.wav","mge/sounds/Arrow_1.wav","mge/sounds/Arrow_2.wav","mge/sounds/Arrow_3.wav","mge/sounds/Arrow_Impact.wav","mge/sounds/Cannon_Impact_1.wav","mge/sounds/Cannon_Impact_2.wav","mge/sounds/Cannon_Impact_3.wav"});
 
     _CreateHall();

@@ -70,23 +70,34 @@ void Audio::SetLoop(bool pSetLoop)
 
 void Audio::SetPosition(sf::Vector3f pPosition)
 {
-    //sf::Listener::setPosition(50,0,0);
     sf::Listener::setGlobalVolume(100.f);
-    //sf::Listener::setGlobalVolume(50.f);
     _sound.setPosition(pPosition);
-    //_sound.setRelativeToListener(true);
-    //_sound.setMinDistance(0.f);
-    //_sound.setAttenuation(10.f);
-    _sound.setMinDistance(1.0f);
-
-    _sound.setAttenuation(10.f);
     _sound.play();
 }
 
-void Audio::SetListener(sf::Vector3f pPosition)
+/**
+The minimum distance is the distance under which the sound will be heard at its maximum volume.
+As an example, louder sounds such as explosions should have a higher minimum distance to ensure
+that they will be heard from far away. Please note that a minimum distance of 0
+(the sound is inside the head of the listener!) would lead to an incorrect spatialization and
+result in a non-attenuated sound. 0 is an invalid value, never use it.
+**/
+void Audio::SetMinDistance(float pMinDistance = 1.0f)
 {
-    sf::Listener::setPosition(pPosition);
+    _sound.setMinDistance(pMinDistance);
 }
+/**
+The attenuation is a multiplicative factor.
+The greater the attenuation, the less it will be heard when the sound moves away from the listener.
+To get a non-attenuated sound, you can use 0.
+On the other hand, using a value like 100 will highly attenuate the sound,
+which means that it will be heard only if very close to the listener.
+**/
+void Audio::SetAttenuation(float pAttenuation = 10.0f)
+{
+    _sound.setAttenuation(pAttenuation);
+}
+
 
 Audio::~Audio()
 {

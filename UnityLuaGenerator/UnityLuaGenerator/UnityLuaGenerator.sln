@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityLuaGenerator.CSharp", "UnityLuaGenerator.CSharp.csproj", "{CEA43F00-0B8F-5121-0C62-B1C475BDA1F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEA43F00-0B8F-5121-0C62-B1C475BDA1F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA43F00-0B8F-5121-0C62-B1C475BDA1F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA43F00-0B8F-5121-0C62-B1C475BDA1F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA43F00-0B8F-5121-0C62-B1C475BDA1F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -75,8 +75,10 @@ int AddModel(lua_State * lua)
 	}
 
     Mesh* mesh = Mesh::load("mge/models/"+Model);
-    AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load ("mge/textures/"+Texture));
-
+    AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load ("mge/textures/bricks.jpg"));
+    if(Texture != ""){
+        textureMaterial = new TextureMaterial (Texture::load ("mge/textures/"+Texture));
+    }
     GameObject* GO = new GameObject (IDname, vPosition);
     GO->rotate(glm::radians(fRotation), glm::vec3(0,1,0));
     GO->setMesh (mesh);

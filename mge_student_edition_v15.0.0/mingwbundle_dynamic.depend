@@ -1821,7 +1821,7 @@
 1454945853 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\rotatingbehaviour.hpp
 	"mge/behaviours/AbstractBehaviour.hpp"
 
-1455641805 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\abstractgame.cpp
+1455708402 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\abstractgame.cpp
 	"AbstractGame.hpp"
 	<iostream>
 	"mge/core/Timer.hpp"
@@ -1836,7 +1836,7 @@
 
 1454945853 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\renderer.hpp
 
-1455706114 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
+1455708402 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
 	<vector>
 	"mge/core/Mesh.hpp"
 	"mge/core/GameObject.hpp"
@@ -1920,7 +1920,7 @@
 1454945853 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\timer.cpp
 	"mge/core/Timer.hpp"
 
-1455641805 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.cpp
+1455708402 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.cpp
 	<cassert>
 	<algorithm>
 	<iostream>
@@ -2191,7 +2191,7 @@
 	"mge/core/Texture.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 
-1455713765 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
+1455716357 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
 	<glm.hpp>
 	<iostream>
 	<string>
@@ -2243,7 +2243,7 @@
 	<string>
 	"mge/core/GameObject.hpp"
 
-1455710828 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
+1455718150 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
 	"MainHall.h"
 	"mge/core/Mesh.hpp"
 	"mge/config.hpp"
@@ -2353,7 +2353,7 @@
 	"mge/core/Mesh.hpp"
 	"mge/core/GameObject.hpp"
 
-1455708201 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
+1455709726 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
 	"LuaLoader.hpp"
 	"mge/config.hpp"
 	"luainc.h"
@@ -2766,7 +2766,7 @@
 	<iostream>
 	"mge/core/Raycast.hpp"
 
-1455710828 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.hpp
+1455718129 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.hpp
 	<SFML/Audio.hpp>
 	<vector>
 
@@ -2776,7 +2776,7 @@
 	<SFML/Audio.hpp>
 	<vector>
 
-1455715708 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.cpp
+1455716333 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.cpp
 	"MouseBehaviour.hpp"
 	<SFML/Graphics.hpp>
 	<windows.h>

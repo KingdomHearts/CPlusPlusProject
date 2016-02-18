@@ -29,22 +29,22 @@ int AddModel(lua_State * lua)
     std::string Texture;
     std::string sPosition;
     glm::vec3 vPosition;
+    std::string sRotation;
+    float fRotation;
 
 
-    if (lua_isstring(lua, -4)) {
-		IDname = lua_tostring(lua, -4);
-		std::cout << IDname << std::endl;
+    if (lua_isstring(lua, -5)) {
+		IDname = lua_tostring(lua, -5);
+		std::cout << IDname  << std::endl;
 	}
-    if (lua_isstring(lua, -3)) {
-		Model = lua_tostring(lua, -3);
-		std::cout << Model << std::endl;
+    if (lua_isstring(lua, -4)) {
+		Model = lua_tostring(lua, -4);
+	}
+	if (lua_isstring(lua, -3)) {
+		Texture= lua_tostring(lua, -3);
 	}
 	if (lua_isstring(lua, -2)) {
-		Texture= lua_tostring(lua, -2);
-		std::cout << Texture << std::endl;
-	}
-	if (lua_isstring(lua, -1)) {
-		sPosition = lua_tostring(lua, -1);
+		sPosition = lua_tostring(lua, -2);
 		std::istringstream ss(sPosition);
 		std::string number;
 		int index = 0;
@@ -68,13 +68,17 @@ int AddModel(lua_State * lua)
             index++;
 
         }
-		std::cout << sPosition << std::endl;
+	}
+	if (lua_isstring(lua, -1)) {
+		sRotation = lua_tostring(lua, -1);
+		fRotation = std::stof(sRotation);
 	}
 
     Mesh* mesh = Mesh::load("mge/models/"+Model);
     AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load ("mge/textures/"+Texture));
 
     GameObject* GO = new GameObject (IDname, vPosition);
+    GO->rotate(glm::radians(fRotation), glm::vec3(0,1,0));
     GO->setMesh (mesh);
     GO->setMaterial(textureMaterial);
     World::GetInstance()->add(GO);

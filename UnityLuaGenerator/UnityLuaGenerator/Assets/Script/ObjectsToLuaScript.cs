@@ -31,11 +31,27 @@ public class ObjectsToLuaScript : MonoBehaviour {
             file.WriteLine("AddModel('" +
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +
-                child.gameObject.GetComponentInChildren<Renderer>().material.mainTexture.name + ".png','" + 
-                child.gameObject.transform.position.x + "," +
-                child.gameObject.transform.position.y + "," +
-                child.gameObject.transform.position.z + "','" +
-                child.gameObject.transform.rotation.eulerAngles.y + "')");
+                child.gameObject.GetComponentInChildren<Renderer>().material.mainTexture.name + ".png'," +
+                child.gameObject.transform.localToWorldMatrix.m00 + "," +
+                child.gameObject.transform.localToWorldMatrix.m10 + "," +
+                child.gameObject.transform.localToWorldMatrix.m20 + "," +
+                child.gameObject.transform.localToWorldMatrix.m30 + "," +
+                child.gameObject.transform.localToWorldMatrix.m01 + "," +
+                child.gameObject.transform.localToWorldMatrix.m11 + "," +
+                child.gameObject.transform.localToWorldMatrix.m21 + "," +
+                child.gameObject.transform.localToWorldMatrix.m31 + "," +
+                child.gameObject.transform.localToWorldMatrix.m02 + "," +
+                child.gameObject.transform.localToWorldMatrix.m12 + "," +
+                child.gameObject.transform.localToWorldMatrix.m22 + "," +
+                child.gameObject.transform.localToWorldMatrix.m32 + "," +
+                child.gameObject.transform.localToWorldMatrix.m03 + "," +
+                child.gameObject.transform.localToWorldMatrix.m13 + "," +
+                child.gameObject.transform.localToWorldMatrix.m23 + "," +
+                child.gameObject.transform.localToWorldMatrix.m33 + ")");
+//                child.gameObject.transform.position.x + "," +
+//                child.gameObject.transform.position.y + "," +
+//                child.gameObject.transform.position.z + "','" +
+//                child.gameObject.transform.rotation.eulerAngles.y + "')");
         }
         file.Close();
         

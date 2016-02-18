@@ -19,6 +19,7 @@ MouseBehaviour::~MouseBehaviour()
 void MouseBehaviour::update(float step)
 {
     Looking();
+    RaycastTest();
     OnMouseClick();
     sf::Listener::setPosition(_cameraPosition->getLocalPosition().x,_cameraPosition->getLocalPosition().y,_cameraPosition->getLocalPosition().z);
     sf::Listener::setDirection(-_camera->getWorldPosition().x,0,-_camera->getWorldPosition().z);
@@ -106,16 +107,21 @@ void MouseBehaviour::Looking()
     //float length = sqrtf(distance.x * distance.x + distance.y * distance.y + distance.z * distance.z);
 }
 
-void MouseBehaviour::OnMouseClick()
+void MouseBehaviour::RaycastTest()
 {
-    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    std::cout << "Amount of Meshes: " << World::GetInstance()->MeshList.size() << std::endl;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
     {
         bool hit = false;
-        //for(int x; x < World::GetInstance()->MeshList.size(); x++)
-        //{
-            //glm::vec3 slopeLine = glm::vec3();
-            //hit = Raycast.Ray_Intersect_Mesh(World::GetInstance()->MeshList[x], glm::vec3(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y, 0), slopeLine);
-        //}
-        std::cout << hit << std::endl;
+        Mesh mesh = World::GetInstance()->MeshList.at(1);
+        hit = Raycast::Ray_Intersect_Mesh(&mesh, glm::vec3(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y, 1), glm::vec3(0,0,1), true, false);
+        if(hit == true)
+        {
+            std::cout << "Hitting Cilinder" << std::endl;
+        }
+        else
+        {
+            std::cout << "Shit Happened" << std::endl;
+        }
     }
 }

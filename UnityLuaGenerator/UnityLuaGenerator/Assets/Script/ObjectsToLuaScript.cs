@@ -31,7 +31,7 @@ public class ObjectsToLuaScript : MonoBehaviour {
             file.WriteLine("AddModel('" +
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +
-                child.gameObject.GetComponentInChildren<Renderer>().material.mainTexture.name + ".png'," +
+                "" + "'," +
                 child.gameObject.transform.localToWorldMatrix.m00 + "," +
                 child.gameObject.transform.localToWorldMatrix.m10 + "," +
                 child.gameObject.transform.localToWorldMatrix.m20 + "," +
@@ -55,8 +55,10 @@ public class ObjectsToLuaScript : MonoBehaviour {
         }
         file.Close();
         
+		/**/
         string sourcePath = "Assets/";
         string targetPath = "../../mge_student_edition_v15.0.0/assets/mge/";
+
 
         if (System.IO.Directory.Exists(sourcePath + "Models"))
         {
@@ -85,6 +87,7 @@ public class ObjectsToLuaScript : MonoBehaviour {
                 System.IO.File.Copy(s, destFile, true);
             }
         }
+        /**/
 
 
     }

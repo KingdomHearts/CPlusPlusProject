@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <windows.h>
 #include <SFML/Audio.hpp>
+#include <btBulletCollisionCommon.h>
 
 MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, float pDistance):AbstractBehaviour()
 {

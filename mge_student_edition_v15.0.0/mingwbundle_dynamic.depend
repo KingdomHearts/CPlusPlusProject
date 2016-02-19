@@ -1879,7 +1879,7 @@
 	<GL/glew.h>
 	<glm.hpp>
 
-1455706114 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.cpp
+1455877788 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.cpp
 	"mge/core/Mesh.hpp"
 	<iostream>
 	<map>
@@ -1890,7 +1890,7 @@
 	"mge/core/Camera.hpp"
 	"glm.hpp"
 
-1455808822 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\renderer.cpp
+1455878601 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\renderer.cpp
 	"mge/core/Renderer.hpp"
 	<cassert>
 	<GL/glew.h>
@@ -1964,7 +1964,7 @@
 	"mge/core/Texture.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 
-1455809215 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
+1455877788 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
 	<glm.hpp>
 	<iostream>
 	<string>
@@ -2365,13 +2365,13 @@
 	"mge/util/LuaLoader.hpp"
 	"mge/util/Audio.hpp"
 
-1455641805 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.hpp
+1455878601 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.hpp
 	<string>
 	<vector>
 	"mge/core/Mesh.hpp"
 	"mge/core/GameObject.hpp"
 
-1455810601 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
+1455878601 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
 	"LuaLoader.hpp"
 	"mge/config.hpp"
 	"luainc.h"
@@ -2383,6 +2383,7 @@
 	"mge/materials/AbstractMaterial.hpp"
 	"mge/materials/TextureMaterial.hpp"
 	"mge/core/World.hpp"
+	"mge/util/Audio.hpp"
 
 1455621767 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\include\luainc.h
 	"lua.h"
@@ -2420,7 +2421,7 @@
 	<vector>
 	<iostream>
 
-1455790127 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.cpp
+1455878601 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.cpp
 	"Audio.hpp"
 	<iostream>
 	<SFML/Audio.hpp>
@@ -2784,18 +2785,17 @@
 	<glm.hpp>
 	"Mesh.hpp"
 
-1455790127 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.cpp
+1455885197 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.cpp
 	"MouseBehaviour.hpp"
 	<SFML/Graphics.hpp>
 	<windows.h>
 	<SFML/Audio.hpp>
 
-1455719547 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.hpp
+1455877788 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.hpp
 	<glm.hpp>
 	"mge/behaviours/AbstractBehaviour.hpp"
 	"mge/behaviours/LookAt.hpp"
 	<iostream>
-	"mge/core/Raycast.hpp"
 	"mge/core/World.hpp"
 	"mge/core/Camera.hpp"
 

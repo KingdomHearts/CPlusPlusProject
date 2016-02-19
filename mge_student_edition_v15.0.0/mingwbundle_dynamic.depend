@@ -1760,10 +1760,16 @@
 	<GL/glew.h>
 	<string>
 
-1455188364 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.hpp
+1455877788 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.hpp
 	<mge/core/AbstractGame.hpp>
 	<SFML/Graphics.hpp>
 	<vector>
+	<BulletCollision\BroadphaseCollision\btBroadphaseInterface.h>
+	<BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h>
+	<BulletCollision\CollisionDispatch\btCollisionDispatcher.h>
+	<BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h>
+	<BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h>
+	<BulletCollision\BroadphaseCollision\btDbvtBroadphase.h>
 
 1454945853 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\abstractbehaviour.cpp
 	<cassert>
@@ -1836,10 +1842,11 @@
 
 1454945853 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\renderer.hpp
 
-1455708402 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
+1455878601 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
 	<vector>
 	"mge/core/Mesh.hpp"
 	"mge/core/GameObject.hpp"
+	"mge/util/Audio.hpp"
 
 1454945853 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\camera.cpp
 	<iostream>
@@ -2402,9 +2409,10 @@
 1455621767 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\include\lualib.h
 	"lua.h"
 
-1455790127 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.hpp
+1455878601 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.hpp
 	<SFML/Audio.hpp>
 	<vector>
+	<iostream>
 
 1455790127 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.cpp
 	"Audio.hpp"

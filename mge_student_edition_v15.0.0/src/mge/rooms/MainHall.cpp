@@ -37,6 +37,7 @@ MainHall::MainHall(std::string pName) : GameObject(pName)
     {
         Audio * audio = new Audio("mge/sounds/"+i->sFileName, i->sLayer);
         audio->SetLoop(i->sLoop);
+<<<<<<< HEAD
         audio->SetVolume(i->sSetVolume);
         if(i->sIs3D)
         {
@@ -44,6 +45,8 @@ MainHall::MainHall(std::string pName) : GameObject(pName)
             audio->SetMinDistance(i->sMinDistance);
             // Object for 3d position
         }
+=======
+>>>>>>> origin/master
 
     }
     //audio1->SetLoop(listAudio[1].sLoop);

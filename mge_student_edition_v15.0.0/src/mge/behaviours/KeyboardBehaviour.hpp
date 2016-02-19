@@ -1,6 +1,6 @@
 #ifndef KEYBOARDBEHAVIOUR_H
 #define KEYBOARDBEHAVIOUR_H
-
+#include "mge/core/Mesh.hpp"
 
 class KeyboardBehaviour
 {
@@ -8,10 +8,10 @@ class KeyboardBehaviour
         KeyboardBehaviour();
 
         static KeyboardBehaviour* GetInstance();
-        void BindMeshToButton(int pNumberToBind);
+        void BindMeshToButton(int pNumberToBind, Mesh pMesh);
     protected:
     private:
-
+        std::vector<Mesh*> BindArray;
         static KeyboardBehaviour* KeyBoardInstance;
 };
 

@@ -82,8 +82,6 @@ int AddModel(lua_State * lua)
     GO->setMesh (mesh);
     GO->setMaterial(textureMaterial);
     World::GetInstance()->add(GO);
-    World::GetInstance()->MeshList.push_back(*mesh);
-    std::cout << World::GetInstance()->MeshList.size() << std::endl;
 }
 
 

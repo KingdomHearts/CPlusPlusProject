@@ -172,9 +172,7 @@ Mesh* Mesh::load(string pFileName)
                             //and update our index buffer with it
 							mesh->_indices.push_back( index );
 						}
-						mesh->_indiceCount++;
 					}
-					mesh->_fillTriangleVector();
 				} else {
 				    //If we read a different amount, something is wrong
 					cout << "Error reading obj, needing v,vn,vt" << endl;
@@ -197,49 +195,7 @@ Mesh* Mesh::load(string pFileName)
 	}
 }
 
-///Fill a List of Triangles of a Mesh
-void Mesh::_fillTriangleVector()
-{
-    //3 Vertices for every Triangle
-    int y = 1;
-    Triangle triangle;
-    for (int x = 0; x < _vertices.size(); x++)
-    {
-        if (y == 1)
-        {
-            triangle.Vertice1 = _vertices[x];
-            y++;
-        }
-        else if(y == 2)
-        {
-            triangle.Vertice2 = _vertices[x];
-            y++;
-        }
-        else if(y == 3)
-        {
-            triangle.Vertice3 = _vertices[x];
-            y++;
-        }
-        else
-        {
-            _triangles.push_back(triangle);
-            y = 1;
-        }
-    }
-}
 
-///Get amount of Triangles
-int Mesh::GetTriangleCount()
-{
-    return _triangles.size();
-}
-
-///Return 3 Vertices from a Triangle
-Triangle Mesh::GetTriangle(int pIndex)
-{
-    Triangle triangle = _triangles[pIndex];
-    return triangle;
-}
 
 void Mesh::_buffer()
 {

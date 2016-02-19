@@ -36,7 +36,7 @@ MainHall::MainHall(std::string pName) : GameObject(pName)
     for (std::vector<AudioStruct>::iterator i = World::GetInstance()->AudioList.begin(); i != World::GetInstance()->AudioList.end(); ++i)
     {
         Audio * audio = new Audio("mge/sounds/"+i->sFileName, i->sLayer);
-        audio->SetLoop(i->sLoop)
+        audio->SetLoop(i->sLoop);
 
     }
     //audio1->SetLoop(listAudio[1].sLoop);

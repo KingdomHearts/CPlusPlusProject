@@ -80,7 +80,7 @@ void MGEDemo::_initializeScene()
     GameObject * CameraPositionTarget = new GameObject("EmptyCamera",glm::vec3(0,1,3));
     _world->add(CameraPositionTarget);
 
-    Camera* camera = new Camera ("camera", glm::vec3(0,1,3));
+    Camera* camera = new Camera ("camera", glm::vec3(0,5,-40));
     camera->setBehaviour(new MouseBehaviour (CameraPositionTarget,camera, 10.0f));
     _world->add(camera);
     _world->setMainCamera(camera);

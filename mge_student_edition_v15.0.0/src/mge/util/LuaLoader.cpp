@@ -33,55 +33,89 @@ int AddModel(lua_State * lua)
     float fRotation;
 
 
-    if (lua_isstring(lua, -5)) {
-		IDname = lua_tostring(lua, -5);
+    if (lua_isstring(lua, -19)) {
+		IDname = lua_tostring(lua, -19);
 		std::cout << IDname  << std::endl;
 	}
-    if (lua_isstring(lua, -4)) {
-		Model = lua_tostring(lua, -4);
+    if (lua_isstring(lua, -18)) {
+		Model = lua_tostring(lua, -18);
 	}
-	if (lua_isstring(lua, -3)) {
-		Texture= lua_tostring(lua, -3);
+	if (lua_isstring(lua, -17)) {
+		Texture= lua_tostring(lua, -17);
 	}
-	if (lua_isstring(lua, -2)) {
-		sPosition = lua_tostring(lua, -2);
-		std::istringstream ss(sPosition);
-		std::string number;
-		int index = 0;
-		while(std::getline(ss, number, ','))
-        {
-            switch(index)
-            {
-            case 0:
-                vPosition.x = atoi(number.c_str());
-                break;
-            case 1:
-                vPosition.y = atoi(number.c_str());
-                break;
-            case 2:
-                vPosition.z = atoi(number.c_str());
-                break;
-            default:
-                break;
-            }
-            if(index >= 2) break;
-            index++;
+	float m[16];
+	for (int i=0; i<16; i++) {
+        m[i] = lua_tonumber(lua, -((15-i)+1));
+	}
 
-        }
-	}
-	if (lua_isstring(lua, -1)) {
-		sRotation = lua_tostring(lua, -1);
-		fRotation = std::stof(sRotation);
-	}
+//	if (lua_isstring(lua, -2)) {
+//		sPosition = lua_tostring(lua, -2);
+//		std::istringstream ss(sPosition);
+//		std::string number;
+//		int index = 0;
+//		while(std::getline(ss, number, ','))
+//        {
+//            switch(index)
+//            {
+//            case 0:
+//                vPosition.x = atoi(number.c_str());
+//                break;
+//            case 1:
+//                vPosition.y = atoi(number.c_str());
+//                break;
+//            case 2:
+//                vPosition.z = atoi(number.c_str());
+//                break;
+//            default:
+//                break;
+//            }
+//            if(index >= 2) break;
+//            index++;
+//
+//        }
+//	}
+//	if (lua_isstring(lua, -1)) {
+//		sRotation = lua_tostring(lua, -1);
+//		fRotation = std::stof(sRotation);
+//	}
 
     Mesh* mesh = Mesh::load("mge/models/"+Model);
-    AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load ("mge/textures/"+Texture));
-
-    GameObject* GO = new GameObject (IDname, vPosition);
-    GO->rotate(glm::radians(fRotation), glm::vec3(0,1,0));
+    AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load ("mge/textures/bricks.jpg"));
+    if(Texture != ""){
+        textureMaterial = new TextureMaterial (Texture::load ("mge/textures/"+Texture));
+    }
+    GameObject* GO = new GameObject (IDname, glm::vec3(0,0,0));
     GO->setMesh (mesh);
     GO->setMaterial(textureMaterial);
     World::GetInstance()->add(GO);
+    World::GetInstance()->MeshList.push_back(*mesh);
+
+
+    GO->translate(vPosition);
+    GO->rotate(glm::radians(-fRotation), glm::vec3(0,1,0));
+
+    glm::mat4 matrix(m[0],  m[4],  m[8],  m[12],
+                     m[1],  m[5],  m[9],  m[13],
+                     m[2],  m[6],  m[10], m[14],
+                     m[3],  m[7],  m[11], m[15]);
+
+    matrix = glm::transpose(matrix);
+    matrix[0][0] *= -1;
+    matrix[1][0] *= -1;
+    matrix[2][0] *= -1;
+    matrix[3][0] *= -1;
+//    matrix[0][2] *= -1;
+//    matrix[1][2] *= -1;
+//    matrix[2][2] *= -1;
+//
+//    matrix[3][0] *= -2;
+//    matrix[3][1] *= 2;
+//    matrix[3][2] *= 2;
+//    matrix[3][2] = -1;
+//    matrix[3][2] = -1;
+    GO->setTransform(matrix);
+
+    std::cout << World::GetInstance()->MeshList.size() << std::endl;
 }
 
 

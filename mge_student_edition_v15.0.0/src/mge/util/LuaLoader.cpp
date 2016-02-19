@@ -10,6 +10,8 @@
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/core/World.hpp"
 
+#include "mge/util/Audio.hpp"
+
 LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pName)
 {
     lua_State *lua = luaL_newstate();
@@ -100,7 +102,36 @@ void LuaLoader::LoadAllModels(){
 	lua_close(lua);
 }
 
+int AddSound(lua_State * lua)
+{
 
+    AudioStruct * sAudio = new AudioStruct();
+    sAudio->sObject = lua_tostring(lua,-1);
+    sAudio->sSetAttenuation = lua_tonumber(lua,-2);
+    sAudio->sMinDistance = lua_tonumber(lua,-3);
+    sAudio->sIs3D = lua_toboolean(lua,-4);
+    sAudio->sSetVolume = lua_tonumber(lua,-5);
+    sAudio->sTrigger = lua_tostring(lua,-6);
+    sAudio->sLayer = lua_tonumber(lua,-7);
+    sAudio->sLoop = lua_toboolean(lua,-8);
+    sAudio->sFileName = lua_tostring(lua,-9);
+    sAudio->sID = lua_tostring(lua,-10);
+    World::GetInstance()->AudioList.push_back(*sAudio);
+    return 0;
+}
+
+void LuaLoader::LoadSounds()
+{
+    lua_State *lua = luaL_newstate();
+	luaL_openlibs(lua);
+	luaL_loadfile(lua,"mge/lua/SoundLoader.lua");
+
+    lua_pushcfunction(lua, AddSound);
+    lua_setglobal(lua, "AddSound");
+
+	lua_call(lua,0,0);
+	lua_close(lua);
+}
 
 
 LuaLoader::~LuaLoader()

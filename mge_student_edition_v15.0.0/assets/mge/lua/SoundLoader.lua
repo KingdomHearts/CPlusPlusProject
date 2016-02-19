@@ -1,0 +1,3 @@
+AddSound("ALL","Spider_7.wav",true,0,"NULL",100,true,1,10,"NULL")
+AddSound("MainHall","Mono_Sample.wav",true,0,"NULL",100,true,1,10,"NULL");
+AddSound("Pre","Mono_Sample.wav",true,0,"NULL",100,true,1,10,"NULL");

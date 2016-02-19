@@ -10,6 +10,7 @@ class LuaLoader : public GameObject
     public:
         LuaLoader(std::string pName = "Lua", std::string pLuaFileName = ".lua");
         void LoadAllModels();
+        void LoadSounds();
         virtual ~LuaLoader();
     protected:
     private:

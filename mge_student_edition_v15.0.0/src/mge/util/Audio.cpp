@@ -20,7 +20,7 @@ Audio::Audio(std::string pFilename, int pLayer)
             //file is loaded
         }
         _sound.setBuffer(_audioBuffer);
-        //_sound.play();
+        _sound.play();
     }
     else if (pLayer == 1)
     {
@@ -63,6 +63,12 @@ Audio::Audio(std::vector<std::string> pListFilenames)
     }
 
 }
+
+void Audio::SetVolume(float pVolume = 100.f)
+{
+    _sound.setVolume(pVolume);
+}
+
 void Audio::SetLoop(bool pSetLoop)
 {
     _sound.setLoop(pSetLoop);
@@ -96,10 +102,4 @@ which means that it will be heard only if very close to the listener.
 void Audio::SetAttenuation(float pAttenuation = 10.0f)
 {
     _sound.setAttenuation(pAttenuation);
-}
-
-
-Audio::~Audio()
-{
-    //dtor
 }

@@ -2006,10 +2006,16 @@
 	<GL/glew.h>
 	<string>
 
-1455196638 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.hpp
+1455877862 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.hpp
 	<mge/core/AbstractGame.hpp>
 	<SFML/Graphics.hpp>
 	<vector>
+	<BulletCollision\BroadphaseCollision\btBroadphaseInterface.h>
+	<BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h>
+	<BulletCollision\CollisionDispatch\btCollisionDispatcher.h>
+	<BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h>
+	<BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h>
+	<BulletCollision\BroadphaseCollision\btDbvtBroadphase.h>
 
 1454946011 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\abstractbehaviour.cpp
 	<cassert>
@@ -2071,7 +2077,7 @@
 
 1454946011 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\renderer.hpp
 
-1455809539 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
+1455877847 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
 	<vector>
 	"mge/core/Mesh.hpp"
 	"mge/core/GameObject.hpp"
@@ -2108,7 +2114,7 @@
 	<GL/glew.h>
 	<glm.hpp>
 
-1455705333 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.cpp
+1455877862 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.cpp
 	"mge/core/Mesh.hpp"
 	<iostream>
 	<map>
@@ -2119,7 +2125,7 @@
 	"mge/core/Camera.hpp"
 	"glm.hpp"
 
-1454946011 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\renderer.cpp
+1455877862 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\renderer.cpp
 	"mge/core/Renderer.hpp"
 	<cassert>
 	<GL/glew.h>
@@ -2193,7 +2199,7 @@
 	"mge/core/Texture.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 
-1455716357 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
+1455877862 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
 	<glm.hpp>
 	<iostream>
 	<string>
@@ -2245,7 +2251,7 @@
 	<string>
 	"mge/core/GameObject.hpp"
 
-1455811890 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
+1455884451 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
 	"MainHall.h"
 	"mge/core/Mesh.hpp"
 	"mge/config.hpp"
@@ -2271,13 +2277,13 @@
 
 1455184588 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\assetloader.hpp
 
-1455793148 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.hpp
+1455877847 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.hpp
 	<string>
 	<vector>
 	"mge/core/Mesh.hpp"
 	"mge/core/GameObject.hpp"
 
-1455811085 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
+1455877865 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
 	"LuaLoader.hpp"
 	"mge/config.hpp"
 	"luainc.h"
@@ -2780,29 +2786,28 @@
 	"mge/core/World.hpp"
 	"mge/core/Camera.hpp"
 
-1455810049 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.hpp
+1455877847 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.hpp
 	<SFML/Audio.hpp>
 	<vector>
 	<iostream>
 
-1455811439 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.cpp
+1455877847 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.cpp
 	"Audio.hpp"
 	<iostream>
 	<SFML/Audio.hpp>
 	<vector>
 
-1455790035 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.cpp
+1455884328 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.cpp
 	"MouseBehaviour.hpp"
 	<SFML/Graphics.hpp>
 	<windows.h>
 	<SFML/Audio.hpp>
 
-1455789701 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.hpp
+1455877862 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.hpp
 	<glm.hpp>
 	"mge/behaviours/AbstractBehaviour.hpp"
 	"mge/behaviours/LookAt.hpp"
 	<iostream>
-	"mge/core/Raycast.hpp"
 	"mge/core/World.hpp"
 	"mge/core/Camera.hpp"
 

@@ -20,6 +20,7 @@ class World : public GameObject
         std::vector<Mesh> MeshList;
         std::vector<AudioStruct> AudioList;
         void renderDebugInfo();
+        bool isRunning;
 
 	private:
 	    Camera* _mainCamera;

@@ -1,6 +1,5 @@
 #include "LuaLoader.hpp"
 #include "mge/config.hpp"
-#include "luainc.h"
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -9,6 +8,8 @@
 #include "mge/materials/AbstractMaterial.hpp"
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/core/World.hpp"
+
+#include "mge/core/AbstractGame.hpp"
 
 #include "mge/util/Audio.hpp"
 
@@ -20,8 +21,6 @@ LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pN
 	lua_call(lua,0,0);
 	lua_close(lua);
 	std::cout << ""  << std::endl;
-    //config::MGE_LUA_PATH
-    //ctor
 }
 
 int AddModel(lua_State * lua)
@@ -50,37 +49,6 @@ int AddModel(lua_State * lua)
         m[i] = lua_tonumber(lua, -((15-i)+1));
 	}
 
-//	if (lua_isstring(lua, -2)) {
-//		sPosition = lua_tostring(lua, -2);
-//		std::istringstream ss(sPosition);
-//		std::string number;
-//		int index = 0;
-//		while(std::getline(ss, number, ','))
-//        {
-//            switch(index)
-//            {
-//            case 0:
-//                vPosition.x = atoi(number.c_str());
-//                break;
-//            case 1:
-//                vPosition.y = atoi(number.c_str());
-//                break;
-//            case 2:
-//                vPosition.z = atoi(number.c_str());
-//                break;
-//            default:
-//                break;
-//            }
-//            if(index >= 2) break;
-//            index++;
-//
-//        }
-//	}
-//	if (lua_isstring(lua, -1)) {
-//		sRotation = lua_tostring(lua, -1);
-//		fRotation = std::stof(sRotation);
-//	}
-
     Mesh* mesh = Mesh::load("mge/models/"+Model);
     AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load ("mge/textures/bricks.jpg"));
     if(Texture != ""){
@@ -106,15 +74,6 @@ int AddModel(lua_State * lua)
     matrix[1][0] *= -1;
     matrix[2][0] *= -1;
     matrix[3][0] *= -1;
-//    matrix[0][2] *= -1;
-//    matrix[1][2] *= -1;
-//    matrix[2][2] *= -1;
-//
-//    matrix[3][0] *= -2;
-//    matrix[3][1] *= 2;
-//    matrix[3][2] *= 2;
-//    matrix[3][2] = -1;
-//    matrix[3][2] = -1;
     GO->setTransform(matrix);
 
     std::cout << World::GetInstance()->MeshList.size() << std::endl;
@@ -163,6 +122,35 @@ void LuaLoader::LoadSounds()
 
 	lua_call(lua,0,0);
 	lua_close(lua);
+}
+
+int Print(lua_State * lua)
+{
+    std::cout << "pizza olandaise" << std::endl;
+}
+
+void LuaLoader::RuntimeUpdater()
+{
+    std::cout << "test2" << std::endl;
+	//luaL_loadfile(lua,"mge/lua/Runtime.lua");
+    lua_getglobal(lua, "update");
+	lua_call(lua,0,0);
+    std::cout << "test3" << std::endl;
+	//lua_close(lua);
+	//lua_call(lua,0,0);
+}
+
+void LuaLoader::RuntimeLoader()
+{
+    lua = luaL_newstate();
+	luaL_openlibs(lua);
+	luaL_loadfile(lua,"mge/lua/Runtime.lua");
+
+    lua_register(lua,"Print",Print);
+	lua_call(lua,0,0);
+
+	//lua_close(lua);
+    std::cout << "test1" << std::endl;
 }
 
 

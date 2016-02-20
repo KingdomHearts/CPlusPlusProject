@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <GL/glew.h>
 #include <string>
+#include "mge/util/LuaLoader.hpp"
 using namespace std;
 
 class World;
@@ -29,7 +30,6 @@ class AbstractGame
         virtual void initialize();
         //run the actual process of updating all objects, rendering them and processing events
         virtual void run();
-
     protected:
 
         //methods above delegate behaviour to the methods below so that you can override it in a subclass
@@ -59,6 +59,10 @@ class AbstractGame
 		Renderer* _renderer;        //the renderer class to render the world
 		World* _world;              //the root game object that represents our scene
 		bool _running;
+
+		LuaLoader * _luaLoader;
+
+
 
 };
 

@@ -62,6 +62,8 @@
 		<Unit filename="src/mge/MGEDemo.hpp" />
 		<Unit filename="src/mge/behaviours/AbstractBehaviour.cpp" />
 		<Unit filename="src/mge/behaviours/AbstractBehaviour.hpp" />
+		<Unit filename="src/mge/behaviours/KeyboardBehaviour.cpp" />
+		<Unit filename="src/mge/behaviours/KeyboardBehaviour.hpp" />
 		<Unit filename="src/mge/behaviours/KeysBehaviour.cpp" />
 		<Unit filename="src/mge/behaviours/KeysBehaviour.hpp" />
 		<Unit filename="src/mge/behaviours/LookAt.cpp" />

@@ -22,6 +22,7 @@ using namespace std;
 
 #include "mge/behaviours/RotatingBehaviour.hpp"
 #include "mge/behaviours/KeysBehaviour.hpp"
+#include "mge/behaviours/KeyboardBehaviour.hpp"
 #include "mge/behaviours/LookAt.hpp"
 #include "mge/behaviours/MouseBehaviour.hpp"
 
@@ -77,10 +78,11 @@ void MGEDemo::_initializeScene()
     MainHall *mainHall = new MainHall("MainHall");
     _world->add(mainHall);
 
-    GameObject * CameraPositionTarget = new GameObject("EmptyCamera",glm::vec3(0,1,3));
+    GameObject * CameraPositionTarget = new GameObject("EmptyCamera",glm::vec3(0,3,-40));
+    CameraPositionTarget->setBehaviour(new KeyboardBehaviour());
     _world->add(CameraPositionTarget);
 
-    Camera* camera = new Camera ("camera", glm::vec3(0,5,-40));
+    Camera* camera = new Camera ("camera", glm::vec3(0,3,0));
     camera->setBehaviour(new MouseBehaviour (CameraPositionTarget,camera, 10.0f));
     _world->add(camera);
     _world->setMainCamera(camera);

@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include <windows.h>
 #include <SFML/Audio.hpp>
-#include <btBulletCollisionCommon.h>
 
 MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, float pDistance):AbstractBehaviour()
 {
@@ -14,7 +13,7 @@ MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, floa
 
 MouseBehaviour::~MouseBehaviour()
 {
-    //dtor
+
 }
 
 void MouseBehaviour::update(float step)
@@ -48,23 +47,21 @@ void MouseBehaviour::Looking()
         //_owner->rotate(0,01f,glm::vec3(-0.05f,0,0));
 
         //_owner->rotate(0.01f,glm::vec3(0,0.05f,0));
-        _emptyChild->getParent()->rotate(0.05f,glm::vec3(0,1.0f,0));
+
+        //_cameraPosition->rotate(0.05f,glm::vec3(0.f,1.f,0.f));
+        //Most working code
+        _emptyChild->getParent()->rotate(0.04f,glm::vec3(0,1.0f,0));
     }
     else if (sf::Mouse::getPosition().x > sf::VideoMode::getDesktopMode().width / 2 + 1)
     {
-        //_owner->translate(glm::vec3(0.05f,0,0));
-
-
-        //_owner->rotate(0.01f,glm::vec3(0,-0.05f,0));
-
-        _emptyChild->getParent()->rotate(0.05f,glm::vec3(0,-1.0f,0));
+        //_cameraPosition->rotate(0.05f,glm::vec3(0.f,-1.f,0.f));
+        //most working code
+        _emptyChild->getParent()->rotate(0.04f,glm::vec3(0,-1.0f,0));
     }
     if(sf::Mouse::getPosition().y <= sf::VideoMode::getDesktopMode().height / 2 - 1)
     {
-        //_owner->translate(glm::vec3(0,-0.05f,0));
-
+        //most working code
         _owner->rotate(0.05f,glm::vec3(1.0f,0,0));
-        //_owner->rotate(0.01f,glm::vec3(0.05f,0,0));
     }
     else if (sf::Mouse::getPosition().y > sf::VideoMode::getDesktopMode().height / 2 + 1)
     {

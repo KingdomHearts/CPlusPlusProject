@@ -147,6 +147,7 @@ int StopSound(lua_State * lua)
 
 int Print(lua_State * lua)
 {
+    std::cout << "pink fluffy unicorns" << std::endl;
 }
 
 int AddModelToScene(lua_State * lua)

@@ -1,0 +1,3 @@
+function update()
+    Print();
+end

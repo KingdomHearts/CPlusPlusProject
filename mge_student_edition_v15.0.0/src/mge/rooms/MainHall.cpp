@@ -33,6 +33,8 @@ MainHall::MainHall(std::string pName) : GameObject(pName)
     LuaLoader * luaLoader = new LuaLoader("Lua","TestLua");
     this->add(luaLoader);
     luaLoader->LoadSounds();
+    luaLoader->RuntimeLoader();
+
     for (std::vector<AudioStruct>::iterator i = World::GetInstance()->AudioList.begin(); i != World::GetInstance()->AudioList.end(); ++i)
     {
         Audio * audio = new Audio("mge/sounds/"+i->sFileName, i->sLayer);

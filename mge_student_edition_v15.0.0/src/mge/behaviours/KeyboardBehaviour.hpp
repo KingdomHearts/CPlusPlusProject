@@ -21,7 +21,7 @@ class KeyboardBehaviour : public AbstractBehaviour
     public:
         KeyboardBehaviour();
         static KeyboardBehaviour* GetInstance();
-        void BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec3 pPositionToPlace, GameObject* pGO);
+        void BindMeshToButton(int pNumberToBind, Mesh* pMesh, glm::vec3 pPositionToPlace, GameObject* pGO);
         virtual void update( float step );
     protected:
     private:

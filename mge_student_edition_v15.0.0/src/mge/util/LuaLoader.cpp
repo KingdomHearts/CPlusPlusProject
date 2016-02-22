@@ -12,6 +12,8 @@
 #include "mge/core/AbstractGame.hpp"
 
 #include "mge/util/Audio.hpp"
+#include "mge/behaviours/KeyboardBehaviour.hpp"
+
 
 Audio * _audio = new Audio("",0);
 
@@ -83,7 +85,7 @@ int AddModel(lua_State * lua)
     matrix[3][0] *= -1;
     GO->setTransform(matrix);
 
-    //KeyboardBehaviour::GetInstance().BindMeshToButton(KeyBinding,)
+    KeyboardBehaviour::GetInstance()->BindMeshToButton(KeyBinding,mesh,GO->getLocalPosition(),GO);
 
     std::cout << World::GetInstance()->MeshList.size() << std::endl;
 }
@@ -179,11 +181,9 @@ int Dialog(lua_State * lua)
 
 void LuaLoader::RuntimeUpdater()
 {
-    std::cout << "test2" << std::endl;
 	//luaL_loadfile(lua,"mge/lua/Runtime.lua");
     lua_getglobal(lua, "update");
 	lua_call(lua,0,0);
-    std::cout << "test3" << std::endl;
 	//lua_close(lua);
 	//lua_call(lua,0,0);
 }
@@ -201,7 +201,6 @@ void LuaLoader::RuntimeLoader()
 	lua_call(lua,0,0);
 
 	//lua_close(lua);
-    std::cout << "test1" << std::endl;
 }
 
 

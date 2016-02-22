@@ -19,6 +19,7 @@ class World : public GameObject
 		Camera* getMainCamera();
         std::vector<Mesh> MeshList;
         std::vector<AudioStruct> AudioList;
+        bool IsRunning;
         void renderDebugInfo();
 
 	private:

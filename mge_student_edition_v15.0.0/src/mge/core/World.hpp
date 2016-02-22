@@ -21,6 +21,7 @@ class World : public GameObject
         std::vector<AudioStruct> AudioList;
         bool IsRunning;
         void renderDebugInfo();
+        bool isRunning;
 
 	private:
 	    Camera* _mainCamera;

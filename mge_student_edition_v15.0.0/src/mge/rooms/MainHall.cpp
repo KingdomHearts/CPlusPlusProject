@@ -30,6 +30,7 @@ MainHall::MainHall(std::string pName) : GameObject(pName)
     //audio2 = new Audio(std::vector<std::string> {"mge/sounds/Spider_7.wav","mge/sounds/Sell.wav","mge/sounds/Arrow_1.wav","mge/sounds/Arrow_2.wav","mge/sounds/Arrow_3.wav","mge/sounds/Arrow_Impact.wav","mge/sounds/Cannon_Impact_1.wav","mge/sounds/Cannon_Impact_2.wav","mge/sounds/Cannon_Impact_3.wav"});
 
     _CreateHall();
+    /**
     LuaLoader * luaLoader = new LuaLoader("Lua","TestLua");
     this->add(luaLoader);
     luaLoader->LoadSounds();
@@ -48,6 +49,7 @@ MainHall::MainHall(std::string pName) : GameObject(pName)
         }
 
     }
+    **/
     //audio1->SetLoop(listAudio[1].sLoop);
     //sf::Listener::setPosition(10.f, 0.f, 5.f);
 }

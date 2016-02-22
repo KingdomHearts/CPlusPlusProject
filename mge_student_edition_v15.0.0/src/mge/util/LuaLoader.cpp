@@ -13,6 +13,8 @@
 
 #include "mge/util/Audio.hpp"
 
+Audio * _audio = new Audio("",0);
+
 LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pName)
 {
     lua_State *lua = luaL_newstate();
@@ -25,6 +27,7 @@ LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pN
 
 int AddModel(lua_State * lua)
 {
+    int KeyBinding;
     std::string IDname;
     std::string Model;
     std::string Texture;
@@ -33,6 +36,10 @@ int AddModel(lua_State * lua)
     std::string sRotation;
     float fRotation;
 
+    if (lua_isnumber(lua, -20)) {
+		IDname = lua_tonumber(lua, -20);
+		std::cout << KeyBinding  << std::endl;
+	}
 
     if (lua_isstring(lua, -19)) {
 		IDname = lua_tostring(lua, -19);
@@ -75,6 +82,8 @@ int AddModel(lua_State * lua)
     matrix[2][0] *= -1;
     matrix[3][0] *= -1;
     GO->setTransform(matrix);
+
+    //KeyboardBehaviour::GetInstance().BindMeshToButton(KeyBinding,)
 
     std::cout << World::GetInstance()->MeshList.size() << std::endl;
 }
@@ -124,7 +133,46 @@ void LuaLoader::LoadSounds()
 	lua_close(lua);
 }
 
+int PlaySound(lua_State * lua)
+{
+    _audio->PlaySound(lua_tostring(lua,-1));
+    std::cout << "pizza salami" << std::endl;
+}
+int StopSound(lua_State * lua)
+{
+    _audio->StopSound(lua_tostring(lua,-1));
+}
+
 int Print(lua_State * lua)
+{
+}
+
+int AddModelToScene(lua_State * lua)
+{
+    std::cout << "pizza olandaise" << std::endl;
+}
+
+int RemoveModelFromScene(lua_State * lua)
+{
+    std::cout << "pizza olandaise" << std::endl;
+}
+
+int Trigger(lua_State * lua)
+{
+    std::cout << "pizza olandaise" << std::endl;
+}
+
+int Timer(lua_State * lua)
+{
+    std::cout << "pizza olandaise" << std::endl;
+}
+
+int DisplayMessage(lua_State * lua)
+{
+    std::cout << "pizza olandaise" << std::endl;
+}
+
+int Dialog(lua_State * lua)
 {
     std::cout << "pizza olandaise" << std::endl;
 }
@@ -147,6 +195,9 @@ void LuaLoader::RuntimeLoader()
 	luaL_loadfile(lua,"mge/lua/Runtime.lua");
 
     lua_register(lua,"Print",Print);
+    lua_register(lua,"AddSound",AddSound);
+    lua_register(lua,"PlaySound",PlaySound);
+    lua_register(lua,"StopSound",StopSound);
 	lua_call(lua,0,0);
 
 	//lua_close(lua);

@@ -24,10 +24,13 @@
     {
 
         public:
+            std::string cFileName;
             Audio(std::string pFilename, int pLayer = 0);
             Audio(std::vector<std::string> pListFilenames);
             void SetVolume(float pVolume);
             void SetLoop(bool pSetLoop);
+            void PlaySound(std::string pFilename);
+            void StopSound(std::string pFilename);
             void SetPosition(sf::Vector3f pPosition);
             void SetMinDistance(float pMinDistance);
             void SetAttenuation(float pAttenuation);
@@ -36,6 +39,7 @@
         sf::SoundBuffer _audioBuffer;
         sf::Sound _sound;
         sf::Music _music;
+        std::vector<Audio*> _playingAudio;
     };
 //};
 #endif // AUDIO_H

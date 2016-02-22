@@ -5,6 +5,7 @@
 #include "mge/core/Mesh.hpp"
 #include "mge/core/GameObject.hpp"
 #include "luainc.h"
+#include "mge/util/Audio.hpp"
 
 class LuaLoader : public GameObject
 {

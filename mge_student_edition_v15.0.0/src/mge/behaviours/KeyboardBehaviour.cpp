@@ -239,54 +239,54 @@ void KeyboardBehaviour::PickUpObject()
 
 void KeyboardBehaviour::PlaceObject()
 {
-    AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load ("mge/textures/bricks.jpg"));
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num0) && InventoryList.at(0).pickedUp == true)
     {
-        CreateGameObject(InventoryList.at(0).mesh, textureMaterial, InventoryList.at(0).PositionToPlace, InventoryList.at(0).IDname);
+        CreateGameObject(InventoryList.at(0).mesh, InventoryList.at(0).PositionToPlace, InventoryList.at(0).IDname);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1) && InventoryList.at(1).pickedUp == true)
     {
-        CreateGameObject(InventoryList.at(1).mesh, textureMaterial, InventoryList.at(1).PositionToPlace, InventoryList.at(1).IDname);
+        CreateGameObject(InventoryList.at(1).mesh, InventoryList.at(1).PositionToPlace, InventoryList.at(1).IDname);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2) && InventoryList.at(2).pickedUp == true)
     {
-        CreateGameObject(InventoryList.at(2).mesh, textureMaterial, InventoryList.at(2).PositionToPlace, InventoryList.at(2).IDname);
+        CreateGameObject(InventoryList.at(2).mesh, InventoryList.at(2).PositionToPlace, InventoryList.at(2).IDname);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3) && InventoryList.at(3).pickedUp == true)
     {
-        CreateGameObject(InventoryList.at(3).mesh, textureMaterial, InventoryList.at(3).PositionToPlace, InventoryList.at(3).IDname);
+        CreateGameObject(InventoryList.at(3).mesh, InventoryList.at(3).PositionToPlace, InventoryList.at(3).IDname);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4) && InventoryList.at(4).pickedUp == true)
     {
-        CreateGameObject(InventoryList.at(4).mesh, textureMaterial, InventoryList.at(4).PositionToPlace, InventoryList.at(4).IDname);
+        CreateGameObject(InventoryList.at(4).mesh, InventoryList.at(4).PositionToPlace, InventoryList.at(4).IDname);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num5) && InventoryList.at(5).pickedUp == true)
     {
-        CreateGameObject(InventoryList.at(5).mesh, textureMaterial, InventoryList.at(5).PositionToPlace, InventoryList.at(5).IDname);
+        CreateGameObject(InventoryList.at(5).mesh, InventoryList.at(5).PositionToPlace, InventoryList.at(5).IDname);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num6) && InventoryList.at(6).pickedUp == true)
     {
-        CreateGameObject(InventoryList.at(6).mesh, textureMaterial, InventoryList.at(6).PositionToPlace, InventoryList.at(6).IDname);
+        CreateGameObject(InventoryList.at(6).mesh, InventoryList.at(6).PositionToPlace, InventoryList.at(6).IDname);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num7) && InventoryList.at(7).pickedUp == true)
     {
-        CreateGameObject(InventoryList.at(7).mesh, textureMaterial, InventoryList.at(7).PositionToPlace, InventoryList.at(7).IDname);
+        CreateGameObject(InventoryList.at(7).mesh, InventoryList.at(7).PositionToPlace, InventoryList.at(7).IDname);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num8) && InventoryList.at(8).pickedUp == true)
     {
-        CreateGameObject(InventoryList.at(8).mesh, textureMaterial, InventoryList.at(8).PositionToPlace, InventoryList.at(8).IDname);
+        CreateGameObject(InventoryList.at(8).mesh, InventoryList.at(8).PositionToPlace, InventoryList.at(8).IDname);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num9) && InventoryList.at(9).pickedUp == true)
     {
-        CreateGameObject(InventoryList.at(9).mesh, textureMaterial, InventoryList.at(9).PositionToPlace, InventoryList.at(9).IDname);
+        CreateGameObject(InventoryList.at(9).mesh, InventoryList.at(9).PositionToPlace, InventoryList.at(9).IDname);
     }
 }
 
-void KeyboardBehaviour::CreateGameObject(Mesh* pMesh, AbstractMaterial* pTextureMaterial, glm::vec3 pPosition, std::string pIDname)
+void KeyboardBehaviour::CreateGameObject(Mesh* pMesh, glm::vec3 pPosition, std::string pIDname)
 {
+    AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load ("mge/textures/bricks.jpg"));
     GameObject* GO = new GameObject (pIDname, glm::vec3(0,0,0));
     GO->setMesh (pMesh);
-    GO->setMaterial(pTextureMaterial);
+    GO->setMaterial(textureMaterial);
     World::GetInstance()->add(GO);
 
     GO->setLocalPosition(pPosition);

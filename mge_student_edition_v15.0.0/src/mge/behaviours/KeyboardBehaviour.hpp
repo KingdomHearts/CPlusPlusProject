@@ -30,7 +30,7 @@ class KeyboardBehaviour : public AbstractBehaviour
         static KeyboardBehaviour* KeyBoardInstance;
         void PickUpObject();
         void PlaceObject();
-        void CreateGameObject(Mesh* pMesh, AbstractMaterial* pTextureMaterial, glm::vec3 pPosition, std::string pIDname);
+        void CreateGameObject(Mesh* pMesh, glm::vec3 pPosition, std::string pIDname);
 };
 
 #endif // KEYBOARDBEHAVIOUR_H

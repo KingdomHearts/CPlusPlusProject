@@ -26,8 +26,6 @@ public class ObjectsToLuaScript : MonoBehaviour {
         foreach (Transform child in transform)
         {
 
-            //string Name = GO.GetComponentInChildren<Material>().GetTexture(0).name;
-
             file.WriteLine("AddModel('" +
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +
@@ -48,10 +46,6 @@ public class ObjectsToLuaScript : MonoBehaviour {
                 child.gameObject.transform.localToWorldMatrix.m13 + "," +
                 child.gameObject.transform.localToWorldMatrix.m23 + "," +
                 child.gameObject.transform.localToWorldMatrix.m33 + ")");
-//                child.gameObject.transform.position.x + "," +
-//                child.gameObject.transform.position.y + "," +
-//                child.gameObject.transform.position.z + "','" +
-//                child.gameObject.transform.rotation.eulerAngles.y + "')");
         }
         file.Close();
         

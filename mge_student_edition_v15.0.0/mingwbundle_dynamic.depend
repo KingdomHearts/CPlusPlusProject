@@ -1843,7 +1843,7 @@
 
 1454945853 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\renderer.hpp
 
-1455892294 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
+1456137068 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
 	<vector>
 	"mge/core/Mesh.hpp"
 	"mge/core/GameObject.hpp"
@@ -1872,7 +1872,7 @@
 	"mge/core/World.hpp"
 	"mge/behaviours/AbstractBehaviour.hpp"
 
-1455706114 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.hpp
+1456137068 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.hpp
 	<iostream>
 	<vector>
 	<cstring>
@@ -1965,7 +1965,7 @@
 	"mge/core/Texture.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 
-1455886052 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
+1456137068 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
 	<glm.hpp>
 	<iostream>
 	<string>
@@ -1982,6 +1982,7 @@
 	"mge/materials/TextureMaterial.hpp"
 	"mge/behaviours/RotatingBehaviour.hpp"
 	"mge/behaviours/KeysBehaviour.hpp"
+	"mge/behaviours/KeyboardBehaviour.hpp"
 	"mge/behaviours/LookAt.hpp"
 	"mge/behaviours/MouseBehaviour.hpp"
 	"mge/util/DebugHud.hpp"
@@ -2375,7 +2376,7 @@
 	"mge/core/GameObject.hpp"
 	"luainc.h"
 
-1455898242 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
+1456141341 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
 	"LuaLoader.hpp"
 	"mge/config.hpp"
 	<iostream>
@@ -3185,4 +3186,15 @@
 
 1455890393 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\runtimeluamethods.hpp
 	"mge/core/AbstractGame.hpp"
+
+1456137068 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.cpp
+	"KeyboardBehaviour.hpp"
+	<cassert>
+	<algorithm>
+	<iostream>
+
+1456137068 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.hpp
+	"mge/core/Mesh.hpp"
+	"mge/behaviours/AbstractBehaviour.hpp"
+	<SFML/Graphics.hpp>
 

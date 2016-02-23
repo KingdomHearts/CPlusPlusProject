@@ -61,8 +61,8 @@ int AddModel(lua_State * lua)
     World::GetInstance()->MeshList.push_back(*mesh);
 
 
-    GO->translate(vPosition);
-    GO->rotate(glm::radians(-fRotation), glm::vec3(0,1,0));
+    //GO->translate(vPosition);
+    //GO->rotate(glm::radians(-fRotation), glm::vec3(0,1,0));
 
     glm::mat4 matrix(m[0],  m[4],  m[8],  m[12],
                      m[1],  m[5],  m[9],  m[13],

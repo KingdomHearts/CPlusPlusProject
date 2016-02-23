@@ -80,7 +80,7 @@ void MGEDemo::_initializeScene()
     _world->add(mainHall);
 
     GameObject * CameraPositionTarget = new GameObject("EmptyCamera",glm::vec3(0,3,-40));
-    CameraPositionTarget->setBehaviour(new KeyboardBehaviour());
+    CameraPositionTarget->setBehaviour(KeyboardBehaviour::GetInstance());
     _world->add(CameraPositionTarget);
 
     Camera* camera = new Camera ("camera", glm::vec3(0,3,0));

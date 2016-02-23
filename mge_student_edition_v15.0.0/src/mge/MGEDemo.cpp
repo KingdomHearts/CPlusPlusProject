@@ -73,6 +73,7 @@ void MGEDemo::_initializeScene()
     /**/
     LuaLoader * LL = new LuaLoader("","");
     LL->LoadAllModels();
+    LL->LoadAllInteractiveModels();
     /**/
 
     MainHall *mainHall = new MainHall("MainHall");

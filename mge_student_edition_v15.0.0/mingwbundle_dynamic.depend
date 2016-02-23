@@ -1828,7 +1828,7 @@
 1454945853 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\rotatingbehaviour.hpp
 	"mge/behaviours/AbstractBehaviour.hpp"
 
-1455897767 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\abstractgame.cpp
+1456225094 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\abstractgame.cpp
 	"AbstractGame.hpp"
 	<iostream>
 	"mge/core/Timer.hpp"
@@ -1965,7 +1965,7 @@
 	"mge/core/Texture.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 
-1456137068 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
+1456226379 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
 	<glm.hpp>
 	<iostream>
 	<string>
@@ -2357,7 +2357,7 @@
 1455551891 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\assetloader.hpp
 	"mge/core/World.hpp"
 
-1455889576 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
+1456218451 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
 	"MainHall.h"
 	"mge/core/Mesh.hpp"
 	"mge/config.hpp"
@@ -2369,14 +2369,15 @@
 	"mge/core/World.hpp"
 	<vector>
 
-1455897845 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.hpp
+1456224394 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.hpp
 	<string>
 	<vector>
 	"mge/core/Mesh.hpp"
 	"mge/core/GameObject.hpp"
 	"luainc.h"
+	"mge/util/Audio.hpp"
 
-1456141341 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
+1456226606 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
 	"LuaLoader.hpp"
 	"mge/config.hpp"
 	<iostream>
@@ -2389,6 +2390,7 @@
 	"mge/core/World.hpp"
 	"mge/core/AbstractGame.hpp"
 	"mge/util/Audio.hpp"
+	"mge/behaviours/KeyboardBehaviour.hpp"
 
 1455621767 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\include\luainc.h
 	"lua.h"
@@ -2421,16 +2423,17 @@
 1455621767 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\include\lualib.h
 	"lua.h"
 
-1455878601 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.hpp
+1456218451 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.hpp
 	<SFML/Audio.hpp>
 	<vector>
 	<iostream>
 
-1455878601 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.cpp
+1456218451 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\audio.cpp
 	"Audio.hpp"
 	<iostream>
 	<SFML/Audio.hpp>
 	<vector>
+	"mge/core/World.hpp"
 
 1455798848 source:d:\school\project\cplusplusproject\mge_student_edition_v15.0.0\src\main.cpp
 	<iostream>
@@ -3187,14 +3190,17 @@
 1455890393 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\runtimeluamethods.hpp
 	"mge/core/AbstractGame.hpp"
 
-1456137068 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.cpp
+1456218451 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.cpp
 	"KeyboardBehaviour.hpp"
 	<cassert>
 	<algorithm>
 	<iostream>
 
-1456137068 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.hpp
+1456218451 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.hpp
 	"mge/core/Mesh.hpp"
 	"mge/behaviours/AbstractBehaviour.hpp"
 	<SFML/Graphics.hpp>
+	<mge/core/World.hpp>
+	<mge/materials/AbstractMaterial.hpp>
+	<mge/materials/TextureMaterial.hpp>
 

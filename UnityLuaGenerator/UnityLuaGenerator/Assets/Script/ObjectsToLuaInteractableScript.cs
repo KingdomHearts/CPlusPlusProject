@@ -25,7 +25,7 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
         foreach (Transform child in transform)
         {
 
-            file.WriteLine("AddModel(" +
+            file.WriteLine("AddInteractiveModel(" +
                 KeyBindNumber + ",'" +
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +

@@ -42,6 +42,7 @@
 		</Compiler>
 		<Unit filename="assets/mge/fonts/arial.ttf" />
 		<Unit filename="assets/mge/lua/AssetLoader.lua" />
+		<Unit filename="assets/mge/lua/AssetLoaderInteractable.lua" />
 		<Unit filename="assets/mge/lua/Runtime.lua" />
 		<Unit filename="assets/mge/lua/SoundLoader.lua" />
 		<Unit filename="assets/mge/lua/TestLua.lua" />

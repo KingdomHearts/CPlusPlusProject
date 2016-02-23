@@ -22,6 +22,7 @@ void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec
     switch(pNumberToBind)
     {
         case 1:
+            std::cout << "Case 1" << std::endl;
             boundMesh.GO = pGO;
             boundMesh.mesh = &pMesh;
             boundMesh.IDname = pGO->getName();

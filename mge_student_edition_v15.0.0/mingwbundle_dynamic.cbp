@@ -42,7 +42,11 @@
 		</Compiler>
 		<Unit filename="assets/mge/fonts/arial.ttf" />
 		<Unit filename="assets/mge/lua/AssetLoader.lua" />
+		<Unit filename="assets/mge/lua/AssetLoaderInteractable.lua" />
+		<Unit filename="assets/mge/lua/Runtime.lua" />
+		<Unit filename="assets/mge/lua/SoundLoader.lua" />
 		<Unit filename="assets/mge/lua/TestLua.lua" />
+		<Unit filename="assets/mge/lua/test.lua" />
 		<Unit filename="assets/mge/shaders/color.fs" />
 		<Unit filename="assets/mge/shaders/color.vs" />
 		<Unit filename="assets/mge/shaders/texture.fs" />
@@ -62,6 +66,8 @@
 		<Unit filename="src/mge/MGEDemo.hpp" />
 		<Unit filename="src/mge/behaviours/AbstractBehaviour.cpp" />
 		<Unit filename="src/mge/behaviours/AbstractBehaviour.hpp" />
+		<Unit filename="src/mge/behaviours/KeyboardBehaviour.cpp" />
+		<Unit filename="src/mge/behaviours/KeyboardBehaviour.hpp" />
 		<Unit filename="src/mge/behaviours/KeysBehaviour.cpp" />
 		<Unit filename="src/mge/behaviours/KeysBehaviour.hpp" />
 		<Unit filename="src/mge/behaviours/LookAt.cpp" />
@@ -81,8 +87,6 @@
 		<Unit filename="src/mge/core/GameObject.hpp" />
 		<Unit filename="src/mge/core/Mesh.cpp" />
 		<Unit filename="src/mge/core/Mesh.hpp" />
-		<Unit filename="src/mge/core/Raycast.cpp" />
-		<Unit filename="src/mge/core/Raycast.hpp" />
 		<Unit filename="src/mge/core/Renderer.cpp" />
 		<Unit filename="src/mge/core/Renderer.hpp" />
 		<Unit filename="src/mge/core/ShaderProgram.cpp" />

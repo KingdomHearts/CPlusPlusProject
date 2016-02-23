@@ -90,18 +90,33 @@ void AbstractGame::run()
 {
 	_running = true;
 
+    _luaLoader = new LuaLoader("","");
+    int Count = 0;
+
 	while (_running) {
 		Timer::update();
 		FPS::update();
 	    //clear frame, do it here so we can draw debug stuff in any other step etc
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
+
         _update();
+        if(World::GetInstance() != NULL && Count == 0)
+        {
+            //_luaLoader->RuntimeLoader();
+            Count++;
+        }
+        if(World::GetInstance() != NULL && Count == 1)
+        {
+            //_luaLoader->RuntimeUpdater();
+
+        }
         //collision loop over here?
         _render();
 
         //swap colorbuffer to screen
         _window->display();
+
 
 		_processEvents();
 	}

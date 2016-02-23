@@ -2,9 +2,14 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <vector>
+#include "mge/core/World.hpp"
 
 Audio::Audio(std::string pFilename, int pLayer)
 {
+    if(pFilename == "")
+    {
+        pLayer = 2;
+    }
     if(pLayer == 0)
     {
         if(!_audioBuffer.loadFromFile(pFilename))
@@ -20,7 +25,7 @@ Audio::Audio(std::string pFilename, int pLayer)
             //file is loaded
         }
         _sound.setBuffer(_audioBuffer);
-        //_sound.play();
+        _sound.play();
     }
     else if (pLayer == 1)
     {
@@ -36,6 +41,10 @@ Audio::Audio(std::string pFilename, int pLayer)
         }
         //_sound.setBuffer(_audioBuffer);
         _music.play();
+    }
+    else
+    {
+
     }
     //ctor
 }
@@ -63,9 +72,54 @@ Audio::Audio(std::vector<std::string> pListFilenames)
     }
 
 }
+
+void Audio::SetVolume(float pVolume = 100.f)
+{
+    _sound.setVolume(pVolume);
+}
+
 void Audio::SetLoop(bool pSetLoop)
 {
     _sound.setLoop(pSetLoop);
+}
+
+void Audio::PlaySound(std::string pFilename)
+{
+    if(World::GetInstance()->AudioList.size() != 0)
+    {
+        for (std::vector<AudioStruct>::iterator i = World::GetInstance()->AudioList.begin(); i != World::GetInstance()->AudioList.end(); ++i)
+        {
+            if(i->sFileName == pFilename)
+            {
+                Audio * audio = new Audio("mge/sounds/"+i->sFileName, i->sLayer);
+                audio->SetLoop(i->sLoop);
+                audio->SetVolume(i->sSetVolume);
+                if(i->sIs3D)
+                {
+                    audio->SetAttenuation(i->sSetAttenuation);
+                    audio->SetMinDistance(i->sMinDistance);
+                    // Object for 3d position
+                }
+                cFileName = pFilename;
+                _playingAudio.push_back(audio);
+                std::cout << i->sFileName << std::endl;
+            }
+
+        }
+    }
+}
+
+void Audio::StopSound(std::string pFilename)
+{
+    std::cout << _playingAudio.size() << std::endl;
+    if(_playingAudio.size() != 0)
+    {
+        for (std::vector<Audio*>::iterator i = _playingAudio.begin(); i != _playingAudio.end(); i++)
+        {
+            Audio *playingAudio = *i;
+            playingAudio->_sound.stop();
+        }
+    }
 }
 
 void Audio::SetPosition(sf::Vector3f pPosition)
@@ -96,10 +150,4 @@ which means that it will be heard only if very close to the listener.
 void Audio::SetAttenuation(float pAttenuation = 10.0f)
 {
     _sound.setAttenuation(pAttenuation);
-}
-
-
-Audio::~Audio()
-{
-    //dtor
 }

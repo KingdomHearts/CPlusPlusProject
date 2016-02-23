@@ -27,3 +27,5 @@
 *.app
 *.exe
 *.depend
+*.o
+*.exe

@@ -16,7 +16,7 @@ KeyboardBehaviour* KeyboardBehaviour::GetInstance()
     return KeyboardBehaviour::KeyBoardInstance;
 }
 
-void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec3 pPositionToPlace, GameObject* pGO)
+void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh* pMesh, glm::vec3 pPositionToPlace, GameObject* pGO)
 {
     BoundMesh boundMesh;
     switch(pNumberToBind)
@@ -24,7 +24,7 @@ void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec
         case 1:
             std::cout << "Case 1" << std::endl;
             boundMesh.GO = pGO;
-            boundMesh.mesh = &pMesh;
+            boundMesh.mesh = pMesh;
             boundMesh.IDname = pGO->getName();
             boundMesh.pickedUp = false;
             boundMesh.PositionToPlace = pPositionToPlace;
@@ -32,7 +32,7 @@ void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec
             break;
         case 2:
             boundMesh.GO = pGO;
-            boundMesh.mesh = &pMesh;
+            boundMesh.mesh = pMesh;
             boundMesh.IDname = pGO->getName();
             boundMesh.pickedUp = false;
             boundMesh.PositionToPlace = pPositionToPlace;
@@ -40,7 +40,7 @@ void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec
             break;
         case 3:
             boundMesh.GO = pGO;
-            boundMesh.mesh = &pMesh;
+            boundMesh.mesh = pMesh;
             boundMesh.IDname = pGO->getName();
             boundMesh.pickedUp = false;
             boundMesh.PositionToPlace = pPositionToPlace;
@@ -48,7 +48,7 @@ void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec
             break;
         case 4:
             boundMesh.GO = pGO;
-            boundMesh.mesh = &pMesh;
+            boundMesh.mesh = pMesh;
             boundMesh.IDname = pGO->getName();
             boundMesh.pickedUp = false;
             boundMesh.PositionToPlace = pPositionToPlace;
@@ -56,7 +56,7 @@ void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec
             break;
         case 5:
             boundMesh.GO = pGO;
-            boundMesh.mesh = &pMesh;
+            boundMesh.mesh = pMesh;
             boundMesh.IDname = pGO->getName();
             boundMesh.pickedUp = false;
             boundMesh.PositionToPlace = pPositionToPlace;
@@ -64,7 +64,7 @@ void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec
             break;
         case 6:
             boundMesh.GO = pGO;
-            boundMesh.mesh = &pMesh;
+            boundMesh.mesh = pMesh;
             boundMesh.IDname = pGO->getName();
             boundMesh.pickedUp = false;
             boundMesh.PositionToPlace = pPositionToPlace;
@@ -72,7 +72,7 @@ void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec
             break;
         case 7:
             boundMesh.GO = pGO;
-            boundMesh.mesh = &pMesh;
+            boundMesh.mesh = pMesh;
             boundMesh.IDname = pGO->getName();
             boundMesh.pickedUp = false;
             boundMesh.PositionToPlace = pPositionToPlace;
@@ -80,7 +80,7 @@ void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec
             break;
         case 8:
             boundMesh.GO = pGO;
-            boundMesh.mesh = &pMesh;
+            boundMesh.mesh = pMesh;
             boundMesh.IDname = pGO->getName();
             boundMesh.pickedUp = false;
             boundMesh.PositionToPlace = pPositionToPlace;
@@ -88,7 +88,7 @@ void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec
             break;
         case 9:
             boundMesh.GO = pGO;
-            boundMesh.mesh = &pMesh;
+            boundMesh.mesh = pMesh;
             boundMesh.IDname = pGO->getName();
             boundMesh.pickedUp = false;
             boundMesh.PositionToPlace = pPositionToPlace;
@@ -96,7 +96,7 @@ void KeyboardBehaviour::BindMeshToButton(int pNumberToBind, Mesh pMesh, glm::vec
             break;
         case 0:
             boundMesh.GO = pGO;
-            boundMesh.mesh = &pMesh;
+            boundMesh.mesh = pMesh;
             boundMesh.IDname = pGO->getName();
             boundMesh.pickedUp = false;
             boundMesh.PositionToPlace = pPositionToPlace;

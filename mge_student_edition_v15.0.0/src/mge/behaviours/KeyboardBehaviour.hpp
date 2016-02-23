@@ -6,6 +6,8 @@
 #include <mge/core/World.hpp>
 #include <mge/materials/AbstractMaterial.hpp>
 #include <mge/materials/TextureMaterial.hpp>
+#include <vector>
+#include <iostream>
 
 struct BoundMesh
 {
@@ -19,14 +21,13 @@ struct BoundMesh
 class KeyboardBehaviour : public AbstractBehaviour
 {
     public:
-        KeyboardBehaviour();
         static KeyboardBehaviour* GetInstance();
         void BindMeshToButton(int pNumberToBind, Mesh* pMesh, glm::vec3 pPositionToPlace, GameObject* pGO);
         virtual void update( float step );
-        std::vector<BoundMesh*> BindArray;
-        std::vector<BoundMesh*> InventoryList;
     protected:
     private:
+        KeyboardBehaviour();
+        std::vector<BoundMesh> BindArray;
         static KeyboardBehaviour* KeyBoardInstance;
         void PickUpObject();
         void PlaceObject();

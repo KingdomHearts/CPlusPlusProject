@@ -69,6 +69,7 @@ void MGEDemo::initialize() {
 void MGEDemo::_initializeScene()
 {
     //SCENE SETUP
+    std::cout << "test789\n";
 
     /**/
     LuaLoader * LL = new LuaLoader("","");

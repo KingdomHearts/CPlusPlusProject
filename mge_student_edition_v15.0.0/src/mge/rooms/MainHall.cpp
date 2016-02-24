@@ -56,6 +56,7 @@ MainHall::MainHall(std::string pName) : GameObject(pName)
 
 GameObject* MainHall::_CreateHall()
 {
+    return NULL;
     //MESHES
     //load a bunch of meshes we will be using throughout this demo
     //each mesh only has to be loaded once, but can be used multiple times:

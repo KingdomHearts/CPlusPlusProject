@@ -1755,13 +1755,13 @@
 	"mge/MGEDemo.hpp"
 	<SFML/Audio.hpp>
 
-1455897661 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\abstractgame.hpp
+1456243391 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\abstractgame.hpp
 	<SFML/Graphics.hpp>
 	<GL/glew.h>
 	<string>
 	"mge/util/LuaLoader.hpp"
 
-1455877788 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.hpp
+1456243391 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.hpp
 	<mge/core/AbstractGame.hpp>
 	<SFML/Graphics.hpp>
 	<vector>
@@ -1828,7 +1828,7 @@
 1454945853 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\rotatingbehaviour.hpp
 	"mge/behaviours/AbstractBehaviour.hpp"
 
-1456225094 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\abstractgame.cpp
+1456243380 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\abstractgame.cpp
 	"AbstractGame.hpp"
 	<iostream>
 	"mge/core/Timer.hpp"
@@ -1843,7 +1843,7 @@
 
 1454945853 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\renderer.hpp
 
-1456137068 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
+1456243380 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
 	<vector>
 	"mge/core/Mesh.hpp"
 	"mge/core/GameObject.hpp"
@@ -1872,7 +1872,7 @@
 	"mge/core/World.hpp"
 	"mge/behaviours/AbstractBehaviour.hpp"
 
-1456137068 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.hpp
+1456243391 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.hpp
 	<iostream>
 	<vector>
 	<cstring>
@@ -1880,7 +1880,7 @@
 	<GL/glew.h>
 	<glm.hpp>
 
-1455877788 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.cpp
+1456243391 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\mesh.cpp
 	"mge/core/Mesh.hpp"
 	<iostream>
 	<map>
@@ -1928,7 +1928,7 @@
 1454945853 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\timer.cpp
 	"mge/core/Timer.hpp"
 
-1455708402 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.cpp
+1456243380 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.cpp
 	<cassert>
 	<algorithm>
 	<iostream>
@@ -1965,7 +1965,7 @@
 	"mge/core/Texture.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 
-1456226379 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
+1456312347 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
 	<glm.hpp>
 	<iostream>
 	<string>
@@ -2357,7 +2357,7 @@
 1455551891 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\assetloader.hpp
 	"mge/core/World.hpp"
 
-1456218451 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
+1456313060 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\rooms\mainhall.cpp
 	"MainHall.h"
 	"mge/core/Mesh.hpp"
 	"mge/config.hpp"
@@ -2377,7 +2377,7 @@
 	"luainc.h"
 	"mge/util/Audio.hpp"
 
-1456230792 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
+1456315882 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
 	"LuaLoader.hpp"
 	"mge/config.hpp"
 	<iostream>
@@ -2798,13 +2798,13 @@
 	<glm.hpp>
 	"Mesh.hpp"
 
-1455886052 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.cpp
+1456243391 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.cpp
 	"MouseBehaviour.hpp"
 	<SFML/Graphics.hpp>
 	<windows.h>
 	<SFML/Audio.hpp>
 
-1455877788 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.hpp
+1456243391 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\mousebehaviour.hpp
 	<glm.hpp>
 	"mge/behaviours/AbstractBehaviour.hpp"
 	"mge/behaviours/LookAt.hpp"
@@ -3195,19 +3195,21 @@
 1455890393 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\runtimeluamethods.hpp
 	"mge/core/AbstractGame.hpp"
 
-1456230792 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.cpp
+1456243391 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.cpp
 	"KeyboardBehaviour.hpp"
 	<cassert>
 	<algorithm>
 	<iostream>
 
-1456230792 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.hpp
+1456243391 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.hpp
 	"mge/core/Mesh.hpp"
 	"mge/behaviours/AbstractBehaviour.hpp"
 	<SFML/Graphics.hpp>
 	<mge/core/World.hpp>
 	<mge/materials/AbstractMaterial.hpp>
 	<mge/materials/TextureMaterial.hpp>
+	<vector>
+	<iostream>
 
 1456241200 d:\school\project\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.hpp
 	"mge/core/Mesh.hpp"

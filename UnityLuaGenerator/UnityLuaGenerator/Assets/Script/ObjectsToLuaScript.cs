@@ -25,6 +25,12 @@ public class ObjectsToLuaScript : MonoBehaviour {
         StreamWriter file = new StreamWriter("../../mge_student_edition_v15.0.0/assets/mge/lua/AssetLoader.lua");
         foreach (Transform child in transform)
         {
+            //Texture texture;
+            //if (true/*child.gameObject.GetComponentInChildren<Renderer>().material.mainTexture.name != ""*/)
+            //{
+            //    texture = child.gameObject.GetComponentInChildren<Renderer>().material.get;
+            //    texture += ".tga";
+            //}
 
             file.WriteLine("AddModel('" +
                 child.gameObject.name + "','" +

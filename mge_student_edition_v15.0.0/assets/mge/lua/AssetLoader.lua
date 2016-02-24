@@ -1,5 +1,5 @@
-AddModel('Mainhall_Room','Mainhall_Room.obj','',1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)
 AddModel('Desk','Desk.obj','',1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)
+AddModel('Mainhall_Room','Mainhall_Room.obj','',1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)
 AddModel('Crate3','Crate3.obj','',1,0,0,0,0,1,0,0,0,0,1,0,-3.95,0,0,1)
 AddModel('Crate2','Crate2.obj','',1,0,0,0,0,1,0,0,0,0,1,0,-3.95,0,0,1)
 AddModel('Touchpad','Touchpad.obj','',1,0,0,0,0,1,0,0,0,0,1,0,0,0,1.86,1)

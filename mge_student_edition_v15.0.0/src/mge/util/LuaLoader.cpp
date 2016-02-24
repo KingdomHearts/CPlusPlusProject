@@ -19,17 +19,17 @@ Audio * _audio = new Audio("",0);
 
 LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pName)
 {
+	std::cout << "Lua is loading ..."  << std::endl;
     lua_State *lua = luaL_newstate();
 	luaL_openlibs(lua);
 	luaL_loadfile(lua,"mge/lua/TestLua.lua");
 	lua_call(lua,0,0);
 	lua_close(lua);
-	std::cout << ""  << std::endl;
+	std::cout << "Lua Loaded."  << std::endl;
 }
 
 int AddInteractiveModel(lua_State * lua)
 {
-    int Key;
     std::string IDname;
     std::string Model;
     std::string Texture;
@@ -40,10 +40,6 @@ int AddInteractiveModel(lua_State * lua)
 
     std::cout << "Test2"  << std::endl;
 
-    if (lua_isnumber(lua, -20)) {
-		Key = lua_tonumber(lua, -20);
-		std::cout << Key  << std::endl;
-	}
     if (lua_isstring(lua, -19)) {
 		IDname = lua_tostring(lua, -19);
 		std::cout << IDname  << std::endl;
@@ -89,14 +85,18 @@ int AddInteractiveModel(lua_State * lua)
     GO->setTransform(matrix);
 
 /**/
-    KeyboardBehaviour::GetInstance()->BindMeshToButton(Key,mesh,GO->getLocalPosition(),GO);
+    KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,GO->getLocalPosition(),GO);
 /**/
     std::cout << World::GetInstance()->MeshList.size() << std::endl;
+
+    return 0;
 
 }
 
 int AddModel(lua_State * lua)
 {
+    std::cout << "AddModel start"  << std::endl;
+
     std::string IDname;
     std::string Model;
     std::string Texture;
@@ -105,8 +105,6 @@ int AddModel(lua_State * lua)
     std::string sRotation;
     float fRotation;
 
-    std::cout << "Test1"  << std::endl;
-
     if (lua_isstring(lua, -19)) {
 		IDname = lua_tostring(lua, -19);
 		std::cout << IDname  << std::endl;
@@ -146,12 +144,17 @@ int AddModel(lua_State * lua)
     matrix[2][0] *= -1;
     matrix[3][0] *= -1;
     GO->setTransform(matrix);
+
+    std::cout << "AddModel end"  << std::endl;
+
+    return 0;
+
 }
 
 void LuaLoader::LoadAllModels(){
 
 
-    std::cout << "Test Normal"  << std::endl;
+    std::cout << "Loading Models ..."  << std::endl;
 
     lua_State *lua = luaL_newstate();
 	luaL_openlibs(lua);
@@ -160,8 +163,10 @@ void LuaLoader::LoadAllModels(){
     lua_pushcfunction(lua, AddModel);
     lua_setglobal(lua, "AddModel");
 
-	lua_call(lua,0,0);
+    lua_call(lua,0,0);
 	lua_close(lua);
+
+	std::cout << "Models Loaded"  << std::endl;
 }
 
 void LuaLoader::LoadAllInteractiveModels(){
@@ -174,6 +179,7 @@ void LuaLoader::LoadAllInteractiveModels(){
     lua_pushcfunction(lua, AddInteractiveModel);
     lua_setglobal(lua, "AddInteractiveModel");
 
+	//luaL_dofile(lua,"mge/lua/AssetLoaderInteractable.lua");
 	lua_call(lua,0,0);
 	lua_close(lua);
 }

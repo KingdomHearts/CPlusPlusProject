@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 10fe313d2e4b9be4991130acd8473e7d
-timeCreated: 1455814838
+guid: c1c3e1de4be73f247a2ae3003cbef94c
+timeCreated: 1456245310
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Crate_5
+    100002: MainHall:Crate_3
     400000: //RootNode
-    400002: Crate_5
-    2300000: Crate_5
-    3300000: Crate_5
-    4300000: Crate_5
+    400002: MainHall:Crate_3
+    2300000: MainHall:Crate_3
+    3300000: MainHall:Crate_3
+    4300000: MainHall:Crate_3
   materials:
     importMaterials: 1
     materialName: 0

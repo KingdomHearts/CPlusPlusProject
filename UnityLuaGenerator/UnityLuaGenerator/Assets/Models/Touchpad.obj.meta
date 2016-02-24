@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 6691b2cda828de949bb3e1690fcc045f
-timeCreated: 1455814838
+guid: 6089fc98cfd50f645bf530dd894353e3
+timeCreated: 1456245297
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: TouchScreen1
-    400000: //RootNode
-    400002: TouchScreen1
-    2300000: TouchScreen1
-    3300000: TouchScreen1
-    4300000: TouchScreen1
+    100000: MainHall:Reception_TouchScreen:TouchScreen1
+    100002: //RootNode
+    400000: MainHall:Reception_TouchScreen:TouchScreen1
+    400002: //RootNode
+    2300000: MainHall:Reception_TouchScreen:TouchScreen1
+    3300000: MainHall:Reception_TouchScreen:TouchScreen1
+    4300000: MainHall:Reception_TouchScreen:TouchScreen1
   materials:
     importMaterials: 1
     materialName: 0

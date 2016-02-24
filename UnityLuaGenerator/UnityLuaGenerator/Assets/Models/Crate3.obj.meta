@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: c9d740fcb7f1ce34589c325ca6bdc4e5
-timeCreated: 1455814839
+guid: c1fd97145fa31ff49a94ce5b2367b064
+timeCreated: 1456245310
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: polySurface22_Crate_4
+    100002: MainHall:polySurface20
     400000: //RootNode
-    400002: polySurface22_Crate_4
-    2300000: polySurface22_Crate_4
-    3300000: polySurface22_Crate_4
-    4300000: polySurface22_Crate_4
+    400002: MainHall:polySurface20
+    2300000: MainHall:polySurface20
+    3300000: MainHall:polySurface20
+    4300000: MainHall:polySurface20
   materials:
     importMaterials: 1
     materialName: 0

@@ -24,7 +24,7 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
         foreach (Transform child in transform)
         {
 
-            file.WriteLine("AddInteractiveModel(" +
+            file.WriteLine("AddInteractiveModel('" +
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +
                 "" + "'," + /*TEXTURE*/
@@ -43,7 +43,10 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
                 child.gameObject.transform.localToWorldMatrix.m03 + "," +
                 child.gameObject.transform.localToWorldMatrix.m13 + "," +
                 child.gameObject.transform.localToWorldMatrix.m23 + "," +
-                child.gameObject.transform.localToWorldMatrix.m33 + ")");
+                child.gameObject.transform.localToWorldMatrix.m33 + "," +
+                child.GetComponent<PuzzleScript>().FinalPosition.x + "," +
+                child.GetComponent<PuzzleScript>().FinalPosition.y + "," +
+                child.GetComponent<PuzzleScript>().FinalPosition.z + ")");
         }
         file.Close();
 

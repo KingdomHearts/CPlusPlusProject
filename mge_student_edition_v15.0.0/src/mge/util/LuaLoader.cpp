@@ -163,7 +163,7 @@ void LuaLoader::LoadAllModels(){
     lua_pushcfunction(lua, AddModel);
     lua_setglobal(lua, "AddModel");
 
-    lua_call(lua,0,0);
+	lua_call(lua,0,0);
 	lua_close(lua);
 
 	std::cout << "Models Loaded"  << std::endl;

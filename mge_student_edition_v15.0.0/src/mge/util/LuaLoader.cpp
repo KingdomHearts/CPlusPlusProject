@@ -19,17 +19,18 @@ Audio * _audio = new Audio("",0);
 
 LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pName)
 {
+	std::cout << "Lua is loading ..."  << std::endl;
     lua_State *lua = luaL_newstate();
 	luaL_openlibs(lua);
 	luaL_loadfile(lua,"mge/lua/TestLua.lua");
 	lua_call(lua,0,0);
 	lua_close(lua);
-	std::cout << ""  << std::endl;
+	std::cout << "Lua Loaded."  << std::endl;
 }
 
 int AddInteractiveModel(lua_State * lua)
 {
-    int Key;
+    std::cout << "AddInteractiveModel start"  << std::endl;
     std::string IDname;
     std::string Model;
     std::string Texture;
@@ -38,27 +39,24 @@ int AddInteractiveModel(lua_State * lua)
     std::string sRotation;
     float fRotation;
 
-    std::cout << "Test2"  << std::endl;
 
-    if (lua_isnumber(lua, -20)) {
-		Key = lua_tonumber(lua, -20);
-		std::cout << Key  << std::endl;
+
+    if (lua_isstring(lua, -22)) {
+		IDname = lua_tostring(lua, -22);
 	}
-    if (lua_isstring(lua, -19)) {
-		IDname = lua_tostring(lua, -19);
-		std::cout << IDname  << std::endl;
+    if (lua_isstring(lua, -21)) {
+		Model = lua_tostring(lua, -21);
 	}
-    if (lua_isstring(lua, -18)) {
-		Model = lua_tostring(lua, -18);
-		std::cout << Model  << std::endl;
-	}
-	if (lua_isstring(lua, -17)) {
-		Texture= lua_tostring(lua, -17);
-		std::cout << Texture  << std::endl;
+	if (lua_isstring(lua, -20)) {
+		Texture= lua_tostring(lua, -20);
 	}
 	float m[16];
-	for (int i=0; i<16; i++) {
-        m[i] = lua_tonumber(lua, -((15-i)+1));
+	for (int i=0; i<19; i++) {
+        m[i] = lua_tonumber(lua, -((18-i)+1));
+	}
+	float v[3];
+	for (int i=0; i<3; i++) {
+        v[i] = lua_tonumber(lua, -((2-i)+1));
 	}
 
 
@@ -88,15 +86,22 @@ int AddInteractiveModel(lua_State * lua)
     matrix[3][0] *= -1;
     GO->setTransform(matrix);
 
-/**
-    KeyboardBehaviour::GetInstance()->BindMeshToButton(Key,mesh,GO->getLocalPosition(),GO);
-/**/
+    KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,glm::vec3(v[0],v[1],v[2]),GO);
+
     std::cout << World::GetInstance()->MeshList.size() << std::endl;
+
+    std::cout << "Model loaded at: ---------\n" << matrix << std::endl;
+
+    std::cout << "AddInteractiveModel end"  << std::endl;
+
+    return 0;
 
 }
 
 int AddModel(lua_State * lua)
 {
+    std::cout << "AddModel start"  << std::endl;
+
     std::string IDname;
     std::string Model;
     std::string Texture;
@@ -105,19 +110,14 @@ int AddModel(lua_State * lua)
     std::string sRotation;
     float fRotation;
 
-    std::cout << "Test1"  << std::endl;
-
     if (lua_isstring(lua, -19)) {
 		IDname = lua_tostring(lua, -19);
-		std::cout << IDname  << std::endl;
 	}
     if (lua_isstring(lua, -18)) {
 		Model = lua_tostring(lua, -18);
-		std::cout << Model  << std::endl;
 	}
 	if (lua_isstring(lua, -17)) {
 		Texture= lua_tostring(lua, -17);
-		std::cout << Texture  << std::endl;
 	}
 	float m[16];
 	for (int i=0; i<16; i++) {
@@ -146,12 +146,17 @@ int AddModel(lua_State * lua)
     matrix[2][0] *= -1;
     matrix[3][0] *= -1;
     GO->setTransform(matrix);
+
+    std::cout << "AddModel end"  << std::endl;
+
+    return 0;
+
 }
 
 void LuaLoader::LoadAllModels(){
 
 
-    std::cout << "Test Normal"  << std::endl;
+    std::cout << "Loading Models ..."  << std::endl;
 
     lua_State *lua = luaL_newstate();
 	luaL_openlibs(lua);
@@ -162,10 +167,13 @@ void LuaLoader::LoadAllModels(){
 
 	lua_call(lua,0,0);
 	lua_close(lua);
+
+	std::cout << "Models Loaded"  << std::endl;
 }
 
 void LuaLoader::LoadAllInteractiveModels(){
 
+    std::cout << "Loading Interactive Models ..."  << std::endl;
 
     lua_State *lua = luaL_newstate();
 	luaL_openlibs(lua);
@@ -176,6 +184,8 @@ void LuaLoader::LoadAllInteractiveModels(){
 
 	lua_call(lua,0,0);
 	lua_close(lua);
+
+    std::cout << "Interactive Models Loaded"  << std::endl;
 }
 
 int AddSound(lua_State * lua)

@@ -21,12 +21,10 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
         }
 
         StreamWriter file = new StreamWriter("../../mge_student_edition_v15.0.0/assets/mge/lua/AssetLoaderInteractable.lua");
-        int KeyBindNumber = 1;
         foreach (Transform child in transform)
         {
 
-            file.WriteLine("AddInteractiveModel(" +
-                KeyBindNumber + ",'" +
+            file.WriteLine("AddInteractiveModel('" +
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +
                 "" + "'," + /*TEXTURE*/
@@ -45,13 +43,10 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
                 child.gameObject.transform.localToWorldMatrix.m03 + "," +
                 child.gameObject.transform.localToWorldMatrix.m13 + "," +
                 child.gameObject.transform.localToWorldMatrix.m23 + "," +
-                child.gameObject.transform.localToWorldMatrix.m33 + ")");
-
-            KeyBindNumber++;
-            if (KeyBindNumber == 10)
-            {
-                KeyBindNumber = 0;
-            }
+                child.gameObject.transform.localToWorldMatrix.m33 + "," +
+                child.GetComponent<PuzzleScript>().FinalPosition.x + "," +
+                child.GetComponent<PuzzleScript>().FinalPosition.y + "," +
+                child.GetComponent<PuzzleScript>().FinalPosition.z + ")");
         }
         file.Close();
 

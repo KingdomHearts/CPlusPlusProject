@@ -69,7 +69,6 @@ void MGEDemo::initialize() {
 void MGEDemo::_initializeScene()
 {
     //SCENE SETUP
-
     /**/
     LuaLoader * LL = new LuaLoader("","");
     LL->LoadAllModels();

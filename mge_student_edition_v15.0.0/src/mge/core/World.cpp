@@ -12,12 +12,14 @@ World* World::worldInstance = NULL;
 World::World():GameObject("root"), _mainCamera(0)
 {
 	//ctor
-	World::worldInstance = this;
 	GameObject::_world = this;
 }
 
 World* World::GetInstance()
 {
+    if(World::worldInstance == NULL){
+        World::worldInstance = new World();
+    }
     return World::worldInstance;
 }
 

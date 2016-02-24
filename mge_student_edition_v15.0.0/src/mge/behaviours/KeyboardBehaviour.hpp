@@ -6,6 +6,11 @@
 #include <mge/core/World.hpp>
 #include <mge/materials/AbstractMaterial.hpp>
 #include <mge/materials/TextureMaterial.hpp>
+#include <vector>
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <algorithm>
+#include <list>
 
 struct BoundMesh
 {
@@ -19,18 +24,22 @@ struct BoundMesh
 class KeyboardBehaviour : public AbstractBehaviour
 {
     public:
-        KeyboardBehaviour();
         static KeyboardBehaviour* GetInstance();
-        void BindMeshToButton(int pNumberToBind, Mesh* pMesh, glm::vec3 pPositionToPlace, GameObject* pGO);
+        void BindMeshToButton(Mesh* pMesh, glm::vec3 pFinalPosition, GameObject* pGO);
         virtual void update( float step );
-        std::vector<BoundMesh*> BindArray;
-        std::vector<BoundMesh*> InventoryList;
+
+        static bool GetKey(sf::Keyboard::Key);
+		static bool GetKeyDown(sf::Keyboard::Key);
     protected:
     private:
+        KeyboardBehaviour();
+        std::vector<BoundMesh> BindArray;
         static KeyboardBehaviour* KeyBoardInstance;
         void PickUpObject();
         void PlaceObject();
-        void CreateGameObject(Mesh* pMesh, glm::vec3 pPosition, std::string pIDname);
+        void CreateGameObject(Mesh* pMesh, glm::vec3 pFinalPosition, std::string pIDname, int pIndex);
+
+        static std::list<sf::Keyboard::Key> * keysPressed;
 };
 
 #endif // KEYBOARDBEHAVIOUR_H

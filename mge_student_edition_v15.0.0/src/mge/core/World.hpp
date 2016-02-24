@@ -12,7 +12,6 @@ class Camera;
 class World : public GameObject
 {
 	public:
-        World();
 
         static World* GetInstance();
 		void setMainCamera (Camera* pCamera);
@@ -24,6 +23,7 @@ class World : public GameObject
         bool isRunning;
 
 	private:
+        World();
 	    Camera* _mainCamera;
 
 	    static World* worldInstance;

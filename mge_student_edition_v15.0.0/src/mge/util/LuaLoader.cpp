@@ -51,12 +51,12 @@ int AddInteractiveModel(lua_State * lua)
 		Texture= lua_tostring(lua, -20);
 	}
 	float m[16];
-	for (int i=3; i<19; i++) {
+	for (int i=0; i<19; i++) {
         m[i] = lua_tonumber(lua, -((18-i)+1));
 	}
 	float v[3];
 	for (int i=0; i<3; i++) {
-        m[i] = lua_tonumber(lua, -((2-i)+1));
+        v[i] = lua_tonumber(lua, -((2-i)+1));
 	}
 
 

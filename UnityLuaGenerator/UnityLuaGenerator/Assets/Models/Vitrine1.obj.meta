@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Art_Vitrine2
     100002: //RootNode
+    100004: Vitrine4
     400000: Art_Vitrine2
     400002: //RootNode
+    400004: Vitrine4
     2300000: Art_Vitrine2
+    2300002: Vitrine4
     3300000: Art_Vitrine2
+    3300002: Vitrine4
     4300000: Art_Vitrine2
+    4300002: Vitrine4
   materials:
     importMaterials: 1
     materialName: 0

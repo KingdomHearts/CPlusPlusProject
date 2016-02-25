@@ -20,9 +20,27 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
                 ChildsList.Add(t.gameObject);
         }
 
+        
+
         StreamWriter file = new StreamWriter("../../mge_student_edition_v15.0.0/assets/mge/lua/AssetLoaderInteractable.lua");
         foreach (Transform child in transform)
         {
+            Vector3 position = new Vector3(
+                child.GetComponent<PuzzleScript>().FinalPosition.x,
+                child.GetComponent<PuzzleScript>().FinalPosition.y,
+                child.GetComponent<PuzzleScript>().FinalPosition.z);
+
+            Quaternion rotation = Quaternion.Euler(
+                child.GetComponent<PuzzleScript>().FinalRotation.x, 
+                child.GetComponent<PuzzleScript>().FinalRotation.y, 
+                child.GetComponent<PuzzleScript>().FinalRotation.z);
+
+            Vector3 scale = new Vector3(
+                child.GetComponent<PuzzleScript>().FinalScale.x,
+                child.GetComponent<PuzzleScript>().FinalScale.y,
+                child.GetComponent<PuzzleScript>().FinalScale.z);
+
+            Matrix4x4 matrix = Matrix4x4.TRS(position, rotation, scale);
 
             file.WriteLine("AddInteractiveModel('" +
                 child.gameObject.name + "','" +
@@ -44,9 +62,23 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
                 child.gameObject.transform.localToWorldMatrix.m13 + "," +
                 child.gameObject.transform.localToWorldMatrix.m23 + "," +
                 child.gameObject.transform.localToWorldMatrix.m33 + "," +
-                child.GetComponent<PuzzleScript>().FinalPosition.x + "," +
-                child.GetComponent<PuzzleScript>().FinalPosition.y + "," +
-                child.GetComponent<PuzzleScript>().FinalPosition.z + ")");
+
+                matrix.m00 + "," +
+                matrix.m10 + "," +
+                matrix.m20 + "," +
+                matrix.m30 + "," +
+                matrix.m01 + "," +
+                matrix.m11 + "," +
+                matrix.m21 + "," +
+                matrix.m31 + "," +
+                matrix.m02 + "," +
+                matrix.m12 + "," +
+                matrix.m22 + "," +
+                matrix.m32 + "," +
+                matrix.m03 + "," +
+                matrix.m13 + "," +
+                matrix.m23 + "," +
+                matrix.m33 + ")");
         }
         file.Close();
 

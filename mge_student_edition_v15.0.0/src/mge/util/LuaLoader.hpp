@@ -7,6 +7,13 @@
 #include "luainc.h"
 #include "mge/util/Audio.hpp"
 
+struct DialogStruct
+{
+    int sDialogNumber;
+    std::string sText;
+    int sScreenTime;
+};
+
 class LuaLoader : public GameObject
 {
     public:
@@ -14,6 +21,7 @@ class LuaLoader : public GameObject
         void LoadAllModels();
         void LoadAllInteractiveModels();
         void LoadSounds();
+        void LoadAllDialogs();
         void RuntimeLoader();
         void RuntimeUpdater();
         virtual ~LuaLoader();

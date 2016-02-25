@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: polySurface41_pCube6
+    100004: Framelong:pCube6_Framelong:polySurface41_Framelong1
     400000: //RootNode
     400002: polySurface41_pCube6
+    400004: Framelong:pCube6_Framelong:polySurface41_Framelong1
     2300000: polySurface41_pCube6
+    2300002: Framelong:pCube6_Framelong:polySurface41_Framelong1
     3300000: polySurface41_pCube6
+    3300002: Framelong:pCube6_Framelong:polySurface41_Framelong1
     4300000: polySurface41_pCube6
+    4300002: Framelong:pCube6_Framelong:polySurface41_Framelong1
   materials:
     importMaterials: 1
     materialName: 0

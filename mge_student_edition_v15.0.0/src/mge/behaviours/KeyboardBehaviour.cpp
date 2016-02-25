@@ -44,7 +44,7 @@ KeyboardBehaviour* KeyboardBehaviour::GetInstance()
     return KeyboardBehaviour::KeyBoardInstance;
 }
 
-void KeyboardBehaviour::BindMeshToButton(Mesh* pMesh, glm::vec3 pFinalPosition, GameObject* pGO)
+void KeyboardBehaviour::BindMeshToButton(Mesh* pMesh, glm::mat4 pFinalPosition, GameObject* pGO)
 {
     BoundMesh boundMesh;
 
@@ -187,13 +187,13 @@ void KeyboardBehaviour::PlaceObject()
     }
 }
 
-void KeyboardBehaviour::CreateGameObject(Mesh* pMesh, glm::vec3 pFinalPosition, std::string pIDname, int pIndex)
+void KeyboardBehaviour::CreateGameObject(Mesh* pMesh, glm::mat4 pFinalPosition, std::string pIDname, int pIndex)
 {
     AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load ("mge/textures/bricks.jpg"));
     GameObject* Go = new GameObject (pIDname, glm::vec3(0,0,0));
     Go->setMesh (pMesh);
     Go->setMaterial(textureMaterial);
     World::GetInstance()->add(Go);
-    Go->setLocalPosition(pFinalPosition);
+    Go->setTransform(pFinalPosition);
     BindArray.at(pIndex).GO = Go;
 }

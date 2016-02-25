@@ -71,22 +71,22 @@ int AddInteractiveModel(lua_State * lua)
 
 
 
-    if (lua_isstring(lua, -22)) {
-		IDname = lua_tostring(lua, -22);
+    if (lua_isstring(lua, -35)) {
+		IDname = lua_tostring(lua, -35);
 	}
-    if (lua_isstring(lua, -21)) {
-		Model = lua_tostring(lua, -21);
+    if (lua_isstring(lua, -34)) {
+		Model = lua_tostring(lua, -34);
 	}
-	if (lua_isstring(lua, -20)) {
-		Texture= lua_tostring(lua, -20);
+	if (lua_isstring(lua, -33)) {
+		Texture= lua_tostring(lua, -33);
 	}
-	float m[16];
-	for (int i=0; i<19; i++) {
-        m[i] = lua_tonumber(lua, -((18-i)+1));
+	float cm[16];
+	for (int i=0; i<15; i++) {
+        m[i] = lua_tonumber(lua, -((32-i)+1));
 	}
-	float v[3];
-	for (int i=0; i<3; i++) {
-        v[i] = lua_tonumber(lua, -((2-i)+1));
+	float fm[16];
+	for (int i=0; i<15; i++) {
+        v[i] = lua_tonumber(lua, -((16-i)+1));
 	}
 
 
@@ -104,19 +104,24 @@ int AddInteractiveModel(lua_State * lua)
 
 
 
-    glm::mat4 matrix(m[0],  m[4],  m[8],  m[12],
-                     m[1],  m[5],  m[9],  m[13],
-                     m[2],  m[6],  m[10], m[14],
-                     m[3],  m[7],  m[11], m[15]);
+    glm::mat4 currentMatrix(cm[0],  cm[4],  cm[8],  cm[12],
+                            cm[1],  cm[5],  cm[9],  cm[13],
+                            cm[2],  cm[6],  cm[10], cm[14],
+                            cm[3],  cm[7],  cm[11], cm[15]);
 
-    matrix = glm::transpose(matrix);
-    matrix[0][0] *= -1;
-    matrix[1][0] *= -1;
-    matrix[2][0] *= -1;
-    matrix[3][0] *= -1;
-    GO->setTransform(matrix);
+    glm::mat4 finalMatrix  (fm[0],  fm[4],  fm[8],  fm[12],
+                            fm[1],  fm[5],  fm[9],  fm[13],
+                            fm[2],  fm[6],  fm[10], fm[14],
+                            fm[3],  fm[7],  fm[11], fm[15]);
 
-    KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,glm::vec3(v[0],v[1],v[2]),GO);
+    currentMatrix = glm::transpose(currentMatrix);
+    currentMatrix[0][0] *= -1;
+    currentMatrix[1][0] *= -1;
+    currentMatrix[2][0] *= -1;
+    currentMatrix[3][0] *= -1;
+    GO->setTransform(currentMatrix);
+
+    KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,finalMatrix,GO);
 
     std::cout << World::GetInstance()->MeshList.size() << std::endl;
 

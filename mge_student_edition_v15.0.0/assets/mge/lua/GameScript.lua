@@ -1,7 +1,7 @@
 --playSubtitleScript = Dialog script 
 --playSubtitleScript = Audio file
 
-AddSound("ALL","Lobby_Music_Loop.wav",true,0,"NULL",100,false,1,10,"NULL")
+--AddSound("ALL","Lobby_Music_Loop.wav",true,0,"NULL",100,false,1,10,"NULL")
 loaded = false;
 
 state = "reception"
@@ -20,7 +20,7 @@ player_Opendoor = false
 --Update
 function update()
 	if(loaded == true) then
-		PlaySound("Lobby_Music_Loop.wav")
+		--PlaySound("Lobby_Music_Loop.wav")
 		loaded = false
 	end
   OpenHud()

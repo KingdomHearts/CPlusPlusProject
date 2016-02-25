@@ -194,6 +194,6 @@ void KeyboardBehaviour::CreateGameObject(Mesh* pMesh, glm::mat4 pFinalPosition, 
     Go->setMesh (pMesh);
     Go->setMaterial(textureMaterial);
     World::GetInstance()->add(Go);
-    GO->setTransform(pFinalPosition);
+    Go->setTransform(pFinalPosition);
     BindArray.at(pIndex).GO = Go;
 }

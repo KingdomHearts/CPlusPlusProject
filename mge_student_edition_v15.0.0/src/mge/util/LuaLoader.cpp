@@ -82,11 +82,11 @@ int AddInteractiveModel(lua_State * lua)
 	}
 	float cm[16];
 	for (int i=0; i<15; i++) {
-        m[i] = lua_tonumber(lua, -((32-i)+1));
+        cm[i] = lua_tonumber(lua, -((32-i)+1));
 	}
 	float fm[16];
 	for (int i=0; i<15; i++) {
-        v[i] = lua_tonumber(lua, -((16-i)+1));
+        fm[i] = lua_tonumber(lua, -((16-i)+1));
 	}
 
     Mesh* mesh = Mesh::load("mge/models/"+Model);
@@ -123,8 +123,6 @@ int AddInteractiveModel(lua_State * lua)
     KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,finalMatrix,GO);
 
     std::cout << World::GetInstance()->MeshList.size() << std::endl;
-
-    std::cout << "Model loaded at: ---------\n" << matrix << std::endl;
 
     std::cout << "AddInteractiveModel end"  << std::endl;
 

@@ -14,8 +14,32 @@
 #include "mge/util/Audio.hpp"
 #include "mge/behaviours/KeyboardBehaviour.hpp"
 
+#include <vector>
 
+#include <time.h>
+
+class timer {
+	private:
+		unsigned long begTime;
+	public:
+		void start() {
+			begTime = clock();
+		}
+
+		unsigned long elapsedTime() {
+			return ((unsigned long) clock() - begTime) / CLOCKS_PER_SEC;
+		}
+
+		bool isTimeout(unsigned long seconds) {
+			return seconds >= elapsedTime();
+		}
+};
+timer t;
 Audio * _audio = new Audio("",0);
+std::vector<DialogStruct> * dialogList = new std::vector<DialogStruct>();
+int waitSeconds = 0;
+std::vector<int> waitTimesList;
+std::vector<int> DialogNumberList;
 
 LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pName)
 {
@@ -26,6 +50,12 @@ LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pN
 	lua_call(lua,0,0);
 	lua_close(lua);
 	std::cout << "Lua Loaded."  << std::endl;
+}
+
+int Print(lua_State * lua)
+{
+    std::cout << "pink fluffy unicorns" << std::endl;
+    return 0;
 }
 
 int AddInteractiveModel(lua_State * lua)
@@ -219,49 +249,184 @@ void LuaLoader::LoadSounds()
 	lua_close(lua);
 }
 
+int ID(lua_State * lua)
+{
+    std::string IDString = lua_tostring(lua,-1);
+    return 0;
+}
+
+int Text(lua_State * lua)
+{
+    DialogStruct * dialog = new DialogStruct();
+    dialog->sScreenTime = lua_tonumber(lua, -1);
+    dialog->sText = lua_tostring(lua, -2);
+    dialog->sDialogNumber = lua_tonumber(lua, -3);
+    dialogList->push_back(*dialog);
+    return 0;
+}
+
+int Delay(lua_State * lua)
+{
+    return 0;
+}
+
+int Freedom(lua_State * lua)
+{
+    return 0;
+}
+
+int Music(lua_State * lua)
+{
+    return 0;
+}
+
+void LuaLoader::LoadAllDialogs()
+{
+    lua_State * dialogLua = luaL_newstate();
+    luaL_openlibs(dialogLua);
+	luaL_loadfile(dialogLua,"mge/lua/Introduction.lua");
+	lua_register(dialogLua,"ID",ID);
+    lua_register(dialogLua,"Text",Text);
+    lua_register(dialogLua,"Delay",Delay);
+    lua_register(dialogLua,"Freedom",Freedom);
+    lua_register(dialogLua,"Music",Music);
+    lua_call(dialogLua,0,0);
+}
+
 int PlaySound(lua_State * lua)
 {
     _audio->PlaySound(lua_tostring(lua,-1));
     std::cout << "pizza salami" << std::endl;
+    return 0;
 }
 int StopSound(lua_State * lua)
 {
     _audio->StopSound(lua_tostring(lua,-1));
-}
-
-int Print(lua_State * lua)
-{
-    std::cout << "pink fluffy unicorns" << std::endl;
+    return 0;
 }
 
 int AddModelToScene(lua_State * lua)
 {
     std::cout << "pizza olandaise" << std::endl;
+    return 0;
 }
 
 int RemoveModelFromScene(lua_State * lua)
 {
     std::cout << "pizza olandaise" << std::endl;
+    return 0;
 }
 
 int Trigger(lua_State * lua)
 {
     std::cout << "pizza olandaise" << std::endl;
+    return 0;
 }
 
 int Timer(lua_State * lua)
 {
     std::cout << "pizza olandaise" << std::endl;
+    return 0;
 }
 
 int DisplayMessage(lua_State * lua)
 {
     std::cout << "pizza olandaise" << std::endl;
+    return 0;
 }
 
 int Dialog(lua_State * lua)
 {
     std::cout << "pizza olandaise" << std::endl;
+    return 0;
+}
+
+int FredHud(lua_State * lua)
+{
+    bool FredHud = lua_toboolean(lua,-1);
+    return 0;
+}
+
+int OpenDoor(lua_State * lua)
+{
+    //bool FredHud = lua_toboolean(lua,-1);
+    return 0;
+}
+
+int Destroy(lua_State * lua)
+{
+    //bool FredHud = lua_toboolean(lua,-1);
+    return 0;
+}
+
+int PickUpModel(lua_State * lua)
+{
+    //bool FredHud = lua_toboolean(lua,-1);
+    return 0;
+}
+
+int PlaceModel(lua_State * lua)
+{
+    //bool FredHud = lua_toboolean(lua,-1);
+    return 0;
+}
+
+int Freeze(lua_State * lua)
+{
+    //bool FredHud = lua_toboolean(lua,-1);
+    return 0;
+}
+int wait(lua_State * lua)
+{
+    waitTimesList.push_back(lua_tonumber(lua,-1));
+    //bool FredHud = lua_toboolean(lua,-1);
+    return 0;
+}
+int playDialogueTrack(lua_State * lua)
+{
+    //bool FredHud = lua_toboolean(lua,-1);
+    return 0;
+}
+
+int playSubtitleScript(lua_State * lua)
+{
+    DialogNumberList.push_back(lua_tonumber(lua,-1));
+    /**
+    bool isDialogIsDone = false;
+    int dialogNumber = lua_tonumber(lua,-1);
+    for(std::vector<DialogStruct>::iterator i =  dialogList->begin(); i != dialogList->end(); i++)
+    {
+        if(i->sDialogNumber == dialogNumber)
+        {
+            while(isDialogIsDone == false)
+            {
+                if(t.elapsedTime() >= waitSeconds)
+                {
+                    std::cout << i->sText << std::endl;
+    std::cout << "test2313" << std::endl;
+                    waitTimes.erase(waitTimes.begin());
+                }
+                if (waitTimes.size() == 0)
+                {
+                    isDialogIsDone = true;
+                }
+
+            }
+        }
+    }
+    **/
+    //bool FredHud = lua_toboolean(lua,-1);
+    return 0;
+}
+
+int Load(lua_State * lua)
+{
+    //bool FredHud = lua_toboolean(lua,-1);
+    return 0;
+}
+int SetState(lua_State * lua)
+{
+    return 0;
 }
 
 void LuaLoader::RuntimeUpdater()
@@ -277,13 +442,54 @@ void LuaLoader::RuntimeLoader()
 {
     lua = luaL_newstate();
 	luaL_openlibs(lua);
-	luaL_loadfile(lua,"mge/lua/Runtime.lua");
+	luaL_loadfile(lua,"mge/lua/GameScript.lua");
 
-    lua_register(lua,"Print",Print);
-    lua_register(lua,"AddSound",AddSound);
-    lua_register(lua,"PlaySound",PlaySound);
-    lua_register(lua,"StopSound",StopSound);
+	lua_register(lua,"FredHud",FredHud);
+	lua_register(lua,"OpenDoor",OpenDoor);
+	lua_register(lua,"Destroy",Destroy);
+	lua_register(lua,"PickUpModel",PickUpModel);
+	lua_register(lua,"PlaceModel",PlaceModel);
+	lua_register(lua,"freeze",Freeze);
+	lua_register(lua,"wait",wait);
+	lua_register(lua,"playDialogueTrack",playDialogueTrack);
+	lua_register(lua,"playSubtitleScript",playSubtitleScript);
+	lua_register(lua,"Load",Load);
+	lua_register(lua,"SetState",SetState);
+
+	//luaL_loadfile(lua,"mge/lua/Runtime.lua");
+
+    //lua_register(lua,"Print",Print);
+    //lua_register(lua,"AddSound",AddSound);
+    //lua_register(lua,"PlaySound",PlaySound);
+    //lua_register(lua,"StopSound",StopSound);
 	lua_call(lua,0,0);
+
+    lua_getglobal(lua,"state");
+    std::string state = lua_tostring(lua,lua_gettop( lua ));
+
+    lua_getglobal(lua,"pickedUpFred");
+    bool pickedUpFred = lua_toboolean(lua,lua_gettop( lua ));
+
+    lua_getglobal(lua,"pickedUpFredSeconds");
+    int pickedUpFredSeconds = lua_tonumber(lua,lua_gettop( lua ));
+
+    lua_getglobal(lua,"player_Opendoor");
+    bool player_Opendoor = lua_toboolean(lua,lua_gettop( lua ));
+
+    lua_getglobal(lua,"player_PicksUp");
+    bool player_PicksUp = lua_toboolean(lua,lua_gettop( lua ));
+
+    lua_getglobal(lua,"player_PlaceDown");
+    bool player_PlaceDown = lua_toboolean(lua,lua_gettop( lua ));
+
+    lua_getglobal(lua,"goingToExhibit");
+    bool GoingToExhibit = lua_toboolean(lua,lua_gettop( lua ));
+
+    lua_getglobal(lua,"goingToExhibitSeconds");
+    int GoingToExhibitSeconds = lua_tonumber(lua,lua_gettop( lua ));
+
+    lua_getglobal(lua,"eventFred");
+    std::string eventFred = lua_tostring(lua,lua_gettop( lua ));
 
 	//lua_close(lua);
 }

@@ -103,12 +103,13 @@ void AbstractGame::run()
         _update();
         if(World::GetInstance() != NULL && Count == 0)
         {
-            //_luaLoader->RuntimeLoader();
+            _luaLoader->RuntimeLoader();
+            _luaLoader->LoadAllDialogs();
             Count++;
         }
         if(World::GetInstance() != NULL && Count == 1)
         {
-            //_luaLoader->RuntimeUpdater();
+            _luaLoader->RuntimeUpdater();
 
         }
         //collision loop over here?

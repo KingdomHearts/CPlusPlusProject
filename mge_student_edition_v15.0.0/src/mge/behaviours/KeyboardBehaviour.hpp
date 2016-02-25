@@ -18,14 +18,14 @@ struct BoundMesh
     std::string IDname;
     Mesh* mesh;
     bool pickedUp;
-    glm::vec3 PositionToPlace;
+    glm::mat4 PositionToPlace;
 };
 
 class KeyboardBehaviour : public AbstractBehaviour
 {
     public:
         static KeyboardBehaviour* GetInstance();
-        void BindMeshToButton(Mesh* pMesh, glm::vec3 pFinalPosition, GameObject* pGO);
+        void BindMeshToButton(Mesh* pMesh, glm::mat4 pFinalPosition, GameObject* pGO);
         virtual void update( float step );
 
         static bool GetKey(sf::Keyboard::Key);
@@ -37,7 +37,7 @@ class KeyboardBehaviour : public AbstractBehaviour
         static KeyboardBehaviour* KeyBoardInstance;
         void PickUpObject();
         void PlaceObject();
-        void CreateGameObject(Mesh* pMesh, glm::vec3 pFinalPosition, std::string pIDname, int pIndex);
+        void CreateGameObject(Mesh* pMesh, glm::mat4 pFinalPosition, std::string pIDname, int pIndex);
 
         static std::list<sf::Keyboard::Key> * keysPressed;
 };

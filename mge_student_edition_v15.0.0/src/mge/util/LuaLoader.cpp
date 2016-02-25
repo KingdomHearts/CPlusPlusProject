@@ -84,11 +84,10 @@ int AddInteractiveModel(lua_State * lua)
 	for (int i=0; i<19; i++) {
         m[i] = lua_tonumber(lua, -((18-i)+1));
 	}
-	float v[3];
-	for (int i=0; i<3; i++) {
-        v[i] = lua_tonumber(lua, -((2-i)+1));
-	}
-
+    float m2[16];
+    for (int i=0; i<19; i++) {
+        m[i] = lua_tonumber(lua, -(()))
+    }
 
     Mesh* mesh = Mesh::load("mge/models/"+Model);
     AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load ("mge/textures/bricks.jpg"));
@@ -116,7 +115,18 @@ int AddInteractiveModel(lua_State * lua)
     matrix[3][0] *= -1;
     GO->setTransform(matrix);
 
-    KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,glm::vec3(v[0],v[1],v[2]),GO);
+    glm::mat4 matrixPlacement(m2[0],  m2[4],  m2[8],  m2[12],
+                              m2[1],  m2[5],  m2[9],  m2[13],
+                              m2[2],  m2[6],  m2[10], m2[14],
+                              m2[3],  m2[7],  m2[11], m2[15]);
+
+    matrixPlacement = glm::transpose(matrixPlacement);
+    matrixPlacement[0][0] *= -1;
+    matrixPlacement[1][0] *= -1;
+    matrixPlacement[2][0] *= -1;
+    matrixPlacement[3][0] *= -1;
+
+    KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,matrixPlacement,GO);
 
     std::cout << World::GetInstance()->MeshList.size() << std::endl;
 

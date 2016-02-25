@@ -28,7 +28,6 @@ class LuaLoader : public GameObject
     protected:
     private:
         lua_State* lua;
-
 };
 
 #endif // LUALOADER_H

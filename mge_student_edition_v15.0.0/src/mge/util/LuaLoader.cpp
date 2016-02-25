@@ -81,12 +81,12 @@ int AddInteractiveModel(lua_State * lua)
 		Texture= lua_tostring(lua, -33);
 	}
 	float cm[16];
-	for (int i=0; i<15; i++) {
-        cm[i] = lua_tonumber(lua, -((32-i)+1));
+	for (int i=0; i<16; i++) {
+        cm[i] = lua_tonumber(lua, -((31-i)+1));
 	}
 	float fm[16];
-	for (int i=0; i<15; i++) {
-        fm[i] = lua_tonumber(lua, -((16-i)+1));
+	for (int i=0; i<16; i++) {
+        fm[i] = lua_tonumber(lua, -((15-i)+1));
 	}
 
     Mesh* mesh = Mesh::load("mge/models/"+Model);
@@ -100,8 +100,6 @@ int AddInteractiveModel(lua_State * lua)
     World::GetInstance()->add(GO);
 
     World::GetInstance()->MeshList.push_back(*mesh);
-
-
 
     glm::mat4 currentMatrix(cm[0],  cm[4],  cm[8],  cm[12],
                             cm[1],  cm[5],  cm[9],  cm[13],
@@ -118,9 +116,21 @@ int AddInteractiveModel(lua_State * lua)
     currentMatrix[1][0] *= -1;
     currentMatrix[2][0] *= -1;
     currentMatrix[3][0] *= -1;
+
+    finalMatrix = glm::transpose(finalMatrix);
+    finalMatrix[0][0] *= -1;
+    finalMatrix[1][0] *= -1;
+    finalMatrix[2][0] *= -1;
+    finalMatrix[3][0] *= -1;
+
+
     GO->setTransform(currentMatrix);
 
     KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,finalMatrix,GO);
+
+    std::cout << currentMatrix << std::endl;
+    std::cout << finalMatrix << std::endl;
+
 
     std::cout << World::GetInstance()->MeshList.size() << std::endl;
 

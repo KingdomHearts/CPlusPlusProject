@@ -5,6 +5,7 @@
 #include "mge/core/Mesh.hpp"
 #include "mge/core/GameObject.hpp"
 #include "mge/util/Audio.hpp"
+#include "mge/util/LuaLoader.hpp"
 
 class Light;
 class Camera;
@@ -18,6 +19,14 @@ class World : public GameObject
 		Camera* getMainCamera();
         std::vector<Mesh> MeshList;
         std::vector<AudioStruct> AudioList;
+
+        std::vector<DialogStruct> * dialogList = new std::vector<DialogStruct>();
+        std::vector<int> waitTimesList;
+        std::vector<int> DialogNumberList;
+        std::string state;
+        std::string nextState;
+        std::string displayText;
+
         bool IsRunning;
         void renderDebugInfo();
         bool isRunning;

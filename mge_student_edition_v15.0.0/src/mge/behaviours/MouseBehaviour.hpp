@@ -12,9 +12,9 @@ class MouseBehaviour : public AbstractBehaviour
 {
     public:
         MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, float pDistance);
+        virtual void update( float step );
         virtual ~MouseBehaviour();
 
-        virtual void update( float step );
     protected:
         AbstractBehaviour* _lookAt;
     private:

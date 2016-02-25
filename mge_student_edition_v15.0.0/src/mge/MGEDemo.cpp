@@ -99,7 +99,7 @@ void MGEDemo::_updateHud() {
     string debugInfo = "";
     debugInfo += string ("FPS:") + std::to_string(FPS::getFPS())+"\n";
 
-    _hud->setDebugInfo(debugInfo);
+    _hud->setDebugInfo(World::GetInstance()->displayText);
     _hud->draw();
 }
 

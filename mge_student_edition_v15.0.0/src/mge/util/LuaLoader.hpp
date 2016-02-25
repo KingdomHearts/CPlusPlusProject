@@ -24,6 +24,7 @@ class LuaLoader : public GameObject
         void LoadAllDialogs();
         void RuntimeLoader();
         void RuntimeUpdater();
+        void SetNewState(std::string pNewState);
         virtual ~LuaLoader();
     protected:
     private:

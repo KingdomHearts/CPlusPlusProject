@@ -6,12 +6,11 @@
 class MainHall : public GameObject
 {
     public:
-        MainHall(std::string pName = "MainHall"
-                 );
+        MainHall(std::string pName = "MainHall");
+        virtual void update(float pStep);
         virtual ~MainHall();
     protected:
     private:
-        GameObject* _CreateHall();
 };
 
 #endif // MAINHALL_H

@@ -98,9 +98,17 @@ void MGEDemo::_render() {
 void MGEDemo::_updateHud() {
     string debugInfo = "";
     debugInfo += string ("FPS:") + std::to_string(FPS::getFPS())+"\n";
-
-    _hud->setDebugInfo(World::GetInstance()->displayText);
-    _hud->draw();
+    std::string displayText = World::GetInstance()->displayText;
+    if(displayText.size() > 150)
+    {
+        size_type pos = displayText.find(" ",125);
+        displayText.insert(pos,"\n");
+    }
+    int screenWidth = sf::VideoMode::getDesktopMode().width / 4;
+    int screenHeight = sf::VideoMode::getDesktopMode().height - 150;
+    _hud->setDebugInfo(debugInfo,10,10);
+    _hud->setDebugInfo(displayText,screenWidth,screenHeight+10);
+    //_hud->draw();
 }
 
 

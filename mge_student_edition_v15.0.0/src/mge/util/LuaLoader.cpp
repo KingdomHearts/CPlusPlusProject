@@ -391,7 +391,12 @@ int PlaceModel(lua_State * lua)
 
 int Freeze(lua_State * lua)
 {
-    //bool FredHud = lua_toboolean(lua,-1);
+    bool isFrozen = lua_toboolean(lua,-1);
+    if(isFrozen)
+    {
+        //sf::sleep(sf::milliseconds(10000));
+
+    }
     return 0;
 }
 
@@ -407,34 +412,73 @@ int playDialogueTrack(lua_State * lua)
     return 0;
 }
 
+int RandomDialogAndRepeat(lua_State * lua)
+{
+    std::string nestedString = lua_tostring(lua,-1);
+
+    std::string splitter = ",";
+    size_t pos = 0;
+    std::string token;
+    std::vector<std::string> stringNumbers;
+    std::vector<int> dialogNumbers;
+    while ((pos = nestedString.find(splitter)) != std::string::npos)
+    {
+    token = nestedString.substr(0, pos);
+    nestedString.erase(0, pos + splitter.length());
+    stringNumbers.push_back(token);
+    }
+    stringNumbers.push_back(nestedString);
+    //stringNumbers.erase(stringNumbers.end(),stringNumbers.end()+1);
+    for(int i = 0; i < stringNumbers.size();i++)
+    {
+        dialogNumbers.push_back(atoi(stringNumbers[i].c_str()));
+    }
+    int sameCounter=0;
+    bool isTheSame = false;
+    for(int i =0;i<dialogNumbers.size();i++)
+    {
+        if(std::find(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.end(), dialogNumbers[i])!= World::GetInstance()->DialogNumberList.end())
+        {
+            sameCounter++;
+        }
+        if(sameCounter == dialogNumbers.size())
+        {
+            isTheSame = true;
+        }
+        else
+        {
+            isTheSame = false;
+        }
+    }
+    std::cout << "True or False: " << isTheSame << std::endl;
+    std::cout << "numberCount: " << dialogNumbers.size() << std::endl;
+    std::vector<int> randomOrder;
+    int random =0;
+    int dialogSize = dialogNumbers.size();
+    srand(time(NULL));
+    if(isTheSame)
+    {
+        for(int i = 0; i<dialogSize;i++)
+        {
+            random = rand() % dialogNumbers.size() ;
+            std::cout << "random is: " << random << std::endl;
+            randomOrder.push_back(dialogNumbers[random]);
+            dialogNumbers.erase(std::remove(dialogNumbers.begin(), dialogNumbers.end(), dialogNumbers[random]), dialogNumbers.end());
+        }
+    }
+    World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.end());
+    for(int i =0; i<randomOrder.size();i++)
+    {
+        std::cout << "place " << i << " number: " << randomOrder[i] << std::endl;
+        World::GetInstance()->DialogNumberList.push_back(randomOrder[i]);
+    }
+    //bool FredHud = lua_toboolean(lua,-1);
+    return 0;
+}
+
 int playSubtitleScript(lua_State * lua)
 {
     World::GetInstance()->DialogNumberList.push_back(lua_tonumber(lua,-1));
-    //DialogNumberList.push_back(lua_tonumber(lua,-1));
-    /**
-    bool isDialogIsDone = false;
-    int dialogNumber = lua_tonumber(lua,-1);
-    for(std::vector<DialogStruct>::iterator i =  dialogList->begin(); i != dialogList->end(); i++)
-    {
-        if(i->sDialogNumber == dialogNumber)
-        {
-            while(isDialogIsDone == false)
-            {
-                if(t.elapsedTime() >= waitSeconds)
-                {
-                    std::cout << i->sText << std::endl;
-    std::cout << "test2313" << std::endl;
-                    waitTimes.erase(waitTimes.begin());
-                }
-                if (waitTimes.size() == 0)
-                {
-                    isDialogIsDone = true;
-                }
-
-            }
-        }
-    }
-    **/
     //bool FredHud = lua_toboolean(lua,-1);
     return 0;
 }
@@ -445,10 +489,31 @@ int Load(lua_State * lua)
     return 0;
 }
 
+int StartTimer(lua_State * lua)
+{
+    World::GetInstance()->maxTime = 0;
+    World::GetInstance()->startTimer = true;
+    //World::GetInstance()->maxTime = lua_tonumber(lua,-1);
+    return 0;
+}
+
+void LuaLoader::SetTime(int pTime)
+{
+    lua_pushnumber(lua,pTime);
+    lua_setglobal(lua,"timer");
+}
+
 void LuaLoader::SetNewState(std::string pNewState)
 {
     lua_pushstring(lua,pNewState.c_str());
     lua_setglobal(lua,"state");
+}
+
+void LuaLoader::KeyPressed(std::string pPressedKey)
+{
+    World::GetInstance()->maxTime = 0;
+    lua_pushstring(lua,pPressedKey.c_str());
+    lua_setglobal(lua,"keyPressed");
 }
 
 int SetState(lua_State * lua)
@@ -488,6 +553,8 @@ void LuaLoader::RuntimeLoader()
 	lua_register(lua,"SetState",SetState);
 	lua_register(lua,"AddSound",AddSound);
 	lua_register(lua,"PlaySound",PlaySound);
+	lua_register(lua,"StartTimer",StartTimer);
+	lua_register(lua,"RandomDialogAndRepeat",RandomDialogAndRepeat);
 
 	//luaL_loadfile(lua,"mge/lua/Runtime.lua");
 

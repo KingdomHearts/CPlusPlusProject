@@ -11,7 +11,7 @@ class DebugHud
 		virtual ~DebugHud();
 		void draw();
 
-		void setDebugInfo (std::string pInfo);
+		void setDebugInfo (std::string pInfo, int pX,int pY);
 
 	private:
 		sf::RenderWindow * _window;

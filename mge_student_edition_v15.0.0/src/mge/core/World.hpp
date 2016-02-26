@@ -23,6 +23,8 @@ class World : public GameObject
         std::vector<DialogStruct> * dialogList = new std::vector<DialogStruct>();
         std::vector<int> waitTimesList;
         std::vector<int> DialogNumberList;
+        bool startTimer = false;
+        int maxTime = 0;
         std::string state;
         std::string nextState;
         std::string displayText;

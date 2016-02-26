@@ -5,13 +5,15 @@
 loaded = false;
 
 state = "reception"
-pickedUpFred = false
-pickedUpFredSeconds = 0 -- maybe also done by C++ addseconds
+keyPressed = ""
+mouseIsClicked = true
+timer = 0 -- maybe also done by C++ addseconds
 player_Opendoor = false
 player_PicksUp = false
 player_PlaceDown = false
 goingToExhibit = false
-goingToExhibitSeconds = 0 -- maybe also done by C++ addseconds
+pickedUpFred = false
+--goingToExhibitSeconds = 0 -- maybe also done by C++ addseconds
 
 --changeable through C++
 eventFred = ""
@@ -33,23 +35,27 @@ function update()
 	end
 	
 	if(state == "Fred") then
-		if(pickedUpFred == true) then
-			pickedUpFred()
+	StartTimer(10)
+		if(keyPressed == "Y") then
+		keyPressed = "";
+		timer = 0;
+			PickedUpFred()
 		end
-		if (pickedUpFred == false) then
-		pickedUpFredSeconds = pickedUpFredSeconds + 1
-			if (pickedUpFredSeconds > 9) then
+		if (keyPressed == "") then
+			if (timer > 9) then
 			NotPickupFRED()
 			end
 		end
 	end
 	if(state == "Exhibit") then
+		if(pickedUpFred == true) then
+		StartTimer(10)
+		end
 		 if (pickedUpFred == true and goingToExhibit == true) then
 			 OpenExhibit()
 		 end
 		if (pickedUpFred == true and goingToExhibit == false) then
-			goingToExhibitSeconds = goingToExhibitSeconds + 1
-			if(goingToExhibitSeconds > 9) then
+			if(timer > 9) then
 				NotOpenExhibit()
 			end
 		end
@@ -57,7 +63,7 @@ function update()
 end
 
 function OpenHud()
-	if (eventFred == "F") then
+	if (keyPressed == "F") then
 		FredHud(true)
     
 	else
@@ -102,7 +108,7 @@ function BeginGame()
 	wait(2)
 	playDialogueTrack(5)
 	playSubtitleScript(5)
-	freeze(false)
+	--freeze(false)
 	SetState("Fred");
 end
 
@@ -115,10 +121,11 @@ function NotPickupFRED()
 	wait(2)
 	playDialogueTrack(8)
 	playSubtitleScript(8)
+	RandomDialogAndRepeat("6,7,8")
 	SetState("Exhibit");
 end
 
-function PickupFred()
+function PickedUpFred()
 	playDialogueTrack(9)
 	playSubtitleScript(9)
 	wait(2)
@@ -130,6 +137,7 @@ function PickupFred()
 	wait(2)
 	playDialogueTrack(12)
 	playSubtitleScript(12)
+	pickedUpFred = true
 	SetState("Exhibit");
 end
 

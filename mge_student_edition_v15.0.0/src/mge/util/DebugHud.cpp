@@ -35,9 +35,10 @@ void DebugHud::_createDebugHud() {
 	_debugText.setColor(sf::Color::White);
 }
 
-void DebugHud::setDebugInfo(std::string pInfo) {
+void DebugHud::setDebugInfo(std::string pInfo, int pX,int pY) {
     _debugText.setString(pInfo);
-	_debugText.setPosition(10, 10);
+	_debugText.setPosition(pX, pY);
+	draw();
 }
 
 void DebugHud::draw()

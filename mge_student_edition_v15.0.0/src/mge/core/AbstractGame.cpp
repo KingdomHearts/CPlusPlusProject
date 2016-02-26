@@ -84,31 +84,87 @@ void AbstractGame::_initializeWorld() {
     cout << "World initialized." << endl << endl;
 }
 
-
-bool doorIsClosed = true;
-
-/**
-int WaitForDoorToOpen(lua_State * lua) {
-
-    int count = 0;
-    while(doorIsClosed) {
-        count ++;
-        cout << count << " door closed ! \n";
-        sf::sleep(sf::milliseconds(1000));
+void KeyPressings(LuaLoader * luaLoader)
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+        luaLoader->KeyPressed("Q");
     }
-
-    return 0;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+        luaLoader->KeyPressed("E");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
+        luaLoader->KeyPressed("R");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
+        luaLoader->KeyPressed("T");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
+        luaLoader->KeyPressed("Y");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::U)) {
+        luaLoader->KeyPressed("U");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
+        luaLoader->KeyPressed("I");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::O)) {
+        luaLoader->KeyPressed("O");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)) {
+        luaLoader->KeyPressed("P");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+        luaLoader->KeyPressed("F");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::G)) {
+        luaLoader->KeyPressed("G");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::H)) {
+        luaLoader->KeyPressed("H");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::J)) {
+        luaLoader->KeyPressed("J");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
+        luaLoader->KeyPressed("K");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::L)) {
+        luaLoader->KeyPressed("L");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
+        luaLoader->KeyPressed("Z");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
+        luaLoader->KeyPressed("X");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) {
+        luaLoader->KeyPressed("C");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::V)) {
+        luaLoader->KeyPressed("V");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
+        luaLoader->KeyPressed("B");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)) {
+        luaLoader->KeyPressed("N");
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
+        luaLoader->KeyPressed("M");
+    }
 }
 
-**/
+
+bool PickedUpFred = true;
 bool DialogIsFinish = false;
+int luaTimer = 0;
  void DialogThread(DebugHud * hud)
 {
-    int count = 0;
         while(true)
         {
             if(World::GetInstance()->DialogNumberList.size() > 0)
             {
+                luaTimer =0;
                 while(World::GetInstance()->DialogNumberList.size() > 0)
                 {
                     int j = World::GetInstance()->DialogNumberList.at(0);
@@ -119,6 +175,8 @@ bool DialogIsFinish = false;
                             //std::cout << i->sDialogNumber << std::endl;
                             World::GetInstance()->displayText = i->sText;
                             std::cout << i->sText << std::endl;
+                            int display = i->sScreenTime;
+                            //sf::sleep(sf::milliseconds(display*1000));
                             World::GetInstance()->dialogList->erase(i);
                             World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.begin()+1);
                             if(World::GetInstance()->waitTimesList.size() > 0)
@@ -137,6 +195,13 @@ bool DialogIsFinish = false;
             if(World::GetInstance()->state == "")
             {
                 DialogIsFinish = true;
+            }
+            if(World::GetInstance()->startTimer)
+            {
+                sf::sleep(sf::milliseconds(1000));
+                luaTimer = luaTimer + 1;
+
+                std::cout << luaTimer << std::endl;
             }
         }
 
@@ -159,10 +224,6 @@ void AbstractGame::run()
 		FPS::update();
 	    //clear frame, do it here so we can draw debug stuff in any other step etc
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-
-		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
-        //    doorIsClosed = false;
-		//}
 
 
         _update();
@@ -189,7 +250,12 @@ void AbstractGame::run()
             _luaLoader->SetNewState(nextState);
             DialogIsFinish = false;
         }
+        if(World::GetInstance()->startTimer)
+        {
+            _luaLoader->SetTime(luaTimer);
+        }
 
+        KeyPressings(_luaLoader);
 
 		_processEvents();
 	}

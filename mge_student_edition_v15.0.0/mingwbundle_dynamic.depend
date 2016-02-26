@@ -1849,12 +1849,12 @@
 	"mge/core/GameObject.hpp"
 	"mge/util/Audio.hpp"
 
-1456402281 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\camera.cpp
+1456417605 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\camera.cpp
 	<iostream>
 	<glm.hpp>
 	"mge/core/Camera.hpp"
 
-1456402281 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\camera.hpp
+1456414675 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\camera.hpp
 	<string>
 	"mge/core/GameObject.hpp"
 
@@ -1965,7 +1965,7 @@
 	"mge/core/Texture.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 
-1456402281 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
+1456417630 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
 	<glm.hpp>
 	<iostream>
 	<string>
@@ -2382,7 +2382,7 @@
 	"luainc.h"
 	"mge/util/Audio.hpp"
 
-1456327186 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
+1456417605 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
 	"LuaLoader.hpp"
 	"mge/config.hpp"
 	<iostream>
@@ -2396,6 +2396,8 @@
 	"mge/core/AbstractGame.hpp"
 	"mge/util/Audio.hpp"
 	"mge/behaviours/KeyboardBehaviour.hpp"
+	<vector>
+	<time.h>
 
 1456402280 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\include\luainc.h
 	"lua.h"

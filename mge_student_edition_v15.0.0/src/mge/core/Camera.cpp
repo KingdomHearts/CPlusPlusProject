@@ -7,6 +7,7 @@ using namespace std;
 Camera::Camera( std::string pName, glm::vec3 pPosition, glm::mat4 pProjectionMatrix )
 :	GameObject(pName, pPosition), _projection(pProjectionMatrix)
 {
+    //_projection[2] = glm::vec4(0,0,1,1);
 }
 
 Camera::~Camera()

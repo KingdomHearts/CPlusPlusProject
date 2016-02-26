@@ -32,6 +32,8 @@ public class ObjectsToLuaScript : MonoBehaviour {
             //    texture += ".tga";
             //}
 
+            child.gameObject.transform.rotation = Quaternion.Euler(new Vector3(child.gameObject.transform.rotation.x, -child.gameObject.transform.rotation.y, child.gameObject.transform.rotation.z));
+
             file.WriteLine("AddModel('" +
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +

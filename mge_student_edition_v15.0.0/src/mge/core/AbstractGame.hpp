@@ -5,11 +5,13 @@
 #include <GL/glew.h>
 #include <string>
 #include "mge/util/LuaLoader.hpp"
+#include "mge/util/DebugHud.hpp"
 using namespace std;
 
 class World;
 class Renderer;
 
+class DebugHud;
 /**
  * Defines the basic structure for a game, with defaults already filled in.
  * Your main game loop should run:
@@ -61,7 +63,7 @@ class AbstractGame
 		bool _running;
 
 		LuaLoader * _luaLoader;
-
+		DebugHud * _hud;
 
 
 };

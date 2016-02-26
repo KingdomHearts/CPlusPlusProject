@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Art_Picassoportrait1
     100002: //RootNode
+    100004: Framemiddle1
     400000: Art_Picassoportrait1
     400002: //RootNode
+    400004: Framemiddle1
     2300000: Art_Picassoportrait1
+    2300002: Framemiddle1
     3300000: Art_Picassoportrait1
+    3300002: Framemiddle1
     4300000: Art_Picassoportrait1
+    4300002: Framemiddle1
   materials:
     importMaterials: 1
     materialName: 0

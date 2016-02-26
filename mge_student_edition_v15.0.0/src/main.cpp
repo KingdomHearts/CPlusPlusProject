@@ -20,8 +20,11 @@
  * All documentation is contained within the HEADER files, not the CPP files in possible.
  *
  */
+
+
 int main()
 {
+
     std::cout << "Starting Game" << std::endl;
 
     AbstractGame* game = new MGEDemo();

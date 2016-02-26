@@ -14,9 +14,13 @@
 #include "mge/util/Audio.hpp"
 #include "mge/behaviours/KeyboardBehaviour.hpp"
 
+#include "mge/util/DebugHud.hpp"
+
 #include <vector>
 
 #include <time.h>
+
+#include <SFML/System/Thread.hpp>
 
 class timer {
 	private:
@@ -34,12 +38,14 @@ class timer {
 			return seconds >= elapsedTime();
 		}
 };
+
+bool DialogIsRunning = true;
 timer t;
 Audio * _audio = new Audio("",0);
-std::vector<DialogStruct> * dialogList = new std::vector<DialogStruct>();
 int waitSeconds = 0;
-std::vector<int> waitTimesList;
-std::vector<int> DialogNumberList;
+//std::vector<DialogStruct> * dialogList = new std::vector<DialogStruct>();
+//std::vector<int> waitTimesList;
+//std::vector<int> DialogNumberList;
 
 LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pName)
 {
@@ -274,7 +280,7 @@ int Text(lua_State * lua)
     dialog->sScreenTime = lua_tonumber(lua, -1);
     dialog->sText = lua_tostring(lua, -2);
     dialog->sDialogNumber = lua_tonumber(lua, -3);
-    dialogList->push_back(*dialog);
+    World::GetInstance()->dialogList->push_back(*dialog);
     return 0;
 }
 
@@ -389,9 +395,10 @@ int Freeze(lua_State * lua)
     //bool FredHud = lua_toboolean(lua,-1);
     return 0;
 }
+
 int wait(lua_State * lua)
 {
-    waitTimesList.push_back(lua_tonumber(lua,-1));
+    World::GetInstance()->waitTimesList.push_back(lua_tonumber(lua,-1));
     //bool FredHud = lua_toboolean(lua,-1);
     return 0;
 }
@@ -403,7 +410,8 @@ int playDialogueTrack(lua_State * lua)
 
 int playSubtitleScript(lua_State * lua)
 {
-    DialogNumberList.push_back(lua_tonumber(lua,-1));
+    World::GetInstance()->DialogNumberList.push_back(lua_tonumber(lua,-1));
+    //DialogNumberList.push_back(lua_tonumber(lua,-1));
     /**
     bool isDialogIsDone = false;
     int dialogNumber = lua_tonumber(lua,-1);
@@ -437,8 +445,19 @@ int Load(lua_State * lua)
     //bool FredHud = lua_toboolean(lua,-1);
     return 0;
 }
+
+void LuaLoader::SetNewState(std::string pNewState)
+{
+    lua_pushstring(lua,pNewState.c_str());
+    lua_setglobal(lua,"state");
+}
+
 int SetState(lua_State * lua)
 {
+    World::GetInstance()->state = "";
+    World::GetInstance()->nextState = lua_tostring(lua,-1);
+    lua_pushstring(lua,"");
+    lua_setglobal(lua,"state");
     return 0;
 }
 
@@ -468,6 +487,8 @@ void LuaLoader::RuntimeLoader()
 	lua_register(lua,"playSubtitleScript",playSubtitleScript);
 	lua_register(lua,"Load",Load);
 	lua_register(lua,"SetState",SetState);
+	lua_register(lua,"AddSound",AddSound);
+	lua_register(lua,"PlaySound",PlaySound);
 
 	//luaL_loadfile(lua,"mge/lua/Runtime.lua");
 
@@ -506,6 +527,7 @@ void LuaLoader::RuntimeLoader()
 
 	//lua_close(lua);
 }
+
 
 
 LuaLoader::~LuaLoader()

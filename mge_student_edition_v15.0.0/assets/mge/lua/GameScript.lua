@@ -1,6 +1,9 @@
 --playSubtitleScript = Dialog script 
 --playSubtitleScript = Audio file
 
+--AddSound("ALL","Lobby_Music_Loop.wav",true,0,"NULL",100,false,1,10,"NULL")
+loaded = false;
+
 state = "reception"
 pickedUpFred = false
 pickedUpFredSeconds = 0 -- maybe also done by C++ addseconds
@@ -16,6 +19,10 @@ player_Opendoor = false
 
 --Update
 function update()
+	if(loaded == true) then
+		--PlaySound("Lobby_Music_Loop.wav")
+		loaded = false
+	end
   OpenHud()
   OpenDoor()
   PickUp()

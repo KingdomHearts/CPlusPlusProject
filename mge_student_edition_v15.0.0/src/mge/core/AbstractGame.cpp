@@ -36,7 +36,7 @@ void AbstractGame::initialize() {
 
 void AbstractGame::_initializeWindow() {
 	cout << "Initializing window..." << endl;
-	_window = new sf::RenderWindow( sf::VideoMode(sf::VideoMode::getDesktopMode().width/2,sf::VideoMode::getDesktopMode().height/2), "My Game!", sf::Style::Default, sf::ContextSettings(24,8,0,3,3));
+	_window = new sf::RenderWindow( sf::VideoMode(sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height), "My Game!", sf::Style::Default, sf::ContextSettings(24,8,0,3,3));
 	_window->setVerticalSyncEnabled(true);
     cout << "Window initialized." << endl << endl;
 }
@@ -84,20 +84,85 @@ void AbstractGame::_initializeWorld() {
     cout << "World initialized." << endl << endl;
 }
 
+
+bool doorIsClosed = true;
+
+/**
+int WaitForDoorToOpen(lua_State * lua) {
+
+    int count = 0;
+    while(doorIsClosed) {
+        count ++;
+        cout << count << " door closed ! \n";
+        sf::sleep(sf::milliseconds(1000));
+    }
+
+    return 0;
+}
+
+**/
+bool DialogIsFinish = false;
+ void DialogThread(DebugHud * hud)
+{
+    int count = 0;
+        while(true)
+        {
+            if(World::GetInstance()->DialogNumberList.size() > 0)
+            {
+                while(World::GetInstance()->DialogNumberList.size() > 0)
+                {
+                    int j = World::GetInstance()->DialogNumberList.at(0);
+                    for(std::vector<DialogStruct>::iterator i =  World::GetInstance()->dialogList->begin(); i != World::GetInstance()->dialogList->end();i++)
+                    {
+                        if(i->sDialogNumber == j)
+                        {
+                            //std::cout << i->sDialogNumber << std::endl;
+                            World::GetInstance()->displayText = i->sText;
+                            std::cout << i->sText << std::endl;
+                            World::GetInstance()->dialogList->erase(i);
+                            World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.begin()+1);
+                            if(World::GetInstance()->waitTimesList.size() > 0)
+                            {
+                                int seconds = World::GetInstance()->waitTimesList.at(0);
+                                sf::sleep(sf::milliseconds(seconds*1000));
+                                World::GetInstance()->waitTimesList.erase(World::GetInstance()->waitTimesList.begin(),World::GetInstance()->waitTimesList.begin()+1);
+                            }
+                            //std::cout << World::GetInstance()->DialogNumberList.size() << std::endl;
+                            //World::GetInstance()->waitTimesList.erase(World::GetInstance()->waitTimesList.begin());
+
+                        }
+                    }
+                }
+            }
+            if(World::GetInstance()->state == "")
+            {
+                DialogIsFinish = true;
+            }
+        }
+
+}
 ///LOOP
 
 void AbstractGame::run()
 {
+    sf::Thread myThread(&DialogThread,_hud);
+    myThread.launch();
 	_running = true;
 
     _luaLoader = new LuaLoader("","");
+
     int Count = 0;
 
 	while (_running) {
+
 		Timer::update();
 		FPS::update();
 	    //clear frame, do it here so we can draw debug stuff in any other step etc
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
+        //    doorIsClosed = false;
+		//}
 
 
         _update();
@@ -117,6 +182,13 @@ void AbstractGame::run()
 
         //swap colorbuffer to screen
         _window->display();
+        //_hud = new DebugHud(_window);
+        if(DialogIsFinish)
+        {
+            std::string nextState = World::GetInstance()->nextState;
+            _luaLoader->SetNewState(nextState);
+            DialogIsFinish = false;
+        }
 
 
 		_processEvents();

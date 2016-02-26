@@ -30,6 +30,7 @@ using namespace std;
 
 #include "mge/config.hpp"
 #include "mge/MGEDemo.hpp"
+#include "mge/core/PhysicsWorld.hpp"
 
 #include <SFML/Audio.hpp>
 
@@ -41,24 +42,8 @@ void MGEDemo::initialize() {
     //setup the core part
     AbstractGame::initialize();
 
-    //------Initialize Bullet
-    // Build the broadphase
-    btBroadphaseInterface* broadphase = new btDbvtBroadphase();
-
-    // Set up the collision configuration and dispatcher
-    btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
-    btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
-
-    // The actual physics solver
-    btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
-
-    // The world.
-    btDiscreteDynamicsWorld* dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher,broadphase,solver,collisionConfiguration);
-    dynamicsWorld->setGravity(btVector3(0,-9.81f,0));
-    //------
-
     //AssetList = new std::vector<Mesh>();
-
+    PhysicsWorld::GetInstance();
     //setup the custom part
 	cout << "Initializing HUD" << endl;
 	_hud = new DebugHud(_window);

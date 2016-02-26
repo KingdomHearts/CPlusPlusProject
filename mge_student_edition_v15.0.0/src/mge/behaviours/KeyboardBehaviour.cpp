@@ -44,7 +44,7 @@ KeyboardBehaviour* KeyboardBehaviour::GetInstance()
     return KeyboardBehaviour::KeyBoardInstance;
 }
 
-void KeyboardBehaviour::BindMeshToButton(Mesh* pMesh, glm::mat4 pFinalPosition, GameObject* pGO)
+void KeyboardBehaviour::BindMeshToButton(Mesh* pMesh, TextureMaterial* pTextureMaterial,glm::mat4 pFinalPosition, GameObject* pGO)
 {
     BoundMesh boundMesh;
 
@@ -53,6 +53,7 @@ void KeyboardBehaviour::BindMeshToButton(Mesh* pMesh, glm::mat4 pFinalPosition, 
     boundMesh.mesh = pMesh;
     boundMesh.PositionToPlace = pFinalPosition;
     boundMesh.pickedUp = false;
+    boundMesh.textureMaterial = pTextureMaterial;
     BindArray.push_back(boundMesh);
 }
 
@@ -136,63 +137,62 @@ void KeyboardBehaviour::PlaceObject()
     if(BindArray.size() > 0 && BindArray.at(0).pickedUp == true && GetKeyDown(sf::Keyboard::Num0))
     {
         std::cout << "Placing Object" << std::endl;
-        CreateGameObject(BindArray.at(0).mesh, BindArray.at(0).PositionToPlace, BindArray.at(0).IDname, 0);
+        CreateGameObject(BindArray.at(0).mesh, BindArray.at(0).PositionToPlace, BindArray.at(0).IDname, 0, BindArray.at(0).textureMaterial);
         BindArray.at(0).pickedUp = false;
     }
     else if(BindArray.size() > 1 && BindArray.at(1).pickedUp == true && GetKeyDown(sf::Keyboard::Num1))
     {
         std::cout << "Placing Object" << std::endl;
-        CreateGameObject(BindArray.at(1).mesh, BindArray.at(1).PositionToPlace, BindArray.at(1).IDname, 1);
+        CreateGameObject(BindArray.at(1).mesh, BindArray.at(1).PositionToPlace, BindArray.at(1).IDname, 1, BindArray.at(1).textureMaterial);
         BindArray.at(1).pickedUp = false;
     }
     else if(BindArray.size() > 2 && BindArray.at(2).pickedUp == true && GetKeyDown(sf::Keyboard::Num2))
     {
-        CreateGameObject(BindArray.at(2).mesh, BindArray.at(2).PositionToPlace, BindArray.at(2).IDname, 2);
+        CreateGameObject(BindArray.at(2).mesh, BindArray.at(2).PositionToPlace, BindArray.at(2).IDname, 2, BindArray.at(2).textureMaterial);
         BindArray.at(2).pickedUp = false;
     }
     else if(BindArray.size() > 3 && BindArray.at(3).pickedUp == true && GetKeyDown(sf::Keyboard::Num3))
     {
-        CreateGameObject(BindArray.at(3).mesh, BindArray.at(3).PositionToPlace, BindArray.at(3).IDname, 3);
+        CreateGameObject(BindArray.at(3).mesh, BindArray.at(3).PositionToPlace, BindArray.at(3).IDname, 3, BindArray.at(3).textureMaterial);
         BindArray.at(3).pickedUp = false;
     }
     else if(BindArray.size() > 4 && BindArray.at(4).pickedUp == true && GetKeyDown(sf::Keyboard::Num4))
     {
-        CreateGameObject(BindArray.at(4).mesh, BindArray.at(4).PositionToPlace, BindArray.at(4).IDname, 4);
+        CreateGameObject(BindArray.at(4).mesh, BindArray.at(4).PositionToPlace, BindArray.at(4).IDname, 4, BindArray.at(4).textureMaterial);
         BindArray.at(4).pickedUp = false;
     }
     else if(BindArray.size() > 5 && BindArray.at(5).pickedUp == true && GetKeyDown(sf::Keyboard::Num5))
     {
-        CreateGameObject(BindArray.at(5).mesh, BindArray.at(5).PositionToPlace, BindArray.at(5).IDname, 5);
+        CreateGameObject(BindArray.at(5).mesh, BindArray.at(5).PositionToPlace, BindArray.at(5).IDname, 5, BindArray.at(5).textureMaterial);
         BindArray.at(5).pickedUp = false;
     }
     else if(BindArray.size() > 6 && BindArray.at(6).pickedUp == true && GetKeyDown(sf::Keyboard::Num6))
     {
-        CreateGameObject(BindArray.at(6).mesh, BindArray.at(6).PositionToPlace, BindArray.at(6).IDname, 6);
+        CreateGameObject(BindArray.at(6).mesh, BindArray.at(6).PositionToPlace, BindArray.at(6).IDname, 6, BindArray.at(6).textureMaterial);
         BindArray.at(6).pickedUp = false;
     }
     else if(BindArray.size() > 7 && BindArray.at(7).pickedUp == true && GetKeyDown(sf::Keyboard::Num7))
     {
-        CreateGameObject(BindArray.at(7).mesh, BindArray.at(7).PositionToPlace, BindArray.at(7).IDname, 7);
+        CreateGameObject(BindArray.at(7).mesh, BindArray.at(7).PositionToPlace, BindArray.at(7).IDname, 7, BindArray.at(7).textureMaterial);
         BindArray.at(7).pickedUp = false;
     }
     else if(BindArray.size() > 8 && BindArray.at(8).pickedUp == true && GetKeyDown(sf::Keyboard::Num8))
     {
-        CreateGameObject(BindArray.at(8).mesh, BindArray.at(8).PositionToPlace, BindArray.at(8).IDname, 8);
+        CreateGameObject(BindArray.at(8).mesh, BindArray.at(8).PositionToPlace, BindArray.at(8).IDname, 8, BindArray.at(8).textureMaterial);
         BindArray.at(8).pickedUp = false;
     }
     else if(BindArray.size() > 9 && BindArray.at(9).pickedUp == true && GetKeyDown(sf::Keyboard::Num9))
     {
-        CreateGameObject(BindArray.at(9).mesh, BindArray.at(9).PositionToPlace, BindArray.at(9).IDname, 9);
+        CreateGameObject(BindArray.at(9).mesh, BindArray.at(9).PositionToPlace, BindArray.at(9).IDname, 9, BindArray.at(9).textureMaterial);
         BindArray.at(9).pickedUp = false;
     }
 }
 
-void KeyboardBehaviour::CreateGameObject(Mesh* pMesh, glm::mat4 pFinalPosition, std::string pIDname, int pIndex)
+void KeyboardBehaviour::CreateGameObject(Mesh* pMesh, glm::mat4 pFinalPosition, std::string pIDname, int pIndex, TextureMaterial* pTextureMaterial)
 {
-    AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load ("mge/textures/bricks.jpg"));
     GameObject* Go = new GameObject (pIDname, glm::vec3(0,0,0));
     Go->setMesh (pMesh);
-    Go->setMaterial(textureMaterial);
+    Go->setMaterial(pTextureMaterial);
     World::GetInstance()->add(Go);
     Go->setTransform(pFinalPosition);
     BindArray.at(pIndex).GO = Go;

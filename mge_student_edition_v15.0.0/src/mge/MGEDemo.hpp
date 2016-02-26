@@ -6,12 +6,7 @@
 //#include "Mesh.hpp"
 #include <vector>
 
-#include <BulletCollision\BroadphaseCollision\btBroadphaseInterface.h>
-#include <BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h>
-#include <BulletCollision\CollisionDispatch\btCollisionDispatcher.h>
-#include <BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h>
-#include <BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h>
-#include <BulletCollision\BroadphaseCollision\btDbvtBroadphase.h>
+
 
 class Swapper;
 class GameObject;

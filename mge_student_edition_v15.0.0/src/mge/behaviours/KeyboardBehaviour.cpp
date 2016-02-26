@@ -44,7 +44,7 @@ KeyboardBehaviour* KeyboardBehaviour::GetInstance()
     return KeyboardBehaviour::KeyBoardInstance;
 }
 
-void KeyboardBehaviour::BindMeshToButton(Mesh* pMesh, TextureMaterial* pTextureMaterial,glm::mat4 pFinalPosition, GameObject* pGO)
+void KeyboardBehaviour::BindMeshToButton(Mesh* pMesh, AbstractMaterial* pTextureMaterial,glm::mat4 pFinalPosition, GameObject* pGO)
 {
     BoundMesh boundMesh;
 
@@ -188,7 +188,7 @@ void KeyboardBehaviour::PlaceObject()
     }
 }
 
-void KeyboardBehaviour::CreateGameObject(Mesh* pMesh, glm::mat4 pFinalPosition, std::string pIDname, int pIndex, TextureMaterial* pTextureMaterial)
+void KeyboardBehaviour::CreateGameObject(Mesh* pMesh, glm::mat4 pFinalPosition, std::string pIDname, int pIndex, AbstractMaterial* pTextureMaterial)
 {
     GameObject* Go = new GameObject (pIDname, glm::vec3(0,0,0));
     Go->setMesh (pMesh);

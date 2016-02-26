@@ -117,6 +117,7 @@ int AddInteractiveModel(lua_State * lua)
                             fm[2],  fm[6],  fm[10], fm[14],
                             fm[3],  fm[7],  fm[11], fm[15]);
 
+    /**/
     currentMatrix = glm::transpose(currentMatrix);
     currentMatrix[0][0] *= -1;
     currentMatrix[1][0] *= -1;
@@ -128,6 +129,7 @@ int AddInteractiveModel(lua_State * lua)
     finalMatrix[1][0] *= -1;
     finalMatrix[2][0] *= -1;
     finalMatrix[3][0] *= -1;
+    /**/
 
 
     GO->setTransform(currentMatrix);
@@ -194,7 +196,6 @@ int AddModel(lua_State * lua)
     matrix[2][0] *= -1;
     matrix[3][0] *= -1;
     GO->setTransform(matrix);
-
     std::cout << "AddModel end"  << std::endl;
 
     return 0;

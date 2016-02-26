@@ -19,23 +19,24 @@ public class ObjectsToLuaScript : MonoBehaviour {
                 ChildsList.Add(t.gameObject);
         }
 
-        //export every Gameobject to a single lua file
-        //File.Create("../../mge_student_edition_v15.0.0/assets/mge/lua/test.lua");
-
         StreamWriter file = new StreamWriter("../../mge_student_edition_v15.0.0/assets/mge/lua/AssetLoader.lua");
         foreach (Transform child in transform)
         {
-            //Texture texture;
-            //if (true/*child.gameObject.GetComponentInChildren<Renderer>().material.mainTexture.name != ""*/)
-            //{
-            //    texture = child.gameObject.GetComponentInChildren<Renderer>().material.get;
-            //    texture += ".tga";
-            //}
-
+            string texture = "";
+            if (child.gameObject.GetComponentInChildren<Renderer>())
+            {
+                if (child.gameObject.GetComponentInChildren<Renderer>().material.mainTexture)
+                {
+                    texture = child.gameObject.GetComponentInChildren<Renderer>().material.mainTexture.name;
+                    string[] Texture = texture.Split(new char[' ']);
+                    texture = Texture[0] + ".tga";
+                }
+            }
+            
             file.WriteLine("AddModel('" +
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +
-                "" + "'," +
+                texture + "'," +
                 child.gameObject.transform.localToWorldMatrix.m00 + "," +
                 child.gameObject.transform.localToWorldMatrix.m10 + "," +
                 child.gameObject.transform.localToWorldMatrix.m20 + "," +
@@ -76,7 +77,7 @@ public class ObjectsToLuaScript : MonoBehaviour {
 
         if (System.IO.Directory.Exists(sourcePath + "Textures"))
         {
-            string[] files = System.IO.Directory.GetFiles(sourcePath + "Textures", "*.png");
+            string[] files = System.IO.Directory.GetFiles(sourcePath + "Textures", "*.tga");
 
             // Copy the files and overwrite destination files if they already exist.
             foreach (string s in files)

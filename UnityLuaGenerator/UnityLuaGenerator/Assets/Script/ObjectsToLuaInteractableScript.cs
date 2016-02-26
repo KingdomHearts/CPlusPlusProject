@@ -25,6 +25,17 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
         StreamWriter file = new StreamWriter("../../mge_student_edition_v15.0.0/assets/mge/lua/AssetLoaderInteractable.lua");
         foreach (Transform child in transform)
         {
+            string texture = "";
+            if (child.gameObject.GetComponentInChildren<Renderer>())
+            {
+                if (child.gameObject.GetComponentInChildren<Renderer>().material.mainTexture)
+                {
+                    texture = child.gameObject.GetComponentInChildren<Renderer>().material.mainTexture.name;
+                    string[] Texture = texture.Split(new char[' ']);
+                    texture = Texture[0] + ".tga";
+                }
+            }
+
             Vector3 position = new Vector3(
                 child.GetComponent<PuzzleScript>().FinalPosition.x,
                 child.GetComponent<PuzzleScript>().FinalPosition.y,

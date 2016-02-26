@@ -1762,16 +1762,10 @@
 	"mge/util/LuaLoader.hpp"
 	"mge/util/DebugHud.hpp"
 
-1456402281 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.hpp
+1456493360 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.hpp
 	<mge/core/AbstractGame.hpp>
 	<SFML/Graphics.hpp>
 	<vector>
-	<BulletCollision\BroadphaseCollision\btBroadphaseInterface.h>
-	<BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h>
-	<BulletCollision\CollisionDispatch\btCollisionDispatcher.h>
-	<BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h>
-	<BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h>
-	<BulletCollision\BroadphaseCollision\btDbvtBroadphase.h>
 
 1456402281 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\abstractbehaviour.cpp
 	<cassert>
@@ -1967,7 +1961,7 @@
 	"mge/core/Texture.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 
-1456483867 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
+1456493360 source:e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
 	<glm.hpp>
 	<iostream>
 	<string>
@@ -1990,6 +1984,7 @@
 	"mge/util/DebugHud.hpp"
 	"mge/config.hpp"
 	"mge/MGEDemo.hpp"
+	"mge/core/PhysicsWorld.hpp"
 	<SFML/Audio.hpp>
 
 1456402281 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\debughud.hpp
@@ -3242,7 +3237,7 @@
 	<algorithm>
 	<iostream>
 
-1456405892 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.hpp
+1456493360 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.hpp
 	"mge/core/Mesh.hpp"
 	"mge/behaviours/AbstractBehaviour.hpp"
 	<SFML/Graphics.hpp>
@@ -3316,6 +3311,14 @@
 	"PhysicsWorld.hpp"
 
 1456489950 d:\school\project\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\physicsworld.hpp
+	<BulletCollision\BroadphaseCollision\btBroadphaseInterface.h>
+	<BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h>
+	<BulletCollision\CollisionDispatch\btCollisionDispatcher.h>
+	<BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h>
+	<BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h>
+	<BulletCollision\BroadphaseCollision\btDbvtBroadphase.h>
+
+1456493360 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\physicsworld.hpp
 	<BulletCollision\BroadphaseCollision\btBroadphaseInterface.h>
 	<BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h>
 	<BulletCollision\CollisionDispatch\btCollisionDispatcher.h>

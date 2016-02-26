@@ -134,7 +134,7 @@ int AddInteractiveModel(lua_State * lua)
 
     GO->setTransform(currentMatrix);
 
-    KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,finalMatrix,GO);
+    KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,textureMaterial,finalMatrix,GO);
 
     std::cout << currentMatrix << std::endl;
     std::cout << finalMatrix << std::endl;

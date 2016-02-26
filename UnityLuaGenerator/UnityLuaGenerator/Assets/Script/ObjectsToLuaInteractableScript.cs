@@ -56,7 +56,7 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
             file.WriteLine("AddInteractiveModel('" +
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +
-                "" + "'," + /*TEXTURE*/
+				texture + "'," + /*TEXTURE*/
                 child.gameObject.transform.localToWorldMatrix.m00 + "," +
                 child.gameObject.transform.localToWorldMatrix.m10 + "," +
                 child.gameObject.transform.localToWorldMatrix.m20 + "," +

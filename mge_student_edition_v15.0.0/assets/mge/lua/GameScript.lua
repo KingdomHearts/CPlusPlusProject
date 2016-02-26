@@ -1,8 +1,8 @@
---playSubtitleScript = Dialog script 
+--playSubtitleScript = Dialog script
 --playSubtitleScript = Audio file
 
---AddSound("ALL","Lobby_Music_Loop.wav",true,0,"NULL",100,false,1,10,"NULL")
-loaded = false;
+AddSound("ALL","Lobby_Music_Loop.wav",true,0,"NULL",100,false,1,10,"NULL")
+loaded = true;
 
 state = "reception"
 pickedUpFred = false
@@ -20,18 +20,18 @@ player_Opendoor = false
 --Update
 function update()
 	if(loaded == true) then
-		--PlaySound("Lobby_Music_Loop.wav")
+		PlaySound("Lobby_Music_Loop.wav")
 		loaded = false
 	end
   OpenHud()
   OpenDoor()
   PickUp()
   PlaceDown()
-  
+
 	if(state == "reception")then
 		BeginGame()
 	end
-	
+
 	if(state == "Fred") then
 		if(pickedUpFred == true) then
 			pickedUpFred()
@@ -59,25 +59,25 @@ end
 function OpenHud()
 	if (eventFred == "F") then
 		FredHud(true)
-    
+
 	else
 		FredHud(false)
 	end
   end
-  
+
  function OpenDoor()
 	if (player_Opendoor) then
 		OpenDoor("DoorThatYouWant")
 	end
  end
-  
+
 function PickUp()
 	if (player_PicksUp) then
 		Destroy("Object", "World")
 		Spawn("Object", "Inventory") -- PickUpModel ("Object")
 	end
  end
-  
+
 function PlaceDown()
 	if (player_PlaceDown) then
 		Destroy("Object", "Inventory")

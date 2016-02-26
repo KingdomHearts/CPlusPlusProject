@@ -2014,16 +2014,10 @@
 	"mge/util/LuaLoader.hpp"
 	"mge/util/DebugHud.hpp"
 
-1456417283 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.hpp
+1456503962 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.hpp
 	<mge/core/AbstractGame.hpp>
 	<SFML/Graphics.hpp>
 	<vector>
-	<BulletCollision\BroadphaseCollision\btBroadphaseInterface.h>
-	<BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h>
-	<BulletCollision\CollisionDispatch\btCollisionDispatcher.h>
-	<BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h>
-	<BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h>
-	<BulletCollision\BroadphaseCollision\btDbvtBroadphase.h>
 
 1456397126 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\abstractbehaviour.cpp
 	<cassert>
@@ -2070,7 +2064,7 @@
 1456397126 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\rotatingbehaviour.hpp
 	"mge/behaviours/AbstractBehaviour.hpp"
 
-1456497143 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\abstractgame.cpp
+1456503958 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\abstractgame.cpp
 	"AbstractGame.hpp"
 	<iostream>
 	"mge/core/Timer.hpp"
@@ -2085,14 +2079,14 @@
 
 1456397126 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\renderer.hpp
 
-1456488428 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
+1456503958 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\world.hpp
 	<vector>
 	"mge/core/Mesh.hpp"
 	"mge/core/GameObject.hpp"
 	"mge/util/Audio.hpp"
 	"mge/util/LuaLoader.hpp"
 
-1456397126 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\camera.cpp
+1456503962 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\camera.cpp
 	<iostream>
 	<glm.hpp>
 	"mge/core/Camera.hpp"
@@ -2208,7 +2202,7 @@
 	"mge/core/Texture.hpp"
 	"mge/materials/AbstractMaterial.hpp"
 
-1456498246 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
+1456503962 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\mgedemo.cpp
 	<glm.hpp>
 	<iostream>
 	<string>
@@ -2231,6 +2225,7 @@
 	"mge/util/DebugHud.hpp"
 	"mge/config.hpp"
 	"mge/MGEDemo.hpp"
+	"mge/core/PhysicsWorld.hpp"
 	<SFML/Audio.hpp>
 
 1455272717 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\orbitbehaviour.hpp
@@ -2239,11 +2234,11 @@
 	"mge/behaviours/LookAt.hpp"
 	<iostream>
 
-1456496706 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\debughud.hpp
+1456503958 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\debughud.hpp
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1456496877 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\debughud.cpp
+1456503958 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\debughud.cpp
 	<cassert>
 	<iostream>
 	<cstdio>
@@ -2287,7 +2282,7 @@
 
 1455184588 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\assetloader.hpp
 
-1456489554 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.hpp
+1456503958 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.hpp
 	<string>
 	<vector>
 	"mge/core/Mesh.hpp"
@@ -2295,7 +2290,7 @@
 	"luainc.h"
 	"mge/util/Audio.hpp"
 
-1456503615 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
+1456503962 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\util\lualoader.cpp
 	"LuaLoader.hpp"
 	"mge/config.hpp"
 	<iostream>
@@ -3288,7 +3283,7 @@
 	<algorithm>
 	<iostream>
 
-1456418522 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.hpp
+1456503962 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.hpp
 	"mge/core/Mesh.hpp"
 	"mge/behaviours/AbstractBehaviour.hpp"
 	<SFML/Graphics.hpp>
@@ -3301,7 +3296,7 @@
 	<algorithm>
 	<list>
 
-1456418522 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.cpp
+1456503962 source:d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\behaviours\keyboardbehaviour.cpp
 	"KeyboardBehaviour.hpp"
 	<cassert>
 	<algorithm>
@@ -3319,6 +3314,14 @@
 	<BulletCollision\BroadphaseCollision\btDbvtBroadphase.h>
 
 1456493360 e:\saxion gtp\q7\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\physicsworld.hpp
+	<BulletCollision\BroadphaseCollision\btBroadphaseInterface.h>
+	<BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h>
+	<BulletCollision\CollisionDispatch\btCollisionDispatcher.h>
+	<BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h>
+	<BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h>
+	<BulletCollision\BroadphaseCollision\btDbvtBroadphase.h>
+
+1456503962 d:\github\cplusplusproject\mge_student_edition_v15.0.0\src\mge\core\physicsworld.hpp
 	<BulletCollision\BroadphaseCollision\btBroadphaseInterface.h>
 	<BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h>
 	<BulletCollision\CollisionDispatch\btCollisionDispatcher.h>

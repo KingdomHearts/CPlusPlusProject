@@ -43,7 +43,7 @@ void MGEDemo::initialize() {
     AbstractGame::initialize();
 
     //AssetList = new std::vector<Mesh>();
-    PhysicsWorld::GetInstance();
+    //PhysicsWorld::GetInstance();
     //setup the custom part
 	cout << "Initializing HUD" << endl;
 	_hud = new DebugHud(_window);

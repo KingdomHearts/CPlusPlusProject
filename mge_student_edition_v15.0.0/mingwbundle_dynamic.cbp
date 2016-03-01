@@ -24,6 +24,7 @@
 					<Add directory="obj/Debug/src/mge/behaviours" />
 					<Add directory="src/mge/util" />
 					<Add directory="../../../Google Drive/C++ Project/Technical/Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib" />
+					<Add directory="src/mge" />
 				</Compiler>
 				<Linker>
 					<Add library="glew32" />
@@ -66,6 +67,8 @@
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/mge/MGEDemo.cpp" />
 		<Unit filename="src/mge/MGEDemo.hpp" />
+		<Unit filename="src/mge/PlayerProgress.cpp" />
+		<Unit filename="src/mge/PlayerProgress.h" />
 		<Unit filename="src/mge/behaviours/AbstractBehaviour.cpp" />
 		<Unit filename="src/mge/behaviours/AbstractBehaviour.hpp" />
 		<Unit filename="src/mge/behaviours/KeyboardBehaviour.cpp" />

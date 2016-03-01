@@ -47,6 +47,7 @@
 		<Unit filename="assets/mge/lua/GameScript.lua" />
 		<Unit filename="assets/mge/lua/Introduction.lua" />
 		<Unit filename="assets/mge/lua/Runtime.lua" />
+		<Unit filename="assets/mge/lua/SaveGames.txt" />
 		<Unit filename="assets/mge/lua/SoundLoader.lua" />
 		<Unit filename="assets/mge/lua/TestLua.lua" />
 		<Unit filename="assets/mge/lua/test.lua" />

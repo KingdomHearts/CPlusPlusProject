@@ -6,6 +6,8 @@
 //#include "Mesh.hpp"
 #include <vector>
 
+#include "mge/PlayerProgress.h"
+#include "mge/core/Camera.hpp"
 
 
 class Swapper;
@@ -32,6 +34,8 @@ class MGEDemo: public AbstractGame
 		DebugHud* _hud;                   //hud display
 		//std::vector<Mesh> * AssetList;
 
+		PlayerProgress * _playerProgress;
+		Camera* _camera;
 
         void _updateHud();
 };

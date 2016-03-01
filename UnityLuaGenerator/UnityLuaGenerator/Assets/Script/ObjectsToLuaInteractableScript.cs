@@ -26,8 +26,14 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
         foreach (Transform child in transform)
         {
             string texture = "";
+            float sizeX = 0;
+            float sizeY = 0;
+            float sizeZ = 0;
             if (child.gameObject.GetComponentInChildren<Renderer>())
             {
+                sizeX = child.gameObject.GetComponentInChildren<Renderer>().bounds.size.x;
+                sizeY = child.gameObject.GetComponentInChildren<Renderer>().bounds.size.y;
+                sizeZ = child.gameObject.GetComponentInChildren<Renderer>().bounds.size.z;
                 if (child.gameObject.GetComponentInChildren<Renderer>().material.mainTexture)
                 {
                     texture = child.gameObject.GetComponentInChildren<Renderer>().material.mainTexture.name;
@@ -57,6 +63,9 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +
 				texture + "'," + /*TEXTURE*/
+                sizeX + "," +
+                sizeY + "," +
+                sizeZ + "," +
                 child.gameObject.transform.localToWorldMatrix.m00 + "," +
                 child.gameObject.transform.localToWorldMatrix.m10 + "," +
                 child.gameObject.transform.localToWorldMatrix.m20 + "," +

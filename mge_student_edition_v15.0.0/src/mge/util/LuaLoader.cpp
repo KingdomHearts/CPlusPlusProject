@@ -43,6 +43,7 @@ bool DialogIsRunning = true;
 timer t;
 Audio * _audio = new Audio("",0);
 int waitSeconds = 0;
+GameObject Fred;
 //std::vector<DialogStruct> * dialogList = new std::vector<DialogStruct>();
 //std::vector<int> waitTimesList;
 //std::vector<int> DialogNumberList;
@@ -70,6 +71,9 @@ int AddInteractiveModel(lua_State * lua)
     std::string IDname;
     std::string Model;
     std::string Texture;
+    float sizeX;
+    float sizeY;
+    float sizeZ;
     std::string sPosition;
     glm::vec3 vPosition;
     std::string sRotation;
@@ -77,15 +81,21 @@ int AddInteractiveModel(lua_State * lua)
 
 
 
-    if (lua_isstring(lua, -35)) {
-		IDname = lua_tostring(lua, -35);
+    if (lua_isstring(lua, -38)) {
+		IDname = lua_tostring(lua, -38);
 	}
-    if (lua_isstring(lua, -34)) {
-		Model = lua_tostring(lua, -34);
+    if (lua_isstring(lua, -37)) {
+		Model = lua_tostring(lua, -37);
 	}
-	if (lua_isstring(lua, -33)) {
-		Texture= lua_tostring(lua, -33);
+	if (lua_isstring(lua, -36)) {
+		Texture= lua_tostring(lua, -36);
 	}
+    sizeX = lua_tonumber(lua, -35);
+    std::cout << sizeX << std::endl;
+    sizeY = lua_tonumber(lua, -34);
+    std::cout << sizeY << std::endl;
+    sizeZ= lua_tonumber(lua, -33);
+    std::cout << sizeZ << std::endl;
 	float cm[16];
 	for (int i=0; i<16; i++) {
         cm[i] = lua_tonumber(lua, -((31-i)+1));
@@ -363,6 +373,23 @@ int Dialog(lua_State * lua)
 int FredHud(lua_State * lua)
 {
     bool FredHud = lua_toboolean(lua,-1);
+    /**
+    if(FredHud){
+
+        Mesh* mesh = Mesh::load("mge/models/Door.obj");
+        AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load ("mge/textures/bricks.jpg"));
+
+        GameObject* GO = new GameObject ("Fred", glm::vec3(0,0,0));
+        GO->setMesh (mesh);
+        GO->setMaterial(textureMaterial);
+        Fred = GO;
+        World::GetInstance()->add(GO);
+
+    }else{
+        World::GetInstance()->remove("Fred");
+    }
+    /**/
+
     return 0;
 }
 

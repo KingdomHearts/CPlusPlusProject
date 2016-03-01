@@ -55,13 +55,15 @@ void MGEDemo::_initializeScene()
 {
     //SCENE SETUP
     /**/
-    LuaLoader * LL = new LuaLoader("","");
-    LL->LoadAllInteractiveModels();
-    LL->LoadAllModels();
+    //LuaLoader * LL = new LuaLoader("","");
+    //LL->LoadAllInteractiveModels();
+    //LL->LoadAllModels();
     /**/
 
-    MainHall *mainHall = new MainHall("MainHall");
-    _world->add(mainHall);
+    //MainHall *mainHall = new MainHall("MainHall");
+    //_world->add(mainHall);
+
+    GameObject * emptyGameObject = new GameObject("Empty");
 
     GameObject * emptyGameObject = new GameObject("Empty");
 

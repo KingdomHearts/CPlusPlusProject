@@ -63,19 +63,34 @@ void MGEDemo::_initializeScene()
     MainHall *mainHall = new MainHall("MainHall");
     _world->add(mainHall);
 
+    GameObject * emptyGameObject = new GameObject("Empty");
+
     GameObject * CameraPositionTarget = new GameObject("EmptyCamera",glm::vec3(0,0,10));
     CameraPositionTarget->setBehaviour(KeyboardBehaviour::GetInstance());
     _world->add(CameraPositionTarget);
 
-    Camera* camera = new Camera ("camera", glm::vec3(0,3,0));
-    camera->setBehaviour(new MouseBehaviour (CameraPositionTarget,camera, 10.0f));
-    _world->add(camera);
-    _world->setMainCamera(camera);
+    _camera = new Camera ("camera", glm::vec3(0,3,0));
+    _camera->setBehaviour(new MouseBehaviour (CameraPositionTarget,_camera, 10.0f));
+    _camera->setParent(emptyGameObject);
+    _world->add(_camera);
+    _world->setMainCamera(_camera);
 }
 
 void MGEDemo::_render() {
     AbstractGame::_render();
     _updateHud();
+
+       //std::cout << "G: " << _camera->getChildCount() << std::endl;
+       //std::cout << "L: " << _camera->getParent()->getLocalPosition() << std::endl;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+    {
+        _playerProgress->SaveGame("TestPlayer",_camera->getWorldPosition());
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
+    {
+       _camera->getParent()->setLocalPosition(_playerProgress->LoadGame());
+    }
 
     //_world->renderDebugInfo();
 }

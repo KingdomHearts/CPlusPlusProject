@@ -66,26 +66,29 @@ int Print(lua_State * lua)
 
 int AddInteractiveModel(lua_State * lua)
 {
-    std::cout << "AddInteractiveModel start"  << std::endl;
+    std::cout << "AddInteractiveModel start" << std::endl;
     std::string IDname;
     std::string Model;
     std::string Texture;
-    std::string sPosition;
-    glm::vec3 vPosition;
-    std::string sRotation;
-    float fRotation;
+    float sizeX;
+    float sizeY;
+    float sizeZ;
 
-
-
-    if (lua_isstring(lua, -35)) {
-		IDname = lua_tostring(lua, -35);
+    if (lua_isstring(lua, -38)) {
+		IDname = lua_tostring(lua, -38);
 	}
-    if (lua_isstring(lua, -34)) {
-		Model = lua_tostring(lua, -34);
+    if (lua_isstring(lua, -37)) {
+		Model = lua_tostring(lua, -37);
 	}
-	if (lua_isstring(lua, -33)) {
-		Texture= lua_tostring(lua, -33);
+	if (lua_isstring(lua, -36)) {
+		Texture= lua_tostring(lua, -36);
 	}
+    sizeX = lua_tonumber(lua, -35);
+    std::cout << sizeX  << std::endl;
+    sizeY = lua_tonumber(lua, -34);
+    std::cout << sizeY  << std::endl;
+    sizeZ = lua_tonumber(lua, -33);
+    std::cout << sizeZ  << std::endl;
 	float cm[16];
 	for (int i=0; i<16; i++) {
         cm[i] = lua_tonumber(lua, -((31-i)+1));
@@ -136,13 +139,7 @@ int AddInteractiveModel(lua_State * lua)
 
     KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,textureMaterial,finalMatrix,GO);
 
-    std::cout << currentMatrix << std::endl;
-    std::cout << finalMatrix << std::endl;
-
-
-    std::cout << World::GetInstance()->MeshList.size() << std::endl;
-
-    std::cout << "AddInteractiveModel end"  << std::endl;
+    std::cout << "AddInteractiveModel end -> " << IDname << std::endl;
 
     return 0;
 
@@ -155,20 +152,25 @@ int AddModel(lua_State * lua)
     std::string IDname;
     std::string Model;
     std::string Texture;
-    std::string sPosition;
-    glm::vec3 vPosition;
-    std::string sRotation;
-    float fRotation;
+    float sizeX;
+    float sizeY;
+    float sizeZ;
 
-    if (lua_isstring(lua, -19)) {
-		IDname = lua_tostring(lua, -19);
+    if (lua_isstring(lua, -22)) {
+		IDname = lua_tostring(lua, -22);
 	}
-    if (lua_isstring(lua, -18)) {
-		Model = lua_tostring(lua, -18);
+    if (lua_isstring(lua, -21)) {
+		Model = lua_tostring(lua, -21);
 	}
-	if (lua_isstring(lua, -17)) {
-		Texture= lua_tostring(lua, -17);
+	if (lua_isstring(lua, -20)) {
+		Texture= lua_tostring(lua, -20);
 	}
+    sizeX = lua_tonumber(lua, -19);
+    std::cout << sizeX  << std::endl;
+    sizeY = lua_tonumber(lua, -18);
+    std::cout << sizeY  << std::endl;
+    sizeZ = lua_tonumber(lua, -17);
+    std::cout << sizeZ  << std::endl;
 	float m[16];
 	for (int i=0; i<16; i++) {
         m[i] = lua_tonumber(lua, -((15-i)+1));
@@ -196,7 +198,7 @@ int AddModel(lua_State * lua)
     matrix[2][0] *= -1;
     matrix[3][0] *= -1;
     GO->setTransform(matrix);
-    std::cout << "AddModel end"  << std::endl;
+    std::cout << "AddModel end -> " << IDname << std::endl;
 
     return 0;
 

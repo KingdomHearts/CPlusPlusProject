@@ -2,25 +2,46 @@
 #include <glm/gtx/string_cast.hpp>
 #include <iostream>
 #include <fstream>
+#include "luainc.h"
 
+PlayerProgress* PlayerProgress::PlayerProgressInstance = NULL;
 PlayerProgress::PlayerProgress()
 {
     //ctor
 }
 
-void PlayerProgress::SaveGame(std::string pSaveName, glm::vec3 pPosition)
+
+PlayerProgress* PlayerProgress::GetInstance()
 {
+    if (PlayerProgress::PlayerProgressInstance == NULL)
+        PlayerProgress::PlayerProgressInstance = new PlayerProgress();
+
+    return PlayerProgress::PlayerProgressInstance;
+}
+
+void PlayerProgress::SaveGame()
+{
+    /**
     std::ofstream myfile;
     myfile.open ("mge/lua/SaveGames.txt");
     myfile << "SaveName=" << pSaveName;
     myfile << "=>X=" << pPosition.x;
     myfile << "=>Y=" << pPosition.y;
     myfile << "=>Z=" << pPosition.z;
+    **/
+    std::ofstream myfile;
+    myfile.open("mge/lua/SaveGames.lua");
+    //std::cout << SaveName << std::endl;
+    myfile << "SaveName = " <<"'" << SaveName << "'" << "\n";
+    myfile << "X = " << Position.x << "\n";
+    myfile << "Y = " << Position.y << "\n";
+    myfile << "Z = " << Position.z << "\n";
 }
 
 
 glm::vec3 PlayerProgress::LoadGame()
 {
+    /**
     std::vector<std::string> saveGameStingList;
   std::string line;
 	std::ifstream myfile ("mge/lua/SaveGames.txt");
@@ -68,6 +89,21 @@ glm::vec3 PlayerProgress::LoadGame()
     float z = std::stof(SaveString[3]);
 
     return glm::vec3(x,y,z);
+    **/
+    lua_State * lua = luaL_newstate();
+    luaL_openlibs(lua);
+	luaL_loadfile(lua,"mge/lua/SaveGames.lua");
+	lua_call(lua,0,0);
+    lua_getglobal(lua,"SaveName");
+    std::string SaveName = lua_tostring(lua,lua_gettop( lua ));
+    lua_getglobal(lua,"X");
+    int x = lua_tonumber(lua,lua_gettop( lua ));
+    lua_getglobal(lua,"Y");
+    int y = lua_tonumber(lua,lua_gettop( lua ));
+    lua_getglobal(lua,"Z");
+    int z = lua_tonumber(lua,lua_gettop( lua ));
+
+    return glm::vec3(x,y-3,z);
 }
 
 PlayerProgress::~PlayerProgress()

@@ -28,7 +28,7 @@ class MouseBehaviour : public AbstractBehaviour
         void RaycastTest();
 
         // position
-        glm::vec3 _position = glm::vec3( 0, 3, -3 );
+        glm::vec3 _position = glm::vec3( 0, 3, 10 );
         // horizontal angle : toward -Z
         float _horizontalAngle = 3.14f;
         // vertical angle : 0, look at the horizon

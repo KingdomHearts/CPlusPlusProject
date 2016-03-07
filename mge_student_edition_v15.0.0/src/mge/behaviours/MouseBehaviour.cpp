@@ -5,15 +5,15 @@
 #include "mge/core/Timer.hpp"
 
 // position
-    glm::vec3 position = glm::vec3( 0, 10, -5 );
+    glm::vec3 position = glm::vec3( 0, 3, -3 );
     // horizontal angle : toward -Z
-    float horizontalAngle = 0.0f;
+    float horizontalAngle = 3.14f;
     // vertical angle : 0, look at the horizon
-    float verticalAngle = -1.5f;
+    float verticalAngle = 0.0f;
     // Initial Field of View
     float initialFoV = 0.0f;
 
-    float speed = 3.0f; // 3 units / second
+    float speed = 5.0f; // 3 units / second
     float mouseSpeed = 0.05f;
     bool startup = true;
     sf::Vector2i mousePos;
@@ -89,6 +89,7 @@ void MouseBehaviour::Looking()
 
     // Compute new orientation
     horizontalAngle += mouseSpeed * Timer::deltaTime() * float(width /2 - mousePos.x );
+    std::cout << horizontalAngle << std::endl;
     verticalAngle   += mouseSpeed * Timer::deltaTime() * float(height/2 - mousePos.y );
 
 

@@ -98,6 +98,26 @@ void Audio::PlaySound(std::string pFilename)
                 {
                     audio->SetAttenuation(i->sSetAttenuation);
                     audio->SetMinDistance(i->sMinDistance);
+
+                    std::string nestedString = i->sObject;
+                    std::string splitter = ",";
+                    size_t pos = 0;
+                    std::string token;
+                    std::vector<std::string> stringNumbers;
+                    while ((pos = nestedString.find(splitter)) != std::string::npos)
+                    {
+                    token = nestedString.substr(0, pos);
+                    nestedString.erase(0, pos + splitter.length());
+                    stringNumbers.push_back(token);
+                    }
+                    stringNumbers.push_back(nestedString);
+
+
+                    //float x = std::stof(stringNumbers[0]);
+                    //float y = std::stof(stringNumbers[0]);
+                    //float z = std::stof(stringNumbers[0]);
+
+                   // audio->SetPosition(glm::vec3(x,y,z));
                     // Object for 3d position
                 }
                 cFileName = pFilename;

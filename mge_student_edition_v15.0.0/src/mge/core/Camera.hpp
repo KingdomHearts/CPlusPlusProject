@@ -16,6 +16,7 @@ class Camera : public GameObject
             glm::vec3 pPosition = glm::vec3( 0.0f, 3.0f, 5.0f ),
             glm::mat4 pProjectionMatrix = glm::perspective (glm::radians(60.0f), 4.0f/3.0f, 0.1f, 1000.0f  )
         );
+        glm::mat4 ViewMatrix;
 
 		virtual ~Camera();
 

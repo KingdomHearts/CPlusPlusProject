@@ -20,12 +20,26 @@ class MouseBehaviour : public AbstractBehaviour
     private:
         GameObject* _cameraPosition;
         float _distance;
-        GameObject* _emptyCameraParent;
-        GameObject* _emptyChild;
+        //GameObject* _emptyCameraParent;
+        //GameObject* _emptyChild;
         Camera* _camera;
 
         void Looking();
         void RaycastTest();
+
+        // position
+        glm::vec3 _position = glm::vec3( 0, 3, -3 );
+        // horizontal angle : toward -Z
+        float _horizontalAngle = 3.14f;
+        // vertical angle : 0, look at the horizon
+        float _verticalAngle = 0.0f;
+
+        float _speed = 0.0f; // 3 units / second
+        float const _walkingSpeed = 4.0f;
+        float const _debugSpeed = 20.0f;
+        float const _mouseSpeed = 0.2f;
+        bool _startup = true;
+        sf::Vector2i _mousePos;
 };
 
 #endif // ORBITBEHAVIOUR_H

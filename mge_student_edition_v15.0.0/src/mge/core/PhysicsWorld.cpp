@@ -30,4 +30,78 @@ PhysicsWorld* PhysicsWorld::GetInstance()
     return PhysicsWorld::physicsWorldInstance;
 }
 
+void PhysicsWorld::AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ, glm::vec4 pRotation, glm::vec3 pPosition, GameObject* pGO)
+{
+    btCollisionShape* boxCollisionShape = new btBoxShape(btVector3(pSizeX, pSizeY, pSizeZ));
+        btDefaultMotionState* motionstate = new btDefaultMotionState(btTransform(
+        btQuaternion(pRotation.x, pRotation.y, pRotation.z, pRotation.w),
+        btVector3(pPosition.x, pPosition.y, pPosition.z)
+    ));
+
+    btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(
+        0,                  // mass, in kg. 0 -> Static object, will never move.
+        motionstate,
+        boxCollisionShape,  // collision shape of body
+        btVector3(0,0,0)    // local inertia
+    );
+
+    pGO->RigidBody =new btRigidBody(rigidBodyCI);
+    pGO->RigidBody->setUserPointer(pGO);
+
+    DynamicsWorld->addRigidBody(pGO->RigidBody);
+}
+
+void PhysicsWorld::ScreenPosToWorldRay(Camera* pCamera)
+{
+
+    // The ray Start and End positions, in Normalized Device Coordinates (Have you read Tutorial 4 ?)
+    glm::vec4 lRayStart_NDC(
+        ((float)sf::Mouse::getPosition().x/(float)sf::VideoMode::getDesktopMode().width - 0.5f) * 2.0f, // [0,1024] -> [-1,1]
+        ((float)sf::Mouse::getPosition().y/(float)sf::VideoMode::getDesktopMode().height - 0.5f) * 2.0f, // [0, 768] -> [-1,1]
+        -1.0, // The near plane maps to Z=-1 in Normalized Device Coordinates
+        1.0f
+    );
+    glm::vec4 lRayEnd_NDC(
+        ((float)sf::Mouse::getPosition().x/(float)sf::VideoMode::getDesktopMode().width  - 0.5f) * 2.0f,
+        ((float)sf::Mouse::getPosition().y/(float)sf::VideoMode::getDesktopMode().height - 0.5f) * 2.0f,
+        0.0,
+        1.0f
+    );
+
+    // Faster way (just one inverse)
+    glm::mat4 M = glm::inverse(pCamera->getProjection() * pCamera->ViewMatrix);
+    glm::vec4 lRayStart_world = M * lRayStart_NDC; lRayStart_world/=lRayStart_world.w;
+    glm::vec4 lRayEnd_world   = M * lRayEnd_NDC  ; lRayEnd_world  /=lRayEnd_world.w;
+
+    glm::vec3 lRayDir_world(lRayEnd_world - lRayStart_world);
+    lRayDir_world = glm::normalize(lRayDir_world);
+
+    Raycast();
+}
+
+void PhysicsWorld::Raycast()
+{
+    /**
+    glm::vec3 out_end = out_origin + out_direction*1000.0f;
+
+     btCollisionWorld::ClosestRayResultCallback RayCallback(
+        btVector3(out_origin.x, out_origin.y, out_origin.z),
+        btVector3(out_end.x, out_end.y, out_end.z)
+     );
+     DynamicsWorld->rayTest(
+        btVector3(out_origin.x, out_origin.y, out_origin.z),
+        btVector3(out_end.x, out_end.y, out_end.z),
+        RayCallback
+     );
+
+     if(RayCallback.hasHit()) {
+        std::ostringstream oss;
+        oss << "mesh " << (int)RayCallback.m_collisionObject->getUserPointer();
+        message = oss.str();
+     }else{
+        message = "background";
+     }
+     /**/
+}
+
 

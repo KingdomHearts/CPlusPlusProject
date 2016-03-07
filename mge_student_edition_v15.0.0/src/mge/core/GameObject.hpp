@@ -5,6 +5,8 @@
 #include <string>
 #include <iostream>
 #include <glm.hpp>
+#include "mge/core/GameObject.hpp"
+#include <BulletDynamics/Dynamics/btRigidBody.h>
 
 class AbstractCollider;
 class AbstractBehaviour;
@@ -71,6 +73,7 @@ class GameObject
         int getChildCount();
         GameObject* getChildAt (int pIndex);
 
+        btRigidBody *RigidBody;
 	protected:
 		std::string _name;
 		glm::mat4 _transform;

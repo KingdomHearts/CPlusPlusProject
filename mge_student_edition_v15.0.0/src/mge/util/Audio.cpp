@@ -25,7 +25,7 @@ Audio::Audio(std::string pFilename, int pLayer)
             //file is loaded
         }
         _sound.setBuffer(_audioBuffer);
-        //_sound.play();
+        _sound.play();
     }
     else if (pLayer == 1)
     {
@@ -130,6 +130,7 @@ void Audio::PlaySound(std::string pFilename)
                 cFileName = pFilename;
                 _playingAudio.push_back(audio);
                 std::cout << i->sFileName << std::endl;
+
             }
 
         }

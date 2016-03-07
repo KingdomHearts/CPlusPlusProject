@@ -317,7 +317,6 @@ void LuaLoader::LoadAllDialogs()
 int PlaySound(lua_State * lua)
 {
     _audio->PlaySound(lua_tostring(lua,-1));
-    std::cout << "pizza salami" << std::endl;
     return 0;
 }
 int StopSound(lua_State * lua)

@@ -25,6 +25,7 @@
 					<Add directory="src/mge/util" />
 					<Add directory="../../../Google Drive/C++ Project/Technical/Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib" />
 					<Add directory="src/mge" />
+					<Add directory="src/mge/puzzles" />
 				</Compiler>
 				<Linker>
 					<Add library="glew32" />
@@ -111,6 +112,8 @@
 		<Unit filename="src/mge/materials/ColorMaterial.hpp" />
 		<Unit filename="src/mge/materials/TextureMaterial.cpp" />
 		<Unit filename="src/mge/materials/TextureMaterial.hpp" />
+		<Unit filename="src/mge/puzzles/Rebuild.cpp" />
+		<Unit filename="src/mge/puzzles/Rebuild.h" />
 		<Unit filename="src/mge/rooms/MainHall.cpp" />
 		<Unit filename="src/mge/rooms/MainHall.h" />
 		<Unit filename="src/mge/rooms/PrehistoricExhibit.cpp" />

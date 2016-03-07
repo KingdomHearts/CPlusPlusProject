@@ -3,16 +3,22 @@
 #include <glm.hpp>
 #include <vector>
 #include "mge/core/GameObject.hpp"
+#include "mge/puzzles/Rebuild.h"
 
 class PlayerProgress
 {
     public:
+        static PlayerProgress* GetInstance();
         PlayerProgress();
-        void SaveGame(std::string pSaveName,glm::vec3 pPosition);
+        std::string SaveName;
+        glm::vec3 Position;
+        std::vector<PuzzleName> SavePuzzle;
+        void SaveGame();
         glm::vec3 LoadGame();
         virtual ~PlayerProgress();
     protected:
     private:
+        static PlayerProgress* PlayerProgressInstance;
 };
 
 #endif // PLAYERPROGRESS_H

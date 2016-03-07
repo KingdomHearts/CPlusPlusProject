@@ -37,7 +37,7 @@ class MouseBehaviour : public AbstractBehaviour
         float _speed = 0.0f; // 3 units / second
         float const _walkingSpeed = 4.0f;
         float const _debugSpeed = 20.0f;
-        float _mouseSpeed = 0.2f;
+        float const _mouseSpeed = 0.2f;
         bool _startup = true;
         sf::Vector2i _mousePos;
 };

@@ -59,15 +59,16 @@ void MGEDemo::_initializeScene()
     LL->LoadAllInteractiveModels();
     LL->LoadAllModels();
     /**/
-
+    PhysicsWorld::GetInstance();
     MainHall *mainHall = new MainHall("MainHall");
     _world->add(mainHall);
 
+    /**/
     GameObject * emptyGameObject = new GameObject("Empty");
-
     GameObject * CameraPositionTarget = new GameObject("EmptyCamera",glm::vec3(0,0,10));
     CameraPositionTarget->setBehaviour(KeyboardBehaviour::GetInstance());
     _world->add(CameraPositionTarget);
+    /**/
 
     _camera = new Camera ("camera", glm::vec3(0,3,0));
     _camera->setBehaviour(new MouseBehaviour (CameraPositionTarget,_camera, 10.0f));

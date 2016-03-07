@@ -1,6 +1,7 @@
 #include <glm.hpp>
 #include <iostream>
 #include <string>
+#include <SFML/Window.hpp>
 using namespace std;
 
 #include "mge/core/Renderer.hpp"

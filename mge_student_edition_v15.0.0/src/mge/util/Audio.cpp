@@ -25,7 +25,7 @@ Audio::Audio(std::string pFilename, int pLayer)
             //file is loaded
         }
         _sound.setBuffer(_audioBuffer);
-        _sound.play();
+        //_sound.play();
     }
     else if (pLayer == 1)
     {
@@ -112,12 +112,19 @@ void Audio::PlaySound(std::string pFilename)
                     }
                     stringNumbers.push_back(nestedString);
 
+                    if(stringNumbers.size() == 3)
+                    {
+                        float x = std::stof(stringNumbers[0]);
+                        float y = std::stof(stringNumbers[1]);
+                        float z = std::stof(stringNumbers[2]);
+                        audio->SetPosition(sf::Vector3f(x,y,z));
 
-                    //float x = std::stof(stringNumbers[0]);
-                    //float y = std::stof(stringNumbers[0]);
-                    //float z = std::stof(stringNumbers[0]);
+                    std::cout << "X: " << x << std::endl;
+                    std::cout << "Y: " << y << std::endl;
+                    std::cout << "Z: " << z << std::endl;
+                    }
 
-                   // audio->SetPosition(glm::vec3(x,y,z));
+
                     // Object for 3d position
                 }
                 cFileName = pFilename;

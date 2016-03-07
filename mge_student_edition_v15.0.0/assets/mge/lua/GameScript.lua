@@ -1,7 +1,7 @@
 --playSubtitleScript = Dialog script 
 --playSubtitleScript = Audio file
 
-AddSound("Pre","Mono_Sample.wav",true,0,"NULL",100,true,1,10,"2,0,10")
+AddSound("Pre","Mono_Sample.wav",true,0,"NULL",100,true,1,10,"0,3,-10")
 loaded = true;
 
 state = "reception"

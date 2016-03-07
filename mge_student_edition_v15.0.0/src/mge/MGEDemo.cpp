@@ -59,7 +59,7 @@ void MGEDemo::_initializeScene()
     LL->LoadAllInteractiveModels();
     LL->LoadAllModels();
     /**/
-
+    PhysicsWorld::GetInstance();
     MainHall *mainHall = new MainHall("MainHall");
     _world->add(mainHall);
 

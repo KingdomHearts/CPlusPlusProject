@@ -4,6 +4,7 @@
 #include <iostream>
 
 std::list<sf::Keyboard::Key> * KeyboardBehaviour::keysPressed = new std::list<sf::Keyboard::Key>();
+bool KeyboardBehaviour::LeftMousePressed = false;
 
 KeyboardBehaviour* KeyboardBehaviour::KeyBoardInstance = NULL;
 KeyboardBehaviour::KeyboardBehaviour():AbstractBehaviour()
@@ -34,6 +35,22 @@ bool KeyboardBehaviour::GetKeyDown(sf::Keyboard::Key key)
 	}
 	return false;
 
+}
+
+bool KeyboardBehaviour::GetLeftMouseDown()
+{
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && LeftMousePressed == false)
+    {
+        LeftMousePressed = true;
+
+        return true;
+    }
+    else if(!sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        LeftMousePressed = false;
+        return false;
+    }
+    return false;
 }
 
 KeyboardBehaviour* KeyboardBehaviour::GetInstance()

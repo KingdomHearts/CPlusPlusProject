@@ -29,7 +29,7 @@ void MouseBehaviour::update(float step)
 
 void MouseBehaviour::RaycastTest()
 {
-    if(sf::Mouse::isButtonPressed((sf::Mouse::Left)))
+    if(KeyboardBehaviour::GetLeftMouseDown())
     {
         bool Test = PhysicsWorld::GetInstance()->ScreenPosToWorldRay(_camera);
         if (Test == true)

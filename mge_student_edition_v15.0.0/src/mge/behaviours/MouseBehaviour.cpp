@@ -6,7 +6,6 @@
 #include "mge/behaviours/KeyboardBehaviour.hpp"
 
 
-
 MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, float pDistance):AbstractBehaviour()
 {
     _cameraPosition = pCameraPosition;
@@ -72,7 +71,7 @@ void MouseBehaviour::Looking()
     _verticalAngle   += _mouseSpeed * Timer::deltaTime() * float(height/2 - _mousePos.y );
 
     // Direction : Spherical coordinates to Cartesian coordinates conversion
-    glm::vec3 direction(
+    _direction = glm::vec3(
         cos(_verticalAngle) * sin(_horizontalAngle),
         sin(_verticalAngle),
         cos(_verticalAngle) * cos(_horizontalAngle)
@@ -85,24 +84,24 @@ void MouseBehaviour::Looking()
         cos(_horizontalAngle - 3.14f/2.0f)
     );
 
-    // Up vector : perpendicular to both direction and right
-    glm::vec3 up = glm::cross( right, direction );
+    // Up vector : perpendicular to both _direction and right
+    glm::vec3 up = glm::cross( right, _direction );
 
-    _owner->setTransform(glm::inverse (glm::lookAt(_position, _position+direction, up)));
-    _camera->ViewMatrix = glm::lookAt(_position, _position+direction, up);
+    _owner->setTransform(glm::inverse (glm::lookAt(_position, _position+_direction, up)));
+    _camera->ViewMatrix = glm::lookAt(_position, _position+_direction, up);
 
     /**
      * Keyboard controls
      */
 
-    direction.y = 0;
+    _direction.y = 0;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-        _position += direction * Timer::deltaTime() * _speed;
+        _position += _direction * Timer::deltaTime() * _speed;
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-        _position -= direction * Timer::deltaTime() * _speed;
+        _position -= _direction * Timer::deltaTime() * _speed;
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
@@ -112,6 +111,5 @@ void MouseBehaviour::Looking()
     {
         _position += right * Timer::deltaTime() * _speed;
     }
-
 
 }

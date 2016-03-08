@@ -40,6 +40,7 @@ class MouseBehaviour : public AbstractBehaviour
         float const _mouseSpeed = 0.2f;
         bool _startup = true;
         sf::Vector2i _mousePos;
+        glm::vec3 _direction;
 };
 
 #endif // ORBITBEHAVIOUR_H

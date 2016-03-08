@@ -1,7 +1,10 @@
 --playSubtitleScript = Dialog script 
 --playSubtitleScript = Audio file
 
-AddSound("Pre","Mono_Sample.wav",true,0,"NULL",100,true,1,10,"0,3,-10")
+AddSound("","Mono_Sample.wav",true,0,"NULL",100,true,1,10,"0,3,-10")
+AddSound("","Lobby_Music_Loop.wav",true,0,"NULL",100,true,1,10,"0,3,-10")
+AddSound("","Medieval_Music_Loop.wav",true,0,"NULL",100,true,1,10,"0,3,-10")
+AddSound("","Prehistoric_Music_Loop.wav",true,0,"NULL",100,true,1,10,"0,3,-10")
 loaded = true;
 
 state = "reception"
@@ -31,6 +34,7 @@ function update()
   PlaceDown()
   
 	if(state == "reception")then
+		PlaySound("Lobby_Music_Loop.wav")
 		BeginGame()
 	end
 	
@@ -52,6 +56,8 @@ function update()
 		StartTimer(10)
 		end
 		 if (pickedUpFred == true and goingToExhibit == true) then
+			--StopSound("Lobby_Music_Loop.wav")
+			PlaySound("Prehistoric_Music_Loop.wav")
 			 OpenExhibit()
 		 end
 		if (pickedUpFred == true and goingToExhibit == false) then
@@ -139,6 +145,7 @@ function PickedUpFred()
 	playSubtitleScript(12)
 	pickedUpFred = true
 	SetState("Exhibit");
+	goingToExhibit = true
 end
 
 function NotOpenExhibit()

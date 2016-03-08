@@ -19,9 +19,9 @@ Audio::Audio(std::string pFilename, int pLayer)
         }
         else
         {
-            std::cout << "It should work" << std::endl;
+            //std::cout << "It should work" << std::endl;
 
-            std::cout << _audioBuffer.getChannelCount() << std::endl;
+            //std::cout << _audioBuffer.getChannelCount() << std::endl;
             //file is loaded
         }
         _sound.setBuffer(_audioBuffer);
@@ -62,7 +62,7 @@ Audio::Audio(std::vector<std::string> pListFilenames)
         }
         else
         {
-            std::cout << "It should work" << std::endl;
+            //std::cout << "It should work" << std::endl;
             //file is loaded
             Audio * audio = new Audio(pFilename);
 
@@ -85,56 +85,66 @@ void Audio::SetLoop(bool pSetLoop)
 
 void Audio::PlaySound(std::string pFilename)
 {
+    bool isPlaying = false;
     if(World::GetInstance()->AudioList.size() != 0)
     {
         for (std::vector<AudioStruct>::iterator i = World::GetInstance()->AudioList.begin(); i != World::GetInstance()->AudioList.end(); ++i)
         {
-            if(i->sFileName == pFilename)
+            if(_playingAudio.size() != 0)
             {
-                Audio * audio = new Audio("mge/sounds/"+i->sFileName, i->sLayer);
-                audio->SetLoop(i->sLoop);
-                audio->SetVolume(i->sSetVolume);
-                if(i->sIs3D)
+                for (std::vector<Audio*>::iterator i = _playingAudio.begin(); i != _playingAudio.end(); i++)
                 {
-                    audio->SetAttenuation(i->sSetAttenuation);
-                    audio->SetMinDistance(i->sMinDistance);
-
-                    std::string nestedString = i->sObject;
-                    std::string splitter = ",";
-                    size_t pos = 0;
-                    std::string token;
-                    std::vector<std::string> stringNumbers;
-                    while ((pos = nestedString.find(splitter)) != std::string::npos)
+                    Audio *playingAudio = *i;
+                    std::cout << playingAudio->cFileName << std::endl;
+                    if(playingAudio->cFileName == pFilename)
                     {
-                    token = nestedString.substr(0, pos);
-                    nestedString.erase(0, pos + splitter.length());
-                    stringNumbers.push_back(token);
+                        if (playingAudio->_sound.getStatus() == playingAudio->_sound.Playing)
+                        {
+                            isPlaying = true;
+                        }
                     }
-                    stringNumbers.push_back(nestedString);
-
-                    if(stringNumbers.size() == 3)
-                    {
-                        float x = std::stof(stringNumbers[0]);
-                        float y = std::stof(stringNumbers[1]);
-                        float z = std::stof(stringNumbers[2]);
-                        audio->SetPosition(sf::Vector3f(x,y,z));
-
-                    std::cout << "X: " << x << std::endl;
-                    std::cout << "Y: " << y << std::endl;
-                    std::cout << "Z: " << z << std::endl;
-                    }
-
-
-                    // Object for 3d position
                 }
-                cFileName = pFilename;
-                _playingAudio.push_back(audio);
-                std::cout << i->sFileName << std::endl;
+            }
+            if(i->sFileName == pFilename && isPlaying == false)
+            {
+                    Audio * audio = new Audio("mge/sounds/"+i->sFileName, i->sLayer);
+                    audio->SetLoop(i->sLoop);
+                    audio->SetVolume(i->sSetVolume);
+                    if(i->sIs3D)
+                    {
+                        audio->SetAttenuation(i->sSetAttenuation);
+                        audio->SetMinDistance(i->sMinDistance);
 
+                        std::string nestedString = i->sObject;
+                        std::string splitter = ",";
+                        size_t pos = 0;
+                        std::string token;
+                        std::vector<std::string> stringNumbers;
+                        while ((pos = nestedString.find(splitter)) != std::string::npos)
+                        {
+                        token = nestedString.substr(0, pos);
+                        nestedString.erase(0, pos + splitter.length());
+                        stringNumbers.push_back(token);
+                        }
+                        stringNumbers.push_back(nestedString);
+
+                        if(stringNumbers.size() == 3)
+                        {
+                            float x = std::stof(stringNumbers[0]);
+                            float y = std::stof(stringNumbers[1]);
+                            float z = std::stof(stringNumbers[2]);
+                            audio->SetPosition(sf::Vector3f(x,y,z));
+                        }
+
+
+                        // Object for 3d position
+                    }
+                    audio->cFileName = pFilename;
+                    _playingAudio.push_back(audio);
+                }
             }
 
         }
-    }
 }
 
 void Audio::StopSound(std::string pFilename)

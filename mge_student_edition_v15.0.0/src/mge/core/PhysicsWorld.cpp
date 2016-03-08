@@ -51,7 +51,7 @@ void PhysicsWorld::AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ,
     DynamicsWorld->addRigidBody(pGO->RigidBody);
 }
 
-void PhysicsWorld::ScreenPosToWorldRay(Camera* pCamera)
+bool PhysicsWorld::ScreenPosToWorldRay(Camera* pCamera)
 {
 
     // The ray Start and End positions, in Normalized Device Coordinates (Have you read Tutorial 4 ?)
@@ -76,13 +76,19 @@ void PhysicsWorld::ScreenPosToWorldRay(Camera* pCamera)
     glm::vec3 lRayDir_world(lRayEnd_world - lRayStart_world);
     lRayDir_world = glm::normalize(lRayDir_world);
 
-    Raycast();
+    glm::vec3 lRayStart_vec3 = glm::vec3(((float)sf::Mouse::getPosition().x/(float)sf::VideoMode::getDesktopMode().width - 0.5f) * 2.0f, ((float)sf::Mouse::getPosition().y/(float)sf::VideoMode::getDesktopMode().height - 0.5f) * 2.0f, -1.0);
+
+
+    return Raycast(lRayStart_vec3, lRayDir_world);
 }
 
-void PhysicsWorld::Raycast()
+bool PhysicsWorld::Raycast(glm::vec3 out_origin, glm::vec3 out_direction)
 {
-    /**
+    /**/
+    std::cout <<"Origin Vector: " <<out_origin << std::endl;
+    std::cout <<"Direction Vector: " <<out_direction << std::endl;
     glm::vec3 out_end = out_origin + out_direction*1000.0f;
+    std::cout <<"End Vector: " <<out_end << std::endl;
 
      btCollisionWorld::ClosestRayResultCallback RayCallback(
         btVector3(out_origin.x, out_origin.y, out_origin.z),
@@ -95,11 +101,9 @@ void PhysicsWorld::Raycast()
      );
 
      if(RayCallback.hasHit()) {
-        std::ostringstream oss;
-        oss << "mesh " << (int)RayCallback.m_collisionObject->getUserPointer();
-        message = oss.str();
+        return true;
      }else{
-        message = "background";
+        return false;
      }
      /**/
 }

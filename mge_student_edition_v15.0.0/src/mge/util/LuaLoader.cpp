@@ -276,15 +276,14 @@ int ID(lua_State * lua)
     return 0;
 }
 
-int Text(lua_State * lua)
+
+
+int Load(lua_State * lua)
 {
-    DialogStruct * dialog = new DialogStruct();
-    dialog->sScreenTime = lua_tonumber(lua, -1);
-    dialog->sText = lua_tostring(lua, -2);
-    dialog->sDialogNumber = lua_tonumber(lua, -3);
-    World::GetInstance()->dialogList->push_back(*dialog);
+    //bool FredHud = lua_toboolean(lua,-1);
     return 0;
 }
+
 
 int Delay(lua_State * lua)
 {
@@ -301,16 +300,27 @@ int Music(lua_State * lua)
     return 0;
 }
 
+int Text(lua_State * lua)
+{
+    DialogStruct * dialog = new DialogStruct();
+    dialog->sScreenTime = lua_tonumber(lua, -1);
+    dialog->sText = lua_tostring(lua, -2);
+    dialog->sDialogNumber = lua_tonumber(lua, -3);
+    World::GetInstance()->dialogList->push_back(*dialog);
+    return 0;
+}
+
 void LuaLoader::LoadAllDialogs()
 {
     lua_State * dialogLua = luaL_newstate();
     luaL_openlibs(dialogLua);
-	luaL_loadfile(dialogLua,"mge/lua/Introduction.lua");
+	luaL_loadfile(dialogLua,"mge/lua/DialogueScript.lua");
 	lua_register(dialogLua,"ID",ID);
     lua_register(dialogLua,"Text",Text);
     lua_register(dialogLua,"Delay",Delay);
     lua_register(dialogLua,"Freedom",Freedom);
     lua_register(dialogLua,"Music",Music);
+    lua_register(dialogLua,"Load",Load);
     lua_call(dialogLua,0,0);
 }
 
@@ -485,12 +495,6 @@ int playSubtitleScript(lua_State * lua)
     return 0;
 }
 
-int Load(lua_State * lua)
-{
-    //bool FredHud = lua_toboolean(lua,-1);
-    return 0;
-}
-
 int StartTimer(lua_State * lua)
 {
     World::GetInstance()->maxTime = 0;
@@ -555,6 +559,7 @@ void LuaLoader::RuntimeLoader()
 	lua_register(lua,"SetState",SetState);
 	lua_register(lua,"AddSound",AddSound);
 	lua_register(lua,"PlaySound",PlaySound);
+    lua_register(lua,"StopSound",StopSound);
 	lua_register(lua,"StartTimer",StartTimer);
 	lua_register(lua,"RandomDialogAndRepeat",RandomDialogAndRepeat);
 
@@ -563,7 +568,6 @@ void LuaLoader::RuntimeLoader()
     //lua_register(lua,"Print",Print);
     //lua_register(lua,"AddSound",AddSound);
     //lua_register(lua,"PlaySound",PlaySound);
-    //lua_register(lua,"StopSound",StopSound);
 	lua_call(lua,0,0);
 
     lua_getglobal(lua,"state");

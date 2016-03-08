@@ -7,6 +7,7 @@
 #include <iostream>
 #include "mge/core/World.hpp"
 #include "mge/core/Camera.hpp"
+#include "mge/core/PhysicsWorld.hpp"
 
 class MouseBehaviour : public AbstractBehaviour
 {
@@ -23,7 +24,6 @@ class MouseBehaviour : public AbstractBehaviour
         //GameObject* _emptyCameraParent;
         //GameObject* _emptyChild;
         Camera* _camera;
-
         void Looking();
         void RaycastTest();
 
@@ -40,6 +40,7 @@ class MouseBehaviour : public AbstractBehaviour
         float const _mouseSpeed = 0.2f;
         bool _startup = true;
         sf::Vector2i _mousePos;
+        glm::vec3 _direction;
 };
 
 #endif // ORBITBEHAVIOUR_H

@@ -31,11 +31,13 @@ class KeyboardBehaviour : public AbstractBehaviour
 
         static bool GetKey(sf::Keyboard::Key);
 		static bool GetKeyDown(sf::Keyboard::Key);
+		static bool GetLeftMouseDown();
     protected:
     private:
         KeyboardBehaviour();
         std::vector<BoundMesh> BindArray;
         static KeyboardBehaviour* KeyBoardInstance;
+        static bool LeftMousePressed;
         void PickUpObject();
         void PlaceObject();
         void CreateGameObject(Mesh* pMesh,glm::mat4 pFinalPosition, std::string pIDname, int pIndex, AbstractMaterial* pTextureMaterial);

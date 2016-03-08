@@ -85,7 +85,10 @@ bool PhysicsWorld::ScreenPosToWorldRay(Camera* pCamera)
 bool PhysicsWorld::Raycast(glm::vec3 out_origin, glm::vec3 out_direction)
 {
     /**/
+    std::cout <<"Origin Vector: " <<out_origin << std::endl;
+    std::cout <<"Direction Vector: " <<out_direction << std::endl;
     glm::vec3 out_end = out_origin + out_direction*1000.0f;
+    std::cout <<"End Vector: " <<out_end << std::endl;
 
      btCollisionWorld::ClosestRayResultCallback RayCallback(
         btVector3(out_origin.x, out_origin.y, out_origin.z),

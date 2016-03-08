@@ -155,10 +155,10 @@ void Audio::StopSound(std::string pFilename)
         for (std::vector<Audio*>::iterator i = _playingAudio.begin(); i != _playingAudio.end(); i++)
         {
             Audio *playingAudio = *i;
-            if(playingAudio->cFileName == pFilename)
-            {
-                playingAudio->_sound.stop();
-            }
+			if (playingAudio->cFileName == pFilename)
+			{
+				playingAudio->_sound.stop();
+			}
         }
     }
 }

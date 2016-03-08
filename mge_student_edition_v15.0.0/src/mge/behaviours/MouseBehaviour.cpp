@@ -21,8 +21,25 @@ MouseBehaviour::~MouseBehaviour()
 void MouseBehaviour::update(float step)
 {
     Looking();
-    sf::Listener::setPosition(_owner->getLocalPosition().x,_owner->getLocalPosition().y,_owner->getLocalPosition().z);
-    sf::Listener::setDirection(_direction.x ,_direction.y, _direction.z);
+    RaycastTest();
+    sf::Listener::setPosition(_cameraPosition->getLocalPosition().x,_cameraPosition->getLocalPosition().y,_cameraPosition->getLocalPosition().z);
+    sf::Listener::setDirection(-_camera->getWorldPosition().x,0,-_camera->getWorldPosition().z);
+}
+
+void MouseBehaviour::RaycastTest()
+{
+    if(KeyboardBehaviour::GetLeftMouseDown())
+    {
+        bool Test = PhysicsWorld::GetInstance()->ScreenPosToWorldRay(_camera);
+        if (Test == true)
+        {
+            std::cout << "Hit Object" << std::endl;
+        }
+        else if (Test == false)
+        {
+            std::cout << "Nothing Hit" << std::endl;
+        }
+    }
 }
 
 void MouseBehaviour::Looking()

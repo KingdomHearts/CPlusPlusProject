@@ -56,7 +56,7 @@ function update()
 		StartTimer(10)
 		end
 		 if (pickedUpFred == true and goingToExhibit == true) then
-			--StopSound("Lobby_Music_Loop.wav")
+			StopSound("Lobby_Music_Loop.wav")
 			PlaySound("Prehistoric_Music_Loop.wav")
 			 OpenExhibit()
 		 end

@@ -176,7 +176,7 @@ int luaTimer = 0;
                             World::GetInstance()->displayText = i->sText;
                             std::cout << i->sText << std::endl;
                             int display = i->sScreenTime;
-                            sf::sleep(sf::milliseconds(display*1000));
+                            //sf::sleep(sf::milliseconds(display*1000));
                             World::GetInstance()->dialogList->erase(i);
                             World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.begin()+1);
                             if(World::GetInstance()->waitTimesList.size() > 0)

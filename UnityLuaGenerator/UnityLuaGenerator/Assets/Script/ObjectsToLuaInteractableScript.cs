@@ -67,6 +67,10 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
                 sizeX + "," +
                 sizeY + "," +
                 sizeZ + "," +
+                child.transform.rotation.x + "," +
+                child.transform.rotation.y + "," +
+                child.transform.rotation.z + "," +
+                child.transform.rotation.w + "," +
                 child.gameObject.transform.localToWorldMatrix.m00 + "," +
                 child.gameObject.transform.localToWorldMatrix.m10 + "," +
                 child.gameObject.transform.localToWorldMatrix.m20 + "," +

@@ -38,7 +38,7 @@ public class ObjectsToLuaScript : MonoBehaviour {
                     texture = Texture[0] + ".tga";
                 }
             }
-            
+
             file.WriteLine("AddModel('" +
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +
@@ -46,6 +46,10 @@ public class ObjectsToLuaScript : MonoBehaviour {
                 sizeX + "," +
                 sizeY + "," +
                 sizeZ + "," +
+                child.transform.rotation.x + "," +
+                child.transform.rotation.y + "," +
+                child.transform.rotation.z + "," +
+                child.transform.rotation.w + "," +
                 child.gameObject.transform.localToWorldMatrix.m00 + "," +
                 child.gameObject.transform.localToWorldMatrix.m10 + "," +
                 child.gameObject.transform.localToWorldMatrix.m20 + "," +

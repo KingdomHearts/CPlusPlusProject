@@ -8,6 +8,8 @@
 #include "mge/materials/AbstractMaterial.hpp"
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/core/World.hpp"
+#include "mge/core/PhysicsWorld.hpp"
+
 
 #include "mge/core/AbstractGame.hpp"
 
@@ -73,22 +75,27 @@ int AddInteractiveModel(lua_State * lua)
     float sizeX;
     float sizeY;
     float sizeZ;
+    float rotationX;
+    float rotationY;
+    float rotationZ;
+    float rotationW;
 
-    if (lua_isstring(lua, -38)) {
-		IDname = lua_tostring(lua, -38);
+    if (lua_isstring(lua, -42)) {
+		IDname = lua_tostring(lua, -42);
 	}
-    if (lua_isstring(lua, -37)) {
-		Model = lua_tostring(lua, -37);
+    if (lua_isstring(lua, -41)) {
+		Model = lua_tostring(lua, -41);
 	}
-	if (lua_isstring(lua, -36)) {
-		Texture= lua_tostring(lua, -36);
+	if (lua_isstring(lua, -40)) {
+		Texture= lua_tostring(lua, -40);
 	}
-    sizeX = lua_tonumber(lua, -35);
-    std::cout << sizeX  << std::endl;
-    sizeY = lua_tonumber(lua, -34);
-    std::cout << sizeY  << std::endl;
-    sizeZ = lua_tonumber(lua, -33);
-    std::cout << sizeZ  << std::endl;
+    sizeX = lua_tonumber(lua, -39);
+    sizeY = lua_tonumber(lua, -38);
+    sizeZ = lua_tonumber(lua, -37);
+    rotationX = lua_tonumber(lua, -36);
+    rotationY = lua_tonumber(lua, -35);
+    rotationZ = lua_tonumber(lua, -34);
+    rotationW = lua_tonumber(lua, -33);
 	float cm[16];
 	for (int i=0; i<16; i++) {
         cm[i] = lua_tonumber(lua, -((31-i)+1));
@@ -138,7 +145,7 @@ int AddInteractiveModel(lua_State * lua)
     GO->setTransform(currentMatrix);
 
     KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,textureMaterial,finalMatrix,GO);
-    PhysicsWorld::GetInstance()->AddColliderToObject(sizeX, sizeY, sizeZ, glm::vec3(0,0,0) ,GO->getWorldPosition())
+    PhysicsWorld::GetInstance()->AddColliderToObject(sizeX, sizeY, sizeZ, glm::vec4(rotationX, rotationY, rotationZ, rotationW) ,GO->getWorldPosition(), GO);
 
     std::cout << "AddInteractiveModel end -> " << IDname << std::endl;
 
@@ -156,22 +163,27 @@ int AddModel(lua_State * lua)
     float sizeX;
     float sizeY;
     float sizeZ;
+    float rotationX;
+    float rotationY;
+    float rotationZ;
+    float rotationW;
 
-    if (lua_isstring(lua, -22)) {
-		IDname = lua_tostring(lua, -22);
+    if (lua_isstring(lua, -26)) {
+		IDname = lua_tostring(lua, -26);
 	}
-    if (lua_isstring(lua, -21)) {
-		Model = lua_tostring(lua, -21);
+    if (lua_isstring(lua, -25)) {
+		Model = lua_tostring(lua, -25);
 	}
-	if (lua_isstring(lua, -20)) {
-		Texture= lua_tostring(lua, -20);
+	if (lua_isstring(lua, -24)) {
+		Texture= lua_tostring(lua, -24);
 	}
-    sizeX = lua_tonumber(lua, -19);
-    std::cout << sizeX  << std::endl;
-    sizeY = lua_tonumber(lua, -18);
-    std::cout << sizeY  << std::endl;
-    sizeZ = lua_tonumber(lua, -17);
-    std::cout << sizeZ  << std::endl;
+    sizeX = lua_tonumber(lua, -23);
+    sizeY = lua_tonumber(lua, -22);
+    sizeZ = lua_tonumber(lua, -21);
+    rotationX = lua_tonumber(lua, -20);
+    rotationY = lua_tonumber(lua, -19);
+    rotationZ = lua_tonumber(lua, -18);
+    rotationW = lua_tonumber(lua, -17);
 	float m[16];
 	for (int i=0; i<16; i++) {
         m[i] = lua_tonumber(lua, -((15-i)+1));

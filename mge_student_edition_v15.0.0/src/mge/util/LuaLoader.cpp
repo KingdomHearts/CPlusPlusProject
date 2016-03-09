@@ -138,6 +138,7 @@ int AddInteractiveModel(lua_State * lua)
     GO->setTransform(currentMatrix);
 
     KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,textureMaterial,finalMatrix,GO);
+    PhysicsWorld::GetInstance()->AddColliderToObject(sizeX, sizeY, sizeZ, glm::vec3(0,0,0) ,GO->getWorldPosition())
 
     std::cout << "AddInteractiveModel end -> " << IDname << std::endl;
 

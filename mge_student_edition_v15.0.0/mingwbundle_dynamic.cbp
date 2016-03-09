@@ -51,6 +51,7 @@
 		<Unit filename="assets/mge/lua/SaveGames.txt" />
 		<Unit filename="assets/mge/lua/SoundLoader.lua" />
 		<Unit filename="assets/mge/lua/TestLua.lua" />
+		<Unit filename="assets/mge/lua/Triggers.lua" />
 		<Unit filename="assets/mge/lua/test.lua" />
 		<Unit filename="assets/mge/shaders/color.fs" />
 		<Unit filename="assets/mge/shaders/color.vs" />

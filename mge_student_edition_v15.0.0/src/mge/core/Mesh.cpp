@@ -183,6 +183,41 @@ Mesh* Mesh::load(string pFileName)
 
 		}
 
+        for(int i=0; i<vertices.size(); i+=3){
+            // Shortcuts for vertices
+            glm::vec3 & v0 = vertices[i+0];
+            glm::vec3 & v1 = vertices[i+1];
+            glm::vec3 & v2 = vertices[i+2];
+
+            // Shortcuts for UVs
+            glm::vec2 & uv0 = uvs[i+0];
+            glm::vec2 & uv1 = uvs[i+1];
+            glm::vec2 & uv2 = uvs[i+2];
+
+            // Edges of the triangle : postion delta
+            glm::vec3 deltaPos1 = v1-v0;
+            glm::vec3 deltaPos2 = v2-v0;
+
+            // UV delta
+            glm::vec2 deltaUV1 = uv1-uv0;
+            glm::vec2 deltaUV2 = uv2-uv0;
+
+            float r = 1.0f / (deltaUV1.x * deltaUV2.y - deltaUV1.y * deltaUV2.x);
+            glm::vec3 tangent = (deltaPos1 * deltaUV2.y   - deltaPos2 * deltaUV1.y)*r;
+            glm::vec3 bitangent = (deltaPos2 * deltaUV1.x   - deltaPos1 * deltaUV2.x)*r;
+
+            // Set the same tangent for all three vertices of the triangle.
+            // They will be merged later, in vboindexer.cpp
+            mesh->_tangents.push_back(tangent);
+            mesh->_tangents.push_back(tangent);
+            mesh->_tangents.push_back(tangent);
+
+            // Same thing for binormals
+            mesh->_bitangents.push_back(bitangent);
+            mesh->_bitangents.push_back(bitangent);
+            mesh->_bitangents.push_back(bitangent);
+        }
+
 		file.close();
 		mesh->_buffer();
 
@@ -214,6 +249,14 @@ void Mesh::_buffer()
     glGenBuffers(1, &_uvBufferId);
     glBindBuffer( GL_ARRAY_BUFFER, _uvBufferId );
     glBufferData( GL_ARRAY_BUFFER, _uvs.size()*sizeof(glm::vec2), &_uvs[0], GL_STATIC_DRAW );
+
+    glGenBuffers(1, &_tangentBufferId);
+    glBindBuffer( GL_ARRAY_BUFFER, _tangentBufferId );
+    glBufferData( GL_ARRAY_BUFFER, _tangents.size()*sizeof(glm::vec3), &_tangents[0], GL_STATIC_DRAW );
+
+    glGenBuffers(1, &_bitangentBufferId);
+    glBindBuffer( GL_ARRAY_BUFFER, _bitangentBufferId );
+    glBufferData( GL_ARRAY_BUFFER, _bitangents.size()*sizeof(glm::vec3), &_bitangents[0], GL_STATIC_DRAW );
 
     glBindBuffer( GL_ARRAY_BUFFER, 0 );
 }
@@ -273,18 +316,19 @@ void Mesh::renderDebugInfo(glm::mat4& pModelMatrix, World* pWorld) {
             glm::vec3 normalEnd = normalStart + normal*0.2f;
             glVertex3fv(glm::value_ptr(normalEnd));
         }
-
-//        //draw tangent for vertex (code for tangent calculation has been removed)
-          //tangents are needed if you want to implement bump mapping
-//        if (_tangentsCalculated) {
-//            glColor3f(1,1,1);
-//            //now get normal end
-//            glm::vec3 tangent = glm::vec3(_tangents[_indices[i]]);
-//            glm::vec3 tangentStart = _vertices[_indices[i]];
-//            glVertex3fv(glm::value_ptr(tangentStart));
-//            glm::vec3 tangentEnd = tangentStart + tangent*0.2f;
-//            glVertex3fv(glm::value_ptr(tangentEnd));
-//        }
+        /**
+        //draw tangent for vertex (code for tangent calculation has been removed)
+        //tangents are needed if you want to implement bump mapping
+        if (_tangentsCalculated) {
+            glColor3f(1,1,1);
+            //now get normal end
+            glm::vec3 tangent = glm::vec3(_tangents[_indices[i]]);
+            glm::vec3 tangentStart = _vertices[_indices[i]];
+            glVertex3fv(glm::value_ptr(tangentStart));
+            glm::vec3 tangentEnd = tangentStart + tangent*0.2f;
+            glVertex3fv(glm::value_ptr(tangentEnd));
+        }
+        /**/
 
     }
     glEnd();

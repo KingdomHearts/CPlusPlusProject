@@ -102,7 +102,8 @@ bool PhysicsWorld::Raycast(glm::vec3 out_origin, glm::vec3 out_direction)
 
      if(RayCallback.hasHit()) {
         return true;
-     }else{
+     }
+     else {
         return false;
      }
      /**/

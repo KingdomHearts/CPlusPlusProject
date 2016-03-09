@@ -17,7 +17,7 @@ struct DialogStruct
 class LuaLoader : public GameObject
 {
     public:
-        LuaLoader(std::string pName = "Lua", std::string pLuaFileName = ".lua");
+        static LuaLoader* GetInstance();
         void LoadAllModels();
         void LoadAllInteractiveModels();
         void LoadSounds();
@@ -30,7 +30,9 @@ class LuaLoader : public GameObject
         virtual ~LuaLoader();
     protected:
     private:
+        LuaLoader();
         lua_State* lua;
+        static LuaLoader* LuaLoaderInstance;
 };
 
 #endif // LUALOADER_H

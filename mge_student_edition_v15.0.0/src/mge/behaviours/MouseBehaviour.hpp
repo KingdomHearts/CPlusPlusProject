@@ -25,7 +25,7 @@ class MouseBehaviour : public AbstractBehaviour
         //GameObject* _emptyChild;
         Camera* _camera;
         void Looking();
-        void RaycastTest();
+        void PickUpObject();
 
         // position
         glm::vec3 _position = glm::vec3( 0, 3, 10 );

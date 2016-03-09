@@ -212,7 +212,7 @@ void AbstractGame::run()
     myThread.launch();
 	_running = true;
 
-    _luaLoader = new LuaLoader("","");
+    _luaLoader = LuaLoader::GetInstance();
 
     int Count = 0;
 

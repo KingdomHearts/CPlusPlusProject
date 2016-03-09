@@ -56,7 +56,7 @@ void MGEDemo::_initializeScene()
 {
     //SCENE SETUP
     /**/
-    LuaLoader * LL = new LuaLoader("","");
+    LuaLoader * LL = LuaLoader::GetInstance();
     LL->LoadAllInteractiveModels();
     LL->LoadAllModels();
     /**/

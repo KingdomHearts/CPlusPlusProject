@@ -21,21 +21,22 @@ MouseBehaviour::~MouseBehaviour()
 void MouseBehaviour::update(float step)
 {
     Looking();
-    RaycastTest();
+    PickUpObject();
     sf::Listener::setPosition(_cameraPosition->getLocalPosition().x,_cameraPosition->getLocalPosition().y,_cameraPosition->getLocalPosition().z);
     sf::Listener::setDirection(-_camera->getWorldPosition().x,0,-_camera->getWorldPosition().z);
 }
 
-void MouseBehaviour::RaycastTest()
+void MouseBehaviour::PickUpObject()
 {
     if(KeyboardBehaviour::GetLeftMouseDown())
     {
-        bool Test = PhysicsWorld::GetInstance()->ScreenPosToWorldRay(_camera);
-        if (Test == true)
+        GameObject* Test = PhysicsWorld::GetInstance()->ScreenPosToWorldRay(_camera);
+        if(Test != NULL)
         {
-            std::cout << "Hit Object" << std::endl;
+            std::cout << "Hitting a Interactive Model: " << Test->getName() << std::endl;
+            //LuaLoader::PushString
         }
-        else if (Test == false)
+        else
         {
             std::cout << "Nothing Hit" << std::endl;
         }

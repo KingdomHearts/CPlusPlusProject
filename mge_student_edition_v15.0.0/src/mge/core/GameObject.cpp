@@ -9,10 +9,11 @@ using namespace std;
 #include "mge/core/World.hpp"
 #include "mge/behaviours/AbstractBehaviour.hpp"
 
-GameObject::GameObject(std::string pName, glm::vec3 pPosition )
+GameObject::GameObject(std::string pName, glm::vec3 pPosition, bool pIsInteractive)
 :	_name( pName ), _transform( glm::translate( pPosition ) ),  _parent(NULL), _children(),
     _mesh( NULL ),_behaviour( NULL ), _material(NULL), _world(NULL)
 {
+    Interactive = pIsInteractive;
 }
 
 GameObject::~GameObject()

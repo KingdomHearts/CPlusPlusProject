@@ -26,6 +26,7 @@
 					<Add directory="../../../Google Drive/C++ Project/Technical/Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib" />
 					<Add directory="src/mge" />
 					<Add directory="src/mge/puzzles" />
+					<Add directory="src/mge/core" />
 				</Compiler>
 				<Linker>
 					<Add library="glew32" />
@@ -51,7 +52,6 @@
 		<Unit filename="assets/mge/lua/SaveGames.txt" />
 		<Unit filename="assets/mge/lua/SoundLoader.lua" />
 		<Unit filename="assets/mge/lua/TestLua.lua" />
-		<Unit filename="assets/mge/lua/Triggers.lua" />
 		<Unit filename="assets/mge/lua/test.lua" />
 		<Unit filename="assets/mge/shaders/color.fs" />
 		<Unit filename="assets/mge/shaders/color.vs" />
@@ -105,6 +105,8 @@
 		<Unit filename="src/mge/core/Texture.hpp" />
 		<Unit filename="src/mge/core/Timer.cpp" />
 		<Unit filename="src/mge/core/Timer.hpp" />
+		<Unit filename="src/mge/core/Triggers.cpp" />
+		<Unit filename="src/mge/core/Triggers.hpp" />
 		<Unit filename="src/mge/core/World.cpp" />
 		<Unit filename="src/mge/core/World.hpp" />
 		<Unit filename="src/mge/materials/AbstractMaterial.cpp" />

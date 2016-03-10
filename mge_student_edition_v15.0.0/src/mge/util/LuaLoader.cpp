@@ -9,6 +9,7 @@
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/core/World.hpp"
 #include "mge/core/PhysicsWorld.hpp"
+#include "mge/core/Triggers.hpp"
 
 
 #include "mge/core/AbstractGame.hpp"
@@ -250,6 +251,44 @@ void LuaLoader::LoadAllInteractiveModels(){
 	lua_close(lua);
 
     std::cout << "Interactive Models Loaded"  << std::endl;
+}
+
+int TriggerObject(lua_State * lua)
+{
+    float m[16];
+	for (int i=0; i<16; i++) {
+        m[i] = lua_tonumber(lua, -((15-i)+1));
+	}
+
+	glm::mat4 matrix(m[0],  m[4],  m[8],  m[12],
+                     m[1],  m[5],  m[9],  m[13],
+                     m[2],  m[6],  m[10], m[14],
+                     m[3],  m[7],  m[11], m[15]);
+
+    matrix = glm::transpose(matrix);
+    matrix[0][0] *= -1;
+    matrix[1][0] *= -1;
+    matrix[2][0] *= -1;
+    matrix[3][0] *= -1;
+
+    float radius = lua_tonumber(lua,-17);
+    std::string gameObjectName = lua_tostring(lua,-18);
+    GameObject * GO =  new GameObject(gameObjectName,glm::vec3(0,0,0));
+    GO->setTransform(matrix);
+    std::cout << "GameObjectTrigger " << GO->getLocalPosition() << std::endl;
+    Triggers::GetInstance()->AddTriggers(gameObjectName,GO->getLocalPosition(), radius);
+}
+
+void LuaLoader::LoadAllTiggers()
+{
+    lua_State *lua = luaL_newstate();
+	luaL_openlibs(lua);
+	luaL_loadfile(lua,"mge/lua/Triggers.lua");
+
+    lua_register(lua, "TriggerObject",TriggerObject);
+
+	lua_call(lua,0,0);
+	lua_close(lua);
 }
 
 int AddSound(lua_State * lua)

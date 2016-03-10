@@ -66,6 +66,7 @@ void MGEDemo::_initializeScene()
     LuaLoader * LL = new LuaLoader("","");
     LL->LoadAllInteractiveModels();
     LL->LoadAllModels();
+    LL->LoadAllTiggers();
     /**/
     PhysicsWorld::GetInstance();
     MainHall *mainHall = new MainHall("MainHall");
@@ -88,7 +89,11 @@ void MGEDemo::_initializeScene()
 void MGEDemo::_render() {
     AbstractGame::_render();
     _updateHud();
-    Triggers::GetInstance()->CheckTriggers(*_camera);
+    TriggerObjects trigger = Triggers::GetInstance()->CheckTriggers(*_camera);
+    if(trigger.sHit)
+    {
+        std::cout << "test" << std::endl;
+    }
 
        //std::cout << "G: " << _camera->getChildCount() << std::endl;
        //std::cout << "L: " << _camera->getParent()->getLocalPosition() << std::endl;

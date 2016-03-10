@@ -20,6 +20,7 @@ class LuaLoader : public GameObject
         LuaLoader(std::string pName = "Lua", std::string pLuaFileName = ".lua");
         void LoadAllModels();
         void LoadAllInteractiveModels();
+        void LoadAllTiggers();
         void LoadSounds();
         void LoadAllDialogs();
         void RuntimeLoader();

@@ -24,10 +24,11 @@ void MouseBehaviour::update(float step)
 {
     if(KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
     {
+
         Hud();
     }
-    if(_fredActive)
-    {
+    //if(_fredActive)
+    //{
         /**
         sf::Event event;
         while (Window.pollEvent(event))
@@ -42,21 +43,19 @@ void MouseBehaviour::update(float step)
         }
         //_scrollers.setLocalPosition(_scrollers.getLocalPosition().x, _scrollers.getLocalPosition().y + )
         /**/
-    }
+    //}
 
 
 
     Looking();
     PickUpObject();
+    //Position needs to be changed
     sf::Listener::setPosition(_cameraPosition->getLocalPosition().x,_cameraPosition->getLocalPosition().y,_cameraPosition->getLocalPosition().z);
     sf::Listener::setDirection(_direction.x,_direction.y,_direction.z);
 }
 
 void MouseBehaviour::Hud()
 {
-
-
-
     if(!_fredActive)
     {
         _fredActive = true;
@@ -122,6 +121,7 @@ void MouseBehaviour::Hud()
 
         std::cout << "Fred Activated" << std::endl;
     }
+    /**
     else if(_fredActive)
     {
         _fredActive = false;
@@ -133,6 +133,7 @@ void MouseBehaviour::Hud()
         World::GetInstance()->remove(_progressBar);
         World::GetInstance()->remove(_scrollers);
     }
+    /**/
 
 }
 

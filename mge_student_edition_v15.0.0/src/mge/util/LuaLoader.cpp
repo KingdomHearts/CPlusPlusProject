@@ -610,7 +610,8 @@ void LuaLoader::RuntimeLoader()
 {
     lua = luaL_newstate();
 	luaL_openlibs(lua);
-	luaL_loadfile(lua,"mge/lua/GameScript.lua");
+	luaL_loadfile(lua,"mge/lua/GameScriptNew.lua");
+	std::cout << "chrash" << std::endl;
 
 	lua_register(lua,"FredHud",FredHud);
 	lua_register(lua,"OpenDoor",OpenDoor);

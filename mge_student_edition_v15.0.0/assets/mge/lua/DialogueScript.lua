@@ -90,6 +90,7 @@ Text(46,"Haha, Sir! I can't help but feel this will be the start of a beautiful 
 
 Text(47,"Here we have Ancient History! Home of the Greeks and the Romans.",10)
 Text(48,"The pioneers of History, true scholars.",10)
+Text(49,"",0)
 
 ID("Triggers Return_painting_puzzle")--(If player uses Return_painting_puzzle)
 Text(50,"More paintings, time to get to work.",10)

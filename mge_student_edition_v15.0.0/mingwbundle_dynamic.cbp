@@ -105,6 +105,8 @@
 		<Unit filename="src/mge/core/Texture.hpp" />
 		<Unit filename="src/mge/core/Timer.cpp" />
 		<Unit filename="src/mge/core/Timer.hpp" />
+		<Unit filename="src/mge/core/Triggers.cpp" />
+		<Unit filename="src/mge/core/Triggers.hpp" />
 		<Unit filename="src/mge/core/World.cpp" />
 		<Unit filename="src/mge/core/World.hpp" />
 		<Unit filename="src/mge/materials/AbstractMaterial.cpp" />
@@ -113,6 +115,8 @@
 		<Unit filename="src/mge/materials/ColorMaterial.hpp" />
 		<Unit filename="src/mge/materials/TextureMaterial.cpp" />
 		<Unit filename="src/mge/materials/TextureMaterial.hpp" />
+		<Unit filename="src/mge/puzzles/Inventory.cpp" />
+		<Unit filename="src/mge/puzzles/Inventory.h" />
 		<Unit filename="src/mge/puzzles/Rebuild.cpp" />
 		<Unit filename="src/mge/puzzles/Rebuild.h" />
 		<Unit filename="src/mge/rooms/MainHall.cpp" />

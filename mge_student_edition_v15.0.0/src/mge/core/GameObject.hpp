@@ -76,6 +76,7 @@ class GameObject
         GameObject* getChildAt (int pIndex);
 
         btRigidBody *RigidBody;
+        glm::mat4 TransformToPlace;
 
 	protected:
 		std::string _name;

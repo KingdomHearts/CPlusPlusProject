@@ -1,4 +1,4 @@
---playSubtitleScript = Dialog script 
+--playSubtitleScript = Dialog script
 --playSubtitleScript = Audio file
 
 AddSound("","Mono_Sample.wav",true,0,"NULL",100,true,1,10,"0,3,-10")
@@ -32,12 +32,12 @@ function update()
   OpenDoor()
   PickUp()
   PlaceDown()
-  
+
 	if(state == "reception")then
 		PlaySound("Lobby_Music_Loop.wav")
 		BeginGame()
 	end
-	
+
 	if(state == "Fred") then
 	StartTimer(10)
 		if(keyPressed == "Y") then
@@ -71,25 +71,25 @@ end
 function OpenHud()
 	if (keyPressed == "F") then
 		FredHud(true)
-    
+
 	else
 		FredHud(false)
 	end
   end
-  
+
  function OpenDoor()
 	if (player_Opendoor) then
 		OpenDoor("DoorThatYouWant")
 	end
  end
-  
+
 function PickUp()
 	if (player_PicksUp) then
 		Destroy("Object", "World")
 		Spawn("Object", "Inventory") -- PickUpModel ("Object")
 	end
  end
-  
+
 function PlaceDown()
 	if (player_PlaceDown) then
 		Destroy("Object", "Inventory")

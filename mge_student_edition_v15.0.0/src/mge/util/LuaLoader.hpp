@@ -27,6 +27,7 @@ class LuaLoader : public GameObject
         void SetNewState(std::string pNewState);
         void SetTime(int pTime);
         void KeyPressed(std::string pPressedKey);
+        void PushRaycastObject(std::string pName);
         virtual ~LuaLoader();
     protected:
     private:

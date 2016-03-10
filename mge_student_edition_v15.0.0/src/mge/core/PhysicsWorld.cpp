@@ -53,7 +53,6 @@ void PhysicsWorld::AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ,
 
 GameObject* PhysicsWorld::ScreenPosToWorldRay(Camera* pCamera)
 {
-
     // The ray Start and End positions, in Normalized Device Coordinates (Have you read Tutorial 4 ?)
     glm::vec4 lRayStart_NDC(
         ((float)sf::Mouse::getPosition().x/(float)sf::VideoMode::getDesktopMode().width - 0.5f) * 2.0f, // [0,1024] -> [-1,1]
@@ -68,27 +67,30 @@ GameObject* PhysicsWorld::ScreenPosToWorldRay(Camera* pCamera)
         1.0f
     );
 
-    // Faster way (just one inverse)
-    glm::mat4 M = glm::inverse(pCamera->getProjection() * pCamera->ViewMatrix);
-    glm::vec4 lRayStart_world = M * lRayStart_NDC; lRayStart_world/=lRayStart_world.w;
-    glm::vec4 lRayEnd_world   = M * lRayEnd_NDC  ; lRayEnd_world  /=lRayEnd_world.w;
+    // The Projection matrix goes from Camera Space to NDC.
+    // So inverse(ProjectionMatrix) goes from NDC to Camera Space.
+    glm::mat4 InverseProjectionMatrix = glm::inverse(pCamera->getProjection());
+
+    // The View Matrix goes from World Space to Camera Space.
+    // So inverse(ViewMatrix) goes from Camera Space to World Space.
+    glm::mat4 InverseViewMatrix = glm::inverse(pCamera->ViewMatrix);
+
+    glm::vec4 lRayStart_camera = InverseProjectionMatrix * lRayStart_NDC;    lRayStart_camera/=lRayStart_camera.w;
+    glm::vec4 lRayStart_world  = InverseViewMatrix       * lRayStart_camera; lRayStart_world /=lRayStart_world .w;
+    glm::vec4 lRayEnd_camera   = InverseProjectionMatrix * lRayEnd_NDC;      lRayEnd_camera  /=lRayEnd_camera  .w;
+    glm::vec4 lRayEnd_world    = InverseViewMatrix       * lRayEnd_camera;   lRayEnd_world   /=lRayEnd_world   .w;
 
     glm::vec3 lRayDir_world(lRayEnd_world - lRayStart_world);
     lRayDir_world = glm::normalize(lRayDir_world);
 
-    glm::vec3 lRayStart_vec3 = glm::vec3(((float)sf::Mouse::getPosition().x/(float)sf::VideoMode::getDesktopMode().width - 0.5f) * 2.0f, ((float)sf::Mouse::getPosition().y/(float)sf::VideoMode::getDesktopMode().height - 0.5f) * 2.0f, -1.0);
-
-
-    return Raycast(lRayStart_vec3, lRayDir_world);
+    glm::vec3 rayStart(lRayStart_world);
+    return Raycast(rayStart, lRayDir_world);
 }
 
 GameObject* PhysicsWorld::Raycast(glm::vec3 out_origin, glm::vec3 out_direction)
 {
     /**/
-    std::cout <<"Origin Vector: " <<out_origin << std::endl;
-    std::cout <<"Direction Vector: " <<out_direction << std::endl;
-    glm::vec3 out_end = out_origin + out_direction*1000.0f;
-    std::cout <<"End Vector: " <<out_end << std::endl;
+    glm::vec3 out_end = out_origin + out_direction*10.0f;
 
      btCollisionWorld::ClosestRayResultCallback RayCallback(
         btVector3(out_origin.x, out_origin.y, out_origin.z),

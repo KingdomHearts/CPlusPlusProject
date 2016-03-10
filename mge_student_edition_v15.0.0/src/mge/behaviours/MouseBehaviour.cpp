@@ -34,7 +34,7 @@ void MouseBehaviour::PickUpObject()
         if(Test != NULL)
         {
             std::cout << "Hitting a Interactive Model: " << Test->getName() << std::endl;
-            //LuaLoader::PushString
+            LuaLoader::GetInstance()->PushRaycastObject(Test->getName());
         }
         else
         {

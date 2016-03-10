@@ -9,16 +9,17 @@ using namespace std;
 #include "mge/core/World.hpp"
 #include "mge/behaviours/AbstractBehaviour.hpp"
 
-GameObject::GameObject(std::string pName, glm::vec3 pPosition )
+GameObject::GameObject(std::string pName, glm::vec3 pPosition, bool pIsInteractive)
 :	_name( pName ), _transform( glm::translate( pPosition ) ),  _parent(NULL), _children(),
     _mesh( NULL ),_behaviour( NULL ), _material(NULL), _world(NULL)
 {
+    Interactive = pIsInteractive;
 }
 
 GameObject::~GameObject()
 {
     //detach all children
-    cout << "GC running on:" << _name << endl;
+    //cout << "GC running on:" << _name << endl;
 
     while (_children.size() > 0) {
         GameObject* child = _children[0];

@@ -24,11 +24,13 @@ class Mesh;
 class GameObject
 {
 	public:
-		GameObject(std::string pName = NULL, glm::vec3 pPosition = glm::vec3( 0.0f, 0.0f, 0.0f ) );
+		GameObject(std::string pName = NULL, glm::vec3 pPosition = glm::vec3( 0.0f, 0.0f, 0.0f ), bool pIsInteractive = false);
 		virtual ~GameObject();
 
         void setName (std::string pName);
         std::string getName() const;
+
+        bool IsInteractive();
 
         //contains local rotation, scale, position
 		void setTransform (const glm::mat4& pTransform);
@@ -74,6 +76,8 @@ class GameObject
         GameObject* getChildAt (int pIndex);
 
         btRigidBody *RigidBody;
+        glm::mat4 TransformToPlace;
+
 	protected:
 		std::string _name;
 		glm::mat4 _transform;
@@ -90,6 +94,8 @@ class GameObject
         //update children list administration
         void _innerAdd (GameObject* pChild);
 		void _innerRemove (GameObject* pChild);
+    private:
+        bool Interactive;
 };
 
 #endif // GAMEOBJECT_H

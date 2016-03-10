@@ -1,4 +1,4 @@
---playSubtitleScript = Dialog script 
+--playSubtitleScript = Dialog script
 --playSubtitleScript = Audio file
 
 AddSound("","Mono_Sample.wav",true,0,"NULL",100,true,1,10,"0,3,-10")
@@ -7,7 +7,8 @@ AddSound("","Medieval_Music_Loop.wav",true,0,"NULL",100,true,1,10,"0,3,-10")
 AddSound("","Prehistoric_Music_Loop.wav",true,0,"NULL",100,true,1,10,"0,3,-10")
 loaded = true;
 
-state = "reception"
+state = "reception" -- Next action
+trigger = "" -- Action from triggers (ID OF THE OBJECT YOU NAMED IT IN UNITY!)
 keyPressed = ""
 mouseIsClicked = true
 timer = 0 -- maybe also done by C++ addseconds
@@ -22,6 +23,8 @@ pickedUpFred = false
 eventFred = ""
 player_Opendoor = false
 
+isNotTriggered = true
+
 --Update
 function update()
 	if(loaded == true) then
@@ -32,12 +35,12 @@ function update()
   OpenDoor()
   PickUp()
   PlaceDown()
-  
+
 	if(state == "reception")then
 		PlaySound("Lobby_Music_Loop.wav")
 		BeginGame()
 	end
-	
+
 	if(state == "Fred") then
 	StartTimer(10)
 		if(keyPressed == "Y") then
@@ -55,14 +58,15 @@ function update()
 		if(pickedUpFred == true) then
 		StartTimer(10)
 		end
-		 if (pickedUpFred == true and goingToExhibit == true) then
+		 if (pickedUpFred == true and trigger == "Door") then
 			StopSound("Lobby_Music_Loop.wav")
 			PlaySound("Prehistoric_Music_Loop.wav")
 			 OpenExhibit()
 		 end
-		if (pickedUpFred == true and goingToExhibit == false) then
-			if(timer > 9) then
+		if(timer == 10) then
+			if (pickedUpFred == true and isNotTriggered == true) then
 				NotOpenExhibit()
+				isNotTriggered = false
 			end
 		end
 	end
@@ -71,25 +75,25 @@ end
 function OpenHud()
 	if (keyPressed == "F") then
 		FredHud(true)
-    
+
 	else
 		FredHud(false)
 	end
   end
-  
+
  function OpenDoor()
 	if (player_Opendoor) then
 		OpenDoor("DoorThatYouWant")
 	end
  end
-  
+
 function PickUp()
 	if (player_PicksUp) then
 		Destroy("Object", "World")
 		Spawn("Object", "Inventory") -- PickUpModel ("Object")
 	end
  end
-  
+
 function PlaceDown()
 	if (player_PlaceDown) then
 		Destroy("Object", "Inventory")
@@ -128,7 +132,7 @@ function NotPickupFRED()
 	playDialogueTrack(8)
 	playSubtitleScript(8)
 	RandomDialogAndRepeat("6,7,8")
-	SetState("Exhibit");
+	SetState("Fred");
 end
 
 function PickedUpFred()
@@ -143,9 +147,8 @@ function PickedUpFred()
 	wait(2)
 	playDialogueTrack(12)
 	playSubtitleScript(12)
-	pickedUpFred = true
 	SetState("Exhibit");
-	goingToExhibit = true
+	pickedUpFred = true
 end
 
 function NotOpenExhibit()

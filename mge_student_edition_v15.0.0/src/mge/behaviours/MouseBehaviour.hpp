@@ -26,6 +26,7 @@ class MouseBehaviour : public AbstractBehaviour
         bool _fredActive = false;
         Camera* _camera;
         void Looking();
+        void PickUpObject();
         void RaycastTest();
         void Hud();
 

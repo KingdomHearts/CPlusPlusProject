@@ -10,7 +10,7 @@
 #include "mge/core/World.hpp"
 #include "mge/core/PhysicsWorld.hpp"
 #include "hud.h"
-
+#include "mge/core/Triggers.hpp"
 
 #include "mge/core/AbstractGame.hpp"
 
@@ -24,6 +24,8 @@
 #include <time.h>
 
 #include <SFML/System/Thread.hpp>
+#include "mge/puzzles/Inventory.h"
+
 
 class timer {
 	private:
@@ -49,8 +51,17 @@ int waitSeconds = 0;
 //std::vector<DialogStruct> * dialogList = new std::vector<DialogStruct>();
 //std::vector<int> waitTimesList;
 //std::vector<int> DialogNumberList;
+LuaLoader* LuaLoader::LuaLoaderInstance = NULL;
 
-LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pName)
+LuaLoader* LuaLoader::GetInstance()
+{
+    if(LuaLoader::LuaLoaderInstance == NULL){
+        LuaLoader::LuaLoaderInstance = new LuaLoader();
+    }
+    return LuaLoader::LuaLoaderInstance;
+}
+
+LuaLoader::LuaLoader() : GameObject("LUA")
 {
 	std::cout << "Lua is loading ..."  << std::endl;
     lua_State *lua = luaL_newstate();
@@ -111,7 +122,7 @@ int AddInteractiveModel(lua_State * lua)
     if(Texture != ""){
         textureMaterial = new TextureMaterial (Texture::load ("mge/textures/"+Texture));
     }
-    GameObject* GO = new GameObject (IDname, glm::vec3(0,0,0));
+    GameObject* GO = new GameObject (IDname, glm::vec3(0,0,0), true);
     GO->setMesh (mesh);
     GO->setMaterial(textureMaterial);
     World::GetInstance()->add(GO);
@@ -142,11 +153,12 @@ int AddInteractiveModel(lua_State * lua)
     finalMatrix[3][0] *= -1;
     /**/
 
-
+    GO->TransformToPlace = finalMatrix;
     GO->setTransform(currentMatrix);
 
     KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,textureMaterial,finalMatrix,GO);
-    PhysicsWorld::GetInstance()->AddColliderToObject(sizeX, sizeY, sizeZ, glm::vec4(rotationX, rotationY, rotationZ, rotationW) ,GO->getWorldPosition(), GO);
+    PhysicsWorld::GetInstance()->AddColliderToObject(sizeX, sizeY, sizeZ, glm::vec4(rotationX, rotationY, rotationZ, rotationW) ,GO->getLocalPosition(), GO);
+
 
     std::cout << "AddInteractiveModel end -> " << IDname << std::endl;
 
@@ -249,6 +261,44 @@ void LuaLoader::LoadAllInteractiveModels(){
 	lua_close(lua);
 
     std::cout << "Interactive Models Loaded"  << std::endl;
+}
+
+int TriggerObject(lua_State * lua)
+{
+    float m[16];
+	for (int i=0; i<16; i++) {
+        m[i] = lua_tonumber(lua, -((15-i)+1));
+	}
+
+	glm::mat4 matrix(m[0],  m[4],  m[8],  m[12],
+                     m[1],  m[5],  m[9],  m[13],
+                     m[2],  m[6],  m[10], m[14],
+                     m[3],  m[7],  m[11], m[15]);
+
+    matrix = glm::transpose(matrix);
+    matrix[0][0] *= -1;
+    matrix[1][0] *= -1;
+    matrix[2][0] *= -1;
+    matrix[3][0] *= -1;
+
+    float radius = lua_tonumber(lua,-17);
+    std::string gameObjectName = lua_tostring(lua,-18);
+    GameObject * GO =  new GameObject(gameObjectName,glm::vec3(0,0,0));
+    GO->setTransform(matrix);
+    std::cout << "GameObjectTrigger " << GO->getLocalPosition() << std::endl;
+    Triggers::GetInstance()->AddTriggers(gameObjectName,GO->getLocalPosition(), radius);
+}
+
+void LuaLoader::LoadAllTiggers()
+{
+    lua_State *lua = luaL_newstate();
+	luaL_openlibs(lua);
+	luaL_loadfile(lua,"mge/lua/Triggers.lua");
+
+    lua_register(lua, "TriggerObject",TriggerObject);
+
+	lua_call(lua,0,0);
+	lua_close(lua);
 }
 
 int AddSound(lua_State * lua)
@@ -424,6 +474,15 @@ int Freeze(lua_State * lua)
     return 0;
 }
 
+int PlaceObjectInInventory(lua_State * lua)
+{
+    std::string NameObject = lua_tostring(lua,-1);
+    bool AddedToInventory = Inventory::GetInstance()->PlaceObjectInInventory(NameObject);
+    lua_pushboolean(lua, AddedToInventory);
+    lua_setglobal(lua, "AddedToInventory");
+    return 0;
+}
+
 int wait(lua_State * lua)
 {
     World::GetInstance()->waitTimesList.push_back(lua_tonumber(lua,-1));
@@ -439,7 +498,6 @@ int playDialogueTrack(lua_State * lua)
 int RandomDialogAndRepeat(lua_State * lua)
 {
     std::string nestedString = lua_tostring(lua,-1);
-
     std::string splitter = ",";
     size_t pos = 0;
     std::string token;
@@ -521,10 +579,22 @@ void LuaLoader::SetTime(int pTime)
     lua_setglobal(lua,"timer");
 }
 
+void LuaLoader::PushRaycastObject(std::string pName)
+{
+    lua_pushstring(lua, pName.c_str());
+    lua_setglobal(lua, "ClickedOnObject");
+}
+
 void LuaLoader::SetNewState(std::string pNewState)
 {
     lua_pushstring(lua,pNewState.c_str());
     lua_setglobal(lua,"state");
+}
+
+void LuaLoader::SetTrigger(std::string pTriggerName)
+{
+    lua_pushstring(lua,pTriggerName.c_str());
+    lua_setglobal(lua,"trigger");
 }
 
 void LuaLoader::KeyPressed(std::string pPressedKey)

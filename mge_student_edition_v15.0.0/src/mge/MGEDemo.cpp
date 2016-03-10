@@ -34,7 +34,15 @@ using namespace std;
 #include "mge/core/PhysicsWorld.hpp"
 #include "hud.h"
 
+#include <BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h>
+#include <BulletCollision/CollisionDispatch/btGhostObject.h>
+#include <BulletCollision/BroadphaseCollision/btBroadphaseInterface.h>
+#include <BulletCollision/BroadphaseCollision/btOverlappingPairCache.h>
+#include <BulletCollision/CollisionDispatch/btCollisionObject.h>
+
 #include <SFML/Audio.hpp>
+#include "mge/core/Triggers.hpp"
+
 
 //construct the game class into _window, _renderer and hud (other parts are initialized by build)
 MGEDemo::MGEDemo():AbstractGame ()
@@ -57,9 +65,10 @@ void MGEDemo::_initializeScene()
 {
     //SCENE SETUP
     /**/
-    LuaLoader * LL = new LuaLoader("","");
+    LuaLoader * LL = LuaLoader::GetInstance();
     LL->LoadAllInteractiveModels();
     LL->LoadAllModels();
+    LL->LoadAllTiggers();
     /**/
     PhysicsWorld::GetInstance();
     MainHall *mainHall = new MainHall("MainHall");
@@ -83,6 +92,13 @@ void MGEDemo::_render() {
     AbstractGame::_render();
     _updateHud();
 
+    TriggerObjects trigger = Triggers::GetInstance()->CheckTriggers(*_camera);
+    if(trigger.sHit)
+    {
+        LuaLoader::GetInstance()->SetTrigger(trigger.sGameObjectId);
+        std::cout << trigger.sGameObjectId << std::endl;
+    }
+
        //std::cout << "G: " << _camera->getChildCount() << std::endl;
        //std::cout << "L: " << _camera->getParent()->getLocalPosition() << std::endl;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
@@ -99,6 +115,57 @@ void MGEDemo::_render() {
        //_camera->getParent()->setLocalPosition(_playerProgress->LoadGame());
     }
 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+    {
+        /**
+            btPairCachingGhostObject  * ghostObject = new btPairCachingGhostObject();
+            ghostObject->setCollisionShape()
+            btManifoldArray manifoldArray;
+            btBroadphasePairArray& pairArray = ghostObject->getOverlappingPairCache()->getOverlappingPairArray();
+            int numPairs = pairArray.size();
+
+            for (int i = 0; i < numPairs; ++i)
+            {
+                manifoldArray.clear();
+
+                const btBroadphasePair& pair = pairArray[i];
+
+                btBroadphasePair* collisionPair =
+                    PhysicsWorld::GetInstance()->DynamicsWorld->getPairCache()->findPair(
+                        pair.m_pProxy0,pair.m_pProxy1);
+
+                if (!collisionPair) continue;
+
+                if (collisionPair->m_algorithm)
+                    collisionPair->m_algorithm->getAllContactManifolds(manifoldArray);
+
+                for (int j=0;j<manifoldArray.size();j++)
+                {
+                    btPersistentManifold* manifold = manifoldArray[j];
+
+                    bool isFirstBody = manifold->getBody0() == ghostObject;
+
+                    btScalar direction = isFirstBody ? btScalar(-1.0) : btScalar(1.0);
+
+                    for (int p = 0; p < manifold->getNumContacts(); ++p)
+                    {
+                        const btManifoldPoint&pt = manifold->getContactPoint(p);
+
+                        if (pt.getDistance() < 0.f)
+                        {
+                            const btVector3& ptA = pt.getPositionWorldOnA();
+                            const btVector3& ptB = pt.getPositionWorldOnB();
+                            const btVector3& normalOnB = pt.m_normalWorldOnB;
+
+                            // handle collisions here
+                        }
+                    }
+                }
+            }
+
+            PhysicsWorld::GetInstance()->DynamicsWorld->getPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
+    **/
+    }
     //_world->renderDebugInfo();
 }
 

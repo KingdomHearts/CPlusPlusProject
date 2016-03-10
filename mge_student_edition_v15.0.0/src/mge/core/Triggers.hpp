@@ -23,7 +23,7 @@ class Triggers
         Triggers();
         static Triggers* GetInstance();
         void AddTriggers(std::string pGameObjectName, glm::vec3 pPosition, float pRadius);
-        TriggerObjects CheckTriggers(Camera camera);
+        TriggerObjects CheckTriggers(glm::vec3 CamPos);
         virtual ~Triggers();
     protected:
     private:

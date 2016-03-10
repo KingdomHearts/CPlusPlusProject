@@ -26,14 +26,15 @@ void Triggers::AddTriggers(std::string pGameObjectName, glm::vec3 pPosition, flo
     _triggerObjectList.push_back(*triggerStruct);
 }
 
-TriggerObjects Triggers::CheckTriggers(Camera pCamera)
+TriggerObjects Triggers::CheckTriggers(glm::vec3 CamPos)
 {
+
     for(int i =0; i<_triggerObjectList.size();i++)
     {
         glm::vec3 triggerPositionMax = _triggerObjectList[i].sPosition + _triggerObjectList[i].sRadius;
         glm::vec3 triggerPositionMin = _triggerObjectList[i].sPosition - _triggerObjectList[i].sRadius;
-        if(triggerPositionMax.x > pCamera.getWorldPosition().x && triggerPositionMin.z < pCamera.getWorldPosition().z &&
-           triggerPositionMin.x < pCamera.getWorldPosition().x && triggerPositionMax.z > pCamera.getWorldPosition().z)
+        if(triggerPositionMax.x > CamPos.x && triggerPositionMin.z < CamPos.z &&
+           triggerPositionMin.x < CamPos.x && triggerPositionMax.z > CamPos.z)
         {
             _triggerObjectList[i].isEntered++;
             //std::cout << "isEntered: " << isEntered << std::endl;
@@ -53,6 +54,7 @@ TriggerObjects Triggers::CheckTriggers(Camera pCamera)
             }
         }
     }
+
     return TriggerObjects();
 }
 

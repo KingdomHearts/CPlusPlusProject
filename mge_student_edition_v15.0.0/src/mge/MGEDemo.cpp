@@ -92,7 +92,9 @@ void MGEDemo::_render() {
     AbstractGame::_render();
     _updateHud();
 
-    TriggerObjects trigger = Triggers::GetInstance()->CheckTriggers(*_camera);
+
+    TriggerObjects trigger = Triggers::GetInstance()->CheckTriggers(_camera->getWorldPosition());
+
     if(trigger.sHit)
     {
         LuaLoader::GetInstance()->SetTrigger(trigger.sGameObjectId);

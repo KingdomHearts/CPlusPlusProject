@@ -42,6 +42,7 @@ using namespace std;
 #include <SFML/Audio.hpp>
 #include "mge/core/Triggers.hpp"
 
+
 //construct the game class into _window, _renderer and hud (other parts are initialized by build)
 MGEDemo::MGEDemo():AbstractGame ()
 {
@@ -66,6 +67,7 @@ void MGEDemo::_initializeScene()
     LuaLoader * LL = LuaLoader::GetInstance();
     LL->LoadAllInteractiveModels();
     LL->LoadAllModels();
+    LL->LoadAllTiggers();
     /**/
     PhysicsWorld::GetInstance();
     MainHall *mainHall = new MainHall("MainHall");
@@ -88,7 +90,13 @@ void MGEDemo::_initializeScene()
 void MGEDemo::_render() {
     AbstractGame::_render();
     _updateHud();
-    Triggers::GetInstance()->CheckTriggers(*_camera);
+
+    TriggerObjects trigger = Triggers::GetInstance()->CheckTriggers(*_camera);
+    if(trigger.sHit)
+    {
+        LuaLoader::GetInstance()->SetTrigger(trigger.sGameObjectId);
+        std::cout << trigger.sGameObjectId << std::endl;
+    }
 
        //std::cout << "G: " << _camera->getChildCount() << std::endl;
        //std::cout << "L: " << _camera->getParent()->getLocalPosition() << std::endl;

@@ -20,12 +20,14 @@ class LuaLoader : public GameObject
         static LuaLoader* GetInstance();
         void LoadAllModels();
         void LoadAllInteractiveModels();
+        void LoadAllTiggers();
         void LoadSounds();
         void LoadAllDialogs();
         void RuntimeLoader();
         void RuntimeUpdater();
         void SetNewState(std::string pNewState);
         void SetTime(int pTime);
+        void SetTrigger(std::string pTriggerName);
         void KeyPressed(std::string pPressedKey);
         void PushRaycastObject(std::string pName);
         virtual ~LuaLoader();

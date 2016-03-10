@@ -95,7 +95,6 @@ void Audio::PlaySound(std::string pFilename)
                 for (std::vector<Audio*>::iterator i = _playingAudio.begin(); i != _playingAudio.end(); i++)
                 {
                     Audio *playingAudio = *i;
-                    std::cout << playingAudio->cFileName << std::endl;
                     if(playingAudio->cFileName == pFilename)
                     {
                         if (playingAudio->_sound.getStatus() == playingAudio->_sound.Playing)
@@ -149,7 +148,6 @@ void Audio::PlaySound(std::string pFilename)
 
 void Audio::StopSound(std::string pFilename)
 {
-    std::cout << _playingAudio.size() << std::endl;
     if(_playingAudio.size() != 0)
     {
         for (std::vector<Audio*>::iterator i = _playingAudio.begin(); i != _playingAudio.end(); i++)

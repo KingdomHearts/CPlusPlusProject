@@ -49,8 +49,17 @@ int waitSeconds = 0;
 //std::vector<DialogStruct> * dialogList = new std::vector<DialogStruct>();
 //std::vector<int> waitTimesList;
 //std::vector<int> DialogNumberList;
+LuaLoader* LuaLoader::LuaLoaderInstance = NULL;
 
-LuaLoader::LuaLoader(std::string pName,std::string pLuaFileName) : GameObject(pName)
+LuaLoader* LuaLoader::GetInstance()
+{
+    if(LuaLoader::LuaLoaderInstance == NULL){
+        LuaLoader::LuaLoaderInstance = new LuaLoader();
+    }
+    return LuaLoader::LuaLoaderInstance;
+}
+
+LuaLoader::LuaLoader() : GameObject("LUA")
 {
 	std::cout << "Lua is loading ..."  << std::endl;
     lua_State *lua = luaL_newstate();
@@ -111,7 +120,7 @@ int AddInteractiveModel(lua_State * lua)
     if(Texture != ""){
         textureMaterial = new TextureMaterial (Texture::load ("mge/textures/"+Texture));
     }
-    GameObject* GO = new GameObject (IDname, glm::vec3(0,0,0));
+    GameObject* GO = new GameObject (IDname, glm::vec3(0,0,0), true);
     GO->setMesh (mesh);
     GO->setMaterial(textureMaterial);
     World::GetInstance()->add(GO);

@@ -51,7 +51,7 @@ void PhysicsWorld::AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ,
     DynamicsWorld->addRigidBody(pGO->RigidBody);
 }
 
-bool PhysicsWorld::ScreenPosToWorldRay(Camera* pCamera)
+GameObject* PhysicsWorld::ScreenPosToWorldRay(Camera* pCamera)
 {
 
     // The ray Start and End positions, in Normalized Device Coordinates (Have you read Tutorial 4 ?)
@@ -82,7 +82,7 @@ bool PhysicsWorld::ScreenPosToWorldRay(Camera* pCamera)
     return Raycast(lRayStart_vec3, lRayDir_world);
 }
 
-bool PhysicsWorld::Raycast(glm::vec3 out_origin, glm::vec3 out_direction)
+GameObject* PhysicsWorld::Raycast(glm::vec3 out_origin, glm::vec3 out_direction)
 {
     /**/
     std::cout <<"Origin Vector: " <<out_origin << std::endl;
@@ -101,10 +101,13 @@ bool PhysicsWorld::Raycast(glm::vec3 out_origin, glm::vec3 out_direction)
      );
 
      if(RayCallback.hasHit()) {
-        return true;
+        const btRigidBody* rigidBody;
+        rigidBody = btRigidBody::upcast(RayCallback.m_collisionObject);
+        GameObject* GO = (GameObject*)rigidBody->getUserPointer();
+        return GO;
      }
      else {
-        return false;
+        return NULL;
      }
      /**/
 }

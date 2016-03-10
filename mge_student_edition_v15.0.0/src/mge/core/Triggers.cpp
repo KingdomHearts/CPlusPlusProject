@@ -41,8 +41,8 @@ TriggerObjects Triggers::CheckTriggers(Camera pCamera)
         else if(triggerPositionMax.x < pCamera.getWorldPosition().x && triggerPositionMin.z > pCamera.getWorldPosition().z &&
                 triggerPositionMin.x > pCamera.getWorldPosition().x && triggerPositionMax.z < pCamera.getWorldPosition().z && _triggerObjectList[i].sHit == true)
         {
-            _triggerObjectList[i].sHit = false;
-        }
+        _triggerObjectList[i].sHit = false;
+    }
     }
     return TriggerObjects();
 }

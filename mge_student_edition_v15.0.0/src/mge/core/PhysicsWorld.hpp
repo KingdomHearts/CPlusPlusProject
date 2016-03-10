@@ -20,13 +20,13 @@ class PhysicsWorld
     public:
         static PhysicsWorld* GetInstance();
         btDiscreteDynamicsWorld* DynamicsWorld;
-        bool ScreenPosToWorldRay(Camera* pCamera);
+        GameObject* ScreenPosToWorldRay(Camera* pCamera);
         void AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ, glm::vec4 pRotation, glm::vec3 pPosition, GameObject* pGO);
     protected:
     private:
         PhysicsWorld();
 
-        bool Raycast(glm::vec3 out_origin, glm::vec3 out_direction);
+        GameObject* Raycast(glm::vec3 out_origin, glm::vec3 out_direction);
         static PhysicsWorld* physicsWorldInstance;
 };
 

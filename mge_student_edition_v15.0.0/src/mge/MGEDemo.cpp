@@ -32,6 +32,7 @@ using namespace std;
 #include "mge/config.hpp"
 #include "mge/MGEDemo.hpp"
 #include "mge/core/PhysicsWorld.hpp"
+#include "hud.h"
 
 #include <SFML/Audio.hpp>
 
@@ -114,6 +115,7 @@ void MGEDemo::_updateHud() {
     int screenHeight = sf::VideoMode::getDesktopMode().height - 150;
     _hud->setDebugInfo(debugInfo,10,10);
     _hud->setDebugInfo(displayText,screenWidth,screenHeight+10);
+
     //_hud->draw();
 }
 

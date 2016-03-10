@@ -9,6 +9,7 @@
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/core/World.hpp"
 #include "mge/core/PhysicsWorld.hpp"
+#include "hud.h"
 
 
 #include "mge/core/AbstractGame.hpp"
@@ -218,8 +219,6 @@ int AddModel(lua_State * lua)
 }
 
 void LuaLoader::LoadAllModels(){
-
-
     std::cout << "Loading Models ..."  << std::endl;
 
     lua_State *lua = luaL_newstate();

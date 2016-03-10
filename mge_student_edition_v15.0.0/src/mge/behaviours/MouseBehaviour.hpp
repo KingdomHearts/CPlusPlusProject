@@ -23,9 +23,17 @@ class MouseBehaviour : public AbstractBehaviour
         float _distance;
         //GameObject* _emptyCameraParent;
         //GameObject* _emptyChild;
+        bool _fredActive = false;
         Camera* _camera;
         void Looking();
         void RaycastTest();
+        void Hud();
+
+        GameObject* _borders;
+        GameObject* _button;
+        GameObject* _inventoryBox;
+        GameObject* _progressBar;
+        GameObject* _scrollers;
 
         // position
         glm::vec3 _position = glm::vec3( 0, 3, 10 );

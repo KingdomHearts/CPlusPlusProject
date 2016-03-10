@@ -2,8 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include <windows.h>
 #include <SFML/Audio.hpp>
+#include <SFML/Window/Event.hpp>
 #include "mge/core/Timer.hpp"
 #include "mge/behaviours/KeyboardBehaviour.hpp"
+#include <SFML/Window.hpp>
 
 
 MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, float pDistance):AbstractBehaviour()
@@ -20,10 +22,118 @@ MouseBehaviour::~MouseBehaviour()
 
 void MouseBehaviour::update(float step)
 {
+    if(KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
+    {
+        Hud();
+    }
+    if(_fredActive)
+    {
+        /**
+        sf::Event event;
+        while (Window.pollEvent(event))
+        {
+            //int mouse_wheel;
+            if (event.type == sf::Event::MouseWheelMoved)
+            {
+                //mouse_wheel = event.mouseWheel.delta;
+                _scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, _scrollers->getLocalPosition().y + event.mouseWheel.delta, _scrollers->getLocalPosition().z));
+                std::cout << "Mouse wheel moved by: " << event.mouseWheel.delta << std::endl;
+            }
+        }
+        //_scrollers.setLocalPosition(_scrollers.getLocalPosition().x, _scrollers.getLocalPosition().y + )
+        /**/
+    }
+
+
+
     Looking();
     RaycastTest();
     sf::Listener::setPosition(_cameraPosition->getLocalPosition().x,_cameraPosition->getLocalPosition().y,_cameraPosition->getLocalPosition().z);
-    sf::Listener::setDirection(-_camera->getWorldPosition().x,0,-_camera->getWorldPosition().z);
+    sf::Listener::setDirection(_direction.x,_direction.y,_direction.z);
+}
+
+void MouseBehaviour::Hud()
+{
+
+
+
+    if(!_fredActive)
+    {
+        _fredActive = true;
+
+        Mesh* mesh;
+        AbstractMaterial* textureMaterial;
+        GameObject* GO;
+
+        /**Borders*/
+        mesh = Mesh::load("mge/HUD/Borders.obj");
+        textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Borders.png"));
+        GO = new GameObject ("Borders", glm::vec3(-0.55, -0.35, -1));
+        GO->setMesh (mesh);
+        GO->setMaterial(textureMaterial);
+        GO->scale(glm::vec3(0.04, 0.05, 0.1));
+        _borders = GO;
+        _camera->add(GO);
+        /**/
+
+        /**Button*/
+        mesh = Mesh::load("mge/HUD/Button.obj");
+        textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Button.png"));
+        GO = new GameObject ("Borders", glm::vec3(0.7, -0.5, -1));
+        GO->setMesh (mesh);
+        GO->setMaterial(textureMaterial);
+        GO->scale(glm::vec3(0.04, 0.05, 0.1));
+        _button = GO;
+        _camera->add(GO);
+        /**/
+
+        /**Inventory Box*/
+        mesh = Mesh::load("mge/HUD/Inventory Box.obj");
+        textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
+        GO = new GameObject ("Borders", glm::vec3(-0.56, 0.05, -0.9));
+        GO->setMesh (mesh);
+        GO->setMaterial(textureMaterial);
+        GO->scale(glm::vec3(0.04, 0.05, 0.1));
+        _inventoryBox = GO;
+        _camera->add(GO);
+        /**/
+
+        /**Progress Bar Empty*/
+        mesh = Mesh::load("mge/HUD/Progress Bar Empty.obj");
+        textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Progress Bar Empty.png"));
+        GO = new GameObject ("Borders", glm::vec3(0.65, 0.5, -1));
+        GO->setMesh (mesh);
+        GO->setMaterial(textureMaterial);
+        GO->scale(glm::vec3(0.04, 0.05, 0.1));
+        _progressBar = GO;
+        _camera->add(GO);
+        /**/
+
+        /**Scroller*/
+        mesh = Mesh::load("mge/HUD/Scroller.obj");
+        textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Scroller.png"));
+        GO = new GameObject ("Borders", glm::vec3(-0.462, 0, -0.9));
+        GO->setMesh (mesh);
+        GO->setMaterial(textureMaterial);
+        GO->scale(glm::vec3(0.0345, 0.045, 0.1));
+        _scrollers = GO;
+        _camera->add(GO);
+        /**/
+
+        std::cout << "Fred Activated" << std::endl;
+    }
+    else if(_fredActive)
+    {
+        _fredActive = false;
+
+        std::cout << "Fred Deactivated" << std::endl;
+        World::GetInstance()->remove(_borders);
+        World::GetInstance()->remove(_button);
+        World::GetInstance()->remove(_inventoryBox);
+        World::GetInstance()->remove(_progressBar);
+        World::GetInstance()->remove(_scrollers);
+    }
+
 }
 
 void MouseBehaviour::RaycastTest()

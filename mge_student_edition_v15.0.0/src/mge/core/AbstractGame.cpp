@@ -295,6 +295,14 @@ void AbstractGame::_processEvents()
                 //this version implements nonconstrained match viewport scaling
                 glViewport(0, 0, event.size.width, event.size.height);
                 break;
+            case sf::Event::MouseWheelMoved:
+                //if (event.type == sf::Event::MouseWheelMoved)
+                //{
+                    //mouse_wheel = event.mouseWheel.delta;
+                    //_scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, _scrollers->getLocalPosition().y + event.mouseWheel.delta, _scrollers->getLocalPosition().z));
+                    std::cout << "Mouse wheel moved by: " << event.mouseWheel.delta << std::endl;
+                //}
+                break;
 
             default:
                 break;

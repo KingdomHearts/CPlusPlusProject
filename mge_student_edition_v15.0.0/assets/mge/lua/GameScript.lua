@@ -70,7 +70,7 @@ function update()
 			-- end
 		-- end
 	-- end
-end
+		end
 
 -- function OpenHud()
 	-- if (keyPressed == "F") then

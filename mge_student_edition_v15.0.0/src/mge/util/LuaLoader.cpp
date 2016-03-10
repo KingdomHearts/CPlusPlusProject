@@ -9,8 +9,8 @@
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/core/World.hpp"
 #include "mge/core/PhysicsWorld.hpp"
+#include "hud.h"
 #include "mge/core/Triggers.hpp"
-
 
 #include "mge/core/AbstractGame.hpp"
 
@@ -24,6 +24,8 @@
 #include <time.h>
 
 #include <SFML/System/Thread.hpp>
+#include "mge/puzzles/Inventory.h"
+
 
 class timer {
 	private:
@@ -151,11 +153,12 @@ int AddInteractiveModel(lua_State * lua)
     finalMatrix[3][0] *= -1;
     /**/
 
-
+    GO->TransformToPlace = finalMatrix;
     GO->setTransform(currentMatrix);
 
     KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,textureMaterial,finalMatrix,GO);
-    PhysicsWorld::GetInstance()->AddColliderToObject(sizeX, sizeY, sizeZ, glm::vec4(rotationX, rotationY, rotationZ, rotationW) ,GO->getWorldPosition(), GO);
+    PhysicsWorld::GetInstance()->AddColliderToObject(sizeX, sizeY, sizeZ, glm::vec4(rotationX, rotationY, rotationZ, rotationW) ,GO->getLocalPosition(), GO);
+
 
     std::cout << "AddInteractiveModel end -> " << IDname << std::endl;
 
@@ -228,8 +231,6 @@ int AddModel(lua_State * lua)
 }
 
 void LuaLoader::LoadAllModels(){
-
-
     std::cout << "Loading Models ..."  << std::endl;
 
     lua_State *lua = luaL_newstate();
@@ -473,6 +474,15 @@ int Freeze(lua_State * lua)
     return 0;
 }
 
+int PlaceObjectInInventory(lua_State * lua)
+{
+    std::string NameObject = lua_tostring(lua,-1);
+    bool AddedToInventory = Inventory::GetInstance()->PlaceObjectInInventory(NameObject);
+    lua_pushboolean(lua, AddedToInventory);
+    lua_setglobal(lua, "AddedToInventory");
+    return 0;
+}
+
 int wait(lua_State * lua)
 {
     World::GetInstance()->waitTimesList.push_back(lua_tonumber(lua,-1));
@@ -567,6 +577,12 @@ void LuaLoader::SetTime(int pTime)
 {
     lua_pushnumber(lua,pTime);
     lua_setglobal(lua,"timer");
+}
+
+void LuaLoader::PushRaycastObject(std::string pName)
+{
+    lua_pushstring(lua, pName.c_str());
+    lua_setglobal(lua, "ClickedOnObject");
 }
 
 void LuaLoader::SetNewState(std::string pNewState)

@@ -32,6 +32,7 @@ class MGEDemo: public AbstractGame
 
 	private:
 		DebugHud* _hud;                   //hud display
+		bool _fredActive = false;
 		//std::vector<Mesh> * AssetList;
 
 		PlayerProgress * _playerProgress;

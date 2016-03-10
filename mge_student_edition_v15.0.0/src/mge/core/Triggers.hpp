@@ -14,6 +14,7 @@ struct TriggerObjects
     glm::vec3 sPosition;
     float sRadius;
     bool sHit;
+    int isEntered = 0;
 };
 
 class Triggers

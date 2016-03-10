@@ -33,16 +33,25 @@ TriggerObjects Triggers::CheckTriggers(Camera pCamera)
         glm::vec3 triggerPositionMax = _triggerObjectList[i].sPosition + _triggerObjectList[i].sRadius;
         glm::vec3 triggerPositionMin = _triggerObjectList[i].sPosition - _triggerObjectList[i].sRadius;
         if(triggerPositionMax.x > pCamera.getWorldPosition().x && triggerPositionMin.z < pCamera.getWorldPosition().z &&
-           triggerPositionMin.x < pCamera.getWorldPosition().x && triggerPositionMax.z > pCamera.getWorldPosition().z && _triggerObjectList[i].sHit != true)
+           triggerPositionMin.x < pCamera.getWorldPosition().x && triggerPositionMax.z > pCamera.getWorldPosition().z)
         {
-            _triggerObjectList[i].sHit = true;
-            return _triggerObjectList[i];
+            _triggerObjectList[i].isEntered++;
+            //std::cout << "isEntered: " << isEntered << std::endl;
+            if(_triggerObjectList[i].isEntered == 1)
+            {
+                _triggerObjectList[i].sHit = true;
+                return _triggerObjectList[i];
+            }
+
         }
-        else if(triggerPositionMax.x < pCamera.getWorldPosition().x && triggerPositionMin.z > pCamera.getWorldPosition().z &&
-                triggerPositionMin.x > pCamera.getWorldPosition().x && triggerPositionMax.z < pCamera.getWorldPosition().z && _triggerObjectList[i].sHit == true)
+        else
         {
-        _triggerObjectList[i].sHit = false;
-    }
+            _triggerObjectList[i].sHit = false;
+            if(_triggerObjectList[i].sHit == false && _triggerObjectList[i].isEntered > 1)
+            {
+                _triggerObjectList[i].isEntered = 0;
+            }
+        }
     }
     return TriggerObjects();
 }

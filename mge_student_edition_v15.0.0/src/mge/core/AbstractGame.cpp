@@ -171,13 +171,14 @@ int luaTimer = 0;
                     int j = World::GetInstance()->DialogNumberList.at(0);
                     for(std::vector<DialogStruct>::iterator i =  World::GetInstance()->dialogList->begin(); i != World::GetInstance()->dialogList->end();i++)
                     {
+                        //std::cout << "J: " j <<std::endl;
                         if(i->sDialogNumber == j)
                         {
                             World::GetInstance()->displayText = i->sText;
                             std::cout << i->sText << std::endl;
                             int display = i->sScreenTime;
                             //sf::sleep(sf::milliseconds(display*1000));
-                            World::GetInstance()->dialogList->erase(i);
+                            //World::GetInstance()->dialogList->erase(i);
                             World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.begin()+1);
                             if(World::GetInstance()->waitTimesList.size() > 0)
                             {
@@ -185,7 +186,6 @@ int luaTimer = 0;
                                 sf::sleep(sf::milliseconds(seconds*1000));
                                 World::GetInstance()->waitTimesList.erase(World::GetInstance()->waitTimesList.begin(),World::GetInstance()->waitTimesList.begin()+1);
                             }
-
                         }
                     }
                 }

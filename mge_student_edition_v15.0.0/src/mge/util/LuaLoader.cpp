@@ -488,7 +488,6 @@ int playDialogueTrack(lua_State * lua)
 int RandomDialogAndRepeat(lua_State * lua)
 {
     std::string nestedString = lua_tostring(lua,-1);
-
     std::string splitter = ",";
     size_t pos = 0;
     std::string token;
@@ -574,6 +573,12 @@ void LuaLoader::SetNewState(std::string pNewState)
 {
     lua_pushstring(lua,pNewState.c_str());
     lua_setglobal(lua,"state");
+}
+
+void LuaLoader::SetTrigger(std::string pTriggerName)
+{
+    lua_pushstring(lua,pTriggerName.c_str());
+    lua_setglobal(lua,"trigger");
 }
 
 void LuaLoader::KeyPressed(std::string pPressedKey)

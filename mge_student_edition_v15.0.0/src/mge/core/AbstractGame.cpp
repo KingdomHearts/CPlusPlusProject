@@ -7,6 +7,8 @@ using namespace std;
 #include "mge/core/FPS.hpp"
 #include "mge/core/Renderer.hpp"
 #include "mge/core/World.hpp"
+#include "mge/behaviours/KeyboardBehaviour.hpp"
+#include "mge/core/Timer.hpp"
 
 AbstractGame::AbstractGame():_window(NULL),_renderer(NULL),_world(NULL),_running(false)
 {
@@ -153,37 +155,69 @@ void KeyPressings(LuaLoader * luaLoader)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
         luaLoader->KeyPressed("M");
     }
+
 }
 
-
+bool skip = true;
 bool PickedUpFred = true;
 bool DialogIsFinish = false;
 int luaTimer = 0;
+int threadcount =0;
+float screenTime;
+float waitlistTime;
+bool isShowing = false;
+float now;
+//Time waitlistTime;
  void DialogThread(DebugHud * hud)
 {
         while(true)
         {
+            threadcount++;
+            //std::cout << Timer::now() << std::endl;
             if(World::GetInstance()->DialogNumberList.size() > 0)
             {
                 luaTimer =0;
+                now = Timer::now();
                 while(World::GetInstance()->DialogNumberList.size() > 0)
                 {
                     int j = World::GetInstance()->DialogNumberList.at(0);
                     for(std::vector<DialogStruct>::iterator i =  World::GetInstance()->dialogList->begin(); i != World::GetInstance()->dialogList->end();i++)
                     {
-                        //std::cout << "J: " j <<std::endl;
+                        //std::cout << "isSkipped: " << skip <<std::endl;
                         if(i->sDialogNumber == j)
                         {
-                            World::GetInstance()->displayText = i->sText;
-                            std::cout << i->sText << std::endl;
-                            int display = i->sScreenTime;
-                            sf::sleep(sf::milliseconds(display*1000));
-                            //World::GetInstance()->dialogList->erase(i);
+
+                            screenTime = 0;
+                                int display = i->sScreenTime;
+                                if(screenTime == 0 && isShowing == false)
+                                {
+                                    screenTime = round(Timer::now()) + display;
+                                    std::cout << screenTime << std::endl;
+                                    isShowing = true;
+                                }
+                                if(screenTime > 0 && isShowing)
+                                {
+                                    if(now - Timer::now() < 2)
+                                    {
+                                        screenTime--;
+                                    }
+                                    World::GetInstance()->displayText = i->sText;
+                                    std::cout << i->sText << std::endl;
+                                    std::cout << screenTime << std::endl;
+                                }
+                                else
+                                {
+                                    isShowing =false;
+                                }
+                                //sf::sleep(sf::milliseconds(display*1000));
+                                //World::GetInstance()->dialogList->erase(i);
+
                             World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.begin()+1);
                             if(World::GetInstance()->waitTimesList.size() > 0)
                             {
-                                int seconds = World::GetInstance()->waitTimesList.at(0);
-                                sf::sleep(sf::milliseconds(seconds*1000));
+                                    int seconds = World::GetInstance()->waitTimesList.at(0);
+                                    //sf::sleep(sf::milliseconds(seconds*1000));
+
                                 World::GetInstance()->waitTimesList.erase(World::GetInstance()->waitTimesList.begin(),World::GetInstance()->waitTimesList.begin()+1);
                             }
                         }
@@ -194,6 +228,7 @@ int luaTimer = 0;
             {
                 DialogIsFinish = true;
             }
+            /**
             if(World::GetInstance()->startTimer)
             {
                 sf::sleep(sf::milliseconds(1000));
@@ -201,6 +236,7 @@ int luaTimer = 0;
 
                 std::cout << luaTimer << std::endl;
             }
+            **/
         }
 
 }

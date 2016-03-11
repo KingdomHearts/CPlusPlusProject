@@ -26,6 +26,7 @@
 					<Add directory="../../../Google Drive/C++ Project/Technical/Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib" />
 					<Add directory="src/mge" />
 					<Add directory="src/mge/puzzles" />
+					<Add directory="src/mge/core" />
 				</Compiler>
 				<Linker>
 					<Add library="glew32" />
@@ -57,11 +58,15 @@
 		<Unit filename="assets/mge/fonts/arial.ttf" />
 		<Unit filename="assets/mge/lua/AssetLoader.lua" />
 		<Unit filename="assets/mge/lua/AssetLoaderInteractable.lua" />
+		<Unit filename="assets/mge/lua/DialogueScript.lua" />
 		<Unit filename="assets/mge/lua/GameScript.lua" />
+		<Unit filename="assets/mge/lua/GameScriptNew.lua" />
 		<Unit filename="assets/mge/lua/Introduction.lua" />
 		<Unit filename="assets/mge/lua/Runtime.lua" />
+		<Unit filename="assets/mge/lua/SaveGames.lua" />
 		<Unit filename="assets/mge/lua/SaveGames.txt" />
 		<Unit filename="assets/mge/lua/SoundLoader.lua" />
+		<Unit filename="assets/mge/lua/Sounds.lua" />
 		<Unit filename="assets/mge/lua/TestLua.lua" />
 		<Unit filename="assets/mge/lua/Triggers.lua" />
 		<Unit filename="assets/mge/lua/test.lua" />
@@ -117,6 +122,8 @@
 		<Unit filename="src/mge/core/Texture.hpp" />
 		<Unit filename="src/mge/core/Timer.cpp" />
 		<Unit filename="src/mge/core/Timer.hpp" />
+		<Unit filename="src/mge/core/Triggers.cpp" />
+		<Unit filename="src/mge/core/Triggers.hpp" />
 		<Unit filename="src/mge/core/World.cpp" />
 		<Unit filename="src/mge/core/World.hpp" />
 		<Unit filename="src/mge/hud.cpp" />
@@ -127,6 +134,8 @@
 		<Unit filename="src/mge/materials/ColorMaterial.hpp" />
 		<Unit filename="src/mge/materials/TextureMaterial.cpp" />
 		<Unit filename="src/mge/materials/TextureMaterial.hpp" />
+		<Unit filename="src/mge/puzzles/Inventory.cpp" />
+		<Unit filename="src/mge/puzzles/Inventory.h" />
 		<Unit filename="src/mge/puzzles/Rebuild.cpp" />
 		<Unit filename="src/mge/puzzles/Rebuild.h" />
 		<Unit filename="src/mge/rooms/MainHall.cpp" />

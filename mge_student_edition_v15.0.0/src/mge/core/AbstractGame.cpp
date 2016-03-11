@@ -166,9 +166,21 @@ int threadcount =0;
 float screenTime;
 float waitlistTime;
 bool isShowing = false;
+int threadTimer = 0;
 float now;
 //Time waitlistTime;
- void DialogThread(DebugHud * hud)
+
+void TimerThread()
+{
+    sf::sleep(sf::milliseconds(1000));
+    threadTimer++;
+    if(isShowing)
+    {
+
+    }
+
+}
+void DialogThread(DebugHud * hud)
 {
         while(true)
         {
@@ -177,6 +189,7 @@ float now;
             if(World::GetInstance()->DialogNumberList.size() > 0)
             {
                 luaTimer =0;
+                screenTime =0;
                 now = Timer::now();
                 while(World::GetInstance()->DialogNumberList.size() > 0)
                 {
@@ -187,36 +200,34 @@ float now;
                         if(i->sDialogNumber == j)
                         {
 
-                            screenTime = 0;
+                            //screenTime = 0;
                                 int display = i->sScreenTime;
-                                if(screenTime == 0 && isShowing == false)
-                                {
-                                    screenTime = round(Timer::now()) + display;
+                                //if(screenTime == 0 && isShowing == false)
+                                //{
+                                    screenTime = threadTimer + display;
                                     std::cout << screenTime << std::endl;
                                     isShowing = true;
-                                }
-                                if(screenTime > 0 && isShowing)
-                                {
-                                    if(now - Timer::now() < 2)
-                                    {
-                                        screenTime--;
-                                    }
+                                //}
+                                //if(screenTime > 0 && isShowing)
+                               //{
                                     World::GetInstance()->displayText = i->sText;
-                                    std::cout << i->sText << std::endl;
+                                ////    std::cout << i->sText << std::endl;
                                     std::cout << screenTime << std::endl;
-                                }
-                                else
-                                {
+                               // }
+                                //else
+                               // {
                                     isShowing =false;
-                                }
+                                 //   if(screenTime == 0)
+                                 //   {
+                                        World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.begin()+1);
+                                 //   }
+                               // }
                                 //sf::sleep(sf::milliseconds(display*1000));
                                 //World::GetInstance()->dialogList->erase(i);
-
-                            World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.begin()+1);
                             if(World::GetInstance()->waitTimesList.size() > 0)
                             {
                                     int seconds = World::GetInstance()->waitTimesList.at(0);
-                                    //sf::sleep(sf::milliseconds(seconds*1000));
+                                    sf::sleep(sf::milliseconds(seconds*1000));
 
                                 World::GetInstance()->waitTimesList.erase(World::GetInstance()->waitTimesList.begin(),World::GetInstance()->waitTimesList.begin()+1);
                             }
@@ -246,6 +257,8 @@ void AbstractGame::run()
 {
     sf::Thread myThread(&DialogThread,_hud);
     myThread.launch();
+    sf::Thread timerThread(&TimerThread);
+    timerThread.launch();
 	_running = true;
 
     _luaLoader = LuaLoader::GetInstance();

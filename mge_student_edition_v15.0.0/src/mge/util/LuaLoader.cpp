@@ -474,15 +474,6 @@ int Freeze(lua_State * lua)
     return 0;
 }
 
-int PlaceObjectInInventory(lua_State * lua)
-{
-    std::string NameObject = lua_tostring(lua,-1);
-    bool AddedToInventory = Inventory::GetInstance()->PlaceObjectInInventory(NameObject);
-    lua_pushboolean(lua, AddedToInventory);
-    lua_setglobal(lua, "AddedToInventory");
-    return 0;
-}
-
 int wait(lua_State * lua)
 {
     World::GetInstance()->waitTimesList.push_back(lua_tonumber(lua,-1));
@@ -577,12 +568,6 @@ void LuaLoader::SetTime(int pTime)
 {
     lua_pushnumber(lua,pTime);
     lua_setglobal(lua,"timer");
-}
-
-void LuaLoader::PushRaycastObject(std::string pName)
-{
-    lua_pushstring(lua, pName.c_str());
-    lua_setglobal(lua, "ClickedOnObject");
 }
 
 void LuaLoader::SetNewState(std::string pNewState)

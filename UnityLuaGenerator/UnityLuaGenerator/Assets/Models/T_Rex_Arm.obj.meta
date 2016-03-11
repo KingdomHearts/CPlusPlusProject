@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: a2a9f8eaf8bc27f45bd98a31fb4f30ef
-timeCreated: 1456325450
+guid: 8a32c2e1847c3b547a8ed4c8e9d4ca0d
+timeCreated: 1457656113
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: polySurface133
+    100000: Rex_Arm
     100002: //RootNode
-    400000: polySurface133
+    400000: Rex_Arm
     400002: //RootNode
-    2300000: polySurface133
-    3300000: polySurface133
-    4300000: polySurface133
+    2300000: Rex_Arm
+    3300000: Rex_Arm
+    4300000: Rex_Arm
   materials:
     importMaterials: 1
     materialName: 0

@@ -219,16 +219,30 @@ int AddModel(lua_State * lua)
     World::GetInstance()->add(GO);
     World::GetInstance()->MeshList.push_back(*mesh);
 
-    glm::mat4 matrix(m[0],  m[4],  m[8],  m[12],
-                     m[1],  m[5],  m[9],  m[13],
-                     m[2],  m[6],  m[10], m[14],
-                     m[3],  m[7],  m[11], m[15]);
 
-    matrix = glm::transpose(matrix);
-    matrix[0][0] *= -1;
-    matrix[1][0] *= -1;
+    if (IDname== "Desk") {
+        cout << "Before-----------------------------------------------Desk\n";
+        cout << m[0]<< " " <<  m[4]<< " " <<  m[8]<< " " <<  m[12] << "\n";
+        cout << m[1]<< " " <<  m[5]<< " " <<  m[9]<< " " <<  m[13] << "\n";
+        cout << m[2]<< " " <<  m[6]<< " " <<  m[10]<< " " <<  m[14] << "\n";
+        cout << m[3]<< " " <<  m[7]<< " " <<  m[11]<< " " <<  m[15] << "\n";
+        cout << "-----------------------------------------------\n";
+    }
+
+    glm::mat4 matrix(m[0],  m[1],  m[2],  m[3],
+                     m[4],  m[5],  m[6],  m[7],
+                     m[8],  m[9],  m[10], m[11],
+                     m[12],  m[13],  m[14], m[15]);
+
     matrix[2][0] *= -1;
+    matrix[0][2] *= -1;
     matrix[3][0] *= -1;
+
+    if (IDname== "Desk") {
+        cout << "After-----------------------------------------------Desk\n";
+        cout << matrix << "\n";
+        cout << "-----------------------------------------------\n";
+    }
     GO->setTransform(matrix);
     std::cout << "AddModel end -> " << IDname << std::endl;
 

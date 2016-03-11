@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: af0e8f5f16013294282db539ac376c8a
-timeCreated: 1456325451
+guid: f3dd4502f44928149a8a963991688dce
+timeCreated: 1457656114
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: polySurface2
+    100000: Rex_Body_polySurface65_polySurface27_polySurface19_T_Rex_UV1
     100002: //RootNode
-    400000: polySurface2
+    400000: Rex_Body_polySurface65_polySurface27_polySurface19_T_Rex_UV1
     400002: //RootNode
-    2300000: polySurface2
-    3300000: polySurface2
-    4300000: polySurface2
+    2300000: Rex_Body_polySurface65_polySurface27_polySurface19_T_Rex_UV1
+    3300000: Rex_Body_polySurface65_polySurface27_polySurface19_T_Rex_UV1
+    4300000: Rex_Body_polySurface65_polySurface27_polySurface19_T_Rex_UV1
   materials:
     importMaterials: 1
     materialName: 0

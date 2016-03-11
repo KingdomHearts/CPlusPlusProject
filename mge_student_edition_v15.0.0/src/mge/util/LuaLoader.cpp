@@ -482,7 +482,13 @@ int wait(lua_State * lua)
 }
 int playDialogueTrack(lua_State * lua)
 {
-    //bool FredHud = lua_toboolean(lua,-1);
+    int dialogSoundNumber = lua_tonumber(lua,-1);
+    ostringstream os;
+    os << dialogSoundNumber << ".wav";
+    std::string filename = os.str();
+    World::GetInstance()->DialogSoundList.push_back(filename);
+    //_audio->PlaySound(filename);
+    std::cout << filename << std::endl;
     return 0;
 }
 

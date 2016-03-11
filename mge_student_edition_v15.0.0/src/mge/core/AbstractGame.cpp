@@ -168,6 +168,8 @@ float waitlistTime;
 bool isShowing = false;
 int threadTimer = 0;
 float now;
+int testnumer = 0;
+Audio * audio = new Audio("",0);
 //Time waitlistTime;
 
 void TimerThread()
@@ -199,7 +201,6 @@ void DialogThread(DebugHud * hud)
                         //std::cout << "isSkipped: " << skip <<std::endl;
                         if(i->sDialogNumber == j)
                         {
-
                             //screenTime = 0;
                                 int display = i->sScreenTime;
                                 //if(screenTime == 0 && isShowing == false)
@@ -222,7 +223,11 @@ void DialogThread(DebugHud * hud)
                                         World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.begin()+1);
                                  //   }
                                // }
-                                //sf::sleep(sf::milliseconds(display*1000));
+                               std::string audiofile = World::GetInstance()->DialogSoundList.at(0);
+                               audio->PlaySound(audiofile);
+                               World::GetInstance()->DialogSoundList.erase(World::GetInstance()->DialogSoundList.begin(),World::GetInstance()->DialogSoundList.begin()+1);
+                               //std::cout << audiofile << std::endl;
+                                sf::sleep(sf::milliseconds(display*1000));
                                 //World::GetInstance()->dialogList->erase(i);
                             if(World::GetInstance()->waitTimesList.size() > 0)
                             {
@@ -239,7 +244,7 @@ void DialogThread(DebugHud * hud)
             {
                 DialogIsFinish = true;
             }
-            /**
+
             if(World::GetInstance()->startTimer)
             {
                 sf::sleep(sf::milliseconds(1000));
@@ -247,7 +252,7 @@ void DialogThread(DebugHud * hud)
 
                 std::cout << luaTimer << std::endl;
             }
-            **/
+
         }
 
 }

@@ -379,8 +379,8 @@ function EnterAncientHistory()
 	playDialogueTrack(48)
 	playSubtitleScript(48)
 	wait(2)
-	playDialogueTrack(49)
-	playSubtitleScript(49)
+	--playDialogueTrack(49)
+	--playSubtitleScript(49)
 end
 
 function ReturnPaintingAncient()

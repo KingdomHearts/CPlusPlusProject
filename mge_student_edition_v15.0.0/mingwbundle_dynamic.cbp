@@ -51,8 +51,8 @@
 		</Compiler>
 		<Linker>
 			<Add option="-llua" />
-			<Add library="..\..\CPlusPlusProject_KEES\Binaries-LuaDist-batteries-0.9.8-Windows-x86\lib\liblua.dll.a" />
-			<Add library="..\..\CPlusPlusProject_KEES\BulletEngine\lib\libBullet_Library.a" />
+			<Add library="..\Binaries-LuaDist-batteries-0.9.8-Windows-x86\lib\liblua.dll.a" />
+			<Add library="..\BulletEngine\lib\libBullet_Library.a" />
 			<Add directory="../Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib" />
 			<Add directory="../BulletEngine/lib" />
 			<Add directory="../BulletEngine/src" />

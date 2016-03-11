@@ -5,6 +5,7 @@
 #include <SFML/Window/Event.hpp>
 #include "mge/core/Timer.hpp"
 #include "mge/behaviours/KeyboardBehaviour.hpp"
+#include "mge/puzzles/Inventory.h"
 #include <SFML/Window.hpp>
 
 
@@ -142,10 +143,10 @@ void MouseBehaviour::PickUpObject()
     if(KeyboardBehaviour::GetLeftMouseDown())
     {
         GameObject* Test = PhysicsWorld::GetInstance()->ScreenPosToWorldRay(_camera);
-        if(Test != NULL)
+        if(Test != NULL && Test->IsInteractive() == true)
         {
             std::cout << "Hitting a Interactive Model: " << Test->getName() << std::endl;
-            LuaLoader::GetInstance()->PushRaycastObject(Test->getName());
+            Inventory::GetInstance()->PlaceObjectInInventory(Test->getName());
         }
         else
         {

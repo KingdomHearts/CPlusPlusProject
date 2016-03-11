@@ -78,6 +78,14 @@ class GameObject
         btRigidBody *RigidBody;
         glm::mat4 TransformToPlace;
 
+        //Info For Rigid Body
+        float GOSizeX;
+        float GOSizeY;
+        float GOSizeZ;
+        glm::vec4 GORotation;
+        glm::vec3 GOPositionToPlace;
+        //
+
 	protected:
 		std::string _name;
 		glm::mat4 _transform;

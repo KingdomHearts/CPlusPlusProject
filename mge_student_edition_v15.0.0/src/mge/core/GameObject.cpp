@@ -30,6 +30,11 @@ GameObject::~GameObject()
     //do not forget to delete behaviour, material, mesh, collider manually if required!
 }
 
+bool GameObject::IsInteractive()
+{
+    return Interactive;
+}
+
 void GameObject::setName (std::string pName)
 {
     _name = pName;

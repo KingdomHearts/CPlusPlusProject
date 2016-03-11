@@ -29,7 +29,6 @@ class LuaLoader : public GameObject
         void SetTime(int pTime);
         void SetTrigger(std::string pTriggerName);
         void KeyPressed(std::string pPressedKey);
-        void PushRaycastObject(std::string pName);
         virtual ~LuaLoader();
     protected:
     private:

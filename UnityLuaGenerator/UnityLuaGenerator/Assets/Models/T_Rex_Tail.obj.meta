@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: ca7bc155439c3b446bf3dd0eae10eb3e
-timeCreated: 1456325451
+guid: 9af6cb70be0484b448ee527941774c60
+timeCreated: 1457656113
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: polySurface159_polySurface140_polySurface132_polySurface84_polySurface1
+    100000: Rex_Tail
     100002: //RootNode
-    400000: polySurface159_polySurface140_polySurface132_polySurface84_polySurface1
+    400000: Rex_Tail
     400002: //RootNode
-    2300000: polySurface159_polySurface140_polySurface132_polySurface84_polySurface1
-    3300000: polySurface159_polySurface140_polySurface132_polySurface84_polySurface1
-    4300000: polySurface159_polySurface140_polySurface132_polySurface84_polySurface1
+    2300000: Rex_Tail
+    3300000: Rex_Tail
+    4300000: Rex_Tail
   materials:
     importMaterials: 1
     materialName: 0

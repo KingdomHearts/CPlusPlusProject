@@ -122,7 +122,7 @@ void MouseBehaviour::Hud()
 
         std::cout << "Fred Activated" << std::endl;
     }
-    /**
+    /**/
     else if(_fredActive)
     {
         _fredActive = false;

@@ -152,12 +152,18 @@ int AddInteractiveModel(lua_State * lua)
     finalMatrix[2][0] *= -1;
     finalMatrix[3][0] *= -1;
     /**/
-
+    GameObject * GOfinalPosition = new GameObject("TempGO", glm::vec3(0,0,0), false);
+    GOfinalPosition->setTransform(finalMatrix);
+    GO->GOPositionToPlace = GOfinalPosition->getLocalPosition();
     GO->TransformToPlace = finalMatrix;
     GO->setTransform(currentMatrix);
 
     KeyboardBehaviour::GetInstance()->BindMeshToButton(mesh,textureMaterial,finalMatrix,GO);
-    PhysicsWorld::GetInstance()->AddColliderToObject(sizeX, sizeY, sizeZ, glm::vec4(rotationX, rotationY, rotationZ, rotationW) ,GO->getLocalPosition(), GO);
+    GO->GOSizeX = sizeX;
+    GO->GOSizeY = sizeY;
+    GO->GOSizeZ = sizeZ;
+    GO->GORotation = glm::vec4(rotationX, rotationY, rotationZ, rotationW);
+    PhysicsWorld::GetInstance()->AddColliderToObject(GO->GOSizeX, GO->GOSizeY, GO->GOSizeZ , GO->GORotation ,GO->getLocalPosition(), GO);
 
 
     std::cout << "AddInteractiveModel end -> " << IDname << std::endl;

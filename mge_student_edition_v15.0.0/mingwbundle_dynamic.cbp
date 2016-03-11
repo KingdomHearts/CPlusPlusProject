@@ -29,12 +29,15 @@
 					<Add directory="src/mge/core" />
 				</Compiler>
 				<Linker>
+					<Add option="-llua" />
 					<Add library="glew32" />
 					<Add library="sfml-graphics-d" />
 					<Add library="sfml-window-d" />
 					<Add library="sfml-audio-d" />
 					<Add library="sfml-system-d" />
 					<Add library="opengl32" />
+					<Add library="..\..\CPlusPlusProject_KEES\Binaries-LuaDist-batteries-0.9.8-Windows-x86\lib\liblua.dll.a" />
+					<Add library="..\..\CPlusPlusProject_KEES\BulletEngine\lib\libBullet_Library.a" />
 					<Add directory="../../../Google Drive/C++ Project/Technical/Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib" />
 				</Linker>
 			</Target>
@@ -42,7 +45,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="../Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib" />
+			<Add directory="../BulletEngine/lib" />
+			<Add directory="../BulletEngine/src" />
 		</Compiler>
+		<Linker>
+			<Add option="-llua" />
+			<Add library="..\..\CPlusPlusProject_KEES\Binaries-LuaDist-batteries-0.9.8-Windows-x86\lib\liblua.dll.a" />
+			<Add library="..\..\CPlusPlusProject_KEES\BulletEngine\lib\libBullet_Library.a" />
+			<Add directory="../Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib" />
+			<Add directory="../BulletEngine/lib" />
+			<Add directory="../BulletEngine/src" />
+		</Linker>
 		<Unit filename="assets/mge/HUD/Bar_Filled.obj" />
 		<Unit filename="assets/mge/HUD/Borders.obj" />
 		<Unit filename="assets/mge/HUD/Borders.png" />

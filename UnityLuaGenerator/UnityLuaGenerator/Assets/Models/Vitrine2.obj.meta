@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 1eaed5f425676bd41be7842f40b461ec
-timeCreated: 1456245297
+guid: 57d93b45115fa5e4d86d21681854ce6e
+timeCreated: 1457656180
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: ConceptEnvironment:Art_Vitrine2
+    100000: Virtine_Glass
     100002: //RootNode
-    400000: ConceptEnvironment:Art_Vitrine2
+    400000: Virtine_Glass
     400002: //RootNode
-    2300000: ConceptEnvironment:Art_Vitrine2
-    3300000: ConceptEnvironment:Art_Vitrine2
-    4300000: ConceptEnvironment:Art_Vitrine2
+    2300000: Virtine_Glass
+    3300000: Virtine_Glass
+    4300000: Virtine_Glass
   materials:
     importMaterials: 1
     materialName: 0

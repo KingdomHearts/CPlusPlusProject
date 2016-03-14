@@ -1,3 +1,4 @@
+#define NULL __null
 #include "Inventory.h"
 #include "mge/core/PhysicsWorld.hpp"
 
@@ -42,6 +43,33 @@ bool Inventory::PlaceObjectInInventory(std::string pName)
         PhysicsWorld::GetInstance()->AddColliderToObject(obj.GO->GOSizeX, obj.GO->GOSizeY, obj.GO->GOSizeZ, obj.GO->GORotation, obj.GO->GOPositionToPlace, obj.GO);
         World::GetInstance()->remove(obj.GO);
         return true;
+    }
+    return false;
+}
+
+bool Inventory::PlaceObjectInWorld(std::string pName)
+{
+    bool foundObject;
+    int index;
+    InventoryObject invObject;
+    for (int i = 0; i < Inventory::GetInstance()->InventoryList.size(); i++) {
+        invObject = Inventory::GetInstance()->InventoryList.at(i);
+        index = i;
+        if (invObject.GO->getName() == pName)
+        {
+            foundObject = true;
+            break;
+        }
+        else
+        {
+            foundObject = false;
+        }
+    }
+    if(foundObject == true)
+    {
+        World::GetInstance()->add(invObject.GO);
+        invObject.GO->setTransform(invObject.pPositionToPlace);
+        InventoryList.erase(InventoryList.begin()+index);
     }
     return false;
 }

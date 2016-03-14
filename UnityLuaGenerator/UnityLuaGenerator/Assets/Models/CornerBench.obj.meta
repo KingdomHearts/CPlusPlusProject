@@ -1,22 +1,17 @@
 fileFormatVersion: 2
-guid: b9b75a6ba18eef64fba02b6360585647
-timeCreated: 1456322094
+guid: 36181cb8b3ac44545a12fa8fc87610e7
+timeCreated: 1457958000
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: CornerBench
-    100002: //RootNode
-    100004: CornerBench:CornerBench
-    400000: CornerBench
-    400002: //RootNode
-    400004: CornerBench:CornerBench
-    2300000: CornerBench
-    2300002: CornerBench:CornerBench
-    3300000: CornerBench
-    3300002: CornerBench:CornerBench
-    4300000: CornerBench
-    4300002: CornerBench:CornerBench
+    100000: //RootNode
+    100002: initialShadingGroup_CornerBench1:CornerBench
+    400000: //RootNode
+    400002: initialShadingGroup_CornerBench1:CornerBench
+    2300000: initialShadingGroup_CornerBench1:CornerBench
+    3300000: initialShadingGroup_CornerBench1:CornerBench
+    4300000: initialShadingGroup_CornerBench1:CornerBench
   materials:
     importMaterials: 1
     materialName: 0

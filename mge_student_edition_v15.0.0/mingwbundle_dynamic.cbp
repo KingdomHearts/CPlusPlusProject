@@ -15,8 +15,8 @@
 				<Compiler>
 					<Add option="-Wnon-virtual-dtor" />
 					<Add option="-Wunreachable-code" />
-					<Add option="-std=c++11" />
 					<Add option="-Wall" />
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add directory="src" />
 					<Add directory="include" />
@@ -36,8 +36,8 @@
 					<Add library="sfml-audio-d" />
 					<Add library="sfml-system-d" />
 					<Add library="opengl32" />
-					<Add library="..\..\CPlusPlusProject_KEES\Binaries-LuaDist-batteries-0.9.8-Windows-x86\lib\liblua.dll.a" />
-					<Add library="..\..\CPlusPlusProject_KEES\BulletEngine\lib\libBullet_Library.a" />
+					<Add library="../Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib/liblua.dll.a" />
+					<Add library="../BulletEngine/lib/libBullet_Library.a" />
 					<Add directory="../../../Google Drive/C++ Project/Technical/Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib" />
 				</Linker>
 			</Target>
@@ -51,8 +51,8 @@
 		</Compiler>
 		<Linker>
 			<Add option="-llua" />
-			<Add library="..\Binaries-LuaDist-batteries-0.9.8-Windows-x86\lib\liblua.dll.a" />
-			<Add library="..\BulletEngine\lib\libBullet_Library.a" />
+			<Add library="../BulletEngine/lib/libBullet_Library.a" />
+			<Add library="../BulletEngine/lib/libBullet_Library.a" />
 			<Add directory="../Binaries-LuaDist-batteries-0.9.8-Windows-x86/lib" />
 			<Add directory="../BulletEngine/lib" />
 			<Add directory="../BulletEngine/src" />

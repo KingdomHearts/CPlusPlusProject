@@ -566,11 +566,44 @@ int RandomDialogAndRepeat(lua_State * lua)
         }
     }
     World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.end());
+
+    std::vector<std::string> stringNumbersT;
     for(int i =0; i<randomOrder.size();i++)
     {
         std::cout << "place " << i << " number: " << randomOrder[i] << std::endl;
         World::GetInstance()->DialogNumberList.push_back(randomOrder[i]);
+
+
+    std::string nestedStringT = World::GetInstance()->DialogSoundList[i];
+    std::string splitterT = ".";
+    size_t posT = 0;
+    std::string tokenT;
+        while ((posT = nestedStringT.find(splitterT)) != std::string::npos)
+        {
+        tokenT = nestedStringT.substr(0, posT);
+        std::cout << "dialog: " << tokenT << std::endl;
+        nestedStringT.erase(0, posT + splitterT.length());
+        stringNumbersT.push_back(tokenT);
+        }
+
     }
+
+    World::GetInstance()->DialogSoundList.clear();
+    for(int i = 0; i < World::GetInstance()->DialogNumberList.size();i++)
+    {
+        for(int j =0 ; j < stringNumbersT.size();j++)
+        {
+            if(World::GetInstance()->DialogNumberList[i] == std::stof(stringNumbersT[j]))
+            {
+                ostringstream os;
+                os << stringNumbersT[j] << ".wav";
+                std::string filename = os.str();
+                World::GetInstance()->DialogSoundList.push_back(filename);
+            }
+        }
+    }
+   // std::cout << World::GetInstance()->DialogSoundList << std::endl;
+
     //bool FredHud = lua_toboolean(lua,-1);
     return 0;
 }
@@ -584,7 +617,7 @@ int playSubtitleScript(lua_State * lua)
 
 int StartTimer(lua_State * lua)
 {
-    World::GetInstance()->maxTime = 0;
+    World::GetInstance()->maxTime = lua_tonumber(lua,-1);
     World::GetInstance()->startTimer = true;
     //World::GetInstance()->maxTime = lua_tonumber(lua,-1);
     return 0;

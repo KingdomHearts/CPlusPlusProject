@@ -19,9 +19,9 @@
 -- which means that it will be heard only if very close to the listener.
 --*/
 
---AddSound("","Lobby_Music_Loop.wav",true,0,"NULL",20,true,1,10,"0,3,-10")
---AddSound("","Medieval_Music_Loop.wav",true,0,"NULL",20,true,1,10,"0,3,-10")
---AddSound("","Prehistoric_Music_Loop.wav",true,0,"NULL",20,true,1,10,"0,3,-10")
+AddSound("","Lobby_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
+AddSound("","Medieval_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
+AddSound("","Prehistoric_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
 
 
 ---- All the Dialog Sounds

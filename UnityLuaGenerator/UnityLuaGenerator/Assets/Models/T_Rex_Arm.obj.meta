@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 8a32c2e1847c3b547a8ed4c8e9d4ca0d
-timeCreated: 1457656113
+guid: 50bd333466bad38409f10f4890ffbcf6
+timeCreated: 1457952214
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Rex_Arm
-    100002: //RootNode
-    400000: Rex_Arm
-    400002: //RootNode
-    2300000: Rex_Arm
-    3300000: Rex_Arm
-    4300000: Rex_Arm
+    100000: //RootNode
+    100002: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Arm
+    400000: //RootNode
+    400002: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Arm
+    2300000: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Arm
+    3300000: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Arm
+    4300000: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Arm
   materials:
     importMaterials: 1
     materialName: 0

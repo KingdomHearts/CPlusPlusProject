@@ -20,6 +20,7 @@
         float sSetAttenuation = 10.f;
         std::string sObject = "NULL";
     };
+
     class Audio
     {
 

@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: bc45ca64c998ceb4dac119cad1fdfae2
-timeCreated: 1457656113
+guid: 46d540a2974e5474d97f59beffbd2b2c
+timeCreated: 1457952214
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Rex_Head
-    100002: //RootNode
-    400000: Rex_Head
-    400002: //RootNode
-    2300000: Rex_Head
-    3300000: Rex_Head
-    4300000: Rex_Head
+    100000: //RootNode
+    100002: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Head
+    400000: //RootNode
+    400002: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Head
+    2300000: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Head
+    3300000: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Head
+    4300000: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Head
   materials:
     importMaterials: 1
     materialName: 0

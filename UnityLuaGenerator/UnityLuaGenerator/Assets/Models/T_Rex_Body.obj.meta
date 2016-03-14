@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: f3dd4502f44928149a8a963991688dce
-timeCreated: 1457656114
+guid: 6e869ad806c828f4da6200c92914931b
+timeCreated: 1457952215
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Rex_Body_polySurface65_polySurface27_polySurface19_T_Rex_UV1
-    100002: //RootNode
-    400000: Rex_Body_polySurface65_polySurface27_polySurface19_T_Rex_UV1
-    400002: //RootNode
-    2300000: Rex_Body_polySurface65_polySurface27_polySurface19_T_Rex_UV1
-    3300000: Rex_Body_polySurface65_polySurface27_polySurface19_T_Rex_UV1
-    4300000: Rex_Body_polySurface65_polySurface27_polySurface19_T_Rex_UV1
+    100000: //RootNode
+    100002: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Body_polySurface65_polySurface57_polySurface19_T_Rex_UV:polySurface1
+    400000: //RootNode
+    400002: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Body_polySurface65_polySurface57_polySurface19_T_Rex_UV:polySurface1
+    2300000: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Body_polySurface65_polySurface57_polySurface19_T_Rex_UV:polySurface1
+    3300000: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Body_polySurface65_polySurface57_polySurface19_T_Rex_UV:polySurface1
+    4300000: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Body_polySurface65_polySurface57_polySurface19_T_Rex_UV:polySurface1
   materials:
     importMaterials: 1
     materialName: 0

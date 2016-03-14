@@ -129,6 +129,25 @@ int AddInteractiveModel(lua_State * lua)
 
     World::GetInstance()->MeshList.push_back(*mesh);
 
+    glm::mat4 currentMatrix(cm[0],  cm[1],  cm[2],  cm[3],
+                            cm[4],  cm[5],  cm[6],  cm[7],
+                            cm[8],  cm[9],  cm[10], cm[11],
+                            cm[12], cm[13], cm[14], cm[15]);
+
+    currentMatrix[2][0] *= -1;
+    currentMatrix[0][2] *= -1;
+    currentMatrix[3][0] *= -1;
+
+    glm::mat4 finalMatrix  (fm[0],  fm[1],  fm[2],  fm[3],
+                            fm[4],  fm[5],  fm[6],  fm[7],
+                            fm[8],  fm[9],  fm[10], fm[11],
+                            fm[12], fm[13], fm[14], fm[15]);
+
+    finalMatrix[2][0] *= -1;
+    finalMatrix[0][2] *= -1;
+    finalMatrix[3][0] *= -1;
+
+    /**
     glm::mat4 currentMatrix(cm[0],  cm[4],  cm[8],  cm[12],
                             cm[1],  cm[5],  cm[9],  cm[13],
                             cm[2],  cm[6],  cm[10], cm[14],
@@ -139,7 +158,7 @@ int AddInteractiveModel(lua_State * lua)
                             fm[2],  fm[6],  fm[10], fm[14],
                             fm[3],  fm[7],  fm[11], fm[15]);
 
-    /**/
+
     currentMatrix = glm::transpose(currentMatrix);
     currentMatrix[0][0] *= -1;
     currentMatrix[1][0] *= -1;
@@ -219,30 +238,15 @@ int AddModel(lua_State * lua)
     World::GetInstance()->add(GO);
     World::GetInstance()->MeshList.push_back(*mesh);
 
-
-    if (IDname== "Desk") {
-        cout << "Before-----------------------------------------------Desk\n";
-        cout << m[0]<< " " <<  m[4]<< " " <<  m[8]<< " " <<  m[12] << "\n";
-        cout << m[1]<< " " <<  m[5]<< " " <<  m[9]<< " " <<  m[13] << "\n";
-        cout << m[2]<< " " <<  m[6]<< " " <<  m[10]<< " " <<  m[14] << "\n";
-        cout << m[3]<< " " <<  m[7]<< " " <<  m[11]<< " " <<  m[15] << "\n";
-        cout << "-----------------------------------------------\n";
-    }
-
     glm::mat4 matrix(m[0],  m[1],  m[2],  m[3],
                      m[4],  m[5],  m[6],  m[7],
                      m[8],  m[9],  m[10], m[11],
-                     m[12],  m[13],  m[14], m[15]);
+                     m[12], m[13], m[14], m[15]);
 
     matrix[2][0] *= -1;
     matrix[0][2] *= -1;
     matrix[3][0] *= -1;
 
-    if (IDname== "Desk") {
-        cout << "After-----------------------------------------------Desk\n";
-        cout << matrix << "\n";
-        cout << "-----------------------------------------------\n";
-    }
     GO->setTransform(matrix);
     std::cout << "AddModel end -> " << IDname << std::endl;
 
@@ -566,11 +570,44 @@ int RandomDialogAndRepeat(lua_State * lua)
         }
     }
     World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.end());
+
+    std::vector<std::string> stringNumbersT;
     for(int i =0; i<randomOrder.size();i++)
     {
         std::cout << "place " << i << " number: " << randomOrder[i] << std::endl;
         World::GetInstance()->DialogNumberList.push_back(randomOrder[i]);
+
+
+    std::string nestedStringT = World::GetInstance()->DialogSoundList[i];
+    std::string splitterT = ".";
+    size_t posT = 0;
+    std::string tokenT;
+        while ((posT = nestedStringT.find(splitterT)) != std::string::npos)
+        {
+        tokenT = nestedStringT.substr(0, posT);
+        std::cout << "dialog: " << tokenT << std::endl;
+        nestedStringT.erase(0, posT + splitterT.length());
+        stringNumbersT.push_back(tokenT);
+        }
+
     }
+
+    World::GetInstance()->DialogSoundList.clear();
+    for(int i = 0; i < World::GetInstance()->DialogNumberList.size();i++)
+    {
+        for(int j =0 ; j < stringNumbersT.size();j++)
+        {
+            if(World::GetInstance()->DialogNumberList[i] == std::stof(stringNumbersT[j]))
+            {
+                ostringstream os;
+                os << stringNumbersT[j] << ".wav";
+                std::string filename = os.str();
+                World::GetInstance()->DialogSoundList.push_back(filename);
+            }
+        }
+    }
+   // std::cout << World::GetInstance()->DialogSoundList << std::endl;
+
     //bool FredHud = lua_toboolean(lua,-1);
     return 0;
 }
@@ -584,7 +621,7 @@ int playSubtitleScript(lua_State * lua)
 
 int StartTimer(lua_State * lua)
 {
-    World::GetInstance()->maxTime = 0;
+    World::GetInstance()->maxTime = lua_tonumber(lua,-1);
     World::GetInstance()->startTimer = true;
     //World::GetInstance()->maxTime = lua_tonumber(lua,-1);
     return 0;

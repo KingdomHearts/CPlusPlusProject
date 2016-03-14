@@ -47,12 +47,13 @@ void PhysicsWorld::AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ,
 
     pGO->RigidBody =new btRigidBody(rigidBodyCI);
     pGO->RigidBody->setUserPointer(pGO);
-
+    std::cout << "Object Position: " << pPosition.x << "," << pPosition.y << "," << pPosition.z << std::endl;
     DynamicsWorld->addRigidBody(pGO->RigidBody);
 }
 
 GameObject* PhysicsWorld::ScreenPosToWorldRay(Camera* pCamera)
 {
+    std::cout << "my Position: " << pCamera->getWorldPosition().x << "," << pCamera->getWorldPosition().y << "," << pCamera->getWorldPosition().z << std::endl;
     // The ray Start and End positions, in Normalized Device Coordinates (Have you read Tutorial 4 ?)
     glm::vec4 lRayStart_NDC(
         ((float)sf::Mouse::getPosition().x/(float)sf::VideoMode::getDesktopMode().width - 0.5f) * 2.0f, // [0,1024] -> [-1,1]

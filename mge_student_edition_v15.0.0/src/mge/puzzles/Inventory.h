@@ -21,6 +21,7 @@ class Inventory
         static Inventory* GetInstance();
         std::vector<InventoryObject> InventoryList;
         bool PlaceObjectInInventory(std::string pName);
+        bool PlaceObjectInWorld(std::string pName);
         virtual ~Inventory();
     protected:
     private:

@@ -186,16 +186,16 @@ void TimerThread()
         militimer++;
         if(militimer == 100)
         {
-            threadTimer++;
+    threadTimer++;
             militimer =0;
         }
         if(KeyboardBehaviour::GetKeyDown(sf::Keyboard::Space))
-        {
+    {
             if(canPressSpace)
             {
             isShowing = true;
             skip = true;
-            }
+    }
         }
     //
     }
@@ -219,15 +219,15 @@ void DialogThread(DebugHud * hud)
                         //std::cout << "isSkipped: " << skip <<std::endl;
                         if(i->sDialogNumber == j)
                         {
-                            int display = i->sScreenTime;
+                                int display = i->sScreenTime;
                             if(isStartTime)
                             {
-                                screenTime = threadTimer + display;
+                                    screenTime = threadTimer + display;
                                 isStartTime = false;
                             }
                             if(screenTime > threadTimer && isShowingDialog == false)
                             {
-                                World::GetInstance()->displayText = i->sText;
+                                    World::GetInstance()->displayText = i->sText;
                                 std::cout << i->sText << std::endl;
                                 isShowingDialog = true;
                             }
@@ -236,16 +236,16 @@ void DialogThread(DebugHud * hud)
                                 std::cout << "It's coming here!!!!" << std::endl;
                                 isStartTime = true;
                                 isShowingDialog = false;
-                                World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.begin()+1);
+                                        World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.begin()+1);
                                 //skip = false;
                             }
 
                             if(World::GetInstance()->DialogSoundList.size() != 0)
                             {
-                                std::string audiofile = World::GetInstance()->DialogSoundList.at(0);
+                               std::string audiofile = World::GetInstance()->DialogSoundList.at(0);
                                 if(isAudioStarted == false)
                                 {
-                                   audio->PlaySound(audiofile);
+                               audio->PlaySound(audiofile);
                                    isAudioStarted = true;
                                 }
                                if(skip && isShowingDialog == false)
@@ -259,14 +259,14 @@ void DialogThread(DebugHud * hud)
                                {
                                     std::cout << "It's coming here in audio part!!!!" << std::endl;
                                     audio->StopSound(audiofile);
-                                    World::GetInstance()->DialogSoundList.erase(World::GetInstance()->DialogSoundList.begin(),World::GetInstance()->DialogSoundList.begin()+1);
+                               World::GetInstance()->DialogSoundList.erase(World::GetInstance()->DialogSoundList.begin(),World::GetInstance()->DialogSoundList.begin()+1);
                                     isAudioStarted = false;
                                }
                             }
                             /**
                             if(World::GetInstance()->waitTimesList.size() > 0)
                             {
-                                int seconds = World::GetInstance()->waitTimesList.at(0);
+                                    int seconds = World::GetInstance()->waitTimesList.at(0);
                                 if(startedWaitTime)
                                 {
                                     waitTime = seconds + threadTimer;
@@ -274,7 +274,7 @@ void DialogThread(DebugHud * hud)
                                 }
                                 if(waitTime > threadTimer)
                                 {
-                                    World::GetInstance()->waitTimesList.erase(World::GetInstance()->waitTimesList.begin(),World::GetInstance()->waitTimesList.begin()+1);
+                                World::GetInstance()->waitTimesList.erase(World::GetInstance()->waitTimesList.begin(),World::GetInstance()->waitTimesList.begin()+1);
                                     waitTime = 0;
                                     startedWaitTime = true;
                                 }
@@ -301,7 +301,7 @@ void DialogThread(DebugHud * hud)
                     }
                     if(threadTimer > luaTimerPassed)
                     {
-                        luaTimer = luaTimer + 1;
+                luaTimer = luaTimer + 1;
                         isLuaStarted = true;
                         canPressSpace = false;
                     }

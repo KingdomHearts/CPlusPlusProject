@@ -145,8 +145,22 @@ void MouseBehaviour::PickUpObject()
         GameObject* Test = PhysicsWorld::GetInstance()->ScreenPosToWorldRay(_camera);
         if(Test != NULL && Test->IsInteractive() == true)
         {
-            std::cout << "Hitting a Interactive Model: " << Test->getName() << std::endl;
-            Inventory::GetInstance()->PlaceObjectInInventory(Test->getName());
+            bool wasNotInInventory = false;
+            for(int i = 0; i < Inventory::GetInstance()->InventoryList.size(); i++)
+            {
+                InventoryObject obj = Inventory::GetInstance()->InventoryList.at(i);
+                if(obj.GO->getName() == Test->getName())
+                {
+                    Inventory::GetInstance()->PlaceObjectInWorld(Test->getName());
+                    wasNotInInventory = false;
+                    break;
+                }
+                wasNotInInventory = true;
+            }
+            if(wasNotInInventory == true)
+            {
+                Inventory::GetInstance()->PlaceObjectInInventory(Test->getName());
+            }
         }
         else
         {

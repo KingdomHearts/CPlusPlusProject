@@ -645,6 +645,12 @@ void LuaLoader::SetTrigger(std::string pTriggerName)
     lua_setglobal(lua,"trigger");
 }
 
+void LuaLoader::SetCompletedPuzzle(std::string pCompletedPuzzleName)
+{
+    lua_pushstring(lua,pCompletedPuzzleName.c_str());
+    lua_setglobal(lua,"completedPuzzle");
+}
+
 void LuaLoader::KeyPressed(std::string pPressedKey)
 {
     World::GetInstance()->maxTime = 0;
@@ -727,6 +733,9 @@ void LuaLoader::RuntimeLoader()
 
     lua_getglobal(lua,"eventFred");
     std::string eventFred = lua_tostring(lua,lua_gettop( lua ));
+
+    lua_getglobal(lua,"completedPuzzle");
+    std::string completedPuzzle  = lua_tostring(lua,lua_gettop( lua ));
 
 	//lua_close(lua);
 }

@@ -16,9 +16,19 @@ pickedUpFred = false
 
 --changeable through C++
 eventFred = ""
+completedPuzzle = ""
 player_Opendoor = false
 
 isNotTriggered = true
+
+AncientHistory = false
+Art = false
+Modern = false
+Medieval = false
+
+PrehistoricCompete = false
+ArtComeplete = false
+AncientComplete = false
 
 
 ----Update
@@ -27,6 +37,20 @@ function update()
 	-- OpenDoor()
 	-- PickUp()
 	-- PlaceDown()
+	CompletedPuzzles()
+	
+	if(trigger == "DoorFrame2" and PrehistoricCompete == true) then
+		AncientHistory = true
+	end
+	if(trigger == "DoorFrame3" and PrehistoricCompete == true) then
+		Art = true
+	end
+	if(trigger == "DoorFrame4" and ArtComeplete == true or AncientComplete == true) then
+		Medieval = true
+	end
+	if(trigger == "DoorFrame5" and ArtComeplete == true or AncientComplete == true) then
+		Modern = true
+	end
   
 	if(state == "reception")then
 		PlaySound("Lobby_Music_Loop.wav")
@@ -50,94 +74,13 @@ function update()
 		if(pickedUpFred == true) then
 		StartTimer(10)
 		end
-		 if (pickedUpFred == true and trigger == "Door") then
-			StopSound("Lobby_Music_Loop.wav")
-			PlaySound("Prehistoric_Music_Loop.wav")
+		 if (pickedUpFred == true and trigger == "DoorFrame1") then
 			 OpenExhibit()
-			 
-			 EnterPrehistoric()
-			 
-			ReturnPainting()
-			DinosaurKill()
-			DinosaurMeteor()
-			BirdEvolution()
-			IceAge() 
-			CreationofFire()
-			CavePainting()
-			SmallCavePainting()
-			Rebuild_puzzle()
-			DinosaurSkeleton()
-			CutUpPuzzle()
-			EvolutionofMan()
-			DisplayCasePrehistoric()
-			PrehistoricFinish()
-			PrehistoricBanner()
-			EnterAncientHistory()
-			ReturnPaintingAncient()
-			Hercules()
-			 Olympus()
-			  Rome()
-			  Caeser()
-			  Xiphos()
-			  Atlantis()
-			  Helm()
-			  Shield()
-			  Pots()
-			  Maze()
-			  SevenWonders()
-			   FallofTroy()
-			   Gladiator()
-			   AncientFinish()
-			   PrehistoricBanner()
-			   EnterMedieval()
-			   CrusadeOne()
-			   CrusadeTwo()
-			   DisplayCaseMedieval()
-			   MissingSword()
-			   Trebuchet()
-			   Balista()
-			   HumanSkeleton()
-			   SkeletonPieces()
-			   MedievalFinish()
-			   MedievalBanner()
-			   EnterArt()
-			   Mozart()
-			   Beethoven()
-				Rembrandt()
-				VanGogh()
-				Violin()
-				Typewriter()
-				VitruvianMan()
-				FirstCRT()
-				WrightBrothers()
-				DaVinci()
-				Lightbulb()
-				Train()
-				Tesla()
-				TheLastSupper()
-				MonaLisa()
-				CreationofAdam()
-				SchoolofAthens()
-				PictureofDavid()
-				FixedAudio()
-				ArtFinish()
-				ArtBanner()
-				EnterModern()
-				DisplayCaseModern()
-				BerlinWall()
-				UBoat()
-				Nukes()
-				BlackBird()
-				WW1()
-				WW2()
-				CW()
-				ModernFinish()
-				ModernBanner()
-				AllRoomsComplete()
-				SecretDoor()
-				KillALFRED()
-				pickedUpFred = false
-			 
+		end
+		if (pickedUpFred == true and trigger == "EnterPrehistoric") then
+			StopSound("Lobby_Music_Loop.wav")
+			PlaySound("Prehistoric_Music_Loop.wav")	 
+			 EnterPrehistoric()		 
 		 end
 		if(timer == 10) then
 			if (pickedUpFred == true and isNotTriggered == true) then
@@ -145,6 +88,117 @@ function update()
 				isNotTriggered = false
 			end
 		end
+		if(trigger == "TutorialPainting") then
+			ReturnPainting()
+		end
+			-- DinosaurKill()
+			-- DinosaurMeteor()
+			-- BirdEvolution()
+			-- IceAge() 
+			-- CreationofFire()
+			-- CavePainting()
+			-- SmallCavePainting()
+			-- Rebuild_puzzle()
+			-- DinosaurSkeleton()
+			-- CutUpPuzzle()
+			-- EvolutionofMan()
+			-- DisplayCasePrehistoric()
+			-- PrehistoricFinish()
+			if(trigger == "DoorFrame1" and completedPuzzle == "PrehistoricFinish") then
+				PrehistoricBanner()
+				PrehistoricCompete = true
+			end
+			
+			if(trigger == "EnterAncientHistory") then
+				EnterAncientHistory()
+			end
+			
+			-- ReturnPaintingAncient()
+			-- Hercules()
+			 -- Olympus()
+			  -- Rome()
+			  -- Caeser()
+			  -- Xiphos()
+			  -- Atlantis()
+			  -- Helm()
+			  -- Shield()
+			  -- Pots()
+			  -- Maze()
+			  -- SevenWonders()
+			   -- FallofTroy()
+			   -- Gladiator()
+			   -- AncientFinish()
+			   if(trigger == "DoorFrame2" and completedPuzzle == "AncientFinish") then
+					AncientBanner()
+					AncientComplete = true
+					
+			   end
+			   if (trigger == "EnterMedieval") then
+					EnterMedieval()
+			   end
+			   -- CrusadeOne()
+			   -- CrusadeTwo()
+			   -- DisplayCaseMedieval()
+			   -- MissingSword()
+			   -- Trebuchet()
+			   -- Balista()
+			   -- HumanSkeleton()
+			   -- SkeletonPieces()
+			   -- MedievalFinish()
+			   if(trigger == "DoorFrame3" and completedPuzzle == "MedievalFinish") then
+					MedievalBanner()
+					MedievalFinish = true
+			   end
+			   
+			   if(trigger == "EnterArt") then
+					EnterArt()
+			   end
+			   -- Mozart()
+			   -- Beethoven()
+				-- Rembrandt()
+				-- VanGogh()
+				-- Violin()
+				-- Typewriter()
+				-- VitruvianMan()
+				-- FirstCRT()
+				-- WrightBrothers()
+				-- DaVinci()
+				-- Lightbulb()
+				-- Train()
+				-- Tesla()
+				-- TheLastSupper()
+				-- MonaLisa()
+				-- CreationofAdam()
+				-- SchoolofAthens()
+				-- PictureofDavid()
+				-- FixedAudio()
+				-- ArtFinish()
+				if(trigger == "DoorFrame4" and completedPuzzle == "ArtFinish") then
+					ArtBanner()
+					ArtComeplete = true
+				end
+				
+				if(trigger == "EnterModern") then
+					EnterModern()
+				end
+				-- DisplayCaseModern()
+				-- BerlinWall()
+				-- UBoat()
+				-- Nukes()
+				-- BlackBird()
+				-- WW1()
+				-- WW2()
+				-- CW()
+				-- ModernFinish()
+				if(trigger == "DoorFrame5" and completedPuzzle == "ModernFinish") then
+					ModernBanner()
+					ModernFinish = true
+				end
+				if(eventFred == "Complete") then
+					AllRoomsComplete()
+					SecretDoor()
+					KillALFRED()
+				end
 	end
 	
 end
@@ -468,7 +522,7 @@ end
 
 -------------------------------------------------------------------
 
-function PrehistoricBanner()
+function AncientBanner()
 	playDialogueTrack(68)
 	playSubtitleScript(68)
 	wait(2)
@@ -826,4 +880,211 @@ function KillALFRED()
 	wait(5)
 	playDialogueTrack(150)
 	playSubtitleScript(150)
+end
+
+function CompletedPuzzles()
+------- Prehistoric
+	if(completedPuzzle == "DinosaurKill") then
+	DinosaurKill()
+	end
+	if(completedPuzzle == "DinosaurMeteor") then
+	DinosaurMeteor()
+	end
+	if(completedPuzzle == "BirdEvolution") then
+	BirdEvolution()
+	end
+	if(completedPuzzle == "IceAge") then
+	IceAge()
+	end
+	if(completedPuzzle == "CreationofFire") then
+	CreationofFire()
+	end
+	if(completedPuzzle == "CavePainting") then
+	CavePainting()
+	end
+	if(completedPuzzle == "SmallCavePainting") then
+	SmallCavePainting()
+	end
+	if(completedPuzzle == "DinosaurSkeleton") then
+	DinosaurSkeleton()
+	end
+	if(completedPuzzle == "EvolutionofMan") then
+	EvolutionofMan()
+	end
+	if(completedPuzzle == "DisplayCasePrehistoric") then
+	DisplayCasePrehistoric()
+	end
+	if(completedPuzzle == "PrehistoricFinish") then
+	PrehistoricFinish()
+	end
+	
+----Ancient History
+	if(completedPuzzle == "Hercules") then
+	Hercules()
+	end
+	if(completedPuzzle == "Olympus") then
+	Olympus()
+	end
+	if(completedPuzzle == "Rome") then
+	Rome()
+	end
+	if(completedPuzzle == "Caeser") then
+	Caeser()
+	end
+	if(completedPuzzle == "Xiphos") then
+	Xiphos()
+	end
+	if(completedPuzzle == "Atlantis") then
+	Atlantis()
+	end
+	if(completedPuzzle == "Helm") then
+	Helm()
+	end
+	if(completedPuzzle == "Shield") then
+	Shield()
+	end
+	if(completedPuzzle == "Pots") then
+	Pots()
+	end
+	if(completedPuzzle == "Maze") then
+	Maze()
+	end
+	if(completedPuzzle == "SevenWonders") then
+	SevenWonders()
+	end
+	if(completedPuzzle == "FallofTroy") then
+	FallofTroy()
+	end
+	if(completedPuzzle == "Gladiator") then
+	Gladiator()
+	end
+	if(completedPuzzle == "AncientFinish") then
+	AncientFinish()
+	end
+	
+----- Middle Ages
+
+	if(completedPuzzle == "CrusadeOne") then
+	CrusadeOne()
+	end
+	if(completedPuzzle == "CrusadeTwo") then
+	CrusadeTwo()
+	end
+	if(completedPuzzle == "DisplayCaseMedieval") then
+	DisplayCaseMedieval()
+	end
+	if(completedPuzzle == "MissingSword") then
+	MissingSword()
+	end
+	if(completedPuzzle == "Trebuchet") then
+	Trebuchet()
+	end
+	if(completedPuzzle == "Balista") then
+	Balista()
+	end
+	if(completedPuzzle == "HumanSkeleton") then
+	HumanSkeleton()
+	end
+	if(completedPuzzle == "SkeletonPieces") then
+	SkeletonPieces()
+	end
+	if(completedPuzzle == "MedievalFinish") then
+	MedievalFinish()
+	end
+
+------- Art
+
+	if(completedPuzzle == "Mozart") then
+	Mozart()
+	end
+	if(completedPuzzle == "Beethoven") then
+	Beethoven()
+	end
+	if(completedPuzzle == "Rembrandt") then
+	Rembrandt()
+	end
+	if(completedPuzzle == "VanGogh") then
+	VanGogh()
+	end
+	if(completedPuzzle == "Violin") then
+	Violin()
+	end
+	if(completedPuzzle == "Typewriter") then
+	Typewriter()
+	end
+	if(completedPuzzle == "VitruvianMan") then
+	VitruvianMan()
+	end
+	if(completedPuzzle == "FirstCRT") then
+	FirstCRT()
+	end
+	if(completedPuzzle == "WrightBrothers") then
+	WrightBrothers()
+	end
+	if(completedPuzzle == "DaVinci") then
+	DaVinci()
+	end
+	if(completedPuzzle == "Lightbulb") then
+	Lightbulb()
+	end
+	if(completedPuzzle == "Train") then
+	Train()
+	end
+	if(completedPuzzle == "Tesla") then
+	Tesla()
+	end
+	if(completedPuzzle == "TheLastSupper") then
+	TheLastSupper()
+	end
+	if(completedPuzzle == "MonaLisa") then
+	MonaLisa()
+	end
+	if(completedPuzzle == "CreationofAdam") then
+	CreationofAdam()
+	end
+	if(completedPuzzle == "SchoolofAthens") then
+	SchoolofAthens()
+	end
+	if(completedPuzzle == "PictureofDavid") then
+	PictureofDavid()
+	end
+	if(completedPuzzle == "FixedAudio") then
+	FixedAudio()
+	end
+	if(completedPuzzle == "ArtFinish") then
+	ArtFinish()
+	end
+	
+-----Modern History
+
+	if(completedPuzzle == "DisplayCaseModern") then
+	DisplayCaseModern()
+	end
+	if(completedPuzzle == "BerlinWall") then
+	BerlinWall()
+	end
+	if(completedPuzzle == "UBoat") then
+	UBoat()
+	end
+	if(completedPuzzle == "Nukes") then
+	Nukes()
+	end
+	if(completedPuzzle == "BlackBird") then
+	BlackBird()
+	end
+	if(completedPuzzle == "WW1") then
+	WW1()
+	end
+	if(completedPuzzle == "WW2") then
+	WW2()
+	end
+	if(completedPuzzle == "CW") then
+	CW()
+	end
+	if(completedPuzzle == "ModernFinish") then
+	ModernFinish()
+	end
+	
+---- End or "SecretDoor/KillALFRED"
+
 end

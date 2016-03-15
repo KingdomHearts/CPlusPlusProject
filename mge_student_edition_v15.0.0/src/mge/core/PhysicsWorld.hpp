@@ -26,7 +26,7 @@ class PhysicsWorld
     private:
         PhysicsWorld();
 
-        GameObject* Raycast(glm::vec3 out_origin, glm::vec3 out_direction);
+        GameObject* Raycast(glm::vec3 pRay_origin, glm::vec3 pRay_direction);
         static PhysicsWorld* physicsWorldInstance;
 };
 

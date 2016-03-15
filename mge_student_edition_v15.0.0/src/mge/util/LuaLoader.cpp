@@ -232,7 +232,7 @@ int AddModel(lua_State * lua)
     if(Texture != ""){
         textureMaterial = new TextureMaterial (Texture::load ("mge/textures/"+Texture));
     }
-    GameObject* GO = new GameObject (IDname, glm::vec3(0,0,0));
+    GameObject* GO = new GameObject (IDname, glm::vec3(0,0,0), false);
     GO->setMesh (mesh);
     GO->setMaterial(textureMaterial);
     World::GetInstance()->add(GO);
@@ -249,6 +249,7 @@ int AddModel(lua_State * lua)
 
     GO->setTransform(matrix);
     std::cout << "AddModel end -> " << IDname << std::endl;
+    PhysicsWorld::GetInstance()->AddColliderToObject(SizeX, SizeY, SizeZ , glm::vec3(rotationX, rotationY, rotationZ, rotationW) ,GO->getLocalPosition(), GO);
 
     return 0;
 

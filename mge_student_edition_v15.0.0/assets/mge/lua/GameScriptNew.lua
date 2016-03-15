@@ -33,6 +33,10 @@ AncientComplete = false
 
 ----Update
 function update()
+	if(loaded == true) then
+		PlaySound("Mono_Sample.wav")
+		loaded = false
+	end
 	-- OpenHud()
 	-- OpenDoor()
 	-- PickUp()

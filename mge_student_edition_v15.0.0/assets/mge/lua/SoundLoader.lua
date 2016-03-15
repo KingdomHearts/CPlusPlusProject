@@ -19,12 +19,13 @@
 -- which means that it will be heard only if very close to the listener.
 --*/
 
+--AddSound("ID","Mono_Sample.wav",true,0,"NULL",100,true,1,10,"0,0,0");
 AddSound("","Lobby_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
 AddSound("","Medieval_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
 AddSound("","Prehistoric_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
 
 
----- All the Dialog Sounds
+----- All the Dialog Sounds
 AddSound("","1.wav",false,0,"NULL",100,false,1,10,"")
 AddSound("","2.wav",false,0,"NULL",100,false,1,10,"")
 AddSound("","3.wav",false,0,"NULL",100,false,1,10,"")

@@ -41,7 +41,7 @@ void MouseBehaviour::update(float step)
     Looking();
     PickUpObject();
     //Position needs to be changed
-    sf::Listener::setPosition(_cameraPosition->getWorldPosition().x,_cameraPosition->getWorldPosition().y,_cameraPosition->getWorldPosition().z);
+    sf::Listener::setPosition(_position.x,_position.y,_position.z);
     sf::Listener::setDirection(_direction.x,_direction.y,_direction.z);
 }
 

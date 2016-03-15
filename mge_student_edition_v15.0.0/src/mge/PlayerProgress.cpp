@@ -21,6 +21,7 @@ PlayerProgress* PlayerProgress::GetInstance()
 
 void PlayerProgress::SaveGame()
 {
+    std::vector<InventoryObject> InventoryListProgress = Inventory::GetInstance()->InventoryList;
     /**
     std::ofstream myfile;
     myfile.open ("mge/lua/SaveGames.txt");
@@ -36,6 +37,61 @@ void PlayerProgress::SaveGame()
     myfile << "X = " << Position.x << "\n";
     myfile << "Y = " << Position.y << "\n";
     myfile << "Z = " << Position.z << "\n";
+
+    for(int i = 0; i < SavePuzzle.size(); i++)
+    {
+        myfile << SavePuzzle[i].sPuzzleName << " = \n";
+
+        myfile << "PuzzleName = " << SavePuzzle[i].sPuzzleName << " = \n";
+
+        for(int j = 0; j < SavePuzzle[i].sPuzzleList.size(); j++)
+        {
+            myfile << "PuzzlePieces = \n {";
+            myfile << "sGameObjectID = " << "'" << SavePuzzle[i].sPuzzleList[j].sGameObjectID << "' \n";
+            myfile << "sStartPosition = "<< "'" << SavePuzzle[i].sPuzzleList[j].sStartPosition.x <<"," << SavePuzzle[i].sPuzzleList[j].sStartPosition.y << "," << SavePuzzle[i].sPuzzleList[j].sStartPosition.z <<"' \n";
+            myfile << "sEndPosition = "<< "'" << SavePuzzle[i].sPuzzleList[j].sEndPosition.x <<"," << SavePuzzle[i].sPuzzleList[j].sEndPosition.y << "," << SavePuzzle[i].sPuzzleList[j].sEndPosition.z <<"' \n";
+            myfile << "}";
+        }
+
+        myfile << "isComplete = " << SavePuzzle[i].sComplete;
+    }
+
+    /**
+    for(int i = 0; i < InventoryList.size(); i++)
+    {
+        myfile << SavePuzzle[i].sPuzzleName << " = \n";
+
+        myfile << "PuzzleName = " << SavePuzzle[i].sPuzzleName << " = \n";
+
+        for(int j = 0; j < SavePuzzle[i].sPuzzleList[j]; j++)
+        {
+            myfile << "PuzzlePieces = \n {";
+            myfile << "sGameObjectID = " << "'" << sGameObjectID << "' \n";
+            myfile << "sStartPosition = "<< "'"sStartPosition.x<<"," << sStartPosition.y<< "," << sStartPosition.z <<"' \n";
+            myfile << "sEndPosition = "<< "'"sEndPosition.x<<"," << sEndPosition.y<< "," << sEndPosition.z <<"' \n";
+            myfile << "}";
+        }
+
+        myfile << "isComplete = " << SavePuzzle[i].sComplete;
+    }
+    /**
+
+level1 =
+{
+  music = "music1",
+
+  items =
+  {
+    A = 1,
+    B = 2,
+
+    {
+      c = "C",
+    }
+  }
+}
+
+    /**/
 }
 
 

@@ -9,7 +9,6 @@
 #include <SFML/Window.hpp>
 #include "mge/PlayerProgress.h"
 
-
 MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, float pDistance):AbstractBehaviour()
 {
     _cameraPosition = pCameraPosition;
@@ -24,40 +23,68 @@ MouseBehaviour::~MouseBehaviour()
 
 void MouseBehaviour::update(float step)
 {
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-    {
-        std::cout << "left In mouse" << std::endl;
-            _startGame = true;
-            //LuaLoader::GetInstance()->SetStartGame("true");
-    }
-    if(_startGame == true)
-    {
-        if(KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
-        {
-            Hud();
-        }
-        if(KeyboardBehaviour::GetKey(sf::Keyboard::Q) && _fredActive)
-        {
-            if(_scrollers->getLocalPosition().y > 0.243) return;
-            _scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, _scrollers->getLocalPosition().y + 0.001, _scrollers->getLocalPosition().z));
-        }
-        if(KeyboardBehaviour::GetKey(sf::Keyboard::E) && _fredActive)
-        {
-            if(_scrollers->getLocalPosition().y < -0.283) return;
-            _scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, _scrollers->getLocalPosition().y - 0.001, _scrollers->getLocalPosition().z));
-        }
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		std::cout << "left In mouse" << std::endl;
+		_startGame = true;
+		//LuaLoader::GetInstance()->SetStartGame("true");
+	}
+	if (_startGame == true)
+	{
+		if (_fredActive)
+		{
+			float sizeInv = Inventory::GetInstance()->InventoryList.size();
+			std::cout << sizeInv << std::endl;
+			if (sizeInv == 0) sizeInv = 1;
+			_scrollAmount = 0.526 / sizeInv;
+		}
 
-        Looking();
-        PickUpObject();
-        //Position needs to be changed
-        sf::Listener::setPosition(_position.x,_position.y,_position.z);
-        sf::Listener::setDirection(_direction.x,_direction.y,_direction.z);
-        PlayerProgress::GetInstance()->Position = _position;
-        if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::L))
-        {
-            _position = PlayerProgress::GetInstance()->LoadGame();
-        }
-    }
+		UpdatePositionFromRigidBody(step);
+
+		if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
+		{
+			Hud();
+		}
+		if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::Q) && _fredActive)
+		{
+			if (_scrollers->getLocalPosition().y > 0.243) return;
+			_scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, _scrollers->getLocalPosition().y + _scrollAmount, _scrollers->getLocalPosition().z));
+			if (_scrollers->getLocalPosition().y > 0.243) _scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, 0.243, _scrollers->getLocalPosition().z));
+		}
+		if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::E) && _fredActive)
+		{
+			if (_scrollers->getLocalPosition().y < -0.283) return;
+			_scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, _scrollers->getLocalPosition().y - _scrollAmount, _scrollers->getLocalPosition().z));
+			if (_scrollers->getLocalPosition().y < -0.283) _scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, -0.283, _scrollers->getLocalPosition().z));
+		}
+
+		Looking();
+		PickUpObject();
+		//Position needs to be changed
+		sf::Listener::setPosition(_position.x, _position.y, _position.z);
+		sf::Listener::setDirection(_direction.x, _direction.y, _direction.z);
+		PlayerProgress::GetInstance()->Position = _position;
+		if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::L))
+		{
+			_position = PlayerProgress::GetInstance()->LoadGame();
+		}
+	}
+}
+
+void MouseBehaviour::UpdatePositionFromRigidBody(float pStep)
+{
+    PhysicsWorld::GetInstance()->DynamicsWorld->stepSimulation(pStep, 10);
+    btTransform tr = _owner->RigidBody->getCenterOfMassTransform();
+    btVector3 vec = tr.getOrigin();
+    //std::cout << "current RigidBodyPosition is: " << vec.getX() << "," << vec.getY() << "," << vec.getZ() << std::endl;
+    _owner->setLocalPosition(glm::vec3(vec.getX(), vec.getY(), vec.getZ()));
+}
+
+void MouseBehaviour::UpdateRigidBodyFromPosition()
+{
+    btTransform tr = _owner->RigidBody->getCenterOfMassTransform();
+    tr.setOrigin(btVector3(_position.x, _position.y, _position.z));
+    _owner->RigidBody->setCenterOfMassTransform(tr);
 }
 
 void MouseBehaviour::Hud()
@@ -93,31 +120,41 @@ void MouseBehaviour::Hud()
         /**/
 
 
-        /**Inventory Box*
+        /**Inventory Box 1*/
         mesh = Mesh::load("mge/HUD/Inventory Box.obj");
         textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
-        GO = new GameObject ("InventoryBox", glm::vec3(-0.56, -0.285, -0.9));
+        GO = new GameObject ("InventoryBox2", glm::vec3(-0.5, 0.02, -0.8));
         GO->setMesh (mesh);
         GO->setMaterial(textureMaterial);
-        GO->scale(glm::vec3(0.045, 0.05*2.85, 0.1));
-        _inventoryBox = GO;
+        GO->scale(glm::vec3(0.04, 0.05, 0.1));
+        _inventoryBox1 = GO;
+        _camera->add(GO);/**/
+            /**Inventory item 1*/
+            if(Inventory::GetInstance()->InventoryList.size() >= 1)
+            {
+                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
+                GO = new GameObject ("InventoryItem1", glm::vec3(-0.5, 0.02, -0.8));
+                GO->setMesh (InvObj.GO->getMesh());
+                GO->setMaterial(InvObj.GO->getMaterial());
+                //GO->setTransform(glm::mat4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1));
+                GO->scale(glm::vec3(0.001, 0.03, 0.03));
+                //_inventoryBox1 = GO;
+                _camera->add(GO);
+            }
+
 
         /**/
 
-        for(int i=0;i<10;i++)
-        {
-            /**Inventory Box*/
+        /**Inventory Box 2*/
             mesh = Mesh::load("mge/HUD/Inventory Box.obj");
             textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
-            GO = new GameObject ("InventoryBox" + i, glm::vec3(-0.5, 0.02 - (i*0.1), -0.8));
+        GO = new GameObject ("InventoryBox2", glm::vec3(-0.5, 0.02 - 0.2, -0.8));
             GO->setMesh (mesh);
             GO->setMaterial(textureMaterial);
             GO->scale(glm::vec3(0.04, 0.05, 0.1));
-            //_inventoryBox = GO;
+        _inventoryBox2 = GO;
             _camera->add(GO);
             /**/
-        }
-        //_camera->add(_inventoryBox);
 
         /**Progress Bar Empty*/
         mesh = Mesh::load("mge/HUD/Progress Bar Empty.obj");
@@ -150,7 +187,8 @@ void MouseBehaviour::Hud()
         _scrollerPosition = _scrollers->getLocalPosition();
         World::GetInstance()->remove(_borders);
         World::GetInstance()->remove(_button);
-        //World::GetInstance()->remove(_inventoryBox);
+        World::GetInstance()->remove(_inventoryBox1);
+        World::GetInstance()->remove(_inventoryBox2);
         World::GetInstance()->remove(_progressBar);
         World::GetInstance()->remove(_scrollers);
         std::cout << "Fred Deactivated" << std::endl;
@@ -164,18 +202,18 @@ void MouseBehaviour::PickUpObject()
 {
     if(KeyboardBehaviour::GetLeftMouseDown())
     {
-        GameObject* Test = PhysicsWorld::GetInstance()->ScreenPosToWorldRay(_camera);
-        if(Test != NULL && Test->IsInteractive() == true)
+        GameObject* ObjectHitTest = PhysicsWorld::GetInstance()->ScreenPosToWorldRay(_camera);
+        if(ObjectHitTest != NULL && ObjectHitTest->IsInteractive() == true)
         {
-            std::cout << "Gameobject Hit: " << Test->getName() << std::endl;
+            std::cout << "Interactive Gameobject Hit: " << ObjectHitTest->getName() << std::endl;
             bool wasNotInInventory = true;
             for(int i = 0; i < Inventory::GetInstance()->InventoryList.size(); i++)
             {
                 InventoryObject obj = Inventory::GetInstance()->InventoryList.at(i);
-                if(obj.GO->getName() == Test->getName())
+                if(obj.GO->getName() == ObjectHitTest->getName())
                 {
                     std::cout << "Placing Object In World" << std::endl;
-                    Inventory::GetInstance()->PlaceObjectInWorld(Test->getName());
+                    Inventory::GetInstance()->PlaceObjectInWorld(ObjectHitTest->getName());
                     wasNotInInventory = false;
                     break;
                 }
@@ -183,9 +221,22 @@ void MouseBehaviour::PickUpObject()
             }
             if(wasNotInInventory == true)
             {
+                if(ObjectHitTest->getName() == "FRED")
+                {
+                   LuaLoader::GetInstance()->PushFredToLua();
+                   PhysicsWorld::GetInstance()->DynamicsWorld->removeRigidBody(ObjectHitTest->RigidBody);
+                   World::GetInstance()->remove(ObjectHitTest);
+                }
+                else
+                {
                 std::cout << "Placing Object In Inventory" << std::endl;
-                Inventory::GetInstance()->PlaceObjectInInventory(Test->getName());
+                    Inventory::GetInstance()->PlaceObjectInInventory(ObjectHitTest->getName());
+                }
             }
+            }
+        else if(ObjectHitTest != NULL)
+        {
+            std::cout << "Static Gameobject Hit: " << ObjectHitTest->getName() << std::endl;
         }
         else
         {
@@ -250,18 +301,22 @@ void MouseBehaviour::Looking()
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         _position += _direction * Timer::deltaTime() * _speed;
+        UpdateRigidBodyFromPosition();
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         _position -= _direction * Timer::deltaTime() * _speed;
+        UpdateRigidBodyFromPosition();
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         _position -= right * Timer::deltaTime() * _speed;
+        UpdateRigidBodyFromPosition();
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         _position += right * Timer::deltaTime() * _speed;
+        UpdateRigidBodyFromPosition();
     }
 
 }

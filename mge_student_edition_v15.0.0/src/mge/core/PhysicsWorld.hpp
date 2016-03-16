@@ -21,7 +21,7 @@ class PhysicsWorld
         static PhysicsWorld* GetInstance();
         btDiscreteDynamicsWorld* DynamicsWorld;
         GameObject* ScreenPosToWorldRay(Camera* pCamera);
-        void AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ, glm::vec4 pRotation, glm::vec3 pPosition, GameObject* pGO);
+        void AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ, glm::vec4 pRotation, glm::vec3 pPosition,float pMass, GameObject* pGO);
     protected:
     private:
         PhysicsWorld();

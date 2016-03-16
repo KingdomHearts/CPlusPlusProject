@@ -30,7 +30,7 @@ PhysicsWorld* PhysicsWorld::GetInstance()
     return PhysicsWorld::physicsWorldInstance;
 }
 
-void PhysicsWorld::AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ, glm::vec4 pRotation, glm::vec3 pPosition, GameObject* pGO)
+void PhysicsWorld::AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ, glm::vec4 pRotation, glm::vec3 pPosition,float pMass, GameObject* pGO)
 {
     btCollisionShape* boxCollisionShape = new btBoxShape(btVector3(pSizeX, pSizeY, pSizeZ));
         btDefaultMotionState* motionstate = new btDefaultMotionState(btTransform(
@@ -39,7 +39,7 @@ void PhysicsWorld::AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ,
     ));
 
     btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(
-        0,                  // mass, in kg. 0 -> Static object, will never move.
+        pMass,                  // mass, in kg. 0 -> Static object, will never move.
         motionstate,
         boxCollisionShape,  // collision shape of body
         btVector3(0,0,0)    // local inertia

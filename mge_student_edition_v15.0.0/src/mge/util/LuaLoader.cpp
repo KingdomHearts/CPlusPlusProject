@@ -182,7 +182,7 @@ int AddInteractiveModel(lua_State * lua)
     GO->GOSizeY = sizeY;
     GO->GOSizeZ = sizeZ;
     GO->GORotation = glm::vec4(rotationX, rotationY, rotationZ, rotationW);
-    PhysicsWorld::GetInstance()->AddColliderToObject(GO->GOSizeX, GO->GOSizeY, GO->GOSizeZ , GO->GORotation ,GO->getLocalPosition(), GO);
+    PhysicsWorld::GetInstance()->AddColliderToObject(GO->GOSizeX, GO->GOSizeY, GO->GOSizeZ , GO->GORotation ,GO->getLocalPosition(),0, GO);
 
 
     std::cout << "AddInteractiveModel end -> " << IDname << std::endl;
@@ -249,7 +249,7 @@ int AddModel(lua_State * lua)
 
     GO->setTransform(matrix);
     std::cout << "AddModel end -> " << IDname << std::endl;
-    PhysicsWorld::GetInstance()->AddColliderToObject(sizeX, sizeY, sizeZ , glm::vec4(rotationX, rotationY, rotationZ, rotationW) ,GO->getLocalPosition(), GO);
+    PhysicsWorld::GetInstance()->AddColliderToObject(sizeX, sizeY, sizeZ , glm::vec4(rotationX, rotationY, rotationZ, rotationW) ,GO->getLocalPosition(), 0, GO);
 
     return 0;
 
@@ -644,6 +644,12 @@ void LuaLoader::SetStartGame(std::string pStartGame)
     lua_getglobal(lua,"isGameStarted");
     std::string isGameStarted  = lua_tostring(lua,lua_gettop( lua ));
     std::cout << "IsGameStarted?: " <<isGameStarted << std::endl;
+}
+
+void LuaLoader::PushFredToLua()
+{
+    lua_pushstring(lua, "Y");
+    lua_setglobal(lua, "keyPressed");
 }
 
 void LuaLoader::SetNewState(std::string pNewState)

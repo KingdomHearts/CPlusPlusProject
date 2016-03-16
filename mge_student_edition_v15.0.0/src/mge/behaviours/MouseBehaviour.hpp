@@ -29,13 +29,17 @@ class MouseBehaviour : public AbstractBehaviour
         void PickUpObject();
         void RaycastTest();
         void Hud();
+        void UpdateRigidBodyFromPosition();
+        void UpdatePositionFromRigidBody(float pStep);
 
         GameObject* _borders;
         GameObject* _button;
-        GameObject* _inventoryBox;
+        GameObject* _inventoryBox1;
+        GameObject* _inventoryBox2;
         GameObject* _progressBar;
         GameObject* _scrollers;
         glm::vec3 _scrollerPosition = glm::vec3(-0.462, 0.243, -0.9);
+        float _scrollAmount = 0;
 
         // position
         glm::vec3 _position = glm::vec3( 0, 3, 10 );

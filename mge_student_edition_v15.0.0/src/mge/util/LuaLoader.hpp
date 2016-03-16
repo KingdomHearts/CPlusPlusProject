@@ -25,6 +25,7 @@ class LuaLoader : public GameObject
         void LoadAllDialogs();
         void RuntimeLoader();
         void RuntimeUpdater();
+        void PushFredToLua();
         void SetNewState(std::string pNewState);
         void SetTime(int pTime);
         void SetStartGame(std::string pStartGame);

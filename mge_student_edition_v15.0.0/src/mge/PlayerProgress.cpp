@@ -63,7 +63,7 @@ void PlayerProgress::SaveGame()
         myfile <</** "GameObjectName = " <</**/ "'" << InventoryListProgress[i].GO->getName() << "'," << "\n";
 
         std::cout << "testInventory" << std::endl;
-    }
+        }
     //myfile << "}\n";
     myfile << "}";
     /**

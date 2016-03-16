@@ -40,7 +40,7 @@ bool Inventory::PlaceObjectInInventory(std::string pName)
         InventoryList.push_back(obj);
         //Place the Collider in the Next Position
         PhysicsWorld::GetInstance()->DynamicsWorld->removeRigidBody(obj.GO->RigidBody);
-        PhysicsWorld::GetInstance()->AddColliderToObject(obj.GO->GOSizeX, obj.GO->GOSizeY, obj.GO->GOSizeZ, obj.GO->GORotation, obj.GO->GOPositionToPlace, obj.GO);
+        PhysicsWorld::GetInstance()->AddColliderToObject(obj.GO->GOSizeX, obj.GO->GOSizeY, obj.GO->GOSizeZ, obj.GO->GORotation, obj.GO->GOPositionToPlace, 0, obj.GO);
         World::GetInstance()->remove(obj.GO);
         return true;
     }

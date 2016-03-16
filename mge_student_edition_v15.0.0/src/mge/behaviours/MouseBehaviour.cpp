@@ -8,7 +8,6 @@
 #include "mge/puzzles/Inventory.h"
 #include <SFML/Window.hpp>
 
-
 MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, float pDistance):AbstractBehaviour()
 {
     _cameraPosition = pCameraPosition;
@@ -23,6 +22,7 @@ MouseBehaviour::~MouseBehaviour()
 
 void MouseBehaviour::update(float step)
 {
+    UpdatePositionFromRigidBody(step);
     if(KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
     {
         Hud();
@@ -43,6 +43,26 @@ void MouseBehaviour::update(float step)
     //Position needs to be changed
     sf::Listener::setPosition(_cameraPosition->getLocalPosition().x,_cameraPosition->getLocalPosition().y,_cameraPosition->getLocalPosition().z);
     sf::Listener::setDirection(_direction.x,_direction.y,_direction.z);
+}
+
+void MouseBehaviour::UpdatePositionFromRigidBody(float pStep)
+{
+    PhysicsWorld::GetInstance()->DynamicsWorld->stepSimulation(pStep, 10);
+    btTransform tr;
+    _owner->RigidBody->getMotionState()->getWorldTransform(tr);
+    btVector3 vec = tr.getOrigin();
+    //std::cout << "current RigidBodyPosition is: " << vec.getX() << "," << vec.getY() << "," << vec.getZ() << std::endl;
+    _owner->setLocalPosition(glm::vec3(vec.getX(), vec.getY(), vec.getZ()));
+}
+
+void MouseBehaviour::UpdateRigidBodyFromPosition()
+{
+    btTransform tr;
+    _owner->RigidBody->getMotionState()->getWorldTransform(tr);
+    tr.setOrigin(btVector3(_position.x, _position.y, _position.z));
+    //std::cout << "Updated RigidBodyPosition to: " << tr.getOrigin().getX() << "," << tr.getOrigin().getY() << "," << tr.getOrigin().getZ() << std::endl;
+    //std::cout << "Current Position: " << _position << std::endl;
+    _owner->RigidBody->getMotionState()->setWorldTransform(tr);
 }
 
 void MouseBehaviour::Hud()
@@ -148,18 +168,18 @@ void MouseBehaviour::PickUpObject()
 {
     if(KeyboardBehaviour::GetLeftMouseDown())
     {
-        GameObject* Test = PhysicsWorld::GetInstance()->ScreenPosToWorldRay(_camera);
-        if(Test != NULL && Test->IsInteractive() == true)
+        GameObject* ObjectHitTest = PhysicsWorld::GetInstance()->ScreenPosToWorldRay(_camera);
+        if(ObjectHitTest != NULL && ObjectHitTest->IsInteractive() == true)
         {
-            std::cout << "Gameobject Hit: " << Test->getName() << std::endl;
+            std::cout << "Interactive Gameobject Hit: " << ObjectHitTest->getName() << std::endl;
             bool wasNotInInventory = true;
             for(int i = 0; i < Inventory::GetInstance()->InventoryList.size(); i++)
             {
                 InventoryObject obj = Inventory::GetInstance()->InventoryList.at(i);
-                if(obj.GO->getName() == Test->getName())
+                if(obj.GO->getName() == ObjectHitTest->getName())
                 {
                     std::cout << "Placing Object In World" << std::endl;
-                    Inventory::GetInstance()->PlaceObjectInWorld(Test->getName());
+                    Inventory::GetInstance()->PlaceObjectInWorld(ObjectHitTest->getName());
                     wasNotInInventory = false;
                     break;
                 }
@@ -167,9 +187,21 @@ void MouseBehaviour::PickUpObject()
             }
             if(wasNotInInventory == true)
             {
-                std::cout << "Placing Object In Inventory" << std::endl;
-                Inventory::GetInstance()->PlaceObjectInInventory(Test->getName());
+                if(ObjectHitTest->getName() == "FRED")
+                {
+                   LuaLoader::GetInstance()->PushFredToLua();
+                   World::GetInstance()->remove(ObjectHitTest);
+                }
+                else
+                {
+                    std::cout << "Placing Object In Inventory" << std::endl;
+                    Inventory::GetInstance()->PlaceObjectInInventory(ObjectHitTest->getName());
+                }
             }
+        }
+        else if(ObjectHitTest != NULL)
+        {
+            std::cout << "Static Gameobject Hit: " << ObjectHitTest->getName() << std::endl;
         }
         else
         {
@@ -234,18 +266,22 @@ void MouseBehaviour::Looking()
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         _position += _direction * Timer::deltaTime() * _speed;
+        UpdateRigidBodyFromPosition();
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         _position -= _direction * Timer::deltaTime() * _speed;
+        UpdateRigidBodyFromPosition();
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         _position -= right * Timer::deltaTime() * _speed;
+        UpdateRigidBodyFromPosition();
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         _position += right * Timer::deltaTime() * _speed;
+        UpdateRigidBodyFromPosition();
     }
 
 }

@@ -29,6 +29,8 @@ class MouseBehaviour : public AbstractBehaviour
         void PickUpObject();
         void RaycastTest();
         void Hud();
+        void UpdateRigidBodyFromPosition();
+        void UpdatePositionFromRigidBody(float pStep);
 
         GameObject* _borders;
         GameObject* _button;

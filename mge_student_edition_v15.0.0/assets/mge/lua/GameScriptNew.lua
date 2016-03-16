@@ -1,5 +1,7 @@
 --Sounds and Music will be loaded in SoundLoader.lua
 --Dialog will be loaded in DialogueScript.lua even when it should be Dialog
+
+isGameStarted = ""
 loaded = true;
 
 state = "reception" -- Next action
@@ -29,7 +31,6 @@ Medieval = false
 PrehistoricCompete = false
 ArtComeplete = false
 AncientComplete = false
-
 
 ----Update
 function update()
@@ -204,7 +205,6 @@ function update()
 					KillALFRED()
 				end
 	end
-	
 end
 
 -- function OpenHud()

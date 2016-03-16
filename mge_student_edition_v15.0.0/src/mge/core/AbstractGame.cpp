@@ -332,6 +332,7 @@ void AbstractGame::run()
     _luaLoader = LuaLoader::GetInstance();
 
     int Count = 0;
+    bool startGame = false;
 
 	while (_running) {
 
@@ -342,17 +343,25 @@ void AbstractGame::run()
 
 
         _update();
-        if(World::GetInstance() != NULL && Count == 0)
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {
-            _luaLoader->LoadSounds();
-            _luaLoader->RuntimeLoader();
-            _luaLoader->LoadAllDialogs();
-            Count++;
+        std::cout << "left In abstract" << std::endl;
+            startGame = true;
         }
-        if(World::GetInstance() != NULL && Count == 1)
+        if(startGame)
         {
-            _luaLoader->RuntimeUpdater();
+            if(World::GetInstance() != NULL && Count == 0)
+            {
+                _luaLoader->LoadSounds();
+                _luaLoader->RuntimeLoader();
+                _luaLoader->LoadAllDialogs();
+                Count++;
+            }
+            if(World::GetInstance() != NULL && Count == 1)
+            {
+                _luaLoader->RuntimeUpdater();
 
+            }
         }
         //collision loop over here?
         _render();
@@ -360,11 +369,15 @@ void AbstractGame::run()
         //swap colorbuffer to screen
         _window->display();
         //_hud = new DebugHud(_window);
+
         if(DialogIsFinish)
         {
-            std::string nextState = World::GetInstance()->nextState;
-            _luaLoader->SetNewState(nextState);
-            DialogIsFinish = false;
+            if(startGame)
+            {
+                std::string nextState = World::GetInstance()->nextState;
+                _luaLoader->SetNewState(nextState);
+                DialogIsFinish = false;
+            }
         }
         else
         {

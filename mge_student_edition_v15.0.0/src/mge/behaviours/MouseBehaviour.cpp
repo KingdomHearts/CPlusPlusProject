@@ -7,6 +7,7 @@
 #include "mge/behaviours/KeyboardBehaviour.hpp"
 #include "mge/puzzles/Inventory.h"
 #include <SFML/Window.hpp>
+#include "mge/PlayerProgress.h"
 
 
 MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, float pDistance):AbstractBehaviour()
@@ -23,26 +24,40 @@ MouseBehaviour::~MouseBehaviour()
 
 void MouseBehaviour::update(float step)
 {
-    if(KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-        Hud();
+        std::cout << "left In mouse" << std::endl;
+            _startGame = true;
+            //LuaLoader::GetInstance()->SetStartGame("true");
     }
-    if(KeyboardBehaviour::GetKey(sf::Keyboard::Q) && _fredActive)
+    if(_startGame == true)
     {
-        if(_scrollers->getLocalPosition().y > 0.243) return;
-        _scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, _scrollers->getLocalPosition().y + 0.001, _scrollers->getLocalPosition().z));
-    }
-    if(KeyboardBehaviour::GetKey(sf::Keyboard::E) && _fredActive)
-    {
-        if(_scrollers->getLocalPosition().y < -0.283) return;
-        _scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, _scrollers->getLocalPosition().y - 0.001, _scrollers->getLocalPosition().z));
-    }
+        if(KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
+        {
+            Hud();
+        }
+        if(KeyboardBehaviour::GetKey(sf::Keyboard::Q) && _fredActive)
+        {
+            if(_scrollers->getLocalPosition().y > 0.243) return;
+            _scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, _scrollers->getLocalPosition().y + 0.001, _scrollers->getLocalPosition().z));
+        }
+        if(KeyboardBehaviour::GetKey(sf::Keyboard::E) && _fredActive)
+        {
+            if(_scrollers->getLocalPosition().y < -0.283) return;
+            _scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, _scrollers->getLocalPosition().y - 0.001, _scrollers->getLocalPosition().z));
+        }
 
-    Looking();
-    PickUpObject();
-    //Position needs to be changed
-    sf::Listener::setPosition(_position.x,_position.y,_position.z);
-    sf::Listener::setDirection(_direction.x,_direction.y,_direction.z);
+        Looking();
+        PickUpObject();
+        //Position needs to be changed
+        sf::Listener::setPosition(_position.x,_position.y,_position.z);
+        sf::Listener::setDirection(_direction.x,_direction.y,_direction.z);
+        PlayerProgress::GetInstance()->Position = _position;
+        if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::L))
+        {
+            _position = PlayerProgress::GetInstance()->LoadGame();
+        }
+    }
 }
 
 void MouseBehaviour::Hud()

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 using namespace std;
 
 #include "mge/core/Renderer.hpp"
@@ -86,12 +87,32 @@ void MGEDemo::_initializeScene()
     _camera->setParent(emptyGameObject);
     _world->add(_camera);
     _world->setMainCamera(_camera);
+
+    Mesh* mesh;
+    GameObject* GO;
+    AbstractMaterial* mainMenu;
+
+    mesh = Mesh::load("mge/HUD/Plane.obj");
+    mainMenu = new TextureMaterial(Texture::load("mge/HUD/main_menu.png"));
+    GO = new GameObject("menu",glm::vec3(0, -0, -1));
+    GO->rotate(1.6,glm::vec3(1,0,0));
+    GO->setMesh(mesh);
+    GO->setMaterial(mainMenu);
+    GO->scale(glm::vec3(0.1, 2, 0.14));
+    _menu = GO;
+    _camera->add(_menu);
 }
 
 void MGEDemo::_render() {
     AbstractGame::_render();
     _updateHud();
 
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+
+        std::cout << "left In MGEDemo" << std::endl;
+        World::GetInstance()->remove(_menu);
+    }
 
     TriggerObjects trigger = Triggers::GetInstance()->CheckTriggers(_camera->getWorldPosition());
 
@@ -105,68 +126,8 @@ void MGEDemo::_render() {
        //std::cout << "L: " << _camera->getParent()->getLocalPosition() << std::endl;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
     {
-        PlayerProgress::GetInstance()->Position = _camera->getWorldPosition();
-
         PlayerProgress::GetInstance()->SaveGame();
         //_playerProgress->SaveGame();
-    }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
-    {
-        _camera->getParent()->setLocalPosition(PlayerProgress::GetInstance()->LoadGame());
-       //_camera->getParent()->setLocalPosition(_playerProgress->LoadGame());
-    }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
-    {
-        /**
-            btPairCachingGhostObject  * ghostObject = new btPairCachingGhostObject();
-            ghostObject->setCollisionShape()
-            btManifoldArray manifoldArray;
-            btBroadphasePairArray& pairArray = ghostObject->getOverlappingPairCache()->getOverlappingPairArray();
-            int numPairs = pairArray.size();
-
-            for (int i = 0; i < numPairs; ++i)
-            {
-                manifoldArray.clear();
-
-                const btBroadphasePair& pair = pairArray[i];
-
-                btBroadphasePair* collisionPair =
-                    PhysicsWorld::GetInstance()->DynamicsWorld->getPairCache()->findPair(
-                        pair.m_pProxy0,pair.m_pProxy1);
-
-                if (!collisionPair) continue;
-
-                if (collisionPair->m_algorithm)
-                    collisionPair->m_algorithm->getAllContactManifolds(manifoldArray);
-
-                for (int j=0;j<manifoldArray.size();j++)
-                {
-                    btPersistentManifold* manifold = manifoldArray[j];
-
-                    bool isFirstBody = manifold->getBody0() == ghostObject;
-
-                    btScalar direction = isFirstBody ? btScalar(-1.0) : btScalar(1.0);
-
-                    for (int p = 0; p < manifold->getNumContacts(); ++p)
-                    {
-                        const btManifoldPoint&pt = manifold->getContactPoint(p);
-
-                        if (pt.getDistance() < 0.f)
-                        {
-                            const btVector3& ptA = pt.getPositionWorldOnA();
-                            const btVector3& ptB = pt.getPositionWorldOnB();
-                            const btVector3& normalOnB = pt.m_normalWorldOnB;
-
-                            // handle collisions here
-                        }
-                    }
-                }
-            }
-
-            PhysicsWorld::GetInstance()->DynamicsWorld->getPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
-    **/
     }
     //_world->renderDebugInfo();
 }

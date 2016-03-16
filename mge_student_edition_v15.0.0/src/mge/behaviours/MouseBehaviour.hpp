@@ -51,6 +51,8 @@ class MouseBehaviour : public AbstractBehaviour
         bool _startup = true;
         sf::Vector2i _mousePos;
         glm::vec3 _direction;
+
+        bool _startGame = false;
 };
 
 #endif // ORBITBEHAVIOUR_H

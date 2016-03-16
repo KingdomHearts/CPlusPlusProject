@@ -56,24 +56,16 @@ void PlayerProgress::SaveGame()
         myfile << "isComplete = " << SavePuzzle[i].sComplete;
     }
 
-    /**
-    for(int i = 0; i < InventoryList.size(); i++)
+    myfile << "Inventory = \n{\n";
+    //myfile << "items = \n{\n";
+    for(int i = 0; i < InventoryListProgress.size(); i++)
     {
-        myfile << SavePuzzle[i].sPuzzleName << " = \n";
+        myfile <</** "GameObjectName = " <</**/ "'" << InventoryListProgress[i].GO->getName() << "'," << "\n";
 
-        myfile << "PuzzleName = " << SavePuzzle[i].sPuzzleName << " = \n";
-
-        for(int j = 0; j < SavePuzzle[i].sPuzzleList[j]; j++)
-        {
-            myfile << "PuzzlePieces = \n {";
-            myfile << "sGameObjectID = " << "'" << sGameObjectID << "' \n";
-            myfile << "sStartPosition = "<< "'"sStartPosition.x<<"," << sStartPosition.y<< "," << sStartPosition.z <<"' \n";
-            myfile << "sEndPosition = "<< "'"sEndPosition.x<<"," << sEndPosition.y<< "," << sEndPosition.z <<"' \n";
-            myfile << "}";
-        }
-
-        myfile << "isComplete = " << SavePuzzle[i].sComplete;
+        std::cout << "testInventory" << std::endl;
     }
+    //myfile << "}\n";
+    myfile << "}";
     /**
 
 level1 =
@@ -151,7 +143,7 @@ glm::vec3 PlayerProgress::LoadGame()
 	luaL_loadfile(lua,"mge/lua/SaveGames.lua");
 	lua_call(lua,0,0);
     lua_getglobal(lua,"SaveName");
-    std::string SaveName = lua_tostring(lua,lua_gettop( lua ));
+    //  std::string SaveName = lua_tostring(lua,lua_gettop( lua ));
     lua_getglobal(lua,"X");
     int x = lua_tonumber(lua,lua_gettop( lua ));
     lua_getglobal(lua,"Y");
@@ -159,7 +151,28 @@ glm::vec3 PlayerProgress::LoadGame()
     lua_getglobal(lua,"Z");
     int z = lua_tonumber(lua,lua_gettop( lua ));
 
-    return glm::vec3(x,y-3,z);
+    lua_getglobal(lua,"Inventory");
+
+    lua_pushnil(lua);
+
+    std::vector<std::string> inventoryStringList;
+    while(lua_next(lua, -2) != 0)
+    {
+        std::string gameObject;
+        if(lua_isstring(lua, -1))
+        {
+            gameObject = lua_tostring(lua,-1);
+            inventoryStringList.push_back(gameObject);
+        }
+        lua_pop(lua, 1);
+    }
+
+    for(int i =0;i < inventoryStringList.size();i++)
+    {
+        Inventory::GetInstance()->PlaceObjectInInventory(inventoryStringList[i]);
+    }
+
+    return glm::vec3(x,y,z);
 }
 
 PlayerProgress::~PlayerProgress()

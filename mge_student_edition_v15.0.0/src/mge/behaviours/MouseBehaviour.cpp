@@ -39,8 +39,6 @@ void MouseBehaviour::update(float step)
 			_scrollAmount = 0.526 / sizeInv;
 		}
 
-		UpdatePositionFromRigidBody(step);
-
 		if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
 		{
 			Hud();
@@ -69,22 +67,6 @@ void MouseBehaviour::update(float step)
 			_position = PlayerProgress::GetInstance()->LoadGame();
 		}
 	}
-}
-
-void MouseBehaviour::UpdatePositionFromRigidBody(float pStep)
-{
-    PhysicsWorld::GetInstance()->DynamicsWorld->stepSimulation(pStep, 10);
-    btTransform tr = _owner->RigidBody->getCenterOfMassTransform();
-    btVector3 vec = tr.getOrigin();
-    //std::cout << "current RigidBodyPosition is: " << vec.getX() << "," << vec.getY() << "," << vec.getZ() << std::endl;
-    _owner->setLocalPosition(glm::vec3(vec.getX(), vec.getY(), vec.getZ()));
-}
-
-void MouseBehaviour::UpdateRigidBodyFromPosition()
-{
-    btTransform tr = _owner->RigidBody->getCenterOfMassTransform();
-    tr.setOrigin(btVector3(_position.x, _position.y, _position.z));
-    _owner->RigidBody->setCenterOfMassTransform(tr);
 }
 
 void MouseBehaviour::Hud()
@@ -229,7 +211,7 @@ void MouseBehaviour::PickUpObject()
                 }
                 else
                 {
-                std::cout << "Placing Object In Inventory" << std::endl;
+                    std::cout << "Placing Object In Inventory" << std::endl;
                     Inventory::GetInstance()->PlaceObjectInInventory(ObjectHitTest->getName());
                 }
             }
@@ -300,23 +282,19 @@ void MouseBehaviour::Looking()
     _direction.y = 0;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-        _position += _direction * Timer::deltaTime() * _speed;
-        UpdateRigidBodyFromPosition();
+       _position += _direction * Timer::deltaTime() * _speed;
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         _position -= _direction * Timer::deltaTime() * _speed;
-        UpdateRigidBodyFromPosition();
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         _position -= right * Timer::deltaTime() * _speed;
-        UpdateRigidBodyFromPosition();
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         _position += right * Timer::deltaTime() * _speed;
-        UpdateRigidBodyFromPosition();
     }
 
 }

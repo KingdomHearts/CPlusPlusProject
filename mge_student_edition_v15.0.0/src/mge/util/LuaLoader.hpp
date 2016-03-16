@@ -28,6 +28,7 @@ class LuaLoader : public GameObject
         void PushFredToLua();
         void SetNewState(std::string pNewState);
         void SetTime(int pTime);
+        void SetStartGame(std::string pStartGame);
         void SetTrigger(std::string pTriggerName);
         void SetCompletedPuzzle(std::string pCompletedPuzzleName);
         void KeyPressed(std::string pPressedKey);

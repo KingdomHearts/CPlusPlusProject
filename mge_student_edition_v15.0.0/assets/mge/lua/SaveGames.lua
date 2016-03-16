@@ -1,4 +1,8 @@
-SaveName = 'InstanceTest'
-X = -7.16544
+SaveName = ''
+X = 27.4572
 Y = 3
-Z = 0.127374
+Z = -17.3638
+Inventory = 
+{
+'FRED',
+}

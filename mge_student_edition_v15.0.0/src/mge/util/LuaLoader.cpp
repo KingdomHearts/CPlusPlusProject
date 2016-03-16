@@ -634,6 +634,18 @@ void LuaLoader::SetTime(int pTime)
     lua_setglobal(lua,"timer");
 }
 
+void LuaLoader::SetStartGame(std::string pStartGame)
+{
+    lua_pushstring(lua,pStartGame.c_str());
+    lua_setglobal(lua,"isGameStarted");
+
+
+
+    lua_getglobal(lua,"isGameStarted");
+    std::string isGameStarted  = lua_tostring(lua,lua_gettop( lua ));
+    std::cout << "IsGameStarted?: " <<isGameStarted << std::endl;
+}
+
 void LuaLoader::PushFredToLua()
 {
     lua_pushstring(lua, "Y");

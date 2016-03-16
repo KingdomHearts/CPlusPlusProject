@@ -37,6 +37,7 @@ class MGEDemo: public AbstractGame
 
 		PlayerProgress * _playerProgress;
 		Camera* _camera;
+		GameObject * _menu;
 
         void _updateHud();
 };

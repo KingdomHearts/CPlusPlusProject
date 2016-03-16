@@ -121,6 +121,18 @@ void MouseBehaviour::Hud()
         _inventoryBox1 = GO;
         _camera->add(GO);/**/
             /**Inventory item 1*/
+            if(Inventory::GetInstance()->InventoryList.size() >= 1)
+            {
+                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
+                GO = new GameObject ("InventoryItem1", glm::vec3(-0.5, 0.02, -0.8));
+                GO->setMesh (InvObj.GO->getMesh());
+                GO->setMaterial(InvObj.GO->getMaterial());
+                //GO->setTransform(glm::mat4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1));
+                GO->scale(glm::vec3(0.001, 0.03, 0.03));
+                //_inventoryBox1 = GO;
+                _camera->add(GO);
+            }
+
 
         /**/
 

@@ -34,7 +34,7 @@ void MouseBehaviour::update(float step)
 
 
     UpdatePositionFromRigidBody(step);
-    if(KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
+    if(KeyboardBehaviour::GetKeyDown(sf::Keyboard::F) && _fredPickedUp)
     {
         Hud();
     }
@@ -120,29 +120,27 @@ void MouseBehaviour::Hud()
         GO->scale(glm::vec3(0.04, 0.05, 0.1));
         _inventoryBox1 = GO;
         _camera->add(GO);/**/
-            /**Inventory item 1*/
-            if(Inventory::GetInstance()->InventoryList.size() >= 1)
-            {
-                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
-                GO = new GameObject ("InventoryItem1", glm::vec3(-0.5, 0.02, -0.8));
-                GO->setMesh (InvObj.GO->getMesh());
-                GO->setMaterial(InvObj.GO->getMaterial());
-                //GO->setTransform(glm::mat4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1));
-                GO->scale(glm::vec3(0.001, 0.03, 0.03));
-                //_inventoryBox1 = GO;
-                _camera->add(GO);
-            }
+        /**Inventory item 1*/
+        if(Inventory::GetInstance()->InventoryList.size() >= 1)
+        {
+            InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
+            GO = new GameObject ("InventoryBox2", glm::vec3(-0.437, 0.11, -0.7));
+            GO->setMesh (InvObj.GO->getMesh());
+            GO->setMaterial(InvObj.GO->getMaterial());
+            GO->scale(glm::vec3(0.015, 0.015, 0.015));
+            _camera->add(GO);
+        }
 
 
         /**/
 
         /**Inventory Box 2*/
-            mesh = Mesh::load("mge/HUD/Inventory Box.obj");
-            textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
+        mesh = Mesh::load("mge/HUD/Inventory Box.obj");
+        textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
         GO = new GameObject ("InventoryBox2", glm::vec3(-0.5, 0.02 - 0.2, -0.8));
-            GO->setMesh (mesh);
-            GO->setMaterial(textureMaterial);
-            GO->scale(glm::vec3(0.04, 0.05, 0.1));
+        GO->setMesh (mesh);
+        GO->setMaterial(textureMaterial);
+        GO->scale(glm::vec3(0.04, 0.05, 0.1));
         _inventoryBox2 = GO;
             _camera->add(GO);
             /**/
@@ -214,6 +212,7 @@ void MouseBehaviour::PickUpObject()
             {
                 if(ObjectHitTest->getName() == "FRED")
                 {
+                    _fredPickedUp = true;
                    LuaLoader::GetInstance()->PushFredToLua();
                    World::GetInstance()->remove(ObjectHitTest);
                 }

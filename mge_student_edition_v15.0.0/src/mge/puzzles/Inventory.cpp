@@ -67,9 +67,11 @@ bool Inventory::PlaceObjectInWorld(std::string pName)
     }
     if(foundObject == true)
     {
+        World::GetInstance()->remove(invObject.GO);
         World::GetInstance()->add(invObject.GO);
         invObject.GO->setTransform(invObject.pPositionToPlace);
         InventoryList.erase(InventoryList.begin()+index);
+
     }
     return false;
 }

@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 4b017995a3e18534692f845ff49d984e
-timeCreated: 1457959749
+guid: dafb183c2f3738e48b46af7a9bbcf014
+timeCreated: 1458036865
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Mainhall_Room1
+    100002: textureBakeSet2_MainHall
     400000: //RootNode
-    400002: Mainhall_Room1
-    2300000: Mainhall_Room1
-    3300000: Mainhall_Room1
-    4300000: Mainhall_Room1
+    400002: textureBakeSet2_MainHall
+    2300000: textureBakeSet2_MainHall
+    3300000: textureBakeSet2_MainHall
+    4300000: textureBakeSet2_MainHall
   materials:
     importMaterials: 1
     materialName: 0

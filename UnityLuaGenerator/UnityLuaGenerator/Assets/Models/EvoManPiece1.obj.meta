@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: EvoMan_Shard_1_EvoMan_Shard
     100002: //RootNode
+    100004: EvoManPiece1:polySurface1_group
     400000: EvoMan_Shard_1_EvoMan_Shard
     400002: //RootNode
+    400004: EvoManPiece1:polySurface1_group
     2300000: EvoMan_Shard_1_EvoMan_Shard
+    2300002: EvoManPiece1:polySurface1_group
     3300000: EvoMan_Shard_1_EvoMan_Shard
+    3300002: EvoManPiece1:polySurface1_group
     4300000: EvoMan_Shard_1_EvoMan_Shard
+    4300002: EvoManPiece1:polySurface1_group
   materials:
     importMaterials: 1
     materialName: 0

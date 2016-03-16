@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 0413c1947cef35941b916d2a48422046
-timeCreated: 1456245296
+guid: dec43b83cc6cd7341849103f5e52467e
+timeCreated: 1457965921
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Medieval:Prisonblock
+    100000: Prisonblock
     100002: //RootNode
-    400000: Medieval:Prisonblock
+    400000: Prisonblock
     400002: //RootNode
-    2300000: Medieval:Prisonblock
-    3300000: Medieval:Prisonblock
-    4300000: Medieval:Prisonblock
+    2300000: Prisonblock
+    3300000: Prisonblock
+    4300000: Prisonblock
   materials:
     importMaterials: 1
     materialName: 0

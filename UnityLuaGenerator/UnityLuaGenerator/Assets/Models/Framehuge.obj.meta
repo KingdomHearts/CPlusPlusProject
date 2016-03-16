@@ -1,22 +1,17 @@
 fileFormatVersion: 2
-guid: 15ce38331c0f7fc43b8527e39a477bbd
-timeCreated: 1456245296
+guid: 797c640c603179e43b2dfaa75272c8b4
+timeCreated: 1458045739
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: polySurface43_pCube6
-    100004: Framehuge:pCube6_Framehuge:polySurface43_Framehuge1
+    100002: Framehuge:polySurface1
     400000: //RootNode
-    400002: polySurface43_pCube6
-    400004: Framehuge:pCube6_Framehuge:polySurface43_Framehuge1
-    2300000: polySurface43_pCube6
-    2300002: Framehuge:pCube6_Framehuge:polySurface43_Framehuge1
-    3300000: polySurface43_pCube6
-    3300002: Framehuge:pCube6_Framehuge:polySurface43_Framehuge1
-    4300000: polySurface43_pCube6
-    4300002: Framehuge:pCube6_Framehuge:polySurface43_Framehuge1
+    400002: Framehuge:polySurface1
+    2300000: Framehuge:polySurface1
+    3300000: Framehuge:polySurface1
+    4300000: Framehuge:polySurface1
   materials:
     importMaterials: 1
     materialName: 0

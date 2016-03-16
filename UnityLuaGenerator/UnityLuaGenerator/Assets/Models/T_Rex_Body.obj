@@ -1,7 +1,7 @@
 # This file uses centimeters as units for non-parametric coordinates.
 
 mtllib T_Rex_Body.mtl
-g T_Rex_UV:default1
+g default
 v -0.454725 15.541073 10.575634
 v -0.272605 15.545342 10.576637
 v -0.424289 15.634986 10.559826
@@ -59759,7 +59759,7 @@ vn -0.354472 0.264176 -0.896973
 vn -0.358435 0.263497 -0.895597
 vn -0.358463 0.263493 -0.895587
 s off
-g T_Rex_UV:Group2 T_Rex_UV:initialShadingGroup T_Rex_Body polySurface65 polySurface57 polySurface19 T_Rex_UV:polySurface1
+g T_Rex_Body1 group
 usemtl lambert2SG
 f 1/1/1 172/2/2 3/3/3
 f 3/3/4 172/2/5 173/4/6

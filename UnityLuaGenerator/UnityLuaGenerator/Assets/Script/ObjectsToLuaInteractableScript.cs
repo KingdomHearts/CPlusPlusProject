@@ -64,9 +64,9 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +
 				texture + "'," +
-                sizeX + "," +
-                sizeY + "," +
-                sizeZ + "," +
+                sizeX / 3 + "," +
+                sizeY / 3 + "," +
+                sizeZ / 3 + "," +
                 child.transform.rotation.x + "," +
                 child.transform.rotation.y + "," +
                 child.transform.rotation.z + "," +

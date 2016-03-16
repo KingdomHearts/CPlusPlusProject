@@ -24,6 +24,7 @@ class MouseBehaviour : public AbstractBehaviour
         //GameObject* _emptyCameraParent;
         //GameObject* _emptyChild;
         bool _fredActive = false;
+        bool _fredPickedUp = false;
         Camera* _camera;
         void Looking();
         void PickUpObject();

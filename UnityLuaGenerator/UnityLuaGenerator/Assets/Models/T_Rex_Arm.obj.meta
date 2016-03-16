@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Arm
+    100004: T_Rex_Arm1_group
     400000: //RootNode
     400002: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Arm
+    400004: T_Rex_Arm1_group
     2300000: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Arm
+    2300002: T_Rex_Arm1_group
     3300000: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Arm
+    3300002: T_Rex_Arm1_group
     4300000: T_Rex_UV:Group2_T_Rex_UV:initialShadingGroup_T_Rex_Arm
+    4300002: T_Rex_Arm1_group
   materials:
     importMaterials: 1
     materialName: 0

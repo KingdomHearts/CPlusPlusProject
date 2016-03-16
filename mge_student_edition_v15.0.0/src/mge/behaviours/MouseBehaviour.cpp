@@ -31,8 +31,6 @@ void MouseBehaviour::update(float step)
         _scrollAmount = 0.526 / sizeInv;
     }
 
-
-
     UpdatePositionFromRigidBody(step);
     if(KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
     {
@@ -61,8 +59,7 @@ void MouseBehaviour::update(float step)
 void MouseBehaviour::UpdatePositionFromRigidBody(float pStep)
 {
     PhysicsWorld::GetInstance()->DynamicsWorld->stepSimulation(pStep, 10);
-    btTransform tr;
-    _owner->RigidBody->getMotionState()->getWorldTransform(tr);
+    btTransform tr = _owner->RigidBody->getCenterOfMassTransform();
     btVector3 vec = tr.getOrigin();
     //std::cout << "current RigidBodyPosition is: " << vec.getX() << "," << vec.getY() << "," << vec.getZ() << std::endl;
     _owner->setLocalPosition(glm::vec3(vec.getX(), vec.getY(), vec.getZ()));
@@ -70,12 +67,9 @@ void MouseBehaviour::UpdatePositionFromRigidBody(float pStep)
 
 void MouseBehaviour::UpdateRigidBodyFromPosition()
 {
-    btTransform tr;
-    _owner->RigidBody->getMotionState()->getWorldTransform(tr);
+    btTransform tr = _owner->RigidBody->getCenterOfMassTransform();
     tr.setOrigin(btVector3(_position.x, _position.y, _position.z));
-    //std::cout << "Updated RigidBodyPosition to: " << tr.getOrigin().getX() << "," << tr.getOrigin().getY() << "," << tr.getOrigin().getZ() << std::endl;
-    //std::cout << "Current Position: " << _position << std::endl;
-    _owner->RigidBody->getMotionState()->setWorldTransform(tr);
+    _owner->RigidBody->setCenterOfMassTransform(tr);
 }
 
 void MouseBehaviour::Hud()
@@ -215,11 +209,12 @@ void MouseBehaviour::PickUpObject()
                 if(ObjectHitTest->getName() == "FRED")
                 {
                    LuaLoader::GetInstance()->PushFredToLua();
+                   PhysicsWorld::GetInstance()->DynamicsWorld->removeRigidBody(ObjectHitTest->RigidBody);
                    World::GetInstance()->remove(ObjectHitTest);
                 }
                 else
                 {
-                std::cout << "Placing Object In Inventory" << std::endl;
+                    std::cout << "Placing Object In Inventory" << std::endl;
                     Inventory::GetInstance()->PlaceObjectInInventory(ObjectHitTest->getName());
                 }
             }

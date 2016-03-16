@@ -34,14 +34,57 @@ void MouseBehaviour::update(float step)
 		if (_fredActive)
 		{
 			float sizeInv = Inventory::GetInstance()->InventoryList.size();
-			std::cout << sizeInv << std::endl;
 			if (sizeInv == 0) sizeInv = 1;
 			_scrollAmount = 0.526 / sizeInv;
 		}
 
 		UpdatePositionFromRigidBody(step);
 
-		if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
+        /**
+		if(Inventory::GetInstance()->InventoryList.size() >= 1 && _inventoryBox1Filled || _inventoryBox2Filled)
+        {
+            Mesh* mesh;
+            AbstractMaterial* textureMaterial;
+            GameObject* GO;
+
+            if(_inventoryBox1Filled)
+            {
+                World::GetInstance()->remove(_inventoryItem1);
+            }
+            if(_inventoryBox2Filled)
+            {
+                World::GetInstance()->remove(_inventoryItem2);
+            }
+
+            if(Inventory::GetInstance()->InventoryList.size() >= 1)
+            {
+                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
+                GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, 0.11, -0.7));
+                GO->setMesh (InvObj.GO->getMesh());
+                GO->setMaterial(InvObj.GO->getMaterial());
+
+                GO->scale(glm::vec3(0.015, 0.015, 0.015));
+                _inventoryItem1 = GO;
+                _camera->add(GO);
+                _inventoryBox1Filled = true;
+            }
+
+            if(Inventory::GetInstance()->InventoryList.size() >= 2)
+            {
+                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(1);
+                GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, -0.11, -0.7));
+                GO->setMesh (InvObj.GO->getMesh());
+                GO->setMaterial(InvObj.GO->getMaterial());
+                GO->scale(glm::vec3(0.015, 0.015, 0.015));
+                _inventoryItem2 = GO;
+                _camera->add(GO);
+                _inventoryBox2Filled = true;
+            }
+
+        }
+        /**/
+
+		if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::F) && _fredPickedup)
 		{
 			Hud();
 		}
@@ -129,32 +172,59 @@ void MouseBehaviour::Hud()
         GO->scale(glm::vec3(0.04, 0.05, 0.1));
         _inventoryBox1 = GO;
         _camera->add(GO);/**/
-            /**Inventory item 1*/
-            if(Inventory::GetInstance()->InventoryList.size() >= 1)
-            {
-                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
-                GO = new GameObject ("InventoryItem1", glm::vec3(-0.5, 0.02, -0.8));
-                GO->setMesh (InvObj.GO->getMesh());
-                GO->setMaterial(InvObj.GO->getMaterial());
-                //GO->setTransform(glm::mat4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1));
-                GO->scale(glm::vec3(0.001, 0.03, 0.03));
-                //_inventoryBox1 = GO;
-                _camera->add(GO);
-            }
+        /**Inventory item 1*/
+        if(Inventory::GetInstance()->InventoryList.size() >= 1)
+        {
+            InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
+            GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, 0.11, -0.7));
+            GO->setMesh (InvObj.GO->getMesh());
+            GO->setMaterial(InvObj.GO->getMaterial());
 
+            /**
+            std::cout << "SIZE x Inventory: "<< InvObj.GO->GOSizeX << std::endl;
+            float Scalar = 1;
+            if((0.03 / InvObj.GO->GOSizeX) < Scalar) Scalar = 0.03 / InvObj.GO->GOSizeX;
+            if((0.03 / InvObj.GO->GOSizeY) < Scalar) Scalar = 0.03 / InvObj.GO->GOSizeY;
+            if((0.03 / InvObj.GO->GOSizeZ) < Scalar) Scalar = 0.03 / InvObj.GO->GOSizeZ;
+            GO->scale(glm::vec3(Scalar, Scalar, Scalar));
+            /**/
 
+            GO->scale(glm::vec3(0.0005, 0.0005, 0.0005));
+            _inventoryItem1 = GO;
+            _camera->add(GO);
+            _inventoryBox1Filled = true;
+        }
         /**/
 
         /**Inventory Box 2*/
-            mesh = Mesh::load("mge/HUD/Inventory Box.obj");
-            textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
+        mesh = Mesh::load("mge/HUD/Inventory Box.obj");
+        textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
         GO = new GameObject ("InventoryBox2", glm::vec3(-0.5, 0.02 - 0.2, -0.8));
-            GO->setMesh (mesh);
-            GO->setMaterial(textureMaterial);
-            GO->scale(glm::vec3(0.04, 0.05, 0.1));
+        GO->setMesh (mesh);
+        GO->setMaterial(textureMaterial);
+        GO->scale(glm::vec3(0.04, 0.05, 0.1));
         _inventoryBox2 = GO;
+        _camera->add(GO);/**/
+        /**Inventory item 1*/
+        if(Inventory::GetInstance()->InventoryList.size() >= 2)
+        {
+            InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(1);
+            GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, -0.11, -0.7));
+            GO->setMesh (InvObj.GO->getMesh());
+            GO->setMaterial(InvObj.GO->getMaterial());
+
+            float Scalar = 1;
+            if(0.05 / GO->GOSizeX < Scalar) Scalar = 1 / GO->GOSizeX;
+            if(0.05 / GO->GOSizeY < Scalar) Scalar = 1 / GO->GOSizeY;
+            if(0.05 / GO->GOSizeZ < Scalar) Scalar = 1 / GO->GOSizeZ;
+            GO->scale(glm::vec3(Scalar, Scalar, Scalar));
+
+            //GO->scale(glm::vec3(0.015, 0.015, 0.015));
+            _inventoryItem2 = GO;
             _camera->add(GO);
-            /**/
+            _inventoryBox2Filled = true;
+        }
+        /**/
 
         /**Progress Bar Empty*/
         mesh = Mesh::load("mge/HUD/Progress Bar Empty.obj");
@@ -188,7 +258,17 @@ void MouseBehaviour::Hud()
         World::GetInstance()->remove(_borders);
         World::GetInstance()->remove(_button);
         World::GetInstance()->remove(_inventoryBox1);
+        if(_inventoryBox1Filled)
+        {
+            World::GetInstance()->remove(_inventoryItem1);
+            _inventoryBox1Filled = false;
+        }
         World::GetInstance()->remove(_inventoryBox2);
+        if(_inventoryBox2Filled)
+        {
+            World::GetInstance()->remove(_inventoryItem2);
+            _inventoryBox2Filled = false;
+        }
         World::GetInstance()->remove(_progressBar);
         World::GetInstance()->remove(_scrollers);
         std::cout << "Fred Deactivated" << std::endl;
@@ -223,6 +303,7 @@ void MouseBehaviour::PickUpObject()
             {
                 if(ObjectHitTest->getName() == "FRED")
                 {
+                    _fredPickedup = true;
                    LuaLoader::GetInstance()->PushFredToLua();
                    PhysicsWorld::GetInstance()->DynamicsWorld->removeRigidBody(ObjectHitTest->RigidBody);
                    World::GetInstance()->remove(ObjectHitTest);

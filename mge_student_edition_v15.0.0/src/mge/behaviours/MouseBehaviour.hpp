@@ -24,6 +24,7 @@ class MouseBehaviour : public AbstractBehaviour
         //GameObject* _emptyCameraParent;
         //GameObject* _emptyChild;
         bool _fredActive = false;
+        bool _fredPickedup = false;
         Camera* _camera;
         void Looking();
         void PickUpObject();
@@ -35,7 +36,11 @@ class MouseBehaviour : public AbstractBehaviour
         GameObject* _borders;
         GameObject* _button;
         GameObject* _inventoryBox1;
+        bool _inventoryBox1Filled = false;
+        GameObject* _inventoryItem1;
         GameObject* _inventoryBox2;
+        bool _inventoryBox2Filled = false;
+        GameObject* _inventoryItem2;
         GameObject* _progressBar;
         GameObject* _scrollers;
         glm::vec3 _scrollerPosition = glm::vec3(-0.462, 0.243, -0.9);

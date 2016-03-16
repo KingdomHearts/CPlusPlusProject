@@ -99,8 +99,10 @@ void MouseBehaviour::Hud()
         GO->setMaterial(textureMaterial);
         GO->scale(glm::vec3(0.04, 0.05, 0.1));
         _inventoryBox1 = GO;
-        _camera->add(GO);
-        /**/
+        _camera->add(GO);/**/
+            /**Inventory item 1*/
+
+            /**/
 
         /**Inventory Box 2*/
         mesh = Mesh::load("mge/HUD/Inventory Box.obj");

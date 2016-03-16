@@ -4,6 +4,7 @@
 #include <vector>
 #include "mge/core/GameObject.hpp"
 #include "mge/puzzles/Rebuild.h"
+#include "mge/puzzles/Inventory.h"
 
 class PlayerProgress
 {

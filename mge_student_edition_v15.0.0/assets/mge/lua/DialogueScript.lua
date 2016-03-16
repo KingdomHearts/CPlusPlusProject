@@ -47,6 +47,7 @@ Text(27,"I'm rambling again? I'll stop now.",5)
 
 ID("Triggers Return_painting_puzzle")--(If player uses Return_painting_puzzle)
 Text(28,"Ah, this painting is missing! Use F.R.E.D to figure out which painting goes where.",10)
+--Puzzles
 ID("Triggers Dinosaur Killing")--(If player returns the painting)
 Text(29,"A pity dinosaurs didn't have health insurance back then.",10)
 ID("Triggers Dinosaur Meteor")--(If player returns the painting)
@@ -65,14 +66,17 @@ Text(35,"Good God, look at that Bison! It's so... flat.",10)
 ID("Triggers Rebuild_puzzle")--(If player uses Rebuild_puzzle)
 Text(36,"Oh dear, oh dear. Dorothy seems to be having a major malfunction, this happens every month.",10)
 Text(37,"Maybe F.R.E.D can help her pull herself back together.",7)
+--Puzzle
 ID("Triggers F_Rebuild_puzzle")--(If player finishes Rebuild_puzzle)
 Text(38,"Ah good, to see the old girl, seems she lost some weight.",10)
 
 ID("Triggers Cut_up_puzzle")--(If player uses Cut_up_puzzle)
 Text(39,"Oh, uhm, seems this painting didn't get along well with the children, nothing a little duct tape and F.R.E.D can't fix.",10)
+--Puzzle
 ID("Triggers F_Cut_up_puzzle")--(If player finishes Cut_up_puzzle)
 Text(40,"Man has come a long way, didn't get far though.",10)
 
+--Puzzle
 ID("Triggers Return_display_puzzle")--(If player uses Return_display_puzzle)
 Text(41,"This display case is all a mess, F.R.E.D knows the correct order.",10)
 
@@ -94,6 +98,7 @@ Text(48,"The pioneers of History, true scholars.",10)
 
 ID("Triggers Return_painting_puzzle")--(If player uses Return_painting_puzzle)
 Text(50,"More paintings, time to get to work.",10)
+--Puzzle
 ID("Triggers Hercules")--(If player returns the painting)
 Text(51,"Hercules, son of Zeus. Manliest of men, who knew how to use a loincloth.",10)
 ID("Triggers Olympus")--(If player returns the painting)

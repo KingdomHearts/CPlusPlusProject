@@ -2,6 +2,7 @@
 #include "mge/core/GameObject.hpp"
 #include <vector>
 #include "mge/PlayerProgress.h"
+#include "mge/util/LuaLoader.hpp"
 
 //Rebuild statue en paintings
 
@@ -63,6 +64,7 @@ void Rebuild::UpdatePuzzle(std::string pPuzzleName, glm::vec3 pCurrenPosition, G
                     if(_puzzleNameList[i].sPuzzleList[j].sStartPosition == _puzzleNameList[i].sPuzzleList[j].sEndPosition)
                     {
                         _puzzleNameList[i].sComplete = true;
+                        LuaLoader::GetInstance()->SetCompletedPuzzle(pPuzzleName);
                         Rebuild::SavePuzzle(pPuzzleName);
                     }
                 }

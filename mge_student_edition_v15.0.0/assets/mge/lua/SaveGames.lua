@@ -1,8 +1,10 @@
 SaveName = ''
-X = 27.4572
+X = 33.0567
 Y = 3
-Z = -17.3638
+Z = -25.2615
 Inventory = 
 {
-'FRED',
+'T_Rex_Leg',
+'Ice Age Piece 3',
+'Ice Age Piece 7',
 }

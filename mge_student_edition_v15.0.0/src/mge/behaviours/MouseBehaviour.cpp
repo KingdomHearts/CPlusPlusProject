@@ -38,11 +38,8 @@ void MouseBehaviour::update(float step)
 			_scrollAmount = 0.526 / sizeInv;
 		}
 
-		UpdatePositionFromRigidBody(step);
-
-        /**
-		if(Inventory::GetInstance()->InventoryList.size() >= 1 && _inventoryBox1Filled || _inventoryBox2Filled)
-        {
+		if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
+		{
             Mesh* mesh;
             AbstractMaterial* textureMaterial;
             GameObject* GO;
@@ -114,22 +111,6 @@ void MouseBehaviour::update(float step)
 	}
 }
 
-void MouseBehaviour::UpdatePositionFromRigidBody(float pStep)
-{
-    PhysicsWorld::GetInstance()->DynamicsWorld->stepSimulation(pStep, 10);
-    btTransform tr = _owner->RigidBody->getCenterOfMassTransform();
-    btVector3 vec = tr.getOrigin();
-    //std::cout << "current RigidBodyPosition is: " << vec.getX() << "," << vec.getY() << "," << vec.getZ() << std::endl;
-    _owner->setLocalPosition(glm::vec3(vec.getX(), vec.getY(), vec.getZ()));
-}
-
-void MouseBehaviour::UpdateRigidBodyFromPosition()
-{
-    btTransform tr = _owner->RigidBody->getCenterOfMassTransform();
-    tr.setOrigin(btVector3(_position.x, _position.y, _position.z));
-    _owner->RigidBody->setCenterOfMassTransform(tr);
-}
-
 void MouseBehaviour::Hud()
 {
     if(!_fredActive)
@@ -172,13 +153,13 @@ void MouseBehaviour::Hud()
         GO->scale(glm::vec3(0.04, 0.05, 0.1));
         _inventoryBox1 = GO;
         _camera->add(GO);/**/
-        /**Inventory item 1*/
-        if(Inventory::GetInstance()->InventoryList.size() >= 1)
-        {
-            InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
+            /**Inventory item 1*/
+            if(Inventory::GetInstance()->InventoryList.size() >= 1)
+            {
+                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
             GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, 0.11, -0.7));
-            GO->setMesh (InvObj.GO->getMesh());
-            GO->setMaterial(InvObj.GO->getMaterial());
+                GO->setMesh (InvObj.GO->getMesh());
+                GO->setMaterial(InvObj.GO->getMaterial());
 
             /**
             std::cout << "SIZE x Inventory: "<< InvObj.GO->GOSizeX << std::endl;
@@ -191,18 +172,18 @@ void MouseBehaviour::Hud()
 
             GO->scale(glm::vec3(0.0005, 0.0005, 0.0005));
             _inventoryItem1 = GO;
-            _camera->add(GO);
+                _camera->add(GO);
             _inventoryBox1Filled = true;
-        }
+            }
         /**/
 
         /**Inventory Box 2*/
-        mesh = Mesh::load("mge/HUD/Inventory Box.obj");
-        textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
+            mesh = Mesh::load("mge/HUD/Inventory Box.obj");
+            textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
         GO = new GameObject ("InventoryBox2", glm::vec3(-0.5, 0.02 - 0.2, -0.8));
-        GO->setMesh (mesh);
-        GO->setMaterial(textureMaterial);
-        GO->scale(glm::vec3(0.04, 0.05, 0.1));
+            GO->setMesh (mesh);
+            GO->setMaterial(textureMaterial);
+            GO->scale(glm::vec3(0.04, 0.05, 0.1));
         _inventoryBox2 = GO;
         _camera->add(GO);/**/
         /**Inventory item 1*/
@@ -224,7 +205,7 @@ void MouseBehaviour::Hud()
             _camera->add(GO);
             _inventoryBox2Filled = true;
         }
-        /**/
+            /**/
 
         /**Progress Bar Empty*/
         mesh = Mesh::load("mge/HUD/Progress Bar Empty.obj");
@@ -382,22 +363,18 @@ void MouseBehaviour::Looking()
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         _position += _direction * Timer::deltaTime() * _speed;
-        UpdateRigidBodyFromPosition();
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         _position -= _direction * Timer::deltaTime() * _speed;
-        UpdateRigidBodyFromPosition();
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         _position -= right * Timer::deltaTime() * _speed;
-        UpdateRigidBodyFromPosition();
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         _position += right * Timer::deltaTime() * _speed;
-        UpdateRigidBodyFromPosition();
     }
 
 }

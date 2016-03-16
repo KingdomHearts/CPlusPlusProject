@@ -31,8 +31,6 @@ void MouseBehaviour::update(float step)
         _scrollAmount = 0.526 / sizeInv;
     }
 
-
-
     UpdatePositionFromRigidBody(step);
     if(KeyboardBehaviour::GetKeyDown(sf::Keyboard::F) && _fredPickedUp)
     {
@@ -61,8 +59,7 @@ void MouseBehaviour::update(float step)
 void MouseBehaviour::UpdatePositionFromRigidBody(float pStep)
 {
     PhysicsWorld::GetInstance()->DynamicsWorld->stepSimulation(pStep, 10);
-    btTransform tr;
-    _owner->RigidBody->getMotionState()->getWorldTransform(tr);
+    btTransform tr = _owner->RigidBody->getCenterOfMassTransform();
     btVector3 vec = tr.getOrigin();
     //std::cout << "current RigidBodyPosition is: " << vec.getX() << "," << vec.getY() << "," << vec.getZ() << std::endl;
     _owner->setLocalPosition(glm::vec3(vec.getX(), vec.getY(), vec.getZ()));
@@ -70,12 +67,9 @@ void MouseBehaviour::UpdatePositionFromRigidBody(float pStep)
 
 void MouseBehaviour::UpdateRigidBodyFromPosition()
 {
-    btTransform tr;
-    _owner->RigidBody->getMotionState()->getWorldTransform(tr);
+    btTransform tr = _owner->RigidBody->getCenterOfMassTransform();
     tr.setOrigin(btVector3(_position.x, _position.y, _position.z));
-    //std::cout << "Updated RigidBodyPosition to: " << tr.getOrigin().getX() << "," << tr.getOrigin().getY() << "," << tr.getOrigin().getZ() << std::endl;
-    //std::cout << "Current Position: " << _position << std::endl;
-    _owner->RigidBody->getMotionState()->setWorldTransform(tr);
+    _owner->RigidBody->setCenterOfMassTransform(tr);
 }
 
 void MouseBehaviour::Hud()
@@ -120,27 +114,27 @@ void MouseBehaviour::Hud()
         GO->scale(glm::vec3(0.04, 0.05, 0.1));
         _inventoryBox1 = GO;
         _camera->add(GO);/**/
-        /**Inventory item 1*/
-        if(Inventory::GetInstance()->InventoryList.size() >= 1)
-        {
-            InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
+            /**Inventory item 1*/
+            if(Inventory::GetInstance()->InventoryList.size() >= 1)
+            {
+                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
             GO = new GameObject ("InventoryBox2", glm::vec3(-0.437, 0.11, -0.7));
-            GO->setMesh (InvObj.GO->getMesh());
-            GO->setMaterial(InvObj.GO->getMaterial());
+                GO->setMesh (InvObj.GO->getMesh());
+                GO->setMaterial(InvObj.GO->getMaterial());
             GO->scale(glm::vec3(0.015, 0.015, 0.015));
-            _camera->add(GO);
-        }
+                _camera->add(GO);
+            }
 
 
         /**/
 
         /**Inventory Box 2*/
-        mesh = Mesh::load("mge/HUD/Inventory Box.obj");
-        textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
+            mesh = Mesh::load("mge/HUD/Inventory Box.obj");
+            textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
         GO = new GameObject ("InventoryBox2", glm::vec3(-0.5, 0.02 - 0.2, -0.8));
-        GO->setMesh (mesh);
-        GO->setMaterial(textureMaterial);
-        GO->scale(glm::vec3(0.04, 0.05, 0.1));
+            GO->setMesh (mesh);
+            GO->setMaterial(textureMaterial);
+            GO->scale(glm::vec3(0.04, 0.05, 0.1));
         _inventoryBox2 = GO;
             _camera->add(GO);
             /**/
@@ -214,6 +208,7 @@ void MouseBehaviour::PickUpObject()
                 {
                     _fredPickedUp = true;
                    LuaLoader::GetInstance()->PushFredToLua();
+                   PhysicsWorld::GetInstance()->DynamicsWorld->removeRigidBody(ObjectHitTest->RigidBody);
                    World::GetInstance()->remove(ObjectHitTest);
                 }
                 else

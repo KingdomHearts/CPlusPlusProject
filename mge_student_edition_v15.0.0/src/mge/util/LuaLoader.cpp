@@ -249,7 +249,7 @@ int AddModel(lua_State * lua)
 
     GO->setTransform(matrix);
     std::cout << "AddModel end -> " << IDname << std::endl;
-    PhysicsWorld::GetInstance()->AddColliderToObject(sizeX, sizeY, sizeZ , glm::vec4(rotationX, rotationY, rotationZ, rotationW) ,GO->getLocalPosition(), 500.0f, GO);
+    PhysicsWorld::GetInstance()->AddColliderToObject(sizeX, sizeY, sizeZ , glm::vec4(rotationX, rotationY, rotationZ, rotationW) ,GO->getLocalPosition(), 0, GO);
 
     return 0;
 

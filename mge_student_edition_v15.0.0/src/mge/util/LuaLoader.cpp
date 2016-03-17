@@ -91,7 +91,7 @@ int AddInteractiveModel(lua_State * lua)
     float rotationY;
     float rotationZ;
     float rotationW;
-    bool isPainting;
+    int isPainting;
     std::string puzzleNameString;
 
     if (lua_isstring(lua, -44)) {
@@ -106,7 +106,7 @@ int AddInteractiveModel(lua_State * lua)
     sizeX = lua_tonumber(lua, -41);
     sizeY = lua_tonumber(lua, -40);
     sizeZ = lua_tonumber(lua, -39);
-    isPainting = lua_toboolean(lua, -38);
+    isPainting = lua_tonumber(lua, -38);
     puzzleNameString = lua_tostring(lua,-37);
     rotationX = lua_tonumber(lua, -36);
     rotationY = lua_tonumber(lua, -35);

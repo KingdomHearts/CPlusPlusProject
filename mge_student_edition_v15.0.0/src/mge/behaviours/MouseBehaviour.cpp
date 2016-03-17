@@ -45,6 +45,7 @@ void MouseBehaviour::update(float step)
 		{
             GameObject* GO;
 
+            /**/
             if(_inventoryBox1Filled)
             {
                 World::GetInstance()->remove(_inventoryItem1);
@@ -53,8 +54,9 @@ void MouseBehaviour::update(float step)
             {
                 World::GetInstance()->remove(_inventoryItem2);
             }
+            /**/
 
-            if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount)
+            if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount+1)
             {
                 InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(_scrolledDownAmount);
                 GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, 0.11, -0.7));
@@ -69,7 +71,7 @@ void MouseBehaviour::update(float step)
                 _inventoryBox1Filled = true;
             }
 
-            if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount+1)
+            if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount+2)
             {
                 InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(_scrolledDownAmount+1);
                 GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, -0.065, -0.7));
@@ -186,10 +188,10 @@ void MouseBehaviour::Hud()
         _inventoryBox1 = GO;
         _camera->add(GO);/**/
         /**Inventory item 1*/
-        if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount)
+        if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount+1)
         {
             InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(_scrolledDownAmount);
-            GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, 0.11, -0.7));
+            GO = new GameObject ("InventoryItem1", glm::vec3(-0.437, 0.11, -0.7));
             GO->setMesh (InvObj.GO->getMesh());
             GO->setMaterial(InvObj.GO->getMaterial());
 
@@ -213,7 +215,7 @@ void MouseBehaviour::Hud()
         _inventoryBox2 = GO;
         _camera->add(GO);/**/
         /**Inventory item 1*/
-        if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount+1)
+        if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount+2)
         {
             InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(_scrolledDownAmount+1);
             GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, -0.065, -0.7));
@@ -418,16 +420,16 @@ void MouseBehaviour::Looking()
 
 float MouseBehaviour::GetInventoryScalar(InventoryObject InvObj)
 {
-    float PaintingScaleThing = 0.0003;
-    float GeneralScaleThing = 0.03;
+    float PaintingScaleThing = 0.0009;
+    float GeneralScaleThing = 0.09;
     float Scalar = 1;
-    if(InvObj.GO->IsPainting)
+    if(InvObj.GO->IsPainting == 1)
     {
         if((PaintingScaleThing / InvObj.GO->GOSizeX) < Scalar) Scalar = PaintingScaleThing / InvObj.GO->GOSizeX;
         if((PaintingScaleThing / InvObj.GO->GOSizeY) < Scalar) Scalar = PaintingScaleThing / InvObj.GO->GOSizeY;
         if((PaintingScaleThing / InvObj.GO->GOSizeZ) < Scalar) Scalar = PaintingScaleThing / InvObj.GO->GOSizeZ;
     }
-    else if(!InvObj.GO->IsPainting)
+    else if(InvObj.GO->IsPainting == 0)
     {
         if((GeneralScaleThing / InvObj.GO->GOSizeX) < Scalar) Scalar = GeneralScaleThing / InvObj.GO->GOSizeX;
         if((GeneralScaleThing / InvObj.GO->GOSizeY) < Scalar) Scalar = GeneralScaleThing / InvObj.GO->GOSizeY;

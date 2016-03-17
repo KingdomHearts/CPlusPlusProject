@@ -88,7 +88,7 @@ class GameObject
 
 
         //puzzle stuff
-        bool IsPainting;
+        int IsPainting;
         std::string puzzleNameString;
 
 	protected:

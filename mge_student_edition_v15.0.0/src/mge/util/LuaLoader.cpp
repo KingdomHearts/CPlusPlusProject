@@ -92,7 +92,7 @@ int AddInteractiveModel(lua_State * lua)
     float rotationZ;
     float rotationW;
     bool isPainting;
-    std::string PuzzleNameString;
+    std::string puzzleNameString;
 
     if (lua_isstring(lua, -44)) {
 		IDname = lua_tostring(lua, -44);
@@ -107,7 +107,7 @@ int AddInteractiveModel(lua_State * lua)
     sizeY = lua_tonumber(lua, -40);
     sizeZ = lua_tonumber(lua, -39);
     isPainting = lua_toboolean(lua, -38);
-    puzzleNameString = lua_tostring(lua,-37)
+    puzzleNameString = lua_tostring(lua,-37);
     rotationX = lua_tonumber(lua, -36);
     rotationY = lua_tonumber(lua, -35);
     rotationZ = lua_tonumber(lua, -34);
@@ -165,7 +165,7 @@ int AddInteractiveModel(lua_State * lua)
     GO->GORotation = glm::vec4(rotationX, rotationY, rotationZ, rotationW);
     PhysicsWorld::GetInstance()->AddColliderToObject(GO->GOSizeX, GO->GOSizeY, GO->GOSizeZ , GO->GORotation ,GO->getLocalPosition(),0, GO);
 
-    GO->puzzleNameString = PuzzleNameString;
+    GO->puzzleNameString = puzzleNameString;
 
     std::cout << "AddInteractiveModel end -> " << IDname << std::endl;
 
@@ -267,7 +267,9 @@ void LuaLoader::LoadAllInteractiveModels(){
     lua_pushcfunction(lua, AddInteractiveModel);
     lua_setglobal(lua, "AddInteractiveModel");
 
+	std::cout << "before" << std::endl;
 	lua_call(lua,0,0);
+	std::cout << "after" << std::endl;
 	lua_close(lua);
 
     std::cout << "Interactive Models Loaded"  << std::endl;
@@ -275,6 +277,8 @@ void LuaLoader::LoadAllInteractiveModels(){
 
 int TriggerObject(lua_State * lua)
 {
+    std::string gameObjectName = lua_tostring(lua,-18);
+    float radius = lua_tonumber(lua,-17);
     float m[16];
 	for (int i=0; i<16; i++) {
         m[i] = lua_tonumber(lua, -((15-i)+1));
@@ -291,8 +295,6 @@ int TriggerObject(lua_State * lua)
     matrix[2][0] *= -1;
     matrix[3][0] *= -1;
 
-    float radius = lua_tonumber(lua,-17);
-    std::string gameObjectName = lua_tostring(lua,-18);
     GameObject * GO =  new GameObject(gameObjectName,glm::vec3(0,0,0));
     GO->setTransform(matrix);
     std::cout << "GameObjectTrigger " << GO->getLocalPosition() << std::endl;

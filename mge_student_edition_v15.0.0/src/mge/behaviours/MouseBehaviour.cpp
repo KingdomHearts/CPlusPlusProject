@@ -24,9 +24,8 @@ MouseBehaviour::~MouseBehaviour()
 
 void MouseBehaviour::update(float step)
 {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && _startGame == false)
 	{
-		std::cout << "left In mouse" << std::endl;
 		_startGame = true;
 		MouseBehaviour::ActivateCrosshair();
 		//LuaLoader::GetInstance()->SetStartGame("true");
@@ -287,6 +286,7 @@ void MouseBehaviour::PickUpObject()
 {
     if(KeyboardBehaviour::GetLeftMouseDown())
     {
+    std::cout << "test" <<std::endl;
         GameObject* ObjectHitTest = PhysicsWorld::GetInstance()->ScreenPosToWorldRay(_camera);
         if(ObjectHitTest != NULL && ObjectHitTest->IsInteractive() == true)
         {

@@ -110,8 +110,6 @@ void MGEDemo::_render() {
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-
-        std::cout << "left In MGEDemo" << std::endl;
         World::GetInstance()->remove(_menu);
     }
 

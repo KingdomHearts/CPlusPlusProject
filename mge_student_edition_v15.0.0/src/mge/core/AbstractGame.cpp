@@ -345,7 +345,6 @@ void AbstractGame::run()
         _update();
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {
-        std::cout << "left In abstract" << std::endl;
             startGame = true;
         }
         if(startGame)

@@ -500,7 +500,7 @@ int playDialogueTrack(lua_State * lua)
     std::string filename = os.str();
     World::GetInstance()->DialogSoundList.push_back(filename);
     //_audio->PlaySound(filename);
-    std::cout << filename << std::endl;
+    //std::cout << filename << std::endl;
     return 0;
 }
 
@@ -601,8 +601,11 @@ int RandomDialogAndRepeat(lua_State * lua)
 }
 
 int playSubtitleScript(lua_State * lua)
-{
-    World::GetInstance()->DialogNumberList.push_back(lua_tonumber(lua,-1));
+{   int dialogNumber = lua_tonumber(lua,-1);
+    if (std::find(World::GetInstance()->DialogNumberList.begin(), World::GetInstance()->DialogNumberList.end(), dialogNumber) == World::GetInstance()->DialogNumberList.end())
+    {
+        World::GetInstance()->DialogNumberList.push_back(lua_tonumber(lua,-1));
+    }
     //bool FredHud = lua_toboolean(lua,-1);
     return 0;
 }

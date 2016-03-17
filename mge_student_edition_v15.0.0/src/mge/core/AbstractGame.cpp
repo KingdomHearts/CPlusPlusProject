@@ -214,6 +214,7 @@ void DialogThread(DebugHud * hud)
                 while(World::GetInstance()->DialogNumberList.size() > 0)
                 {
                     int j = World::GetInstance()->DialogNumberList.at(0);
+                                //std::cout << "listCount: " << World::GetInstance()->DialogNumberList.size()  << std::endl;
                     for(std::vector<DialogStruct>::iterator i =  World::GetInstance()->dialogList->begin(); i != World::GetInstance()->dialogList->end();i++)
                     {
                         //std::cout << "isSkipped: " << skip <<std::endl;

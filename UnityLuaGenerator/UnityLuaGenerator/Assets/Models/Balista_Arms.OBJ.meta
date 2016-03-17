@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Balista_Arms
     100002: //RootNode
+    100004: Balista_Arms1
     400000: Balista_Arms
     400002: //RootNode
+    400004: Balista_Arms1
     2300000: Balista_Arms
+    2300002: Balista_Arms1
     3300000: Balista_Arms
+    3300002: Balista_Arms1
     4300000: Balista_Arms
+    4300002: Balista_Arms1
   materials:
     importMaterials: 1
     materialName: 0

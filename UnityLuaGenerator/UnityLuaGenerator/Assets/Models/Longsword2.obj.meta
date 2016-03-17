@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: Longsword2_Xiphos8_polySurface3_polySurface1
+    100004: Longsword3
     400000: //RootNode
     400002: Longsword2_Xiphos8_polySurface3_polySurface1
+    400004: Longsword3
     2300000: Longsword2_Xiphos8_polySurface3_polySurface1
+    2300002: Longsword3
     3300000: Longsword2_Xiphos8_polySurface3_polySurface1
+    3300002: Longsword3
     4300000: Longsword2_Xiphos8_polySurface3_polySurface1
+    4300002: Longsword3
   materials:
     importMaterials: 1
     materialName: 0

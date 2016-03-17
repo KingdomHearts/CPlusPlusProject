@@ -19,6 +19,7 @@ public class TriggerScript : MonoBehaviour {
                 ChildsList.Add(t.gameObject);
         }
 
+		/**/
         StreamWriter file = new StreamWriter("../../mge_student_edition_v15.0.0/assets/mge/lua/Triggers.lua");
         foreach (Transform child in transform)
         {
@@ -43,5 +44,6 @@ public class TriggerScript : MonoBehaviour {
                 child.gameObject.transform.localToWorldMatrix.m33 + ")");
         }
         file.Close();
+        /**/
     }
 }

@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: Balista_Frame_polySurface4_Balista_UV:Group2
+    100004: Balista_Frame1
     400000: //RootNode
     400002: Balista_Frame_polySurface4_Balista_UV:Group2
+    400004: Balista_Frame1
     2300000: Balista_Frame_polySurface4_Balista_UV:Group2
+    2300002: Balista_Frame1
     3300000: Balista_Frame_polySurface4_Balista_UV:Group2
+    3300002: Balista_Frame1
     4300000: Balista_Frame_polySurface4_Balista_UV:Group2
+    4300002: Balista_Frame1
   materials:
     importMaterials: 1
     materialName: 0

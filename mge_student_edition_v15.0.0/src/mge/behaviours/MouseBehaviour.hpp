@@ -46,7 +46,6 @@ class MouseBehaviour : public AbstractBehaviour
         GameObject* _scrollers;
         glm::vec3 _scrollerPosition = glm::vec3(-0.462, 0.243, -0.9);
         float _scrollAmount = 0;
-        void UpdatePositionWithRigidBody(float pStep);
         int _scrolledDownAmount = 0;
 
         // position

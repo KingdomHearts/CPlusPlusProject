@@ -67,6 +67,7 @@ function update()
 		if(keyPressed == "Y") then
 		keyPressed = "";
 		timer = 0;
+		pickedUpFred = true
 			PickedUpFred()
 		end
 		if (keyPressed == "") then
@@ -80,12 +81,15 @@ function update()
 		StartTimer(10)
 		end
 		 if (pickedUpFred == true and trigger == "DoorFrame1") then
+			 trigger = ""
+			 --pickedUpFred == false
 			 OpenExhibit()
 		end
-		if (pickedUpFred == true and trigger == "EnterPrehistoric") then
+		if (trigger == "EnterPrehistoric") then
 			StopSound("Lobby_Music_Loop.wav")
 			PlaySound("Prehistoric_Music_Loop.wav")	 
-			 EnterPrehistoric()		 
+			trigger = ""
+			 EnterPrehistoric()				 
 		 end
 		if(timer == 10) then
 			if (pickedUpFred == true and isNotTriggered == true) then
@@ -93,9 +97,19 @@ function update()
 				isNotTriggered = false
 			end
 		end
-		if(trigger == "TutorialPainting") then
+		if(trigger == "ReturnPainting") then
+			trigger = ""
 			ReturnPainting()
 		end
+		if(trigger == "Rebuild_puzzle") then
+			trigger = ""
+		 Rebuild_puzzle()
+		end
+		if(trigger == "CutUpPuzzle") then
+			trigger = ""
+		 CutUpPuzzle()
+		end
+		
 			-- DinosaurKill()
 			-- DinosaurMeteor()
 			-- BirdEvolution()
@@ -103,13 +117,13 @@ function update()
 			-- CreationofFire()
 			-- CavePainting()
 			-- SmallCavePainting()
-			-- Rebuild_puzzle()
 			-- DinosaurSkeleton()
 			-- CutUpPuzzle()
 			-- EvolutionofMan()
 			-- DisplayCasePrehistoric()
 			-- PrehistoricFinish()
 			if(trigger == "DoorFrame1" and completedPuzzle == "PrehistoricFinish") then
+			trigger = ""
 				PrehistoricBanner()
 				PrehistoricCompete = true
 				StopSound("Prehistoric_Music_Loop.wav")
@@ -117,6 +131,7 @@ function update()
 			end
 			
 			if(trigger == "EnterAncientHistory") then
+			trigger = ""
 				EnterAncientHistory()
 				
 				StopSound("Lobby_Music_Loop.wav")
@@ -139,6 +154,7 @@ function update()
 			   -- Gladiator()
 			   -- AncientFinish()
 			   if(trigger == "DoorFrame2" and completedPuzzle == "AncientFinish") then
+			trigger = ""
 					AncientBanner()
 					AncientComplete = true
 					
@@ -146,6 +162,7 @@ function update()
 				PlaySound("Lobby_Music_Loop.wav")	
 			   end
 			   if (trigger == "EnterMedieval") then
+			trigger = ""
 					EnterMedieval()
 					
 				StopSound("Lobby_Music_Loop.wav")
@@ -161,6 +178,7 @@ function update()
 			   -- SkeletonPieces()
 			   -- MedievalFinish()
 			   if(trigger == "DoorFrame3" and completedPuzzle == "MedievalFinish") then
+			trigger = ""
 					MedievalBanner()
 					MedievalFinish = true
 					
@@ -169,6 +187,7 @@ function update()
 			   end
 			   
 			   if(trigger == "EnterArt") then
+			trigger = ""
 					EnterArt()
 					
 				StopSound("Lobby_Music_Loop.wav")
@@ -195,6 +214,7 @@ function update()
 				-- FixedAudio()
 				-- ArtFinish()
 				if(trigger == "DoorFrame4" and completedPuzzle == "ArtFinish") then
+			trigger = ""
 					ArtBanner()
 					ArtComeplete = true
 					
@@ -204,11 +224,12 @@ function update()
 				
 				if(trigger == "EnterModern") then
 				
+			trigger = ""
 					EnterModern()
 					
 				StopSound("Lobby_Music_Loop.wav")
-				PlaySound("Mordern_Music_Begin.wav")
-				PlaySound("Mordern_Music_Loop.wav") --- not here yet
+				PlaySound("Modern_Music_Begin.wav")
+				PlaySound("Modern_Music_Loop.wav") --- not here yet
 				end
 				-- DisplayCaseModern()
 				-- BerlinWall()
@@ -220,19 +241,22 @@ function update()
 				-- CW()
 				-- ModernFinish()
 				if(trigger == "DoorFrame5" and completedPuzzle == "ModernFinish") then
+			trigger = ""
 					ModernBanner()
 					ModernFinish = true
 					
-				StopSound("Lobby_Music_Loop.wav")
-				PlaySound("Mordern_Music_Begin.wav")
-				PlaySound("Mordern_Music_Loop.wav") --- not here yet
+				StopSound("Modern_Music_Begin.wav")
+				StopSound("Modern_Music_Loop.wav") --- not here yet
+					
+				PlaySound("Lobby_Music_Loop.wav")
 				end
 				if(eventFred == "Complete") then
+			trigger = ""
 					AllRoomsComplete()
 					SecretDoor()
 					KillALFRED()
 				end
-	end
+		end
 end
 
 -- function OpenHud()
@@ -339,6 +363,7 @@ function OpenExhibit()
 	wait(2)
 	playDialogueTrack(19)
 	playSubtitleScript(19)
+	--SetState("")
 end
 
 -------------------------------------------------------------------
@@ -409,7 +434,7 @@ function SmallCavePainting()
 	playSubtitleScript(35)
 end
 
-function Rebuild_puzzle()
+function Rebuild_puzzle() -- Tutorial
 	playDialogueTrack(36)
 	playSubtitleScript(36)
 	wait(2)
@@ -422,7 +447,7 @@ function DinosaurSkeleton()
 	playSubtitleScript(38)
 end
 
-function CutUpPuzzle()
+function CutUpPuzzle() --Tutorial
 	playDialogueTrack(39)
 	playSubtitleScript(39)
 end

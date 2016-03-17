@@ -214,6 +214,7 @@ void DialogThread(DebugHud * hud)
                 while(World::GetInstance()->DialogNumberList.size() > 0)
                 {
                     int j = World::GetInstance()->DialogNumberList.at(0);
+                                //std::cout << "listCount: " << World::GetInstance()->DialogNumberList.size()  << std::endl;
                     for(std::vector<DialogStruct>::iterator i =  World::GetInstance()->dialogList->begin(); i != World::GetInstance()->dialogList->end();i++)
                     {
                         //std::cout << "isSkipped: " << skip <<std::endl;
@@ -233,7 +234,7 @@ void DialogThread(DebugHud * hud)
                             }
                             else if (screenTime < threadTimer || skip)
                             {
-                                std::cout << "It's coming here!!!!" << std::endl;
+                                //std::cout << "It's coming here!!!!" << std::endl;
                                 isStartTime = true;
                                 isShowingDialog = false;
                                         World::GetInstance()->DialogNumberList.erase(World::GetInstance()->DialogNumberList.begin(),World::GetInstance()->DialogNumberList.begin()+1);
@@ -257,7 +258,7 @@ void DialogThread(DebugHud * hud)
                                }
                                else if(isShowingDialog == false && skip == false)
                                {
-                                    std::cout << "It's coming here in audio part!!!!" << std::endl;
+                                    //std::cout << "It's coming here in audio part!!!!" << std::endl;
                                     audio->StopSound(audiofile);
                                World::GetInstance()->DialogSoundList.erase(World::GetInstance()->DialogSoundList.begin(),World::GetInstance()->DialogSoundList.begin()+1);
                                     isAudioStarted = false;

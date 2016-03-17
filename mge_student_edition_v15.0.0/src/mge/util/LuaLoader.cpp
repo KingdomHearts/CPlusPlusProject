@@ -91,19 +91,21 @@ int AddInteractiveModel(lua_State * lua)
     float rotationY;
     float rotationZ;
     float rotationW;
+    bool isPainting;
 
+    if (lua_isstring(lua, -43)) {
+		IDname = lua_tostring(lua, -43);
+	}
     if (lua_isstring(lua, -42)) {
-		IDname = lua_tostring(lua, -42);
+		Model = lua_tostring(lua, -42);
 	}
-    if (lua_isstring(lua, -41)) {
-		Model = lua_tostring(lua, -41);
+	if (lua_isstring(lua, -41)) {
+		Texture= lua_tostring(lua, -41);
 	}
-	if (lua_isstring(lua, -40)) {
-		Texture= lua_tostring(lua, -40);
-	}
-    sizeX = lua_tonumber(lua, -39);
-    sizeY = lua_tonumber(lua, -38);
-    sizeZ = lua_tonumber(lua, -37);
+    sizeX = lua_tonumber(lua, -40);
+    sizeY = lua_tonumber(lua, -39);
+    sizeZ = lua_tonumber(lua, -38);
+    isPainting = lua_toboolean(lua, -37);
     rotationX = lua_tonumber(lua, -36);
     rotationY = lua_tonumber(lua, -35);
     rotationZ = lua_tonumber(lua, -34);
@@ -125,6 +127,7 @@ int AddInteractiveModel(lua_State * lua)
     GameObject* GO = new GameObject (IDname, glm::vec3(0,0,0), true);
     GO->setMesh (mesh);
     GO->setMaterial(textureMaterial);
+    GO->IsPainting = isPainting;
     World::GetInstance()->add(GO);
 
     World::GetInstance()->MeshList.push_back(*mesh);
@@ -147,30 +150,6 @@ int AddInteractiveModel(lua_State * lua)
     finalMatrix[0][2] *= -1;
     finalMatrix[3][0] *= -1;
 
-    /**
-    glm::mat4 currentMatrix(cm[0],  cm[4],  cm[8],  cm[12],
-                            cm[1],  cm[5],  cm[9],  cm[13],
-                            cm[2],  cm[6],  cm[10], cm[14],
-                            cm[3],  cm[7],  cm[11], cm[15]);
-
-    glm::mat4 finalMatrix  (fm[0],  fm[4],  fm[8],  fm[12],
-                            fm[1],  fm[5],  fm[9],  fm[13],
-                            fm[2],  fm[6],  fm[10], fm[14],
-                            fm[3],  fm[7],  fm[11], fm[15]);
-
-
-    currentMatrix = glm::transpose(currentMatrix);
-    currentMatrix[0][0] *= -1;
-    currentMatrix[1][0] *= -1;
-    currentMatrix[2][0] *= -1;
-    currentMatrix[3][0] *= -1;
-
-    finalMatrix = glm::transpose(finalMatrix);
-    finalMatrix[0][0] *= -1;
-    finalMatrix[1][0] *= -1;
-    finalMatrix[2][0] *= -1;
-    finalMatrix[3][0] *= -1;
-    /**/
     GameObject * GOfinalPosition = new GameObject("TempGO", glm::vec3(0,0,0), false);
     GOfinalPosition->setTransform(finalMatrix);
     GO->GOPositionToPlace = GOfinalPosition->getLocalPosition();

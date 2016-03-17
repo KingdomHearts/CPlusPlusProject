@@ -84,7 +84,9 @@ class GameObject
         float GOSizeZ;
         glm::vec4 GORotation;
         glm::vec3 GOPositionToPlace;
-        //
+
+        //bool for painting
+        bool IsPainting;
 
 	protected:
 		std::string _name;

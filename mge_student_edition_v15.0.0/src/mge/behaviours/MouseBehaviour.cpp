@@ -27,6 +27,7 @@ void MouseBehaviour::update(float step)
 	{
 		std::cout << "left In mouse" << std::endl;
 		_startGame = true;
+		MouseBehaviour::ActivateCrosshair();
 		//LuaLoader::GetInstance()->SetStartGame("true");
 	}
 	if (_startGame == true)
@@ -38,10 +39,9 @@ void MouseBehaviour::update(float step)
 			_scrollAmount = 0.526 / sizeInv;
 		}
 
-		if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::F))
+        /**/
+		if (_inventoryBox1Filled || _inventoryBox2Filled)
 		{
-            Mesh* mesh;
-            AbstractMaterial* textureMaterial;
             GameObject* GO;
 
             if(_inventoryBox1Filled)
@@ -53,26 +53,31 @@ void MouseBehaviour::update(float step)
                 World::GetInstance()->remove(_inventoryItem2);
             }
 
-            if(Inventory::GetInstance()->InventoryList.size() >= 1)
+            if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount)
             {
-                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
+                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(_scrolledDownAmount);
                 GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, 0.11, -0.7));
                 GO->setMesh (InvObj.GO->getMesh());
                 GO->setMaterial(InvObj.GO->getMaterial());
 
-                GO->scale(glm::vec3(0.015, 0.015, 0.015));
+                float Scalar = MouseBehaviour::GetInventoryScalar(InvObj);
+                GO->scale(glm::vec3(Scalar, Scalar, Scalar));
+
                 _inventoryItem1 = GO;
                 _camera->add(GO);
                 _inventoryBox1Filled = true;
             }
 
-            if(Inventory::GetInstance()->InventoryList.size() >= 2)
+            if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount+1)
             {
-                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(1);
-                GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, -0.11, -0.7));
+                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(_scrolledDownAmount+1);
+                GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, -0.065, -0.7));
                 GO->setMesh (InvObj.GO->getMesh());
                 GO->setMaterial(InvObj.GO->getMaterial());
-                GO->scale(glm::vec3(0.015, 0.015, 0.015));
+
+                float Scalar = MouseBehaviour::GetInventoryScalar(InvObj);
+                GO->scale(glm::vec3(Scalar, Scalar, Scalar));
+
                 _inventoryItem2 = GO;
                 _camera->add(GO);
                 _inventoryBox2Filled = true;
@@ -90,12 +95,14 @@ void MouseBehaviour::update(float step)
 			if (_scrollers->getLocalPosition().y > 0.243) return;
 			_scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, _scrollers->getLocalPosition().y + _scrollAmount, _scrollers->getLocalPosition().z));
 			if (_scrollers->getLocalPosition().y > 0.243) _scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, 0.243, _scrollers->getLocalPosition().z));
+			_scrolledDownAmount--;
 		}
 		if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::E) && _fredActive)
 		{
 			if (_scrollers->getLocalPosition().y < -0.283) return;
 			_scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, _scrollers->getLocalPosition().y - _scrollAmount, _scrollers->getLocalPosition().z));
 			if (_scrollers->getLocalPosition().y < -0.283) _scrollers->setLocalPosition(glm::vec3(_scrollers->getLocalPosition().x, -0.283, _scrollers->getLocalPosition().z));
+			_scrolledDownAmount++;
 		}
 
 		Looking();
@@ -104,11 +111,25 @@ void MouseBehaviour::update(float step)
 		sf::Listener::setPosition(_position.x, _position.y, _position.z);
 		sf::Listener::setDirection(_direction.x, _direction.y, _direction.z);
 		PlayerProgress::GetInstance()->Position = _position;
-		if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::L))
+		if (KeyboardBehaviour::GetKeyDown(sf::Keyboard::F9))
 		{
 			_position = PlayerProgress::GetInstance()->LoadGame();
 		}
 	}
+}
+
+void MouseBehaviour::ActivateCrosshair()
+{
+    Mesh* mesh;
+    AbstractMaterial* textureMaterial;
+    GameObject* GO;
+    mesh = Mesh::load("mge/HUD/Crosshair.obj");
+    textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Crosshair.png"));
+    GO = new GameObject ("Crosshair", glm::vec3(-0.005, 0.035, -1));
+    GO->setMesh (mesh);
+    GO->setMaterial(textureMaterial);
+    GO->scale(glm::vec3(0.00025, 0.00025, 0.00025));
+    _camera->add(GO);
 }
 
 void MouseBehaviour::Hud()
@@ -153,51 +174,42 @@ void MouseBehaviour::Hud()
         GO->scale(glm::vec3(0.04, 0.05, 0.1));
         _inventoryBox1 = GO;
         _camera->add(GO);/**/
-            /**Inventory item 1*/
-            if(Inventory::GetInstance()->InventoryList.size() >= 1)
-            {
-                InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(0);
-            GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, 0.11, -0.7));
-                GO->setMesh (InvObj.GO->getMesh());
-                GO->setMaterial(InvObj.GO->getMaterial());
-
-            /**
-            std::cout << "SIZE x Inventory: "<< InvObj.GO->GOSizeX << std::endl;
-            float Scalar = 1;
-            if((0.03 / InvObj.GO->GOSizeX) < Scalar) Scalar = 0.03 / InvObj.GO->GOSizeX;
-            if((0.03 / InvObj.GO->GOSizeY) < Scalar) Scalar = 0.03 / InvObj.GO->GOSizeY;
-            if((0.03 / InvObj.GO->GOSizeZ) < Scalar) Scalar = 0.03 / InvObj.GO->GOSizeZ;
-            GO->scale(glm::vec3(Scalar, Scalar, Scalar));
-            /**/
-
-            GO->scale(glm::vec3(0.0005, 0.0005, 0.0005));
-            _inventoryItem1 = GO;
-                _camera->add(GO);
-            _inventoryBox1Filled = true;
-            }
-        /**/
-
-        /**Inventory Box 2*/
-            mesh = Mesh::load("mge/HUD/Inventory Box.obj");
-            textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
-        GO = new GameObject ("InventoryBox2", glm::vec3(-0.5, 0.02 - 0.2, -0.8));
-            GO->setMesh (mesh);
-            GO->setMaterial(textureMaterial);
-            GO->scale(glm::vec3(0.04, 0.05, 0.1));
-        _inventoryBox2 = GO;
-        _camera->add(GO);/**/
         /**Inventory item 1*/
-        if(Inventory::GetInstance()->InventoryList.size() >= 2)
+        if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount)
         {
-            InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(1);
-            GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, -0.11, -0.7));
+            InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(_scrolledDownAmount);
+            GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, 0.11, -0.7));
             GO->setMesh (InvObj.GO->getMesh());
             GO->setMaterial(InvObj.GO->getMaterial());
 
-            float Scalar = 1;
-            if(0.05 / GO->GOSizeX < Scalar) Scalar = 1 / GO->GOSizeX;
-            if(0.05 / GO->GOSizeY < Scalar) Scalar = 1 / GO->GOSizeY;
-            if(0.05 / GO->GOSizeZ < Scalar) Scalar = 1 / GO->GOSizeZ;
+            float Scalar = MouseBehaviour::GetInventoryScalar(InvObj);
+            GO->scale(glm::vec3(Scalar, Scalar, Scalar));
+
+            //GO->scale(glm::vec3(0.0005, 0.0005, 0.0005));
+            _inventoryItem1 = GO;
+            _camera->add(GO);
+            _inventoryBox1Filled = true;
+        }
+        /**/
+
+        /**Inventory Box 2*/
+        mesh = Mesh::load("mge/HUD/Inventory Box.obj");
+        textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
+        GO = new GameObject ("InventoryBox2", glm::vec3(-0.5, 0.02 - 0.2, -0.8));
+        GO->setMesh (mesh);
+        GO->setMaterial(textureMaterial);
+        GO->scale(glm::vec3(0.04, 0.05, 0.1));
+        _inventoryBox2 = GO;
+        _camera->add(GO);/**/
+        /**Inventory item 1*/
+        if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount+1)
+        {
+            InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(_scrolledDownAmount+1);
+            GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, -0.065, -0.7));
+            GO->setMesh (InvObj.GO->getMesh());
+            GO->setMaterial(InvObj.GO->getMaterial());
+
+            float Scalar = MouseBehaviour::GetInventoryScalar(InvObj);
             GO->scale(glm::vec3(Scalar, Scalar, Scalar));
 
             //GO->scale(glm::vec3(0.015, 0.015, 0.015));
@@ -207,7 +219,7 @@ void MouseBehaviour::Hud()
         }
             /**/
 
-        /**Progress Bar Empty*/
+        /**Progress Bar Empty*
         mesh = Mesh::load("mge/HUD/Progress Bar Empty.obj");
         textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Progress Bar Empty.png"));
         GO = new GameObject ("ProgressBar", glm::vec3(0.65, 0.5, -1));
@@ -250,7 +262,7 @@ void MouseBehaviour::Hud()
             World::GetInstance()->remove(_inventoryItem2);
             _inventoryBox2Filled = false;
         }
-        World::GetInstance()->remove(_progressBar);
+        //World::GetInstance()->remove(_progressBar);
         World::GetInstance()->remove(_scrollers);
         std::cout << "Fred Deactivated" << std::endl;
 
@@ -377,4 +389,24 @@ void MouseBehaviour::Looking()
         _position += right * Timer::deltaTime() * _speed;
     }
 
+}
+
+float MouseBehaviour::GetInventoryScalar(InventoryObject InvObj)
+{
+    float PaintingScaleThing = 0.0003;
+    float GeneralScaleThing = 0.03;
+    float Scalar = 1;
+    if(InvObj.GO->IsPainting)
+    {
+        if((PaintingScaleThing / InvObj.GO->GOSizeX) < Scalar) Scalar = PaintingScaleThing / InvObj.GO->GOSizeX;
+        if((PaintingScaleThing / InvObj.GO->GOSizeY) < Scalar) Scalar = PaintingScaleThing / InvObj.GO->GOSizeY;
+        if((PaintingScaleThing / InvObj.GO->GOSizeZ) < Scalar) Scalar = PaintingScaleThing / InvObj.GO->GOSizeZ;
+    }
+    else if(!InvObj.GO->IsPainting)
+    {
+        if((GeneralScaleThing / InvObj.GO->GOSizeX) < Scalar) Scalar = GeneralScaleThing / InvObj.GO->GOSizeX;
+        if((GeneralScaleThing / InvObj.GO->GOSizeY) < Scalar) Scalar = GeneralScaleThing / InvObj.GO->GOSizeY;
+        if((GeneralScaleThing / InvObj.GO->GOSizeZ) < Scalar) Scalar = GeneralScaleThing / InvObj.GO->GOSizeZ;
+    }
+    return Scalar;
 }

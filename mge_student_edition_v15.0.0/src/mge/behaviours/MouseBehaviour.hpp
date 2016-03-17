@@ -8,6 +8,7 @@
 #include "mge/core/World.hpp"
 #include "mge/core/Camera.hpp"
 #include "mge/core/PhysicsWorld.hpp"
+#include "mge/puzzles/Inventory.h"
 
 class MouseBehaviour : public AbstractBehaviour
 {
@@ -30,6 +31,8 @@ class MouseBehaviour : public AbstractBehaviour
         void PickUpObject();
         void RaycastTest();
         void Hud();
+        void ActivateCrosshair();
+        float GetInventoryScalar(InventoryObject InvObj);
 
         GameObject* _borders;
         GameObject* _button;
@@ -43,6 +46,7 @@ class MouseBehaviour : public AbstractBehaviour
         GameObject* _scrollers;
         glm::vec3 _scrollerPosition = glm::vec3(-0.462, 0.243, -0.9);
         float _scrollAmount = 0;
+        int _scrolledDownAmount = 0;
 
         // position
         glm::vec3 _position = glm::vec3( 0, 3, 10 );

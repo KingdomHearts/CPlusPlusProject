@@ -25,6 +25,8 @@ AddSound("","Medieval_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
 AddSound("","Prehistoric_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
 AddSound("","Ancient_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
 AddSound("","Musicnart_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
+AddSound("","Modern_Music_Begin.wav",false,0,"NULL",10,true,1,10,"0,3,-10")
+AddSound("","Modern_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
 
 
 ----- All the Dialog Sounds

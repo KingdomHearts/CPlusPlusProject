@@ -12,6 +12,7 @@
 MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, float pDistance):AbstractBehaviour()
 {
     _cameraPosition = pCameraPosition;
+    PhysicsWorld::GetInstance()->AddColliderToObject(3, 3, 3, glm::vec4(0,0,0,0), glm::vec3(0, 3, 10), 0, pCamera);
     _camera = pCamera;
     //ctor
 }
@@ -32,6 +33,7 @@ void MouseBehaviour::update(float step)
 	}
 	if (_startGame == true)
 	{
+	    UpdatePositionWithRigidBody(step);
 		if (_fredActive)
 		{
 			float sizeInv = Inventory::GetInstance()->InventoryList.size();
@@ -132,6 +134,16 @@ void MouseBehaviour::ActivateCrosshair()
     _camera->add(GO);
 }
 
+void MouseBehaviour::UpdatePositionWithRigidBody(float pStep)
+{
+    PhysicsWorld::GetInstance()->DynamicsWorld->stepSimulation(pStep);
+    //btTransform tr = _owner->RigidBody->getCenterOfMassTransform();
+    //btVector3 rigidBodyPosition = tr.getOrigin ();
+    //std::cout << "PositionRigidBody: " << rigidBodyPosition.getX() << "," << rigidBodyPosition.getY() << "," << rigidBodyPosition.getZ() << std::endl;
+    //_position = glm::vec3(rigidBodyPosition.getX(), rigidBodyPosition.getY(), rigidBodyPosition.getZ());
+
+}
+
 void MouseBehaviour::Hud()
 {
     if(!_fredActive)
@@ -174,31 +186,31 @@ void MouseBehaviour::Hud()
         GO->scale(glm::vec3(0.04, 0.05, 0.1));
         _inventoryBox1 = GO;
         _camera->add(GO);/**/
-        /**Inventory item 1*/
+            /**Inventory item 1*/
         if(Inventory::GetInstance()->InventoryList.size() >= _scrolledDownAmount)
-        {
+            {
             InventoryObject InvObj = Inventory::GetInstance()->InventoryList.at(_scrolledDownAmount);
             GO = new GameObject ("InventoryItem2", glm::vec3(-0.437, 0.11, -0.7));
-            GO->setMesh (InvObj.GO->getMesh());
-            GO->setMaterial(InvObj.GO->getMaterial());
+                GO->setMesh (InvObj.GO->getMesh());
+                GO->setMaterial(InvObj.GO->getMaterial());
 
             float Scalar = MouseBehaviour::GetInventoryScalar(InvObj);
             GO->scale(glm::vec3(Scalar, Scalar, Scalar));
 
             //GO->scale(glm::vec3(0.0005, 0.0005, 0.0005));
             _inventoryItem1 = GO;
-            _camera->add(GO);
+                _camera->add(GO);
             _inventoryBox1Filled = true;
-        }
+            }
         /**/
 
         /**Inventory Box 2*/
-        mesh = Mesh::load("mge/HUD/Inventory Box.obj");
-        textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
+            mesh = Mesh::load("mge/HUD/Inventory Box.obj");
+            textureMaterial = new TextureMaterial (Texture::load ("mge/HUD/Inventory Box.png"));
         GO = new GameObject ("InventoryBox2", glm::vec3(-0.5, 0.02 - 0.2, -0.8));
-        GO->setMesh (mesh);
-        GO->setMaterial(textureMaterial);
-        GO->scale(glm::vec3(0.04, 0.05, 0.1));
+            GO->setMesh (mesh);
+            GO->setMaterial(textureMaterial);
+            GO->scale(glm::vec3(0.04, 0.05, 0.1));
         _inventoryBox2 = GO;
         _camera->add(GO);/**/
         /**Inventory item 1*/
@@ -303,7 +315,7 @@ void MouseBehaviour::PickUpObject()
                 }
                 else
                 {
-                std::cout << "Placing Object In Inventory" << std::endl;
+                    std::cout << "Placing Object In Inventory" << std::endl;
                     Inventory::GetInstance()->PlaceObjectInInventory(ObjectHitTest->getName());
                 }
             }
@@ -374,19 +386,32 @@ void MouseBehaviour::Looking()
     _direction.y = 0;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-        _position += _direction * Timer::deltaTime() * _speed;
+       _position += _direction * Timer::deltaTime() * _speed;
+       glm::vec3 vec = _direction * Timer::deltaTime() * _speed;
+       _owner->RigidBody->setLinearVelocity(btVector3(vec.x, vec.y, vec.z));
+
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         _position -= _direction * Timer::deltaTime() * _speed;
+        glm::vec3 vec = _direction * Timer::deltaTime() * _speed;
+       _owner->RigidBody->setLinearVelocity(btVector3(-vec.x, -vec.y, -vec.z));
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         _position -= right * Timer::deltaTime() * _speed;
+        glm::vec3 vec = right * Timer::deltaTime() * _speed;
+       _owner->RigidBody->setLinearVelocity(btVector3(-vec.x, -vec.y, -vec.z));
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         _position += right * Timer::deltaTime() * _speed;
+        glm::vec3 vec = right * Timer::deltaTime() * _speed;
+        _owner->RigidBody->setLinearVelocity(btVector3(vec.x, vec.y, vec.z));
+    }
+    else
+    {
+        _owner->RigidBody->setLinearVelocity(btVector3(0,0,0));
     }
 
 }

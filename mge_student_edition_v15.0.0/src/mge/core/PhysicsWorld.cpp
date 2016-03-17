@@ -1,4 +1,5 @@
 #include "PhysicsWorld.hpp"
+#include "mge/core/world.hpp"
 
 PhysicsWorld* PhysicsWorld::physicsWorldInstance = NULL;
 

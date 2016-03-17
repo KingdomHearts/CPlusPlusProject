@@ -85,7 +85,7 @@ void MGEDemo::_initializeScene()
     _camera = new Camera ("camera", glm::vec3(-30,-100,-40));
     _camera->setBehaviour(new MouseBehaviour (CameraPositionTarget,_camera, 10.0f));
     _camera->setParent(emptyGameObject);
-    PhysicsWorld::GetInstance()->AddColliderToObject(1, 1, 1, glm::vec4(0,0,0,0),_camera->getLocalPosition(), 60.0f, _camera);
+
     _world->add(_camera);
     _world->setMainCamera(_camera);
 

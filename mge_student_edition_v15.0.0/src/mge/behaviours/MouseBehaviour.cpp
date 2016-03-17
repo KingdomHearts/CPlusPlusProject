@@ -12,7 +12,6 @@
 MouseBehaviour::MouseBehaviour(GameObject* pCameraPosition,Camera* pCamera, float pDistance):AbstractBehaviour()
 {
     _cameraPosition = pCameraPosition;
-    PhysicsWorld::GetInstance()->AddColliderToObject(3, 3, 3, glm::vec4(0,0,0,0), glm::vec3(0, 3, 10), 0, pCamera);
     _camera = pCamera;
     //ctor
 }
@@ -32,7 +31,6 @@ void MouseBehaviour::update(float step)
 	}
 	if (_startGame == true)
 	{
-	    UpdatePositionWithRigidBody(step);
 		if (_fredActive)
 		{
 			float sizeInv = Inventory::GetInstance()->InventoryList.size();
@@ -131,16 +129,6 @@ void MouseBehaviour::ActivateCrosshair()
     GO->setMaterial(textureMaterial);
     GO->scale(glm::vec3(0.00025, 0.00025, 0.00025));
     _camera->add(GO);
-}
-
-void MouseBehaviour::UpdatePositionWithRigidBody(float pStep)
-{
-    PhysicsWorld::GetInstance()->DynamicsWorld->stepSimulation(pStep);
-    //btTransform tr = _owner->RigidBody->getCenterOfMassTransform();
-    //btVector3 rigidBodyPosition = tr.getOrigin ();
-    //std::cout << "PositionRigidBody: " << rigidBodyPosition.getX() << "," << rigidBodyPosition.getY() << "," << rigidBodyPosition.getZ() << std::endl;
-    //_position = glm::vec3(rigidBodyPosition.getX(), rigidBodyPosition.getY(), rigidBodyPosition.getZ());
-
 }
 
 void MouseBehaviour::Hud()
@@ -389,29 +377,19 @@ void MouseBehaviour::Looking()
         _position += _direction * Timer::deltaTime() * _speed;
        glm::vec3 vec = _direction * Timer::deltaTime() * _speed;
        _owner->RigidBody->setLinearVelocity(btVector3(vec.x, vec.y, vec.z));
-
+       _owner->RigidBody->forceActivationState(DISABLE_DEACTIVATION);
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         _position -= _direction * Timer::deltaTime() * _speed;
-        glm::vec3 vec = _direction * Timer::deltaTime() * _speed;
-       _owner->RigidBody->setLinearVelocity(btVector3(-vec.x, -vec.y, -vec.z));
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         _position -= right * Timer::deltaTime() * _speed;
-        glm::vec3 vec = right * Timer::deltaTime() * _speed;
-       _owner->RigidBody->setLinearVelocity(btVector3(-vec.x, -vec.y, -vec.z));
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         _position += right * Timer::deltaTime() * _speed;
-        glm::vec3 vec = right * Timer::deltaTime() * _speed;
-        _owner->RigidBody->setLinearVelocity(btVector3(vec.x, vec.y, vec.z));
-    }
-    else
-    {
-        _owner->RigidBody->setLinearVelocity(btVector3(0,0,0));
     }
 
 }

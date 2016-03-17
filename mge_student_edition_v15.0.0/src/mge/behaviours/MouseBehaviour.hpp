@@ -8,6 +8,7 @@
 #include "mge/core/World.hpp"
 #include "mge/core/Camera.hpp"
 #include "mge/core/PhysicsWorld.hpp"
+#include "mge/puzzles/Inventory.h"
 
 class MouseBehaviour : public AbstractBehaviour
 {
@@ -24,21 +25,29 @@ class MouseBehaviour : public AbstractBehaviour
         //GameObject* _emptyCameraParent;
         //GameObject* _emptyChild;
         bool _fredActive = false;
+        bool _fredPickedup = false;
         Camera* _camera;
         void Looking();
         void PickUpObject();
         void RaycastTest();
         void Hud();
+        void ActivateCrosshair();
+        float GetInventoryScalar(InventoryObject InvObj);
 
         GameObject* _borders;
         GameObject* _button;
         GameObject* _inventoryBox1;
+        bool _inventoryBox1Filled = false;
+        GameObject* _inventoryItem1;
         GameObject* _inventoryBox2;
+        bool _inventoryBox2Filled = false;
+        GameObject* _inventoryItem2;
         GameObject* _progressBar;
         GameObject* _scrollers;
         glm::vec3 _scrollerPosition = glm::vec3(-0.462, 0.243, -0.9);
         float _scrollAmount = 0;
         void UpdatePositionWithRigidBody(float pStep);
+        int _scrolledDownAmount = 0;
 
         // position
         glm::vec3 _position = glm::vec3( 0, 3, 10 );

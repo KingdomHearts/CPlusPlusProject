@@ -112,10 +112,15 @@ function update()
 			if(trigger == "DoorFrame1" and completedPuzzle == "PrehistoricFinish") then
 				PrehistoricBanner()
 				PrehistoricCompete = true
+				StopSound("Prehistoric_Music_Loop.wav")
+				PlaySound("Lobby_Music_Loop.wav")	 
 			end
 			
 			if(trigger == "EnterAncientHistory") then
 				EnterAncientHistory()
+				
+				StopSound("Lobby_Music_Loop.wav")
+				PlaySound("Ancient_Music_Loop.wav")	
 			end
 			
 			-- ReturnPaintingAncient()
@@ -137,9 +142,14 @@ function update()
 					AncientBanner()
 					AncientComplete = true
 					
+				StopSound("Ancient_Music_Loop.wav")
+				PlaySound("Lobby_Music_Loop.wav")	
 			   end
 			   if (trigger == "EnterMedieval") then
 					EnterMedieval()
+					
+				StopSound("Lobby_Music_Loop.wav")
+				PlaySound("Medieval_Music_Loop.wav")	
 			   end
 			   -- CrusadeOne()
 			   -- CrusadeTwo()
@@ -153,10 +163,16 @@ function update()
 			   if(trigger == "DoorFrame3" and completedPuzzle == "MedievalFinish") then
 					MedievalBanner()
 					MedievalFinish = true
+					
+				StopSound("Medieval_Music_Loop.wav")
+				PlaySound("Lobby_Music_Loop.wav")
 			   end
 			   
 			   if(trigger == "EnterArt") then
 					EnterArt()
+					
+				StopSound("Lobby_Music_Loop.wav")
+				PlaySound("Musicnart_Music_Loop.wav")
 			   end
 			   -- Mozart()
 			   -- Beethoven()
@@ -181,10 +197,18 @@ function update()
 				if(trigger == "DoorFrame4" and completedPuzzle == "ArtFinish") then
 					ArtBanner()
 					ArtComeplete = true
+					
+				StopSound("Musicnart_Music_Loop.wav")
+				PlaySound("Lobby_Music_Loop.wav")
 				end
 				
 				if(trigger == "EnterModern") then
+				
 					EnterModern()
+					
+				StopSound("Lobby_Music_Loop.wav")
+				PlaySound("Mordern_Music_Begin.wav")
+				PlaySound("Mordern_Music_Loop.wav") --- not here yet
 				end
 				-- DisplayCaseModern()
 				-- BerlinWall()
@@ -198,6 +222,10 @@ function update()
 				if(trigger == "DoorFrame5" and completedPuzzle == "ModernFinish") then
 					ModernBanner()
 					ModernFinish = true
+					
+				StopSound("Lobby_Music_Loop.wav")
+				PlaySound("Mordern_Music_Begin.wav")
+				PlaySound("Mordern_Music_Loop.wav") --- not here yet
 				end
 				if(eventFred == "Complete") then
 					AllRoomsComplete()

@@ -20,6 +20,7 @@ public class ObjectsToLuaScript : MonoBehaviour {
         }
 
         StreamWriter file = new StreamWriter("../../mge_student_edition_v15.0.0/assets/mge/lua/AssetLoader.lua");
+		//StreamWriter file = new StreamWriter("../../AssetLoader.lua");
         foreach (Transform child in transform)
         {
             string texture = "";

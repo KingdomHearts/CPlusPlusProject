@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 57d93b45115fa5e4d86d21681854ce6e
-timeCreated: 1457656180
+guid: 95fbde8141caec1478097e24bab06197
+timeCreated: 1458221935
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Virtine_Glass
-    100002: //RootNode
-    400000: Virtine_Glass
-    400002: //RootNode
-    2300000: Virtine_Glass
-    3300000: Virtine_Glass
-    4300000: Virtine_Glass
+    100000: //RootNode
+    100002: Vitrine_2
+    400000: //RootNode
+    400002: Vitrine_2
+    2300000: Vitrine_2
+    3300000: Vitrine_2
+    4300000: Vitrine_2
   materials:
     importMaterials: 1
     materialName: 0

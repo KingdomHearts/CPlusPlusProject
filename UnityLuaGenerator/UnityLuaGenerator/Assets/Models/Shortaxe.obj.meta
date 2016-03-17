@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: Shortaxe_balta1_pCylinder22_polySurface5_polySurface7_polySurface1
+    100004: Shortaxe1
     400000: //RootNode
     400002: Shortaxe_balta1_pCylinder22_polySurface5_polySurface7_polySurface1
+    400004: Shortaxe1
     2300000: Shortaxe_balta1_pCylinder22_polySurface5_polySurface7_polySurface1
+    2300002: Shortaxe1
     3300000: Shortaxe_balta1_pCylinder22_polySurface5_polySurface7_polySurface1
+    3300002: Shortaxe1
     4300000: Shortaxe_balta1_pCylinder22_polySurface5_polySurface7_polySurface1
+    4300002: Shortaxe1
   materials:
     importMaterials: 1
     materialName: 0

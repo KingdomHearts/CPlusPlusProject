@@ -125,7 +125,7 @@ void MGEDemo::_render() {
 
        //std::cout << "G: " << _camera->getChildCount() << std::endl;
        //std::cout << "L: " << _camera->getParent()->getLocalPosition() << std::endl;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::F5))
     {
         PlayerProgress::GetInstance()->SaveGame();
         //_playerProgress->SaveGame();

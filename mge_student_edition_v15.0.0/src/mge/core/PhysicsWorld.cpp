@@ -92,7 +92,7 @@ GameObject* PhysicsWorld::ScreenPosToWorldRay(Camera* pCamera)
 GameObject* PhysicsWorld::Raycast(glm::vec3 pRay_origin, glm::vec3 pRay_direction)
 {
     /**/
-    glm::vec3 out_end = pRay_origin + pRay_direction*10.0f;
+    glm::vec3 out_end = pRay_origin + pRay_direction*100.0f;
 
      btCollisionWorld::ClosestRayResultCallback RayCallback(
         btVector3(pRay_origin.x, pRay_origin.y, pRay_origin.z),

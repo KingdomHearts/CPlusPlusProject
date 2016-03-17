@@ -22,4 +22,9 @@ public class PuzzleScript : MonoBehaviour {
 	private bool _isPainting;
 
 	public bool IsPainting { get { return _isPainting; } set { _isPainting = value; } }
+
+	[SerializeField]
+	private string _puzzleName;
+
+	public string PuzzleName { get { return _puzzleName; } set { _puzzleName = value; } }
 }

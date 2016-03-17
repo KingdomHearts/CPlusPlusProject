@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: Battleaxe_balta3_polySurface5_polySurface7_polySurface9_polySurface11_polySurface12_polySurface1
+    100004: Battleaxe2
     400000: //RootNode
     400002: Battleaxe_balta3_polySurface5_polySurface7_polySurface9_polySurface11_polySurface12_polySurface1
+    400004: Battleaxe2
     2300000: Battleaxe_balta3_polySurface5_polySurface7_polySurface9_polySurface11_polySurface12_polySurface1
+    2300002: Battleaxe2
     3300000: Battleaxe_balta3_polySurface5_polySurface7_polySurface9_polySurface11_polySurface12_polySurface1
+    3300002: Battleaxe2
     4300000: Battleaxe_balta3_polySurface5_polySurface7_polySurface9_polySurface11_polySurface12_polySurface1
+    4300002: Battleaxe2
   materials:
     importMaterials: 1
     materialName: 0

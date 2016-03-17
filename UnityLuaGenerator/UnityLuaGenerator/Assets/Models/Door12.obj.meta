@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Door2
     100002: //RootNode
+    100004: Door2:Door2
     400000: Door2
     400002: //RootNode
+    400004: Door2:Door2
     2300000: Door2
+    2300002: Door2:Door2
     3300000: Door2
+    3300002: Door2:Door2
     4300000: Door2
+    4300002: Door2:Door2
   materials:
     importMaterials: 1
     materialName: 0

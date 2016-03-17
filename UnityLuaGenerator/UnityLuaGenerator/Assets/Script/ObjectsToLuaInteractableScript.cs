@@ -69,6 +69,7 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
                 sizeY + "," +
                 sizeZ + "," +
 				child.GetComponent<PuzzleScript>().IsPainting + "," +
+				child.GetComponent<PuzzleScript>().PuzzleName + "," +
                 child.transform.rotation.x + "," +
                 child.transform.rotation.y + "," +
                 child.transform.rotation.z + "," +

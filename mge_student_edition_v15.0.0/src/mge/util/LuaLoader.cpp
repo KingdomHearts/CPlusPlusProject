@@ -92,20 +92,22 @@ int AddInteractiveModel(lua_State * lua)
     float rotationZ;
     float rotationW;
     bool isPainting;
+    std::string PuzzleNameString;
 
+    if (lua_isstring(lua, -44)) {
+		IDname = lua_tostring(lua, -44);
+	}
     if (lua_isstring(lua, -43)) {
-		IDname = lua_tostring(lua, -43);
+		Model = lua_tostring(lua, -43);
 	}
-    if (lua_isstring(lua, -42)) {
-		Model = lua_tostring(lua, -42);
+	if (lua_isstring(lua, -42)) {
+		Texture= lua_tostring(lua, -42);
 	}
-	if (lua_isstring(lua, -41)) {
-		Texture= lua_tostring(lua, -41);
-	}
-    sizeX = lua_tonumber(lua, -40);
-    sizeY = lua_tonumber(lua, -39);
-    sizeZ = lua_tonumber(lua, -38);
-    isPainting = lua_toboolean(lua, -37);
+    sizeX = lua_tonumber(lua, -41);
+    sizeY = lua_tonumber(lua, -40);
+    sizeZ = lua_tonumber(lua, -39);
+    isPainting = lua_toboolean(lua, -38);
+    puzzleNameString = lua_tostring(lua,-37)
     rotationX = lua_tonumber(lua, -36);
     rotationY = lua_tonumber(lua, -35);
     rotationZ = lua_tonumber(lua, -34);
@@ -163,6 +165,7 @@ int AddInteractiveModel(lua_State * lua)
     GO->GORotation = glm::vec4(rotationX, rotationY, rotationZ, rotationW);
     PhysicsWorld::GetInstance()->AddColliderToObject(GO->GOSizeX, GO->GOSizeY, GO->GOSizeZ , GO->GORotation ,GO->getLocalPosition(),0, GO);
 
+    GO->puzzleNameString = PuzzleNameString;
 
     std::cout << "AddInteractiveModel end -> " << IDname << std::endl;
 

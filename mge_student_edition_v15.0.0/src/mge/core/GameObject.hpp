@@ -25,6 +25,7 @@ class GameObject
 {
 	public:
 		GameObject(std::string pName = NULL, glm::vec3 pPosition = glm::vec3( 0.0f, 0.0f, 0.0f ), bool pIsInteractive = false);
+
 		virtual ~GameObject();
 
         void setName (std::string pName);
@@ -85,8 +86,10 @@ class GameObject
         glm::vec4 GORotation;
         glm::vec3 GOPositionToPlace;
 
-        //bool for painting
+
+        //puzzle stuff
         bool IsPainting;
+        std::string puzzleNameString;
 
 	protected:
 		std::string _name;

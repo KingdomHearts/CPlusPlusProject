@@ -32,6 +32,8 @@ PrehistoricCompete = false
 ArtComeplete = false
 AncientComplete = false
 
+previousTrigger = ""
+
 ----Update
 function update()
 	if(loaded == true) then
@@ -88,6 +90,7 @@ function update()
 		if (trigger == "EnterPrehistoric") then
 			StopSound("Lobby_Music_Loop.wav")
 			PlaySound("Prehistoric_Music_Loop.wav")	 
+			previousTrigger = trigger
 			trigger = ""
 			 EnterPrehistoric()				 
 		 end
@@ -97,15 +100,18 @@ function update()
 				isNotTriggered = false
 			end
 		end
-		if(trigger == "ReturnPainting") then
+		if(trigger == "ReturnPainting" and previousTrigger == "EnterPrehistoric") then
+			previousTrigger = trigger
 			trigger = ""
 			ReturnPainting()
 		end
-		if(trigger == "Rebuild_puzzle") then
+		if(trigger == "Rebuild_puzzle" and previousTrigger == "ReturnPainting" or previousTrigger == "CutUpPuzzle") then
+			previousTrigger = trigger
 			trigger = ""
 		 Rebuild_puzzle()
 		end
-		if(trigger == "CutUpPuzzle") then
+		if(trigger == "CutUpPuzzle" and previousTrigger == "Rebuild_puzzle" or previousTrigger == "ReturnPainting") then
+		previousTrigger = trigger
 			trigger = ""
 		 CutUpPuzzle()
 		end
@@ -124,6 +130,7 @@ function update()
 			-- PrehistoricFinish()
 			if(trigger == "DoorFrame1" and completedPuzzle == "PrehistoricFinish") then
 			trigger = ""
+			previousTrigger = trigger
 				PrehistoricBanner()
 				PrehistoricCompete = true
 				StopSound("Prehistoric_Music_Loop.wav")

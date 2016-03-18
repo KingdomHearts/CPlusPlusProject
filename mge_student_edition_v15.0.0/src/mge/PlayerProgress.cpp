@@ -38,6 +38,7 @@ void PlayerProgress::SaveGame()
     myfile << "Y = " << Position.y << "\n";
     myfile << "Z = " << Position.z << "\n";
 
+/**
     for(int i = 0; i < SavePuzzle.size(); i++)
     {
         myfile << SavePuzzle[i].sPuzzleName << " = \n";
@@ -55,6 +56,14 @@ void PlayerProgress::SaveGame()
 
         myfile << "isComplete = " << SavePuzzle[i].sComplete;
     }
+**/
+
+    myfile << "CompletedGameObjects = \n{\n";
+    for(int i = 0; i < gameObjectName.size();i++)
+    {
+        myfile << gameObjectName[i] << "',\n";
+    }
+    myfile << "}";
 
     myfile << "Inventory = \n{\n";
     //myfile << "items = \n{\n";
@@ -150,6 +159,29 @@ glm::vec3 PlayerProgress::LoadGame()
     int y = lua_tonumber(lua,lua_gettop( lua ));
     lua_getglobal(lua,"Z");
     int z = lua_tonumber(lua,lua_gettop( lua ));
+
+
+    lua_getglobal(lua,"CompletedGameObjects");
+
+    lua_pushnil(lua);
+
+    std::vector<std::string> CompletedGameObjectsList;
+    while(lua_next(lua, -2) != 0)
+    {
+        std::string puzzle;
+        if(lua_isstring(lua, -1))
+        {
+            puzzle = lua_tostring(lua,-1);
+            CompletedGameObjectsList.push_back(puzzle);
+        }
+        lua_pop(lua, 1);
+    }
+
+    for(int i = 0; i < CompletedGameObjectsList.size();i++)
+    {
+        Inventory::GetInstance()->PlaceObjectInInventory(CompletedGameObjectsList[i]);
+        Inventory::GetInstance()->PlaceObjectInWorld(CompletedGameObjectsList[i]);
+    }
 
     lua_getglobal(lua,"Inventory");
 

@@ -1,6 +1,7 @@
 #define NULL __null
 #include "Inventory.h"
 #include "mge/core/PhysicsWorld.hpp"
+#include "mge/puzzles/Rebuild.h"
 
 Inventory* Inventory::InventoryInstance = NULL;
 
@@ -70,6 +71,7 @@ bool Inventory::PlaceObjectInWorld(std::string pName)
         World::GetInstance()->remove(invObject.GO);
         World::GetInstance()->add(invObject.GO);
         invObject.GO->setTransform(invObject.pPositionToPlace);
+        Rebuild::GetInstance()->UpdatePuzzle(invObject.GO->puzzleNameString,invObject.GO->getLocalPosition(),invObject.GO);
         InventoryList.erase(InventoryList.begin()+index);
 
     }

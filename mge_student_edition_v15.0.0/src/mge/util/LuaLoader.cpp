@@ -25,6 +25,7 @@
 
 #include <SFML/System/Thread.hpp>
 #include "mge/puzzles/Inventory.h"
+#include "mge/puzzles/Rebuild.h"
 
 
 class timer {
@@ -166,6 +167,8 @@ int AddInteractiveModel(lua_State * lua)
     PhysicsWorld::GetInstance()->AddColliderToObject(GO->GOSizeX, GO->GOSizeY, GO->GOSizeZ , GO->GORotation ,GO->getLocalPosition(),0, GO);
 
     GO->puzzleNameString = puzzleNameString;
+    Rebuild::GetInstance()->AddPuzzle(puzzleNameString,GO->getLocalPosition(),GO->GOPositionToPlace,GO);
+
 
     std::cout << "AddInteractiveModel end -> " << IDname << std::endl;
 

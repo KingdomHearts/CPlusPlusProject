@@ -13,6 +13,7 @@ class PlayerProgress
         PlayerProgress();
         std::string SaveName;
         glm::vec3 Position;
+        std::vector<std::string> gameObjectName;
         std::vector<PuzzleName> SavePuzzle;
         void SaveGame();
         glm::vec3 LoadGame();

@@ -11,6 +11,7 @@ struct Puzzle
     std::string sGameObjectID;
     glm::vec3 sStartPosition;
     glm::vec3 sEndPosition;
+    bool sInPlace = false;
 };
 
 struct PuzzleName
@@ -23,13 +24,15 @@ struct PuzzleName
 class Rebuild
 {
     public:
-        Rebuild();
-        void AddPuzzle(std::string pPuzzleName, glm::vec3 pStartPosition, glm::vec3 pEndPosition, GameObject pGameObject);
-        void UpdatePuzzle(std::string pPuzzleName, glm::vec3 pCurrenPosition, GameObject pGameObject);
+        static Rebuild* GetInstance();
+        void AddPuzzle(std::string pPuzzleName, glm::vec3 pStartPosition, glm::vec3 pEndPosition, GameObject * pGameObject);
+        void UpdatePuzzle(std::string pPuzzleName, glm::vec3 pCurrenPosition, GameObject * pGameObject);
         void SavePuzzle(std::string pPuzzleName);
         virtual ~Rebuild();
     protected:
     private:
+        static Rebuild* RebuildInstance;
+        Rebuild();
         std::vector<PuzzleName> _puzzleNameList;
 };
 

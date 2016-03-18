@@ -22,11 +22,11 @@ class PhysicsWorld
         btDiscreteDynamicsWorld* DynamicsWorld;
         GameObject* ScreenPosToWorldRay(Camera* pCamera);
         void AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ, glm::vec4 pRotation, glm::vec3 pPosition,float pMass, GameObject* pGO);
-        void CheckCollisions(GameObject* pCameraGO, glm::vec3 pPreviousLocation);
+        void CheckCollisions(GameObject* pCameraGO);
     protected:
     private:
         PhysicsWorld();
-
+        void SolveCollision(GameObject* pCameraGO, GameObject* OtherGO);
         GameObject* Raycast(glm::vec3 pRay_origin, glm::vec3 pRay_direction);
         static PhysicsWorld* physicsWorldInstance;
 };

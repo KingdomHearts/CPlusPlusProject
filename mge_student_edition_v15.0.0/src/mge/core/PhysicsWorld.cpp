@@ -1,5 +1,6 @@
 #include "PhysicsWorld.hpp"
 #include "mge/core/world.hpp"
+#include "mge/core/GameObject.hpp"
 
 PhysicsWorld* PhysicsWorld::physicsWorldInstance = NULL;
 
@@ -29,6 +30,58 @@ PhysicsWorld* PhysicsWorld::GetInstance()
         PhysicsWorld::physicsWorldInstance = new PhysicsWorld();
     }
     return PhysicsWorld::physicsWorldInstance;
+}
+
+void PhysicsWorld::CheckCollisions(GameObject* pCameraObject)
+{
+    for(int i = 0; i < World::GetInstance()->getChildCount(); i++)
+    {
+        GameObject* GO = World::GetInstance()->getChildAt(i);
+        if(GO->getName() != "Mainhall_UV" && GO->getName() != "Art_UV" && GO->getName() != "Ancienthistory_UV" && GO->getName() != "Medieval_UV" && GO->getName() != "Modern_UV" && GO->getName() != "Prehistoric_UV")
+        {
+            glm::vec3 diff = glm::abs(GO->getLocalPosition() - pCameraObject->getLocalPosition());
+            glm::vec3 totalSize = glm::vec3(pCameraObject->GOSizeX, pCameraObject->GOSizeY, pCameraObject->GOSizeZ) + glm::vec3(GO->GOSizeX, GO->GOSizeY, GO->GOSizeZ);
+            totalSize *= 0.5f;
+            if(diff.x<totalSize.x&&diff.y<totalSize.y&&diff.z<totalSize.z)
+            {
+                std::cout << "Collision Detected with: " << GO->getName() << std::endl;
+                SolveCollision(pCameraObject, GO);
+            }
+        }
+    }
+}
+
+void PhysicsWorld::SolveCollision(GameObject* pCameraGO, GameObject* OtherGO)
+{
+    glm::vec3 newPos = pCameraGO->getLocalPosition();
+    glm::vec3 diffVector = pCameraGO->getLocalPosition() * OtherGO->getLocalPosition();
+    glm::vec3 sizeOtherGO = glm::vec3(OtherGO->GOSizeX, OtherGO->GOSizeY, OtherGO->GOSizeZ);
+    glm::vec3 diff = glm::abs(diffVector);
+    diff /= sizeOtherGO + glm::vec3(pCameraGO->GOSizeX, pCameraGO->GOSizeY, pCameraGO->GOSizeZ);
+    if(diff.x > diff.y && diff.x > diff.z)
+    {
+        diff.x = sizeOtherGO.x / 2 + (pCameraGO->GOSizeX/2);
+        diff.y = diffVector.y;
+        diff.z = diffVector.z;
+        if(diffVector.x < 0)
+        {
+            diff.x = diff.x*-1;
+        }
+    }
+    else if(diff.y > diff.z)
+    {
+        diff.y = sizeOtherGO.y / 2 * (pCameraGO->GOSizeY/2);
+        diff.x = diffVector.x;
+        diff.z = diffVector.z;
+        if(diffVector.y < 0)diff.y = diff.y*-1;
+    }
+    else {
+        diff.z = sizeOtherGO.z / 2 + (pCameraGO->GOSizeZ/2);
+        diff.x = diffVector.x;
+        diff.y = diffVector.y;
+        if(diffVector.z < 0)diff.z = diff.z*-1;
+    }
+    pCameraGO->setLocalPosition(newPos - diff);
 }
 
 void PhysicsWorld::AddColliderToObject(float pSizeX, float pSizeY, float pSizeZ, glm::vec4 pRotation, glm::vec3 pPosition,float pMass, GameObject* pGO)

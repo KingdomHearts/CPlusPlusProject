@@ -31,6 +31,7 @@ void MouseBehaviour::update(float step)
 	}
 	if (_startGame == true)
 	{
+        PhysicsWorld::GetInstance()->CheckCollisions(_owner);
 		if (_fredActive)
 		{
 			float sizeInv = Inventory::GetInstance()->InventoryList.size();

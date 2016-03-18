@@ -61,6 +61,18 @@ void MGEDemo::initialize() {
 	cout << "HUD initialized." << endl << endl;
 }
 
+    bool doorAnimation1 = false;
+    bool doorAnimation2 = false;
+    bool doorAnimation3 = false;
+    bool doorAnimation4 = false;
+    bool doorAnimation5 = false;
+    bool doorAnimation6 = false;
+    bool doorAnimation7 = false;
+    bool doorAnimation8 = false;
+    bool doorAnimation9 = false;
+    bool doorAnimation10 = false;
+
+
 //build the game _world
 void MGEDemo::_initializeScene()
 {
@@ -121,6 +133,11 @@ void MGEDemo::_render() {
     if(trigger.sHit)
     {
         LuaLoader::GetInstance()->SetTrigger(trigger.sGameObjectId);
+        if(trigger.sGameObjectId == "DoorFrame1")
+        {
+            doorAnimation3 = true;
+            doorAnimation4 = true;
+        }
         std::cout << trigger.sGameObjectId << std::endl;
     }
 
@@ -135,6 +152,61 @@ void MGEDemo::_render() {
 }
 
 void MGEDemo::_updateHud() {
+
+    for(int i = 0; i < World::GetInstance()->getChildCount(); i++)
+    {
+        GameObject * GO = World::GetInstance()->getChildAt(i);
+        if(GO->getName() == "Door1" && doorAnimation1 == true)
+        {
+            GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x-0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z-0.02f));
+            //std::cout<<GO->getName();
+        }
+        if(GO->getName() == "Door2" && doorAnimation2 == true)
+        {
+            GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x+0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z+0.02f));
+        }
+
+        if(GO->getName() == "Door3" && doorAnimation3 == true)
+        {
+            GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x-0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z-0.02f));
+            //std::cout<<GO->getName();
+        }
+        if(GO->getName() == "Door4" && doorAnimation4 == true)
+        {
+            GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x+0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z+0.02f));
+        }
+
+        if(GO->getName() == "Door5" && doorAnimation5 == true)
+        {
+            GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x-0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z-0.02f));
+            //std::cout<<GO->getName();
+        }
+        if(GO->getName() == "Door6" && doorAnimation6 == true)
+        {
+            GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x+0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z+0.02f));
+        }
+
+        if(GO->getName() == "Door7" && doorAnimation7 == true)
+        {
+            GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x-0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z-0.02f));
+            //std::cout<<GO->getName();
+        }
+        if(GO->getName() == "Door8" && doorAnimation8 == true)
+        {
+            GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x+0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z+0.02f));
+        }
+
+        if(GO->getName() == "Door9" && doorAnimation9 == true)
+        {
+            GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x-0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z-0.02f));
+            //std::cout<<GO->getName();
+        }
+        if(GO->getName() == "Door10" && doorAnimation10 == true)
+        {
+            GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x+0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z+0.02f));
+        }
+    }
+
     string debugInfo = "";
     debugInfo += string ("FPS:") + std::to_string(FPS::getFPS())+"\n";
     std::string displayText = World::GetInstance()->displayText;

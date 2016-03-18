@@ -133,6 +133,7 @@ function update()
 			previousTrigger = trigger
 				PrehistoricBanner()
 				PrehistoricCompete = true
+				PlaySound("Ding.wav")
 				StopSound("Prehistoric_Music_Loop.wav")
 				PlaySound("Lobby_Music_Loop.wav")	 
 			end
@@ -165,6 +166,7 @@ function update()
 					AncientBanner()
 					AncientComplete = true
 					
+				PlaySound("Ding.wav")
 				StopSound("Ancient_Music_Loop.wav")
 				PlaySound("Lobby_Music_Loop.wav")	
 			   end
@@ -189,6 +191,7 @@ function update()
 					MedievalBanner()
 					MedievalFinish = true
 					
+				PlaySound("Ding.wav")
 				StopSound("Medieval_Music_Loop.wav")
 				PlaySound("Lobby_Music_Loop.wav")
 			   end
@@ -225,6 +228,7 @@ function update()
 					ArtBanner()
 					ArtComeplete = true
 					
+				PlaySound("Ding.wav")
 				StopSound("Musicnart_Music_Loop.wav")
 				PlaySound("Lobby_Music_Loop.wav")
 				end
@@ -252,6 +256,7 @@ function update()
 					ModernBanner()
 					ModernFinish = true
 					
+				PlaySound("Ding.wav")
 				StopSound("Modern_Music_Begin.wav")
 				StopSound("Modern_Music_Loop.wav") --- not here yet
 					
@@ -366,7 +371,9 @@ function OpenExhibit()
 	wait(5)
 	playDialogueTrack(18)
 	playSubtitleScript(18)
-	--playDialogueTrack(151) -- door sound sfx
+	wait(2)
+	playDialogueTrack(151) -- door sound sfx
+	playSubtitleScript(151)
 	wait(2)
 	playDialogueTrack(19)
 	playSubtitleScript(19)

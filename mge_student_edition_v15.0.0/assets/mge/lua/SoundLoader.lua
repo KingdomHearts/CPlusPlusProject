@@ -20,13 +20,17 @@
 --*/
 
 --AddSound("ID","Mono_Sample.wav",true,0,"NULL",100,true,1,10,"0,0,0");
-AddSound("","Lobby_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
-AddSound("","Medieval_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
-AddSound("","Prehistoric_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
-AddSound("","Ancient_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
-AddSound("","Musicnart_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
-AddSound("","Modern_Music_Begin.wav",false,0,"NULL",10,true,1,10,"0,3,-10")
-AddSound("","Modern_Music_Loop.wav",true,0,"NULL",10,true,1,10,"0,3,-10")
+AddSound("","Lobby_Music_Loop.wav",true,0,"NULL",1,true,1,10,"0,3,-10")
+AddSound("","Medieval_Music_Loop.wav",true,0,"NULL",1,true,1,10,"0,3,-10")
+AddSound("","Prehistoric_Music_Loop.wav",true,0,"NULL",1,true,1,10,"0,3,-10")
+AddSound("","Ancient_Music_Loop.wav",true,0,"NULL",1,true,1,10,"0,3,-10")
+AddSound("","Musicnart_Music_Loop.wav",true,0,"NULL",1,true,1,10,"0,3,-10")
+AddSound("","Modern_Music_Begin.wav",false,0,"NULL",1,true,1,10,"0,3,-10")
+AddSound("","Modern_Music_Loop.wav",true,0,"NULL",1,true,1,10,"0,3,-10")
+
+AddSound("","Ding.wav",false,0,"NULL",100,true,1,10,"0,3,-10")
+AddSound("","Plop.wav",false,0,"NULL",100,true,1,10,"0,3,-10")
+AddSound("","Door.wav",false,0,"NULL",100,true,1,10,"0,3,-10")
 
 
 ----- All the Dialog Sounds
@@ -183,4 +187,4 @@ AddSound("","122.wav",false,0,"NULL",100,false,1,10,"")
 -- AddSound("","148.wav",false,0,"NULL",100,false,1,10,"")
 -- AddSound("","149.wav",false,0,"NULL",100,false,1,10,"")
 -- AddSound("","150.wav",false,0,"NULL",100,false,1,10,"")
--- AddSound("","151.wav",false,0,"NULL",100,false,1,10,"")
+AddSound("","151.wav",false,0,"NULL",10,false,1,10,"")

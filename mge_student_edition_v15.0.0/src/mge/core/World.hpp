@@ -30,6 +30,9 @@ class World : public GameObject
         std::string nextState;
         std::string displayText;
 
+        bool door3 = false;
+        bool door4 = false;
+
         bool IsRunning;
         void renderDebugInfo();
         bool isRunning;

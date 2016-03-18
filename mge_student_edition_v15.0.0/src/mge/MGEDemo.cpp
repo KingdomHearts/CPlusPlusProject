@@ -63,8 +63,8 @@ void MGEDemo::initialize() {
 
     bool doorAnimation1 = false;
     bool doorAnimation2 = false;
-    bool doorAnimation3 = false;
-    bool doorAnimation4 = false;
+    //bool doorAnimation3 = World::GetInstance()->door3;
+    //bool doorAnimation4 = World::GetInstance()->door4;
     bool doorAnimation5 = false;
     bool doorAnimation6 = false;
     bool doorAnimation7 = false;
@@ -109,7 +109,7 @@ void MGEDemo::_initializeScene()
     AbstractMaterial* mainMenu;
 
     mesh = Mesh::load("mge/HUD/Plane.obj");
-    mainMenu = new TextureMaterial(Texture::load("mge/HUD/main_menu.png"));
+    mainMenu = new TextureMaterial(Texture::load("mge/HUD/MainMenu.jpg"));
     GO = new GameObject("menu",glm::vec3(0, -0, -1));
     GO->rotate(1.6,glm::vec3(1,0,0));
     GO->setMesh(mesh);
@@ -135,8 +135,10 @@ void MGEDemo::_render() {
         LuaLoader::GetInstance()->SetTrigger(trigger.sGameObjectId);
         if(trigger.sGameObjectId == "DoorFrame1")
         {
-            doorAnimation3 = true;
-            doorAnimation4 = true;
+            //Audio * audio = new Audio("",0);
+            //audio->PlaySound("Door.wav");
+            //doorAnimation3 = true;
+            //doorAnimation4 = true;
         }
         std::cout << trigger.sGameObjectId << std::endl;
     }
@@ -166,12 +168,12 @@ void MGEDemo::_updateHud() {
             GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x+0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z+0.02f));
         }
 
-        if(GO->getName() == "Door3" && doorAnimation3 == true)
+        if(GO->getName() == "Door3" && World::GetInstance()->door3)
         {
             GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x-0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z-0.02f));
             //std::cout<<GO->getName();
         }
-        if(GO->getName() == "Door4" && doorAnimation4 == true)
+        if(GO->getName() == "Door4" && World::GetInstance()->door4)
         {
             GO->setLocalPosition(glm::vec3(GO->getLocalPosition().x+0.01f,GO->getLocalPosition().y,GO->getLocalPosition().z+0.02f));
         }

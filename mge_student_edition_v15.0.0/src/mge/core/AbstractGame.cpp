@@ -264,6 +264,14 @@ void DialogThread(DebugHud * hud)
                                     isAudioStarted = false;
                                }
                             }
+
+                            if(i->sDialogNumber == 151 && isShowingDialog == false)
+                            {
+                                World::GetInstance()->door3 = true;
+                                World::GetInstance()->door4 = true;
+                                Audio * audio = new Audio("",0);
+                                audio->PlaySound("Door.wav");
+                            }
                             /**
                             if(World::GetInstance()->waitTimesList.size() > 0)
                             {

@@ -1005,9 +1005,9 @@ function CompletedPuzzles()
 	if(completedPuzzle == "Xiphos") then
 	Xiphos()
 	end
-	if(completedPuzzle == "Atlantis") then
-	Atlantis()
-	end
+	-- if(completedPuzzle == "Atlantis") then
+	-- Atlantis()
+	-- end
 	if(completedPuzzle == "Helm") then
 	Helm()
 	end

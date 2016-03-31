@@ -502,8 +502,6 @@ int playDialogueTrack(lua_State * lua)
     os << dialogSoundNumber << ".wav";
     std::string filename = os.str();
     World::GetInstance()->DialogSoundList.push_back(filename);
-    //_audio->PlaySound(filename);
-    //std::cout << filename << std::endl;
     return 0;
 }
 

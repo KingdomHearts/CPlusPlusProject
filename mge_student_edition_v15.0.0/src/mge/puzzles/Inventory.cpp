@@ -71,9 +71,9 @@ bool Inventory::PlaceObjectInWorld(std::string pName)
         World::GetInstance()->remove(invObject.GO);
         World::GetInstance()->add(invObject.GO);
         invObject.GO->setTransform(invObject.pPositionToPlace);
-        Rebuild::GetInstance()->UpdatePuzzle(invObject.GO->puzzleNameString,invObject.GO->getLocalPosition(),invObject.GO);
-        Audio * audio = new Audio("",0);
-        audio->PlaySound("Plop.wav");
+        //Rebuild::GetInstance()->UpdatePuzzle(invObject.GO->puzzleNameString,invObject.GO->getLocalPosition(),invObject.GO);
+        //Audio * audio = new Audio("",0);
+        //audio->PlaySound("Plop.wav");
         InventoryList.erase(InventoryList.begin()+index);
 
     }

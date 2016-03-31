@@ -8,15 +8,20 @@ ModelImporter:
     100000: //RootNode
     100002: Polehammer_pCylinder22_polySurface5_polySurface1
     100004: Polehammer1
+    100006: Polehammer:Polehammer_Polehammer:pCylinder22_Polehammer:polySurface5_Polehammer:polySurface6_Polehammer:polySurface1
     400000: //RootNode
     400002: Polehammer_pCylinder22_polySurface5_polySurface1
     400004: Polehammer1
+    400006: Polehammer:Polehammer_Polehammer:pCylinder22_Polehammer:polySurface5_Polehammer:polySurface6_Polehammer:polySurface1
     2300000: Polehammer_pCylinder22_polySurface5_polySurface1
     2300002: Polehammer1
+    2300004: Polehammer:Polehammer_Polehammer:pCylinder22_Polehammer:polySurface5_Polehammer:polySurface6_Polehammer:polySurface1
     3300000: Polehammer_pCylinder22_polySurface5_polySurface1
     3300002: Polehammer1
+    3300004: Polehammer:Polehammer_Polehammer:pCylinder22_Polehammer:polySurface5_Polehammer:polySurface6_Polehammer:polySurface1
     4300000: Polehammer_pCylinder22_polySurface5_polySurface1
     4300002: Polehammer1
+    4300004: Polehammer:Polehammer_Polehammer:pCylinder22_Polehammer:polySurface5_Polehammer:polySurface6_Polehammer:polySurface1
   materials:
     importMaterials: 1
     materialName: 0

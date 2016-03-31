@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 7512a232a0802fe4b8b03052b2280f48
-timeCreated: 1457656260
+guid: fee4ce488f1b9f44c8f3356ac94d8baa
+timeCreated: 1458259970
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Pot1
+    100002: Pot_Baked_Pot:Pot1
     400000: //RootNode
-    400002: Pot1
-    2300000: Pot1
-    3300000: Pot1
-    4300000: Pot1
+    400002: Pot_Baked_Pot:Pot1
+    2300000: Pot_Baked_Pot:Pot1
+    3300000: Pot_Baked_Pot:Pot1
+    4300000: Pot_Baked_Pot:Pot1
   materials:
     importMaterials: 1
     materialName: 0

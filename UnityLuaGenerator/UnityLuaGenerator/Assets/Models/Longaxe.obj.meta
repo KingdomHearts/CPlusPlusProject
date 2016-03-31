@@ -8,15 +8,20 @@ ModelImporter:
     100000: //RootNode
     100002: Longaxe_balta6_polySurface5_polySurface7_polySurface9_polySurface10_polySurface1
     100004: Longaxe1
+    100006: Longaxe:Longaxe_Longaxe:balta6_Longaxe:polySurface5_Longaxe:polySurface7_Longaxe:polySurface9_Longaxe:polySurface10_Longaxe:polySurface11_Longaxe:polySurface1
     400000: //RootNode
     400002: Longaxe_balta6_polySurface5_polySurface7_polySurface9_polySurface10_polySurface1
     400004: Longaxe1
+    400006: Longaxe:Longaxe_Longaxe:balta6_Longaxe:polySurface5_Longaxe:polySurface7_Longaxe:polySurface9_Longaxe:polySurface10_Longaxe:polySurface11_Longaxe:polySurface1
     2300000: Longaxe_balta6_polySurface5_polySurface7_polySurface9_polySurface10_polySurface1
     2300002: Longaxe1
+    2300004: Longaxe:Longaxe_Longaxe:balta6_Longaxe:polySurface5_Longaxe:polySurface7_Longaxe:polySurface9_Longaxe:polySurface10_Longaxe:polySurface11_Longaxe:polySurface1
     3300000: Longaxe_balta6_polySurface5_polySurface7_polySurface9_polySurface10_polySurface1
     3300002: Longaxe1
+    3300004: Longaxe:Longaxe_Longaxe:balta6_Longaxe:polySurface5_Longaxe:polySurface7_Longaxe:polySurface9_Longaxe:polySurface10_Longaxe:polySurface11_Longaxe:polySurface1
     4300000: Longaxe_balta6_polySurface5_polySurface7_polySurface9_polySurface10_polySurface1
     4300002: Longaxe1
+    4300004: Longaxe:Longaxe_Longaxe:balta6_Longaxe:polySurface5_Longaxe:polySurface7_Longaxe:polySurface9_Longaxe:polySurface10_Longaxe:polySurface11_Longaxe:polySurface1
   materials:
     importMaterials: 1
     materialName: 0

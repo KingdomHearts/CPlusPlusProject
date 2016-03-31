@@ -8,15 +8,25 @@ ModelImporter:
     100000: //RootNode
     100002: Longsword1_Xiphos8_polySurface3_polySurface1
     100004: Longsword2
+    100006: Longsword2:Longsword1_Longsword2:Xiphos8_Longsword2:polySurface3_Longsword2:polySurface4_Longsword2:polySurface5_Longsword2:textureBakeSet1_textureBakeSet2_polySurface1
+    100008: textureBakeSet2_polySurface1
     400000: //RootNode
     400002: Longsword1_Xiphos8_polySurface3_polySurface1
     400004: Longsword2
+    400006: Longsword2:Longsword1_Longsword2:Xiphos8_Longsword2:polySurface3_Longsword2:polySurface4_Longsword2:polySurface5_Longsword2:textureBakeSet1_textureBakeSet2_polySurface1
+    400008: textureBakeSet2_polySurface1
     2300000: Longsword1_Xiphos8_polySurface3_polySurface1
     2300002: Longsword2
+    2300004: Longsword2:Longsword1_Longsword2:Xiphos8_Longsword2:polySurface3_Longsword2:polySurface4_Longsword2:polySurface5_Longsword2:textureBakeSet1_textureBakeSet2_polySurface1
+    2300006: textureBakeSet2_polySurface1
     3300000: Longsword1_Xiphos8_polySurface3_polySurface1
     3300002: Longsword2
+    3300004: Longsword2:Longsword1_Longsword2:Xiphos8_Longsword2:polySurface3_Longsword2:polySurface4_Longsword2:polySurface5_Longsword2:textureBakeSet1_textureBakeSet2_polySurface1
+    3300006: textureBakeSet2_polySurface1
     4300000: Longsword1_Xiphos8_polySurface3_polySurface1
     4300002: Longsword2
+    4300004: Longsword2:Longsword1_Longsword2:Xiphos8_Longsword2:polySurface3_Longsword2:polySurface4_Longsword2:polySurface5_Longsword2:textureBakeSet1_textureBakeSet2_polySurface1
+    4300006: textureBakeSet2_polySurface1
   materials:
     importMaterials: 1
     materialName: 0

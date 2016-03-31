@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 6f2d5676f35f31e4486f0413857200df
-timeCreated: 1456245297
+guid: e90afbf5df402bb4bb8ef22a83d089b6
+timeCreated: 1458260719
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Spearflint1
+    100002: Shard
     400000: //RootNode
-    400002: Spearflint1
-    2300000: Spearflint1
-    3300000: Spearflint1
-    4300000: Spearflint1
+    400002: Shard
+    2300000: Shard
+    3300000: Shard
+    4300000: Shard
   materials:
     importMaterials: 1
     materialName: 0

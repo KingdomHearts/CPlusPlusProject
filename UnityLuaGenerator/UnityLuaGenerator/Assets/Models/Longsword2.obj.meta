@@ -8,15 +8,25 @@ ModelImporter:
     100000: //RootNode
     100002: Longsword2_Xiphos8_polySurface3_polySurface1
     100004: Longsword3
+    100006: Longsword2:Longsword2_Longsword2:Xiphos8_Longsword2:polySurface3_Longsword2:polySurface4_polySurface2
+    100008: polySurface2
     400000: //RootNode
     400002: Longsword2_Xiphos8_polySurface3_polySurface1
     400004: Longsword3
+    400006: Longsword2:Longsword2_Longsword2:Xiphos8_Longsword2:polySurface3_Longsword2:polySurface4_polySurface2
+    400008: polySurface2
     2300000: Longsword2_Xiphos8_polySurface3_polySurface1
     2300002: Longsword3
+    2300004: Longsword2:Longsword2_Longsword2:Xiphos8_Longsword2:polySurface3_Longsword2:polySurface4_polySurface2
+    2300006: polySurface2
     3300000: Longsword2_Xiphos8_polySurface3_polySurface1
     3300002: Longsword3
+    3300004: Longsword2:Longsword2_Longsword2:Xiphos8_Longsword2:polySurface3_Longsword2:polySurface4_polySurface2
+    3300006: polySurface2
     4300000: Longsword2_Xiphos8_polySurface3_polySurface1
     4300002: Longsword3
+    4300004: Longsword2:Longsword2_Longsword2:Xiphos8_Longsword2:polySurface3_Longsword2:polySurface4_polySurface2
+    4300006: polySurface2
   materials:
     importMaterials: 1
     materialName: 0

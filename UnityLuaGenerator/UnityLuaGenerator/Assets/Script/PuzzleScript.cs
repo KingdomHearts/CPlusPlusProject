@@ -28,4 +28,3 @@ public class PuzzleScript : MonoBehaviour {
 
 	public string PuzzleName { get { return _puzzleName; } set { _puzzleName = value; } }
 }
-

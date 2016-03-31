@@ -8,15 +8,20 @@ ModelImporter:
     100000: //RootNode
     100002: Battleaxe_balta3_polySurface5_polySurface7_polySurface9_polySurface11_polySurface12_polySurface1
     100004: Battleaxe2
+    100006: Battleaxe:Battleaxe_Battleaxe:balta3_Battleaxe:polySurface5_Battleaxe:polySurface7_Battleaxe:polySurface9_Battleaxe:polySurface11_Battleaxe:polySurface12_Battleaxe:polySurface13_Battleaxe:polySurface1
     400000: //RootNode
     400002: Battleaxe_balta3_polySurface5_polySurface7_polySurface9_polySurface11_polySurface12_polySurface1
     400004: Battleaxe2
+    400006: Battleaxe:Battleaxe_Battleaxe:balta3_Battleaxe:polySurface5_Battleaxe:polySurface7_Battleaxe:polySurface9_Battleaxe:polySurface11_Battleaxe:polySurface12_Battleaxe:polySurface13_Battleaxe:polySurface1
     2300000: Battleaxe_balta3_polySurface5_polySurface7_polySurface9_polySurface11_polySurface12_polySurface1
     2300002: Battleaxe2
+    2300004: Battleaxe:Battleaxe_Battleaxe:balta3_Battleaxe:polySurface5_Battleaxe:polySurface7_Battleaxe:polySurface9_Battleaxe:polySurface11_Battleaxe:polySurface12_Battleaxe:polySurface13_Battleaxe:polySurface1
     3300000: Battleaxe_balta3_polySurface5_polySurface7_polySurface9_polySurface11_polySurface12_polySurface1
     3300002: Battleaxe2
+    3300004: Battleaxe:Battleaxe_Battleaxe:balta3_Battleaxe:polySurface5_Battleaxe:polySurface7_Battleaxe:polySurface9_Battleaxe:polySurface11_Battleaxe:polySurface12_Battleaxe:polySurface13_Battleaxe:polySurface1
     4300000: Battleaxe_balta3_polySurface5_polySurface7_polySurface9_polySurface11_polySurface12_polySurface1
     4300002: Battleaxe2
+    4300004: Battleaxe:Battleaxe_Battleaxe:balta3_Battleaxe:polySurface5_Battleaxe:polySurface7_Battleaxe:polySurface9_Battleaxe:polySurface11_Battleaxe:polySurface12_Battleaxe:polySurface13_Battleaxe:polySurface1
   materials:
     importMaterials: 1
     materialName: 0

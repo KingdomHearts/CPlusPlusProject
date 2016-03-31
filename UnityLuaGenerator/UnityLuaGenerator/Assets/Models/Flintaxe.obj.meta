@@ -1,17 +1,22 @@
 fileFormatVersion: 2
-guid: 5abd90c6d88cd6a4593ce44d4756dfae
-timeCreated: 1457655442
+guid: 77e1213c84e59274a92069001da86126
+timeCreated: 1458259970
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
     100002: Flintaxe:Flintaxe_Blade2
+    100004: Flintaxe1
     400000: //RootNode
     400002: Flintaxe:Flintaxe_Blade2
+    400004: Flintaxe1
     2300000: Flintaxe:Flintaxe_Blade2
+    2300002: Flintaxe1
     3300000: Flintaxe:Flintaxe_Blade2
+    3300002: Flintaxe1
     4300000: Flintaxe:Flintaxe_Blade2
+    4300002: Flintaxe1
   materials:
     importMaterials: 1
     materialName: 0

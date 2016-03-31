@@ -61,12 +61,6 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
 
             Matrix4x4 matrix = Matrix4x4.TRS(position, rotation, scale);
 
-            int paintingBool = 0;
-            if (child.GetComponent<PuzzleScript>().IsPainting)
-            {
-                paintingBool = 1;
-            }
-
             file.WriteLine("AddInteractiveModel('" +
                 child.gameObject.name + "','" +
                 child.gameObject.name + ".obj','" +
@@ -74,7 +68,7 @@ public class ObjectsToLuaInteractableScript : MonoBehaviour {
                 sizeX + "," +
                 sizeY + "," +
                 sizeZ + "," +
-                paintingBool + ",'" +
+				child.GetComponent<PuzzleScript>().IsPainting + ",'" +
 				child.GetComponent<PuzzleScript>().PuzzleName + "'," +
                 child.transform.rotation.x + "," +
                 child.transform.rotation.y + "," +
